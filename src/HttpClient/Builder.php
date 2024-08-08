@@ -2,15 +2,15 @@
 
 namespace SergkeiM\CloudFlare\HttpClient;
 
-use Http\Client\Common\Plugin;
-use Psr\Http\Client\ClientInterface;
 use Http\Client\Common\HttpMethodsClient;
 use Http\Client\Common\HttpMethodsClientInterface;
-use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Message\StreamFactoryInterface;
+use Http\Client\Common\Plugin;
+use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
-use Http\Client\Common\PluginClientFactory;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * API client builder.
@@ -93,7 +93,6 @@ class Builder
      *
      * @return void
      */
-
     public function addPlugin(Plugin $plugin): void
     {
         $this->plugins[] = $plugin;

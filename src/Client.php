@@ -2,14 +2,14 @@
 
 namespace SergkeiM\CloudFlare;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractApi;
-use SergkeiM\CloudFlare\HttpClient\Builder;
+use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
-use Http\Client\Common\HttpMethodsClientInterface;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
+use SergkeiM\CloudFlare\Endpoints\AbstractApi;
 use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
+use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
+use SergkeiM\CloudFlare\HttpClient\Builder;
 use SergkeiM\CloudFlare\HttpClient\Plugins\Authentication;
 
 /**
@@ -35,7 +35,7 @@ class Client
         $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
 
         $baseUri = Psr17FactoryDiscovery::findUriFactory()
-            ->createUri("https://api.cloudflare.com/client/v4/");
+            ->createUri('https://api.cloudflare.com/client/v4/');
         $builder->addPlugin(new Authentication($token));
         $builder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
         $builder->addPlugin(new Plugin\HeaderDefaultsPlugin([

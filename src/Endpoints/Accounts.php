@@ -5,7 +5,6 @@ namespace SergkeiM\CloudFlare\Endpoints;
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
  */
-
 class Accounts extends AbstractApi
 {
     /**

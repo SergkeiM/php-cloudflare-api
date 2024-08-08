@@ -2,9 +2,9 @@
 
 namespace SergkeiM\CloudFlare\Endpoints;
 
+use Psr\Http\Message\ResponseInterface;
 use SergkeiM\CloudFlare\Client;
 use SergkeiM\CloudFlare\HttpClient\Messages\ResponseMediator;
-use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractApi
 {
@@ -29,7 +29,6 @@ abstract class AbstractApi
      *
      * @return void
      */
-
     public function __construct(Client $client)
     {
         $this->client = $client;

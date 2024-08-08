@@ -14,7 +14,6 @@ class AccountsTest extends TestCase
         return Accounts::class;
     }
 
-
     /**
      * @test
      */
@@ -26,7 +25,7 @@ class AccountsTest extends TestCase
                 ['id' => 'af5f83226fcf7de29daeff6289b5638f', 'name' => 'accountName2', 'type' => 'enterprise'],
                 ['id' => 'af5f83226fcf7de29daeff6289b5639f', 'name' => 'accountName3', 'type' => 'standard'],
                 ['id' => 'af5f83226fcf7de29daeff6289b5635f', 'name' => 'accountName4', 'type' => 'standard'],
-            ]
+            ],
         ];
 
         $api = $this->getApiMock();
@@ -51,9 +50,9 @@ class AccountsTest extends TestCase
                 [
                     'id' => 'af5f83226fcf7de29daeff6289b5637f',
                     'name' => 'accountName',
-                    'type' => 'standard'
-                ]
-            ]
+                    'type' => 'standard',
+                ],
+            ],
         ];
 
         $api = $this->getApiMock();
@@ -75,9 +74,9 @@ class AccountsTest extends TestCase
                 [
                     'id' => 'af5f83226fcf7de29daeff6289b5637f',
                     'name' => 'accountName',
-                    'type' => 'standard'
-                ]
-            ]
+                    'type' => 'standard',
+                ],
+            ],
         ];
 
         $api = $this->getApiMock();
@@ -91,9 +90,9 @@ class AccountsTest extends TestCase
                     [
                         'id' => 'af5f83226fcf7de29daeff6289b5637f',
                         'name' => 'accountName',
-                        'type' => 'standard'
-                    ]
-                ]
+                        'type' => 'standard',
+                    ],
+                ],
             ])
             ->will($this->returnValue($expectedArray));
 
