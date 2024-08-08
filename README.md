@@ -26,7 +26,7 @@ This command will get you up and running quickly with a [Guzzle](https://github.
 composer require sergkeim/php-cloudflare-api guzzlehttp/guzzle
 ```
 
-## ⚙️ Framework integrations
+## ⚙️ Integrations
 
 ### Laravel
 
