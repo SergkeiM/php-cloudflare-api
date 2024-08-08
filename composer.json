@@ -25,8 +25,7 @@
         "php-http/mock-client": "^1.6",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-deprecation-rules": "^1.2",
-        "symfony/phpunit-bridge": "^7.1",
-        "laravel/pint": "^1.17"
+        "symfony/phpunit-bridge": "^7.1"
     },
     "autoload": {
         "psr-4": {
@@ -44,7 +43,6 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "pint": "vendor/bin/pint"
+        "test": "vendor/bin/phpunit"
     }
 }
