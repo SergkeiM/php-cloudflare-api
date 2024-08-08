@@ -1,39 +1,22 @@
-// https://github.com/nuxt-themes/docus/blob/main/nuxt.schema.ts
 export default defineAppConfig({
-  docus: {
-    title: 'Docus',
-    description: 'The best place to start your documentation.',
-    image: 'https://user-images.githubusercontent.com/904724/185365452-87b7ca7b-6030-4813-a2db-5e65c785bf88.png',
-    socials: {
-      twitter: 'nuxt_js',
-      github: 'nuxt-themes/docus',
-      nuxt: {
-        label: 'Nuxt',
-        icon: 'simple-icons:nuxtdotjs',
-        href: 'https://nuxt.com'
-      }
+    docus: {
+        title: 'PHP CloudFlare API',
+        description: 'A simple Object Oriented wrapper for CloudFlare API, written with PHP.',
+        layout: 'default',
+        image: '/preview.png',
+        url: 'https://php-cloudflare-api.netlify.app',
+        socials: {
+            github: 'SergkeiM/php-cloudflare-api',
+        },
+        aside: {
+            level: 1,
+        },
+        header: {
+            logo: {
+                dark: '/logo-new.svg',
+                light: '/logo-new.svg',
+            },
+        },
+        footer: {},
     },
-    github: {
-      dir: '.starters/default/content',
-      branch: 'main',
-      repo: 'docus',
-      owner: 'nuxt-themes',
-      edit: true
-    },
-    aside: {
-      level: 0,
-      collapsed: false,
-      exclude: []
-    },
-    main: {
-      padded: true,
-      fluid: true
-    },
-    header: {
-      logo: true,
-      showLinkIcon: true,
-      exclude: [],
-      fluid: true
-    }
-  }
 })
