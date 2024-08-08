@@ -12,7 +12,7 @@ Uses [CloudFlare API v4](https://developers.cloudflare.com/api/).
 
 ## 💡 Requirements
 
-* PHP >= 7.2
+* PHP >= 8.0
 * A [PSR-17 implementation](https://packagist.org/providers/psr/http-factory-implementation)
 * A [PSR-18 implementation](https://packagist.org/providers/psr/http-client-implementation)
 
