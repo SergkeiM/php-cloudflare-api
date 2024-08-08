@@ -59,7 +59,7 @@ abstract class AbstractApi
      * @param array  $parameters     GET parameters.
      * @param array  $requestHeaders Request Headers.
      *
-     * @return array|string
+     * @return array
      */
     protected function get(string $path, array $parameters = [], array $requestHeaders = []): array
     {
