@@ -16,10 +16,9 @@ final class ExceptionThrower implements Plugin
     public function handleRequest(RequestInterface $request, callable $next, callable $first): Promise
     {
         return $next($request)->then(function (ResponseInterface $response) {
-
             $failed = $response->getStatusCode() >= 500 || ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500);
-            
-            if($failed){
+
+            if ($failed) {
                 throw new RequestException($response);
             }
 

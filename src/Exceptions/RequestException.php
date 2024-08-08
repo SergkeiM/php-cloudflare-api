@@ -16,7 +16,8 @@ class RequestException extends ErrorException
     /**
      * Create a new exception instance.
      *
-     * @param  \Psr\Http\Message\ResponseInterface $response
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *
      * @return void
      */
     public function __construct(ResponseInterface $response)
@@ -29,7 +30,8 @@ class RequestException extends ErrorException
     /**
      * Prepare the exception message.
      *
-     * @param  \Psr\Http\Message\ResponseInterface $response
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *
      * @return string
      */
     protected function prepareMessage(ResponseInterface $response)
@@ -39,19 +41,13 @@ class RequestException extends ErrorException
         $summary = null;
 
         if (!$body->isSeekable() || !$body->isReadable()) {
-
             $summary = null;
-
         } else {
-
             $size = $body->getSize();
 
             if ($size === 0) {
-
                 $summary = null;
-                
             } else {
-
                 $body->rewind();
                 $summary = $body->read(120);
                 $body->rewind();

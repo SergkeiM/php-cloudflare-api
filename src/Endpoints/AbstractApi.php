@@ -2,9 +2,9 @@
 
 namespace SergkeiM\CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Client;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
+use SergkeiM\CloudFlare\Client;
 
 abstract class AbstractApi
 {
@@ -205,10 +205,11 @@ abstract class AbstractApi
     /**
      * Send the request to the given URL.
      *
-     * @param  string  $method
-     * @param  string|UriInterface  $url
-     * @param  array  $headers
-     * @param  StreamInterface|string|null $body
+     * @param string                      $method
+     * @param string|UriInterface         $url
+     * @param array                       $headers
+     * @param StreamInterface|string|null $body
+     *
      * @return array
      */
     protected function send(
@@ -216,8 +217,7 @@ abstract class AbstractApi
         string $url,
         array $headers = [],
         $body = null
-    ): array
-    {
+    ): array {
         $response = $this->client->getHttpClient()->send($method, $url, $headers, $body);
 
         $body = (string) $response->getBody();
