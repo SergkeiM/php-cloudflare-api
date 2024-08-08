@@ -46,16 +46,6 @@ abstract class AbstractApi
     }
 
     /**
-     * Get the API version.
-     *
-     * @return string
-     */
-    protected function getApiVersion(): string
-    {
-        return $this->client->getApiVersion();
-    }
-
-    /**
      * @return $this
      */
     public function configure()

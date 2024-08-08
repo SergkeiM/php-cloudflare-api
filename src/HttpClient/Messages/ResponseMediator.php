@@ -11,7 +11,7 @@ final class ResponseMediator
      *
      * @return array|string
      */
-    public static function getContent(ResponseInterface $response)
+    public static function getContent(ResponseInterface $response): array|string
     {
         $body = $response->getBody()->__toString();
 

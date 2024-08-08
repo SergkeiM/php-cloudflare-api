@@ -100,7 +100,7 @@ class Client
      *
      * @return AbstractApi
      */
-    public function __call($name, $args): AbstractApi
+    public function __call(string $name, array $args): AbstractApi
     {
         try {
             return $this->api($name);
