@@ -2,11 +2,11 @@
 
 namespace SergkeiM\CloudFlare\Tests;
 
-use SergkeiM\CloudFlare\Endpoints;
+use Psr\Http\Client\ClientInterface;
 use SergkeiM\CloudFlare\Client;
+use SergkeiM\CloudFlare\Endpoints;
 use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
 use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use Psr\Http\Client\ClientInterface;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
@@ -35,6 +35,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
+     *
      * @dataProvider getApiClassesProvider
      */
     public function shouldGetApiInstance($apiName, $class)
@@ -46,6 +47,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
+     *
      * @dataProvider getApiClassesProvider
      */
     public function shouldGetMagicApiInstance($apiName, $class)

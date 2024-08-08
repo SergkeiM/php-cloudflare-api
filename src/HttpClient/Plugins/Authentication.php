@@ -14,7 +14,7 @@ final class Authentication implements Plugin
     private $token;
 
     /**
-     * @param string      $token    CloudFlare bearer token
+     * @param string $token CloudFlare bearer token
      */
     public function __construct(string $token)
     {
@@ -26,7 +26,6 @@ final class Authentication implements Plugin
      */
     public function handleRequest(RequestInterface $request, callable $next, callable $first): Promise
     {
-
         $request = $request->withHeader('Authorization', "Bearer {$this->token}");
 
         return $next($request);

@@ -2,9 +2,9 @@
 
 namespace SergkeiM\CloudFlare\Tests\Endpoints;
 
-use SergkeiM\CloudFlare\Client;
 use Psr\Http\Client\ClientInterface;
 use ReflectionMethod;
+use SergkeiM\CloudFlare\Client;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
