@@ -1,0 +1,17 @@
+name: PHP Linting
+on: [pull_request]
+jobs:
+  phplint:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: Copy composer.lock file
+          run: |
+            cp ./composer.json ./composer.json
+            cp ./composer.lock ./composer.lock
+        - name: "laravel-pint"
+          uses: aglipanci/laravel-pint-action@2.3.0
+          with:
+            testMode: true
+            useComposer: true
+            configPath: "pint.json"

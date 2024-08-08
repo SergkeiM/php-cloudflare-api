@@ -21,7 +21,8 @@
         "guzzlehttp/guzzle": "^7.9",
         "phpunit/phpunit": "^8.5 || ^9.4",
         "php-http/mock-client": "^1.6",
-        "symfony/phpunit-bridge": "^7.1"
+        "symfony/phpunit-bridge": "^7.1",
+        "laravel/pint": "^1.17"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +38,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "pint": "vendor/bin/pint"
     }
 }

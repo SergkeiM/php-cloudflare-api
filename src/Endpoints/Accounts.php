@@ -38,7 +38,7 @@ class Accounts extends AbstractApi
      *
      * @link https://developers.cloudflare.com/api/operations/accounts-update-account
      *
-     * @param string $username Account ID that you are a member of.
+     * @param string $accountId Account ID that you are a member of.
      *
      * @return array information about the Account
      */
