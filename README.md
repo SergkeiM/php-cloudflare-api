@@ -1,4 +1,4 @@
-# PHP CloudFlare API
+# ☁️ PHP CloudFlare API
 
 ![Build Status](https://github.com/SergkeiM/php-cloudflare-api/actions/workflows/ci.yml/badge.svg)
 [![StyleCI](https://styleci.io/repos/3948501/shield?style=flat)](https://styleci.io/repos/3948501)
@@ -11,12 +11,44 @@ A simple Object Oriented wrapper for CloudFlare API, written with PHP.
 
 Uses [CloudFlare API v4](https://developers.cloudflare.com/api/).
 
-## Quick install
+## 💡 Requirements
+
+* PHP >= 7.2
+* A [PSR-17 implementation](https://packagist.org/providers/psr/http-factory-implementation)
+* A [PSR-18 implementation](https://packagist.org/providers/psr/http-client-implementation)
+
+## 🚀 Quick install
 
 Via [Composer](https://getcomposer.org).
 
-This command will get you up and running quickly with a Guzzle HTTP client.
+This command will get you up and running quickly with a [Guzzle](https://github.com/guzzle/guzzle), PHP HTTP client.
 
 ```bash
-composer require sergkeim/php-cloudflare-api
+composer require sergkeim/php-cloudflare-api guzzlehttp/guzzle
 ```
+
+## ⚙️ Framework integrations
+
+### Laravel
+
+Coming Soon
+
+## 📋 TODO List
+
+### Accounts
+
+- [x] List Accounts
+- [x] Account Details
+- [x] Update Account
+
+#### Account Members
+
+- [ ] List Members
+- [ ] Add Member
+- [ ] Remove Member
+- [ ] Member Details
+- [ ] Update Member
+
+## 🙏 Thanks
+
+Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.

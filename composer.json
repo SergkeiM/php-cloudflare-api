@@ -2,12 +2,32 @@
     "name": "sergkeim/php-cloudflare-api",
     "description": "A simple PHP CloudFlare API client.",
     "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergkei Melingk",
+            "email": "sergio11of@gmail.com",
+            "homepage": "https://github.com/SergkeiM"
+        }
+    ],
     "require": {
         "php": "^7.2 || ^8.0",
         "ext-json": "*",
-        "psr/cache": "^1.0|^2.0|^3.0"
+        "psr/cache": "^1.0|^2.0|^3.0",
+        "php-http/client-common": "^2.7",
+        "php-http/discovery": "^1.19"
     },
-    "license": "MIT",
+    "require-dev": {
+        "guzzlehttp/psr7": "^2.7",
+        "guzzlehttp/guzzle": "^7.9",
+        "phpstan/phpstan": "^1.11",
+        "phpunit/phpunit": "^8.5 || ^9.4",
+        "php-http/mock-client": "^1.6",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^1.2",
+        "symfony/phpunit-bridge": "^7.1",
+        "laravel/pint": "^1.17"
+    },
     "autoload": {
         "psr-4": {
             "SergkeiM\\CloudFlare\\": "src/"
@@ -16,11 +36,15 @@
     "autoload-dev": {
         "psr-4": { "SergkeiM\\CloudFlare\\Tests\\": "test/Tests/"}
     },
-    "authors": [
-        {
-            "name": "Sergkei Melingk",
-            "email": "sergio11of@gmail.com",
-            "homepage": "https://github.com/SergkeiM"
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "composer/package-versions-deprecated": true,
+            "php-http/discovery": true
         }
-    ]
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "pint": "vendor/bin/pint"
+    }
 }
