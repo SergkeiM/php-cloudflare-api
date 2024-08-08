@@ -30,8 +30,9 @@ composer require sergkeim/php-cloudflare-api guzzlehttp/guzzle
 
 ## Thanks 🙏
 
-Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
+* Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
+* Thanks to CloudFlare for the high quality API and documentation.
 
 ## License 📎
 
-[MIT License](./LICENSE)
+`php-cloudflare-api` is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
