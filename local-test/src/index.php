@@ -12,4 +12,4 @@ $client = new Client(getenv('CLOUDFLARE_TOKEN'));
 
 $response = $client->accounts()->all();
 
-var_dump($response);
+file_put_contents('./test.json', json_encode($response, JSON_PRETTY_PRINT));

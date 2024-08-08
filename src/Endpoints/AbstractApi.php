@@ -2,9 +2,9 @@
 
 namespace SergkeiM\CloudFlare\Endpoints;
 
-use Psr\Http\Message\ResponseInterface;
 use SergkeiM\CloudFlare\Client;
-use SergkeiM\CloudFlare\HttpClient\Messages\ResponseMediator;
+use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 
 abstract class AbstractApi
 {
@@ -35,6 +35,14 @@ abstract class AbstractApi
     }
 
     /**
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this;
+    }
+
+    /**
      * Get the client instance.
      *
      * @return Client
@@ -42,14 +50,6 @@ abstract class AbstractApi
     protected function getClient(): Client
     {
         return $this->client;
-    }
-
-    /**
-     * @return $this
-     */
-    public function configure()
-    {
-        return $this;
     }
 
     /**
@@ -61,7 +61,7 @@ abstract class AbstractApi
      *
      * @return array|string
      */
-    protected function get(string $path, array $parameters = [], array $requestHeaders = [])
+    protected function get(string $path, array $parameters = [], array $requestHeaders = []): array
     {
         if (null !== $this->perPage && !isset($parameters['per_page'])) {
             $parameters['per_page'] = $this->perPage;
@@ -71,9 +71,11 @@ abstract class AbstractApi
             $path .= '?'.http_build_query($parameters, '', '&', PHP_QUERY_RFC3986);
         }
 
-        $response = $this->client->getHttpClient()->get($path, $requestHeaders);
-
-        return ResponseMediator::getContent($response);
+        return $this->send(
+            'get',
+            $path,
+            $requestHeaders
+        );
     }
 
     /**
@@ -83,11 +85,15 @@ abstract class AbstractApi
      * @param array  $parameters     HEAD parameters.
      * @param array  $requestHeaders Request headers.
      *
-     * @return ResponseInterface
+     * @return array
      */
-    protected function head(string $path, array $parameters = [], array $requestHeaders = []): ResponseInterface
+    protected function head(string $path, array $parameters = [], array $requestHeaders = []): array
     {
-        return $this->client->getHttpClient()->head($path.'?'.http_build_query($parameters, '', '&', PHP_QUERY_RFC3986), $requestHeaders);
+        return $this->send(
+            'head',
+            $path.'?'.http_build_query($parameters, '', '&', PHP_QUERY_RFC3986),
+            $requestHeaders
+        );
     }
 
     /**
@@ -97,14 +103,14 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array|string
+     * @return array
      */
-    protected function post(string $path, array $parameters = [], array $requestHeaders = [])
+    protected function post(string $path, array $parameters = [], array $requestHeaders = []): array
     {
         return $this->postRaw(
             $path,
             $this->createJsonBody($parameters),
-            $requestHeaders
+            $requestHeaders,
         );
     }
 
@@ -115,17 +121,16 @@ abstract class AbstractApi
      * @param string $body           Request body.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array|string
+     * @return array
      */
-    protected function postRaw(string $path, $body, array $requestHeaders = [])
+    protected function postRaw(string $path, $body, array $requestHeaders = []): array
     {
-        $response = $this->client->getHttpClient()->post(
+        return $this->send(
+            'post',
             $path,
             $requestHeaders,
             $body
         );
-
-        return ResponseMediator::getContent($response);
     }
 
     /**
@@ -135,17 +140,16 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array|string
+     * @return array
      */
-    protected function patch(string $path, array $parameters = [], array $requestHeaders = [])
+    protected function patch(string $path, array $parameters = [], array $requestHeaders = []): array
     {
-        $response = $this->client->getHttpClient()->patch(
+        return $this->send(
+            'patch',
             $path,
             $requestHeaders,
             $this->createJsonBody($parameters)
         );
-
-        return ResponseMediator::getContent($response);
     }
 
     /**
@@ -155,17 +159,16 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array|string
+     * @return array
      */
-    protected function put(string $path, array $parameters = [], array $requestHeaders = [])
+    protected function put(string $path, array $parameters = [], array $requestHeaders = []): array
     {
-        $response = $this->client->getHttpClient()->put(
+        return $this->send(
+            'put',
             $path,
             $requestHeaders,
             $this->createJsonBody($parameters)
         );
-
-        return ResponseMediator::getContent($response);
     }
 
     /**
@@ -175,17 +178,16 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array|string
+     * @return array
      */
-    protected function delete(string $path, array $parameters = [], array $requestHeaders = [])
+    protected function delete(string $path, array $parameters = [], array $requestHeaders = []): array
     {
-        $response = $this->client->getHttpClient()->delete(
+        return $this->send(
+            'delete',
             $path,
             $requestHeaders,
             $this->createJsonBody($parameters)
         );
-
-        return ResponseMediator::getContent($response);
     }
 
     /**
@@ -198,5 +200,28 @@ abstract class AbstractApi
     protected function createJsonBody(array $parameters): ?string
     {
         return (count($parameters) === 0) ? null : json_encode($parameters, empty($parameters) ? JSON_FORCE_OBJECT : 0);
+    }
+
+    /**
+     * Send the request to the given URL.
+     *
+     * @param  string  $method
+     * @param  string|UriInterface  $url
+     * @param  array  $headers
+     * @param  StreamInterface|string|null $body
+     * @return array
+     */
+    protected function send(
+        string $method,
+        string $url,
+        array $headers = [],
+        $body = null
+    ): array
+    {
+        $response = $this->client->getHttpClient()->send($method, $url, $headers, $body);
+
+        $body = (string) $response->getBody();
+
+        return json_decode($body, true);
     }
 }

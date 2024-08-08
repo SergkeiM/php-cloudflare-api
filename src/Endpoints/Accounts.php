@@ -14,7 +14,7 @@ class Accounts extends AbstractApi
      *
      * @return array list of accounts found
      */
-    public function all(): array
+    public function all()
     {
         return $this->get('/accounts');
     }
@@ -28,7 +28,7 @@ class Accounts extends AbstractApi
      *
      * @return array Account information
      */
-    public function details(string $accountId): array
+    public function details(string $accountId)
     {
         return $this->get('/accounts/'.rawurlencode($accountId));
     }
@@ -42,7 +42,7 @@ class Accounts extends AbstractApi
      *
      * @return array information about the Account
      */
-    public function update(string $accountId, array $values): array
+    public function update(string $accountId, array $values)
     {
         return $this->put('/accounts/'.rawurlencode($accountId), $values);
     }

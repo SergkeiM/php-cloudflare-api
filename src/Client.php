@@ -11,6 +11,7 @@ use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
 use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
 use SergkeiM\CloudFlare\HttpClient\Builder;
 use SergkeiM\CloudFlare\HttpClient\Plugins\Authentication;
+use SergkeiM\CloudFlare\HttpClient\Plugins\ExceptionThrower;
 
 /**
  * Simple PHP CloudFlare client.
@@ -36,11 +37,13 @@ class Client
 
         $baseUri = Psr17FactoryDiscovery::findUriFactory()
             ->createUri('https://api.cloudflare.com/client/v4/');
+
         $builder->addPlugin(new Authentication($token));
         $builder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
         $builder->addPlugin(new Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)',
         ]));
+        $builder->addPlugin(new ExceptionThrower());
     }
 
     /**
