@@ -1,7 +1,7 @@
 # ☁️ PHP CloudFlare API
 
 ![Build Status](https://github.com/SergkeiM/php-cloudflare-api/actions/workflows/ci.yml/badge.svg)
-[![StyleCI](https://styleci.io/repos/3948501/shield?style=flat)](https://styleci.io/repos/3948501)
+[![StyleCI](https://styleci.io/repos/839240046/shield?style=flat)](https://styleci.io/repos/839240046)
 [![Latest Stable Version](https://poser.pugx.org/sergkeim/php-cloudflare-api/v/stable)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
 [![Total Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/downloads)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
 [![Monthly Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/d/monthly)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
