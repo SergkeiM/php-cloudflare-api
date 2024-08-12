@@ -4,7 +4,6 @@ namespace SergkeiM\CloudFlare\Contracts;
 
 use JsonSerializable;
 use Stringable;
-use SergkeiM\CloudFlare\Contracts\Arrayable;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -32,7 +31,7 @@ interface CloudFlareResponse extends JsonSerializable, Stringable, Arrayable
 
     /**
      * Get the body of the response.
-     * 
+     *
      * @param $key null
      * @param $default null
      * @return mixed

@@ -178,8 +178,8 @@ class Zones extends AbstractEndpoint
 
     /**
      * Zone cache settings
-     * 
-     * @return Cache 
+     *
+     * @return Cache
      */
     public function cache(): Cache
     {
@@ -188,8 +188,8 @@ class Zones extends AbstractEndpoint
 
     /**
      * Zone Cloud Connector rules
-     * 
-     * @return CloudConnector 
+     *
+     * @return CloudConnector
      */
     public function cloudConnector(): CloudConnector
     {

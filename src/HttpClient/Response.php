@@ -46,7 +46,7 @@ class Response implements CloudFlareResponse
 
     /**
      * Get the body of the response.
-     * 
+     *
      * @param $key null
      * @param $default null
      * @return mixed
