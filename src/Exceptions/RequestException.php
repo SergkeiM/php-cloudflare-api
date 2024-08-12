@@ -7,24 +7,15 @@ use Psr\Http\Message\ResponseInterface;
 class RequestException extends ErrorException
 {
     /**
-     * The response instance.
-     *
-     * @var \Psr\Http\Message\ResponseInterface
-     */
-    public $response;
-
-    /**
      * Create a new exception instance.
      *
      * @param \Psr\Http\Message\ResponseInterface $response
      *
      * @return void
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(public ResponseInterface $response)
     {
         parent::__construct($this->prepareMessage($response), $response->getStatusCode());
-
-        $this->response = $response;
     }
 
     /**

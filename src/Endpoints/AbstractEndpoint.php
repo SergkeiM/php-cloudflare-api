@@ -5,23 +5,11 @@ namespace SergkeiM\CloudFlare\Endpoints;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 use SergkeiM\CloudFlare\Client;
+use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use SergkeiM\CloudFlare\HttpClient\Response;
 
-abstract class AbstractApi
+abstract class AbstractEndpoint
 {
-    /**
-     * The client instance.
-     *
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * The per page parameter. It is used by the ResultPager.
-     *
-     * @var int|null
-     */
-    private $perPage;
-
     /**
      * Create a new API instance.
      *
@@ -29,9 +17,9 @@ abstract class AbstractApi
      *
      * @return void
      */
-    public function __construct(Client $client)
+    public function __construct(private Client $client)
     {
-        $this->client = $client;
+
     }
 
     /**
@@ -59,14 +47,10 @@ abstract class AbstractApi
      * @param array  $parameters     GET parameters.
      * @param array  $requestHeaders Request Headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function get(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function get(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
-        if (null !== $this->perPage && !isset($parameters['per_page'])) {
-            $parameters['per_page'] = $this->perPage;
-        }
-
         if (count($parameters) > 0) {
             $path .= '?'.http_build_query($parameters, '', '&', PHP_QUERY_RFC3986);
         }
@@ -85,9 +69,9 @@ abstract class AbstractApi
      * @param array  $parameters     HEAD parameters.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function head(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function head(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'head',
@@ -103,9 +87,9 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function post(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function post(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->postRaw(
             $path,
@@ -121,9 +105,9 @@ abstract class AbstractApi
      * @param string $body           Request body.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function postRaw(string $path, $body, array $requestHeaders = []): array
+    protected function postRaw(string $path, $body, array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'post',
@@ -140,9 +124,9 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function patch(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function patch(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'patch',
@@ -159,9 +143,9 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function put(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function put(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'put',
@@ -178,9 +162,9 @@ abstract class AbstractApi
      * @param array  $parameters     POST parameters to be JSON encoded.
      * @param array  $requestHeaders Request headers.
      *
-     * @return array
+     * @return CloudFlareResponse
      */
-    protected function delete(string $path, array $parameters = [], array $requestHeaders = []): array
+    protected function sendDelete(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'delete',
@@ -210,18 +194,19 @@ abstract class AbstractApi
      * @param array                       $headers
      * @param StreamInterface|string|null $body
      *
-     * @return array
+     * @return CloudFlareResponse
      */
     protected function send(
         string $method,
         string $url,
         array $headers = [],
         $body = null
-    ): array {
+    ): CloudFlareResponse {
+
         $response = $this->client->getHttpClient()->send($method, $url, $headers, $body);
 
-        $body = (string) $response->getBody();
+        $body = json_decode((string) $response->getBody(), true);
 
-        return json_decode($body, true);
+        return new Response($response);
     }
 }

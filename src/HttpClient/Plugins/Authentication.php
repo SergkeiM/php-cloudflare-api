@@ -9,16 +9,10 @@ use Psr\Http\Message\RequestInterface;
 final class Authentication implements Plugin
 {
     /**
-     * @var string
-     */
-    private $token;
-
-    /**
      * @param string $token CloudFlare bearer token
      */
-    public function __construct(string $token)
+    public function __construct(private string $token)
     {
-        $this->token = $token;
     }
 
     /**

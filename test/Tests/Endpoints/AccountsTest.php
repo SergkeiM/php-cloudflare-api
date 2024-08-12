@@ -3,6 +3,7 @@
 namespace SergkeiM\CloudFlare\Tests\Endpoints;
 
 use SergkeiM\CloudFlare\Endpoints\Accounts;
+use SergkeiM\CloudFlare\HttpClient\Response;
 
 class AccountsTest extends TestCase
 {
@@ -23,18 +24,26 @@ class AccountsTest extends TestCase
             'result' => [
                 ['id' => 'af5f83226fcf7de29daeff6289b5637f', 'name' => 'accountName1', 'type' => 'standard'],
                 ['id' => 'af5f83226fcf7de29daeff6289b5638f', 'name' => 'accountName2', 'type' => 'enterprise'],
-                ['id' => 'af5f83226fcf7de29daeff6289b5639f', 'name' => 'accountName3', 'type' => 'standard'],
-                ['id' => 'af5f83226fcf7de29daeff6289b5635f', 'name' => 'accountName4', 'type' => 'standard'],
+            ],
+            'result_info' => [
+                "page" => 1,
+                "per_page" => 20,
+                "count" => 20,
+                "total_pages" => 40,
+                "total_count" => 795,
             ],
         ];
+
+        $response = $this->getResponseMock();
+        $paginator = $this->getPaginatorMock(1, 20, [], fn () => null);
 
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
             ->with('/accounts')
-            ->will($this->returnValue($expectedArray));
+            ->will($this->returnValue(new Response($response)));
 
-        $this->assertEquals($expectedArray, $api->all());
+        $this->assertEquals($paginator, $api->all());
     }
 
     /**
@@ -43,9 +52,6 @@ class AccountsTest extends TestCase
     public function shouldGetAccountDetails()
     {
         $expectedArray = [
-            'success' => true,
-            'messages' => [],
-            'errors' => [],
             'result' => [
                 [
                     'id' => 'af5f83226fcf7de29daeff6289b5637f',
@@ -67,9 +73,6 @@ class AccountsTest extends TestCase
     public function shouldUpdateAccount()
     {
         $expectedArray = [
-            'success' => true,
-            'messages' => [],
-            'errors' => [],
             'result' => [
                 [
                     'id' => 'af5f83226fcf7de29daeff6289b5637f',
@@ -83,9 +86,6 @@ class AccountsTest extends TestCase
         $api->expects($this->once())
             ->method('put')
             ->with('/accounts/af5f83226fcf7de29daeff6289b5637f', [
-                'success' => true,
-                'messages' => [],
-                'errors' => [],
                 'result' => [
                     [
                         'id' => 'af5f83226fcf7de29daeff6289b5637f',

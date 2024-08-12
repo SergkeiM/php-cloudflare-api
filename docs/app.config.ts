@@ -13,8 +13,8 @@ export default defineAppConfig({
         },
         header: {
             logo: {
-                dark: '/logo-new.svg',
-                light: '/logo-new.svg',
+                dark: '/logo-new.png',
+                light: '/logo-new.png',
             },
         },
         footer: {},

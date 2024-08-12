@@ -6,7 +6,7 @@ use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
-use SergkeiM\CloudFlare\Endpoints\AbstractApi;
+use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
 use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
 use SergkeiM\CloudFlare\HttpClient\Builder;
@@ -30,20 +30,21 @@ class Client
     private $httpClientBuilder;
 
     public function __construct(
-        string $token,
+        private string $token,
         Builder $httpClientBuilder = null
     ) {
-        $this->httpClientBuilder = $builder = $httpClientBuilder ?? new Builder();
+
+        $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
 
         $baseUri = Psr17FactoryDiscovery::findUriFactory()
             ->createUri('https://api.cloudflare.com/client/v4/');
 
-        $builder->addPlugin(new Authentication($token));
-        $builder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
-        $builder->addPlugin(new Plugin\HeaderDefaultsPlugin([
+        $this->httpClientBuilder->addPlugin(new ExceptionThrower());
+        $this->httpClientBuilder->addPlugin(new Authentication($token));
+        $this->httpClientBuilder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
+        $this->httpClientBuilder->addPlugin(new Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)',
         ]));
-        $builder->addPlugin(new ExceptionThrower());
     }
 
     /**
@@ -81,13 +82,16 @@ class Client
      *
      * @throws InvalidArgumentException
      *
-     * @return AbstractApi
+     * @return AbstractEndpoint
      */
-    public function api($name): AbstractApi
+    public function api(string $name): AbstractEndpoint
     {
         switch ($name) {
             case 'accounts':
                 $api = new Endpoints\Accounts($this);
+                break;
+            case 'zones':
+                $api = new Endpoints\Zones($this);
                 break;
 
             default:
@@ -101,9 +105,9 @@ class Client
      * @param string $name
      * @param array  $args
      *
-     * @return AbstractApi
+     * @return AbstractEndpoint
      */
-    public function __call(string $name, array $args): AbstractApi
+    public function __call(string $name, array $args): AbstractEndpoint
     {
         try {
             return $this->api($name);

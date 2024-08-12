@@ -27,7 +27,10 @@
     "autoload": {
         "psr-4": {
             "SergkeiM\\CloudFlare\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": { "SergkeiM\\CloudFlare\\Tests\\": "test/Tests/"}

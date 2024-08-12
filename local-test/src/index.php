@@ -10,6 +10,6 @@ $dotenv->load();
 
 $client = new Client(getenv('CLOUDFLARE_TOKEN'));
 
-$response = $client->accounts()->all();
+$response = $client->zones()->all(getenv('ACCOUNT_ID'));
 
-file_put_contents('./test.json', json_encode($response, JSON_PRETTY_PRINT));
+file_put_contents('./test.json', json_encode($response->toArray(), JSON_PRETTY_PRINT));
