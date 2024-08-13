@@ -109,6 +109,9 @@ class Client
             case 'zones':
                 $api = new Endpoints\Zones($this);
                 break;
+            case 'ips':
+                $api = new Endpoints\IP($this);
+                break;
 
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
