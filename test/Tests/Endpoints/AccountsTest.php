@@ -35,7 +35,7 @@ class AccountsTest extends TestCase
 
         $api = $this->getApiMock();
         $api->expects($this->once())
-            ->method('get')
+            ->method('sendGet')
             ->with('/accounts')
             ->will($this->returnValue($this->getResponseMock($expectedArray)));
 
@@ -59,7 +59,7 @@ class AccountsTest extends TestCase
 
         $api = $this->getApiMock();
         $api->expects($this->once())
-            ->method('get')
+            ->method('sendGet')
             ->with('/accounts/identifier1')
             ->will($this->returnValue($this->getResponseMock($expectedArray)));
 
@@ -80,7 +80,7 @@ class AccountsTest extends TestCase
 
         $api = $this->getApiMock();
         $api->expects($this->once())
-            ->method('put')
+            ->method('sendPut')
             ->with('/accounts/identifier1', [
                 'result' => [
                     [

@@ -24,7 +24,7 @@ class Zones extends AbstractEndpoint
      */
     public function all(array $params = []): CloudFlareResponse
     {
-        return $this->get('/zones', $params);
+        return $this->sendGet('/zones', $params);
     }
 
     /**
@@ -57,7 +57,7 @@ class Zones extends AbstractEndpoint
             ]
         ];
 
-        return $this->post('/zones', $params);
+        return $this->sendPost('/zones', $params);
     }
 
     /**
@@ -99,7 +99,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->get('/zones/'.rawurlencode($zoneId));
+        return $this->sendGet('/zones/'.rawurlencode($zoneId));
     }
 
     /**
@@ -120,7 +120,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->patch('/zones/'.rawurlencode($zoneId), $values);
+        return $this->sendPatch('/zones/'.rawurlencode($zoneId), $values);
     }
 
     /**
@@ -141,7 +141,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->put('/zones/'.rawurlencode($zoneId).'/activation_check');
+        return $this->sendPut('/zones/'.rawurlencode($zoneId).'/activation_check');
     }
 
     /**
@@ -173,7 +173,7 @@ class Zones extends AbstractEndpoint
             throw new MissingArgumentException(['files', 'tags', 'hosts', 'prefixes']);
         }
 
-        return $this->post('/zones/'.rawurlencode($zoneId).'/purge_cache', $purgeBy);
+        return $this->sendPost('/zones/'.rawurlencode($zoneId).'/purge_cache', $purgeBy);
     }
 
     /**

@@ -81,6 +81,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     {
         return [
             ['accounts', Endpoints\Accounts::class],
+            ['zones', Endpoints\Zones::class],
         ];
     }
 }
