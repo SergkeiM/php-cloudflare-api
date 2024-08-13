@@ -2,12 +2,11 @@
 
 namespace SergkeiM\CloudFlare\Tests\Endpoints;
 
-use Closure;
 use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\ResponseInterface;
 use ReflectionMethod;
 use SergkeiM\CloudFlare\Client;
-use SergkeiM\CloudFlare\HttpClient\Paginator;
+use GuzzleHttp\Psr7\Response as Psr7Response;
+use SergkeiM\CloudFlare\HttpClient\Response;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -37,22 +36,20 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit\Framework\MockObject\MockObject
+     * @return Response
      */
-    protected function getResponseMock()
+    protected function getResponseMock($body = null, $status = 200, $headers = [])
     {
-        return $this->getMockBuilder(ResponseInterface::class)
-            ->getMock();
-    }
+        if (is_array($body)) {
 
-    /**
-     * @return \PHPUnit\Framework\MockObject\MockObject
-     */
-    protected function getPaginatorMock(int $page, int $perPage, array $parameters, Closure $closure)
-    {
-        return $this->getMockBuilder(Paginator::class)
-            ->setConstructorArgs([$page, $perPage, $parameters, $closure])
-            ->getMock();
+            $body = json_encode($body);
+
+            $headers['Content-Type'] = 'application/json';
+        }
+
+        $response = new Psr7Response($status, $headers, $body);
+
+        return new Response($response);
     }
 
     /**

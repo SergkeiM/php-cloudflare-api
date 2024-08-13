@@ -205,8 +205,6 @@ abstract class AbstractEndpoint
 
         $response = $this->client->getHttpClient()->send($method, $url, $headers, $body);
 
-        $body = json_decode((string) $response->getBody(), true);
-
         return new Response($response);
     }
 }
