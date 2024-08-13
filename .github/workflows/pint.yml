@@ -8,8 +8,9 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         - name: "laravel-pint"
-          uses: aglipanci/laravel-pint-action@2.3.1
+          uses: aglipanci/laravel-pint-action@2.4
           with:
             testMode: true
             useComposer: true
             configPath: "pint.json"
+            pintVersion: 1.17.2

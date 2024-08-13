@@ -3,7 +3,6 @@
 namespace SergkeiM\CloudFlare\Tests\Endpoints;
 
 use SergkeiM\CloudFlare\Endpoints\Accounts;
-use SergkeiM\CloudFlare\HttpClient\Response;
 
 class AccountsTest extends TestCase
 {
@@ -22,28 +21,25 @@ class AccountsTest extends TestCase
     {
         $expectedArray = [
             'result' => [
-                ['id' => 'af5f83226fcf7de29daeff6289b5637f', 'name' => 'accountName1', 'type' => 'standard'],
-                ['id' => 'af5f83226fcf7de29daeff6289b5638f', 'name' => 'accountName2', 'type' => 'enterprise'],
+                ['id' => 'identifier1', 'name' => 'accountName1', 'type' => 'standard'],
+                ['id' => 'identifier2', 'name' => 'accountName2', 'type' => 'enterprise'],
             ],
             'result_info' => [
                 "page" => 1,
                 "per_page" => 20,
                 "count" => 20,
-                "total_pages" => 40,
-                "total_count" => 795,
+                "total_pages" => 2,
+                "total_count" => 40,
             ],
         ];
-
-        $response = $this->getResponseMock();
-        $paginator = $this->getPaginatorMock(1, 20, [], fn () => null);
 
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
             ->with('/accounts')
-            ->will($this->returnValue(new Response($response)));
+            ->will($this->returnValue($this->getResponseMock($expectedArray)));
 
-        $this->assertEquals($paginator, $api->all());
+        $this->assertEquals($expectedArray, $api->all()->toArray());
     }
 
     /**
@@ -54,7 +50,7 @@ class AccountsTest extends TestCase
         $expectedArray = [
             'result' => [
                 [
-                    'id' => 'af5f83226fcf7de29daeff6289b5637f',
+                    'id' => 'identifier1',
                     'name' => 'accountName',
                     'type' => 'standard',
                 ],
@@ -64,10 +60,10 @@ class AccountsTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('get')
-            ->with('/accounts/af5f83226fcf7de29daeff6289b5637f')
-            ->will($this->returnValue($expectedArray));
+            ->with('/accounts/identifier1')
+            ->will($this->returnValue($this->getResponseMock($expectedArray)));
 
-        $this->assertEquals($expectedArray, $api->details('af5f83226fcf7de29daeff6289b5637f'));
+        $this->assertEquals($expectedArray, $api->details('identifier1')->toArray());
     }
 
     public function shouldUpdateAccount()
@@ -75,7 +71,7 @@ class AccountsTest extends TestCase
         $expectedArray = [
             'result' => [
                 [
-                    'id' => 'af5f83226fcf7de29daeff6289b5637f',
+                    'id' => 'identifier1',
                     'name' => 'accountName',
                     'type' => 'standard',
                 ],
@@ -85,10 +81,10 @@ class AccountsTest extends TestCase
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('put')
-            ->with('/accounts/af5f83226fcf7de29daeff6289b5637f', [
+            ->with('/accounts/identifier1', [
                 'result' => [
                     [
-                        'id' => 'af5f83226fcf7de29daeff6289b5637f',
+                        'id' => 'identifier1',
                         'name' => 'accountName',
                         'type' => 'standard',
                     ],
@@ -96,6 +92,6 @@ class AccountsTest extends TestCase
             ])
             ->will($this->returnValue($expectedArray));
 
-        $this->assertEquals($expectedArray, $api->update('af5f83226fcf7de29daeff6289b5637f', ['name' => 'test']));
+        $this->assertEquals($expectedArray, $api->update('identifier1', ['name' => 'test']));
     }
 }
