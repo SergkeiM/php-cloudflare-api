@@ -10,7 +10,7 @@
 A simple Object Oriented wrapper for CloudFlare API, written with PHP.
 
 - [☁️ CloudFlare API v4](https://developers.cloudflare.com/api/)
-- [📄 Documentation](https://php-cloudflare-api.netlify.app/)
+- [📄 Documentation](https://php-cloudflare-api.vercel.app/)
 
 ## Features ✨
 
