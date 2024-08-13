@@ -22,7 +22,7 @@ class Accounts extends AbstractEndpoint
      */
     public function all(array $params = []): CloudFlareResponse
     {
-        return $this->get('/accounts', $params);
+        return $this->sendGet('/accounts', $params);
     }
 
     /**
@@ -43,7 +43,7 @@ class Accounts extends AbstractEndpoint
             throw new InvalidArgumentException('Account ID is required.');
         }
 
-        return $this->get('/accounts/'.rawurlencode($accountId));
+        return $this->sendGet('/accounts/'.rawurlencode($accountId));
     }
 
     /**
@@ -70,6 +70,6 @@ class Accounts extends AbstractEndpoint
             throw new MissingArgumentException('name');
         }
 
-        return $this->put('/accounts/'.rawurlencode($accountId), $values);
+        return $this->sendPut('/accounts/'.rawurlencode($accountId), $values);
     }
 }

@@ -49,7 +49,7 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function get(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
+    protected function sendGet(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         if (count($parameters) > 0) {
             $path .= '?'.http_build_query($parameters, '', '&', PHP_QUERY_RFC3986);
@@ -71,7 +71,7 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function head(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
+    protected function sendHead(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'head',
@@ -89,9 +89,9 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function post(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
+    protected function sendPost(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
-        return $this->postRaw(
+        return $this->sendPostRaw(
             $path,
             $this->createJsonBody($parameters),
             $requestHeaders,
@@ -107,7 +107,7 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function postRaw(string $path, $body, array $requestHeaders = []): CloudFlareResponse
+    protected function sendPostRaw(string $path, $body, array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'post',
@@ -126,7 +126,7 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function patch(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
+    protected function sendPatch(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'patch',
@@ -145,7 +145,7 @@ abstract class AbstractEndpoint
      *
      * @return CloudFlareResponse
      */
-    protected function put(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
+    protected function sendPut(string $path, array $parameters = [], array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'put',
