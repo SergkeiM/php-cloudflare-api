@@ -17,6 +17,7 @@ use SergkeiM\CloudFlare\HttpClient\Plugins\ExceptionThrower;
  * Simple PHP CloudFlare client.
  *
  * @method Endpoints\Accounts accounts()
+ * @method Endpoints\Zones zones()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -43,8 +44,23 @@ class Client
         $this->httpClientBuilder->addPlugin(new Authentication($token));
         $this->httpClientBuilder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
         $this->httpClientBuilder->addPlugin(new Plugin\HeaderDefaultsPlugin([
+            'Content-Type' => 'application/json',
             'User-Agent' => 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)',
         ]));
+    }
+
+    /**
+     * Set CloudFlare Token
+     *
+     * @param string $token
+     *
+     * @return self
+     */
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
     }
 
     /**
@@ -52,7 +68,7 @@ class Client
      *
      * @param ClientInterface $httpClient
      *
-     * @return Client
+     * @return self
      */
     public static function createWithHttpClient(string $token, ClientInterface $httpClient): self
     {

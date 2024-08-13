@@ -45,7 +45,7 @@ class Response implements CloudFlareResponse
     }
 
     /**
-     * Get the body of the response.
+     * Get json of the response.
      *
      * @param $key null
      * @param $default null

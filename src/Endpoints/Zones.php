@@ -7,6 +7,7 @@ use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
 use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 use SergkeiM\CloudFlare\Endpoints\Zones\Cache;
 use SergkeiM\CloudFlare\Endpoints\Zones\CloudConnector;
+use SergkeiM\CloudFlare\Endpoints\Zones\DNS;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/zones-get
@@ -32,6 +33,7 @@ class Zones extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/zones-post
      *
+     * @param string $accountId Account ID that you want to zone for.
      * @param array $values Values to set on zone.
      *
      * @throws InvalidArgumentException
@@ -194,5 +196,15 @@ class Zones extends AbstractEndpoint
     public function cloudConnector(): CloudConnector
     {
         return new CloudConnector($this->getClient());
+    }
+
+    /**
+     * Zone DNS
+     *
+     * @return DNS
+     */
+    public function dns(): DNS
+    {
+        return new DNS($this->getClient());
     }
 }
