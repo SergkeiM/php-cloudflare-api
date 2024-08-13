@@ -101,13 +101,13 @@ abstract class AbstractEndpoint
     /**
      * Send a POST request with raw data.
      *
-     * @param string $path           Request path.
-     * @param string $body           Request body.
-     * @param array  $requestHeaders Request headers.
+     * @param string $path Request path.
+     * @param StreamInterface|string|null Request body.
+     * @param array $requestHeaders Request headers.
      *
      * @return CloudFlareResponse
      */
-    protected function sendPostRaw(string $path, $body, array $requestHeaders = []): CloudFlareResponse
+    protected function sendPostRaw(string $path, StreamInterface|string|null $body = null, array $requestHeaders = []): CloudFlareResponse
     {
         return $this->send(
             'post',
@@ -200,7 +200,7 @@ abstract class AbstractEndpoint
         string $method,
         string $url,
         array $headers = [],
-        $body = null
+        StreamInterface|string|null $body = null
     ): CloudFlareResponse {
 
         $response = $this->client->getHttpClient()->send($method, $url, $headers, $body);

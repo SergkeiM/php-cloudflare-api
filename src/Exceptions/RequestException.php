@@ -3,6 +3,8 @@
 namespace SergkeiM\CloudFlare\Exceptions;
 
 use Psr\Http\Message\ResponseInterface;
+use SergkeiM\CloudFlare\HttpClient\Response;
+use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 
 class RequestException extends ErrorException
 {
@@ -58,5 +60,13 @@ class RequestException extends ErrorException
         $message = "HTTP request returned status code {$response->getStatusCode()}";
 
         return is_null($summary) ? $message : $message .= ":\n{$summary}\n";
+    }
+
+    /**
+     * @return CloudFlareResponse
+     */
+    public function getResponse(): CloudFlareResponse
+    {
+        return new Response($this->response);
     }
 }
