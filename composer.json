@@ -13,12 +13,10 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "php-http/client-common": "^2.7",
-        "php-http/discovery": "^1.19"
+        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/uri-template": "^1.0"
     },
     "require-dev": {
-        "guzzlehttp/psr7": "^2.7",
-        "guzzlehttp/guzzle": "^7.9",
         "phpunit/phpunit": "^8.5 || ^9.4",
         "php-http/mock-client": "^1.6",
         "symfony/phpunit-bridge": "^7.1",
@@ -33,7 +31,9 @@
         ]
     },
     "autoload-dev": {
-        "psr-4": { "SergkeiM\\CloudFlare\\Tests\\": "test/Tests/"}
+        "psr-4": {
+            "SergkeiM\\CloudFlare\\Tests\\": "test/Tests/"
+        }
     },
     "config": {
         "allow-plugins": {

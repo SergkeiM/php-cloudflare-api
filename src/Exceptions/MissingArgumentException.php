@@ -2,16 +2,14 @@
 
 namespace SergkeiM\CloudFlare\Exceptions;
 
-use Throwable;
-
-class MissingArgumentException extends ErrorException
+class MissingArgumentException extends \ErrorException
 {
     /**
      * @param string|array   $required
      * @param int            $code
-     * @param Throwable|null $previous
+     * @param \Throwable|null $previous
      */
-    public function __construct($required, int $code = 0, Throwable $previous = null)
+    public function __construct($required, int $code = 0, \Throwable $previous = null)
     {
         if (is_string($required)) {
             $required = [$required];

@@ -2,22 +2,17 @@
 
 namespace SergkeiM\CloudFlare;
 
-use Http\Client\Common\HttpMethodsClientInterface;
-use Http\Client\Common\Plugin;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Psr\Http\Client\ClientInterface;
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
 use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\HttpClient\Builder;
-use SergkeiM\CloudFlare\HttpClient\Plugins\Authentication;
-use SergkeiM\CloudFlare\HttpClient\Plugins\ExceptionThrower;
+use SergkeiM\CloudFlare\HttpClient\HttpClient;
 
 /**
  * Simple PHP CloudFlare client.
  *
  * @method Endpoints\Accounts accounts()
  * @method Endpoints\Zones zones()
+ * @method Endpoints\IP ips()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -26,71 +21,30 @@ use SergkeiM\CloudFlare\HttpClient\Plugins\ExceptionThrower;
 class Client
 {
     /**
-     * @var Builder
+     * HTTP Client wrapper for Guzzle.
+     * @var HttpClient
      */
-    private $httpClientBuilder;
+    private $httpClient;
 
+    /**
+     * @param string $token CloudFlare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token
+     * @param array $middlewares Guzzle middlewares. https://docs.guzzlephp.org/en/stable/handlers-and-middleware.html#middleware
+     * @return void
+     */
     public function __construct(
-        private string $token,
-        Builder $httpClientBuilder = null
+        string $token,
+        array $middlewares = []
     ) {
 
-        $this->httpClientBuilder = $httpClientBuilder ?? new Builder();
-
-        $baseUri = Psr17FactoryDiscovery::findUriFactory()
-            ->createUri('https://api.cloudflare.com/client/v4/');
-
-        $this->httpClientBuilder->addPlugin(new ExceptionThrower());
-        $this->httpClientBuilder->addPlugin(new Authentication($token));
-        $this->httpClientBuilder->addPlugin(new Plugin\BaseUriPlugin($baseUri));
-        $this->httpClientBuilder->addPlugin(new Plugin\HeaderDefaultsPlugin([
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)',
-        ]));
+        $this->httpClient = new HttpClient($token, $middlewares);
     }
 
     /**
-     * Set CloudFlare Token
-     *
-     * @param string $token
-     *
-     * @return self
+     * @return HttpClient HTTP Client wrapper for Guzzle.
      */
-    public function setToken(string $token): self
+    public function getHttpClient(): HttpClient
     {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Create a CloudFlare\Client using a custom HTTP client.
-     *
-     * @param ClientInterface $httpClient
-     *
-     * @return self
-     */
-    public static function createWithHttpClient(string $token, ClientInterface $httpClient): self
-    {
-        $builder = new Builder($httpClient);
-
-        return new self($token, $builder);
-    }
-
-    /**
-     * @return HttpMethodsClientInterface
-     */
-    public function getHttpClient(): HttpMethodsClientInterface
-    {
-        return $this->getHttpClientBuilder()->getHttpClient();
-    }
-
-    /**
-     * @return Builder
-     */
-    protected function getHttpClientBuilder(): Builder
-    {
-        return $this->httpClientBuilder;
+        return $this->httpClient;
     }
 
     /**

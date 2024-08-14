@@ -2,6 +2,7 @@
 
 namespace SergkeiM\CloudFlare\Endpoints\Zones;
 
+use GuzzleHttp\RequestOptions;
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
@@ -27,8 +28,9 @@ class DNS extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendPost('/zones/'.rawurlencode($zoneId).'/dns_records/scan');
+        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/dns_records/scan');
     }
+
     /**
      * List DNS Records
      * List, search, sort, and filter a zones' DNS records.
@@ -48,7 +50,7 @@ class DNS extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendGet('/zones/'.rawurlencode($zoneId).'/dns_records', $params);
+        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records', $params);
     }
 
     /**
@@ -83,7 +85,7 @@ class DNS extends AbstractEndpoint
             throw new MissingArgumentException(['content', 'name', 'type']);
         }
 
-        return $this->sendPost('/zones/'.rawurlencode($zoneId).'/dns_records', $values);
+        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/dns_records', $values);
     }
 
     /**
@@ -103,7 +105,42 @@ class DNS extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendGet('/zones/'.rawurlencode($zoneId).'/dns_records/export');
+        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records/export');
+    }
+
+    /**
+     * Import BIND config.
+     *
+     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-import-dns-records
+     *
+     * @param string $zoneId Zone ID to import DNS records.
+     * @param string $content Content of BIND config to import.
+     * @param string $proxied Should DNS records be proxied.
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return CloudFlareResponse Export DNS Records response
+     */
+    public function import(string $zoneId, string $content, bool $proxied = true): CloudFlareResponse
+    {
+        if(empty($zoneId)) {
+            throw new InvalidArgumentException('Zone ID is required.');
+        }
+
+        return $this->getHttpClient()->post(
+            '/zones/'.rawurlencode($zoneId).'/dns_records/import',
+            [
+                [
+                    'name'     => 'file',
+                    'contents' => $content
+                ],
+                [
+                    'name'     => 'proxied',
+                    'contents' => $proxied
+                ],
+            ],
+            format: RequestOptions::MULTIPART
+        );
     }
 
     /**
@@ -129,7 +166,7 @@ class DNS extends AbstractEndpoint
             throw new InvalidArgumentException('DNS ID is required.');
         }
 
-        return $this->sendGet('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
+        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
     }
 
     /**
@@ -168,7 +205,7 @@ class DNS extends AbstractEndpoint
             throw new MissingArgumentException(['content', 'name', 'type']);
         }
 
-        return $this->sendPatch('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
+        return $this->getHttpClient()->patch('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
     }
 
     /**
@@ -207,7 +244,7 @@ class DNS extends AbstractEndpoint
             throw new MissingArgumentException(['content', 'name', 'type']);
         }
 
-        return $this->sendPut('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
+        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
     }
 
     /**
@@ -233,6 +270,6 @@ class DNS extends AbstractEndpoint
             throw new InvalidArgumentException('DNS ID is required.');
         }
 
-        return $this->sendDelete('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
+        return $this->getHttpClient()->delete('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
     }
 }

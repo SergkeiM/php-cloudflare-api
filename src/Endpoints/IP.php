@@ -20,6 +20,6 @@ class IP extends AbstractEndpoint
     public function get(): CloudFlareResponse
     {
 
-        return $this->sendGet('/ips');
+        return $this->getHttpClient()->get('/ips');
     }
 }

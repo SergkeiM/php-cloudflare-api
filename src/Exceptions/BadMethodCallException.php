@@ -2,6 +2,6 @@
 
 namespace SergkeiM\CloudFlare\Exceptions;
 
-class BadMethodCallException extends \BadMethodCallException implements ExceptionInterface
+class BadMethodCallException extends \BadMethodCallException
 {
 }

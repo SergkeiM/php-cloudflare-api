@@ -2,26 +2,34 @@
 
 namespace SergkeiM\CloudFlare\HttpClient;
 
-use Psr\Http\Message\ResponseInterface;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-
-/**
- * @template TKey of array-key
- * @template TValue
- */
+use Psr\Http\Message\ResponseInterface;
 
 class Response implements CloudFlareResponse
 {
     /**
+     * The underlying PSR response.
+     *
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    protected $response;
+
+    /**
      * The decoded JSON response.
      *
-     * @var array<TKey, TValue>
+     * @var array
      */
     protected $decoded;
 
-    public function __construct(
-        protected ResponseInterface $response
-    ) {
+    /**
+     * Create a new response instance.
+     *
+     * @param  \Psr\Http\Message\ResponseInterface  $response
+     * @return void
+     */
+    public function __construct(ResponseInterface $response)
+    {
+        $this->response = $response;
     }
 
     /**
@@ -35,23 +43,13 @@ class Response implements CloudFlareResponse
     }
 
     /**
-     * Get the underlying PSR response for the response.
+     * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @return \Psr\Http\Message\ResponseInterface
-     */
-    public function toPsrResponse(): ResponseInterface
-    {
-        return $this->response;
-    }
-
-    /**
-     * Get json of the response.
-     *
-     * @param $key null
-     * @param $default null
+     * @param  string|null  $key
+     * @param  mixed  $default
      * @return mixed
      */
-    public function json($key = null, $default = null): mixed
+    public function json($key = null, $default = null)
     {
         if (! $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
@@ -65,34 +63,43 @@ class Response implements CloudFlareResponse
     }
 
     /**
-     * Convert the object into something JSON serializable.
+     * Get the underlying PSR response for the response.
      *
-     * @return array<TKey, TValue>
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function jsonSerialize(): array
+    public function toPsrResponse()
     {
-        return $this->json();
+        return $this->response;
     }
 
     /**
-     * Get the instance as an array.
+     * Get the status code of the response.
      *
-     * @return array<TKey, TValue>
+     * @return int
      */
-    public function toArray(): array
+    public function status()
     {
-        return $this->json();
+        return (int) $this->response->getStatusCode();
     }
 
     /**
-     * Convert the object to its JSON representation.
+     * Determine if the request was successful.
      *
-     * @param  int  $options
-     * @return string
+     * @return bool
      */
-    public function toJson(int $options = 0): string
+    public function successful()
     {
-        return json_encode($this->jsonSerialize(), $options);
+        return $this->status() === 200;
+    }
+
+    /**
+     * Determine if the response indicates a client or server error occurred.
+     *
+     * @return bool
+     */
+    public function failed()
+    {
+        return !$this->successful();
     }
 
     /**
@@ -100,7 +107,7 @@ class Response implements CloudFlareResponse
      *
      * @return string
      */
-    public function __toString(): string
+    public function __toString()
     {
         return $this->body();
     }

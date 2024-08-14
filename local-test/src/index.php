@@ -10,6 +10,10 @@ $dotenv->load();
 
 $client = new Client(getenv('CLOUDFLARE_TOKEN'));
 
-$response = $client->ips()->get();
+$contents = file_get_contents('./test.txt');
 
-file_put_contents('./test.json', json_encode($response->toArray(), JSON_PRETTY_PRINT));
+$response = $client->zones()->dns()->import(getenv('ZONE_ID'), $contents, true);
+
+//file_put_contents('./test.txt', $response->body());
+
+file_put_contents('./test.json', json_encode($response->json(), JSON_PRETTY_PRINT));

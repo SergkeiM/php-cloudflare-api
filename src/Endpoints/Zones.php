@@ -8,6 +8,7 @@ use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 use SergkeiM\CloudFlare\Endpoints\Zones\Cache;
 use SergkeiM\CloudFlare\Endpoints\Zones\CloudConnector;
 use SergkeiM\CloudFlare\Endpoints\Zones\DNS;
+use SergkeiM\CloudFlare\Endpoints\Zones\PageRules;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/zones-get
@@ -25,7 +26,7 @@ class Zones extends AbstractEndpoint
      */
     public function all(array $params = []): CloudFlareResponse
     {
-        return $this->sendGet('/zones', $params);
+        return $this->getHttpClient()->get('/zones', $params);
     }
 
     /**
@@ -52,14 +53,12 @@ class Zones extends AbstractEndpoint
             throw new MissingArgumentException('name');
         }
 
-        $params = [
+        return $this->getHttpClient()->post('/zones', [
             ...$values,
             'account' => [
                 'id' => $accountId
             ]
-        ];
-
-        return $this->sendPost('/zones', $params);
+        ]);
     }
 
     /**
@@ -80,7 +79,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendDelete('/zones/'.rawurlencode($zoneId));
+        return $this->getHttpClient()->delete('/zones/'.rawurlencode($zoneId));
     }
 
     /**
@@ -101,7 +100,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendGet('/zones/'.rawurlencode($zoneId));
+        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId));
     }
 
     /**
@@ -122,7 +121,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendPatch('/zones/'.rawurlencode($zoneId), $values);
+        return $this->getHttpClient()->patch('/zones/'.rawurlencode($zoneId), $values);
     }
 
     /**
@@ -143,7 +142,7 @@ class Zones extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendPut('/zones/'.rawurlencode($zoneId).'/activation_check');
+        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/activation_check');
     }
 
     /**
@@ -175,7 +174,7 @@ class Zones extends AbstractEndpoint
             throw new MissingArgumentException(['files', 'tags', 'hosts', 'prefixes']);
         }
 
-        return $this->sendPost('/zones/'.rawurlencode($zoneId).'/purge_cache', $purgeBy);
+        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/purge_cache', $purgeBy);
     }
 
     /**
@@ -206,5 +205,15 @@ class Zones extends AbstractEndpoint
     public function dns(): DNS
     {
         return new DNS($this->getClient());
+    }
+
+    /**
+     * Zone PageRules
+     *
+     * @return PageRules
+     */
+    public function pageRules(): PageRules
+    {
+        return new PageRules($this->getClient());
     }
 }

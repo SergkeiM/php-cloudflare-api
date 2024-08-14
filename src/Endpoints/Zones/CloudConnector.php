@@ -23,7 +23,7 @@ class CloudConnector extends AbstractEndpoint
             throw new InvalidArgumentException('Zone ID is required.');
         }
 
-        return $this->sendGet('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules');
+        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules');
     }
 
     /**
@@ -48,6 +48,6 @@ class CloudConnector extends AbstractEndpoint
             throw new MissingArgumentException('name');
         }
 
-        return $this->sendPut('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules', $values);
+        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules', $values);
     }
 }
