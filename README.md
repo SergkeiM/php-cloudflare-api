@@ -14,23 +14,23 @@ A simple Object Oriented wrapper for CloudFlare API, written with PHP.
 ## Features ✨
 
 * PHP >= 8.0
-* A [PSR-17 implementation](https://packagist.org/providers/psr/http-factory-implementation)
-* A [PSR-18 implementation](https://packagist.org/providers/psr/http-client-implementation)
+* Minimal API around the [Guzzle HTTP client](https://github.com/guzzle/guzzle)
 
 ## Quick install 🚀
 
 Via [Composer](https://getcomposer.org).
 
-This command will get you up and running quickly with a [Guzzle](https://github.com/guzzle/guzzle), PHP HTTP client.
+This command will get you up and running quickly.
 
 ```bash
-composer require sergkeim/php-cloudflare-api guzzlehttp/guzzle
+composer require sergkeim/php-cloudflare-api
 ```
 
 ## Thanks 🙏
 
+* Thanks to [CloudFlare](https://developers.cloudflare.com/api/) for the high quality API and documentation.
 * Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
-* Thanks to CloudFlare for the high quality API and documentation.
+* Thanks to [Guzzle](https://github.com/guzzle/guzzle) for the HTTP Client that makes it easy to send HTTP requests
 
 ## License 📎
 

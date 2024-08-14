@@ -6,10 +6,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use SergkeiM\CloudFlare\Exceptions\RequestException;
 use SergkeiM\CloudFlare\Exceptions\ConnectionException;
+use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 
 /**
  * API HttpClient.
@@ -41,8 +40,6 @@ class HttpClient
     ) {
 
         $stack = HandlerStack::create();
-
-        $stack->push($this->exceptionThrower());
 
         foreach ($middlewares as $middleware) {
             $stack->push($middleware);
@@ -77,7 +74,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function get(string $url, $query = null, array $options = [])
     {
@@ -93,7 +90,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function head(string $url, $query = null, array $options = [])
     {
@@ -110,7 +107,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -127,7 +124,7 @@ class HttpClient
     * @param  array  $data
     * @param  array  $options
     * @param  string  $format
-    * @return \SergkeiM\CloudFlare\HttpClient\Response
+    * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
     */
     public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -144,7 +141,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -161,7 +158,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function delete(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -181,7 +178,7 @@ class HttpClient
      * @throws ConnectionException
      * @throws RequestException
      *
-     * @return \SergkeiM\CloudFlare\HttpClient\Response
+     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
      */
     public function send(string $method, string $url, array $options = [])
     {
@@ -203,33 +200,5 @@ class HttpClient
             throw $exception;
         }
 
-    }
-
-    protected function exceptionThrower()
-    {
-
-        var_dump('exceptionThrower');
-
-        return function (callable $handler) {
-
-            var_dump('handler exceptionThrower');
-
-            return function (
-                RequestInterface $request,
-                array $options
-            ) use ($handler) {
-                $promise = $handler($request, $options);
-                return $promise->then(function (ResponseInterface $response) {
-
-                    $failed = $response->getStatusCode() >= 500 || ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500);
-
-                    if ($failed) {
-                        throw new RequestException($response);
-                    }
-
-                    return $response;
-                });
-            };
-        };
     }
 }

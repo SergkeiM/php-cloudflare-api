@@ -59,7 +59,7 @@ class Response implements CloudFlareResponse
             return $this->decoded;
         }
 
-        return data_get($this->decoded, $key, $default);
+        return $this->get($this->decoded, $key, $default);
     }
 
     /**
@@ -93,13 +93,46 @@ class Response implements CloudFlareResponse
     }
 
     /**
-     * Determine if the response indicates a client or server error occurred.
+     * Determine if the response failed.
      *
      * @return bool
      */
     public function failed()
     {
         return !$this->successful();
+    }
+
+
+    /**
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    protected function get($target, $key, $default = null)
+    {
+        $key = explode('.', $key);
+
+        foreach ($key as $i => $segment) {
+            unset($key[$i]);
+
+            if (is_null($segment)) {
+                return $target;
+            }
+
+            if (is_float($segment)) {
+                $segment = (string) $segment;
+            }
+
+            if (is_array($target) && array_key_exists($segment, $target)) {
+                $target = $target[$segment];
+            } elseif (is_object($target) && isset($target->{$segment})) {
+                $target = $target->{$segment};
+            } else {
+                return $default;
+            }
+        }
+
+        return $target;
     }
 
     /**

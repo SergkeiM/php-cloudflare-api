@@ -29,6 +29,27 @@ interface CloudFlareResponse extends Stringable
     public function toPsrResponse();
 
     /**
+     * Get the status code of the response.
+     *
+     * @return int
+     */
+    public function status();
+
+    /**
+     * Determine if the request was successful.
+     *
+     * @return bool
+     */
+    public function successful();
+
+    /**
+     * Determine if the response failed.
+     *
+     * @return bool
+     */
+    public function failed();
+
+    /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
      * @param  string|null  $key
@@ -36,4 +57,11 @@ interface CloudFlareResponse extends Stringable
      * @return mixed
      */
     public function json($key = null, $default = null);
+
+    /**
+     * @param  string  $key
+     * @param  mixed  $default
+     * @return mixed
+     */
+    protected function get($target, $key, $default = null);
 }
