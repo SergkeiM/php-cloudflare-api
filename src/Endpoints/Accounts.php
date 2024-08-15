@@ -3,6 +3,7 @@
 namespace SergkeiM\CloudFlare\Endpoints;
 
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use SergkeiM\CloudFlare\Endpoints\Accounts\Roles;
 use SergkeiM\CloudFlare\Endpoints\Accounts\Members;
 
 /**
@@ -53,6 +54,16 @@ class Accounts extends AbstractEndpoint
         $this->requiredParams(['name'], $values);
 
         return $this->getHttpClient()->put("/accounts/{$accountId}", $values);
+    }
+
+    /**
+     * Account Roles
+     *
+     * @return Roles
+     */
+    public function roles(): Roles
+    {
+        return new Roles($this->getClient());
     }
 
     /**

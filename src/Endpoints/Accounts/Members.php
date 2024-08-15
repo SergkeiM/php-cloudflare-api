@@ -12,7 +12,7 @@ class Members extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/account-members-list-members
      *
-     * @param string $accountId Account identifier tag.
+     * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
      * @return CloudFlareResponse List Members response.
