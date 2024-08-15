@@ -4,8 +4,6 @@ namespace SergkeiM\CloudFlare\Endpoints\Zones;
 
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 
 class CloudConnector extends AbstractEndpoint
 {
@@ -18,12 +16,7 @@ class CloudConnector extends AbstractEndpoint
      */
     public function get(string $zoneId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules');
+        return $this->getHttpClient()->get("/zones/{$zoneId}/cloud_connector/rules");
     }
 
     /**
@@ -32,22 +25,13 @@ class CloudConnector extends AbstractEndpoint
      * @param string $zoneId Zone ID.
      * @param array $values List of Cloud Connector rules.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Cloud Connector rules response.
      */
     public function update(string $zoneId, array $values): CloudFlareResponse
     {
 
-        if(empty($accountId)) {
-            throw new InvalidArgumentException('Account ID is required.');
-        }
+        $this->requiredParams(['name'], $values);
 
-        if(empty($values['name'])) {
-            throw new MissingArgumentException('name');
-        }
-
-        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/cloud_connector/rules', $values);
+        return $this->getHttpClient()->put("/zones/{$zoneId}/cloud_connector/rules", $values);
     }
 }

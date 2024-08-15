@@ -8,7 +8,6 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
 use SergkeiM\CloudFlare\Exceptions\RequestException;
 use SergkeiM\CloudFlare\Exceptions\ConnectionException;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 
 /**
  * API HttpClient.

@@ -4,6 +4,7 @@ namespace SergkeiM\CloudFlare\Endpoints;
 
 use SergkeiM\CloudFlare\Client;
 use SergkeiM\CloudFlare\HttpClient\HttpClient;
+use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 
 abstract class AbstractEndpoint
 {
@@ -41,5 +42,21 @@ abstract class AbstractEndpoint
     protected function getHttpClient(): HttpClient
     {
         return $this->client->getHttpClient();
+    }
+
+    /**
+     * @param array $keys
+     * @param array $values
+     *
+     * @throws MissingArgumentException
+     * @return void
+     */
+    protected function requiredParams(array $keys, array $values): void
+    {
+        foreach ($keys as $key) {
+            if (!isset($values[$key]) || empty($values[$key])) {
+                throw new MissingArgumentException($keys);
+            }
+        }
     }
 }

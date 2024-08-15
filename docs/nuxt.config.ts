@@ -1,5 +1,12 @@
 export default defineNuxtConfig({
     extends: '@nuxt-themes/docus',
+    app: {
+        head: {
+            meta: [
+                {name: 'google-site-verification', content: 'OFESQNvn-uXORi6W7u2vYanv-aORRNQNAT5twFPUJ_E'}
+            ]
+        }
+    },
     content: {
         documentDriven: true,
         highlight: {

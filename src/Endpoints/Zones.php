@@ -3,8 +3,6 @@
 namespace SergkeiM\CloudFlare\Endpoints;
 
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 use SergkeiM\CloudFlare\Endpoints\Zones\Cache;
 use SergkeiM\CloudFlare\Endpoints\Zones\CloudConnector;
 use SergkeiM\CloudFlare\Endpoints\Zones\DNS;
@@ -24,7 +22,7 @@ class Zones extends AbstractEndpoint
      *
      * @return CloudFlareResponse List zones of account found.
      */
-    public function all(array $params = []): CloudFlareResponse
+    public function list(array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get('/zones', $params);
     }
@@ -37,21 +35,12 @@ class Zones extends AbstractEndpoint
      * @param string $accountId Account ID that you want to zone for.
      * @param array $values Values to set on zone.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Create Zone response.
      */
     public function create(string $accountId, array $values): CloudFlareResponse
     {
 
-        if(empty($accountId)) {
-            throw new InvalidArgumentException('Account ID is required.');
-        }
-
-        if(empty($values['name'])) {
-            throw new MissingArgumentException('name');
-        }
+        $this->requiredParams(['name'], $values);
 
         return $this->getHttpClient()->post('/zones', [
             ...$values,
@@ -68,18 +57,11 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID that you want to delete.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Delete Zone response.
      */
     public function delete(string $zoneId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->delete('/zones/'.rawurlencode($zoneId));
+        return $this->getHttpClient()->delete("/zones/{$zoneId}");
     }
 
     /**
@@ -89,18 +71,11 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID to fetch details.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Zone Details response.
      */
     public function details(string $zoneId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId));
+        return $this->getHttpClient()->get("/zones/{$zoneId}");
     }
 
     /**
@@ -110,18 +85,11 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID to update.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Edit Zone response.
      */
     public function update(string $zoneId, array $values): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->patch('/zones/'.rawurlencode($zoneId), $values);
+        return $this->getHttpClient()->patch("/zones/{$zoneId}", $values);
     }
 
     /**
@@ -131,18 +99,11 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID to trigger Activation Check.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Activation Check Response
      */
     public function activationCheck(string $zoneId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/activation_check');
+        return $this->getHttpClient()->put("/zones/{$zoneId}/activation_check");
     }
 
     /**
@@ -153,28 +114,14 @@ class Zones extends AbstractEndpoint
      * @param string $zoneId Zone ID to purge cache.
      * @param array $purgeBy Any of: tags, hostnames, prefixes, everything, files
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Purge Cached Content Response
      */
     public function purge(string $zoneId, array $purgeBy): CloudFlareResponse
     {
 
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
+        $this->requiredParams(['files', 'tags', 'hosts', 'prefixes'], $purgeBy);
 
-        if(
-            empty($purgeBy['files']) &&
-            empty($purgeBy['tags']) &&
-            empty($purgeBy['hosts']) &&
-            empty($purgeBy['prefixes'])
-        ) {
-            throw new MissingArgumentException(['files', 'tags', 'hosts', 'prefixes']);
-        }
-
-        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/purge_cache', $purgeBy);
+        return $this->getHttpClient()->post("/zones/{$zoneId}/purge_cache", $purgeBy);
     }
 
     /**
