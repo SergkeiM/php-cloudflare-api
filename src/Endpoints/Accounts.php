@@ -5,6 +5,7 @@ namespace SergkeiM\CloudFlare\Endpoints;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 use SergkeiM\CloudFlare\Endpoints\Accounts\Roles;
 use SergkeiM\CloudFlare\Endpoints\Accounts\Members;
+use SergkeiM\CloudFlare\Endpoints\Accounts\AuditLogs;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -74,5 +75,15 @@ class Accounts extends AbstractEndpoint
     public function members(): Members
     {
         return new Members($this->getClient());
+    }
+
+    /**
+     * Account audit logs
+     *
+     * @return AuditLogs
+     */
+    public function auditLogs(): AuditLogs
+    {
+        return new AuditLogs($this->getClient());
     }
 }
