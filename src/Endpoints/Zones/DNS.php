@@ -5,8 +5,6 @@ namespace SergkeiM\CloudFlare\Endpoints\Zones;
 use GuzzleHttp\RequestOptions;
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
 
 class DNS extends AbstractEndpoint
 {
@@ -18,21 +16,14 @@ class DNS extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID to scan DNS Records
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Scan DNS Records response
      */
     public function scan(string $zoneId): CloudFlareResponse
     {
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/dns_records/scan');
+        return $this->getHttpClient()->post("/zones/{$zoneId}/dns_records/scan");
     }
 
     /**
-     * List DNS Records
      * List, search, sort, and filter a zones' DNS records.
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
@@ -40,17 +31,11 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID to list DNS records.
      * @param array $params Query Parameters
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse List DNS Records response
      */
-    public function all(string $zoneId, array $params = []): CloudFlareResponse
+    public function list(string $zoneId, array $params = []): CloudFlareResponse
     {
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records', $params);
+        return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records", $params);
     }
 
     /**
@@ -65,27 +50,13 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID that you want to create a new DNS record for.
      * @param array $values Values to set on DNS.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Create DNS Record response
      */
     public function create(string $zoneId, array $values): CloudFlareResponse
     {
+        $this->requiredParams(['content', 'name', 'type'], $values);
 
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        if(
-            empty($values['content']) ||
-            empty($values['name']) ||
-            empty($values['type'])
-        ) {
-            throw new MissingArgumentException(['content', 'name', 'type']);
-        }
-
-        return $this->getHttpClient()->post('/zones/'.rawurlencode($zoneId).'/dns_records', $values);
+        return $this->getHttpClient()->post("/zones/{$zoneId}/dns_records", $values);
     }
 
     /**
@@ -95,17 +66,11 @@ class DNS extends AbstractEndpoint
      *
      * @param string $zoneId Zone ID to export DNS records
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Export DNS Records response
      */
     public function export(string $zoneId): CloudFlareResponse
     {
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records/export');
+        return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records/export");
     }
 
     /**
@@ -117,18 +82,12 @@ class DNS extends AbstractEndpoint
      * @param string $content Content of BIND config to import.
      * @param string $proxied Should DNS records be proxied.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Export DNS Records response
      */
     public function import(string $zoneId, string $content, bool $proxied = true): CloudFlareResponse
     {
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
         return $this->getHttpClient()->post(
-            '/zones/'.rawurlencode($zoneId).'/dns_records/import',
+            "/zones/{$zoneId}/dns_records/import",
             [
                 [
                     'name'     => 'file',
@@ -151,22 +110,11 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID to fetch details.
      * @param string $dnsRecordId DNS ID to fetch details.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse DNS Record Details response
      */
     public function details(string $zoneId, string $dnsRecordId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        if(empty($dnsRecordId)) {
-            throw new InvalidArgumentException('DNS ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
+        return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records/{$dnsRecordId}");
     }
 
     /**
@@ -181,31 +129,13 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID to update DNS record on.
      * @param string $dnsRecordId DNS ID to update.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Update DNS Record response
      */
     public function update(string $zoneId, string $dnsRecordId, array $values): CloudFlareResponse
     {
+        $this->requiredParams(['content', 'name', 'type'], $values);
 
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        if(empty($dnsRecordId)) {
-            throw new InvalidArgumentException('DNS ID is required.');
-        }
-
-        if(
-            empty($values['content']) &&
-            empty($values['name']) &&
-            empty($values['type'])
-        ) {
-            throw new MissingArgumentException(['content', 'name', 'type']);
-        }
-
-        return $this->getHttpClient()->patch('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
+        return $this->getHttpClient()->patch("/zones/{$zoneId}/dns_records/{$dnsRecordId}", $values);
     }
 
     /**
@@ -220,31 +150,13 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID to overwrite DNS record on.
      * @param string $dnsRecordId DNS ID to overwrite.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Overwrite DNS Record response
      */
     public function overwrite(string $zoneId, string $dnsRecordId, array $values): CloudFlareResponse
     {
+        $this->requiredParams(['content', 'name', 'type'], $values);
 
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        if(empty($dnsRecordId)) {
-            throw new InvalidArgumentException('DNS ID is required.');
-        }
-
-        if(
-            empty($values['content']) &&
-            empty($values['name']) &&
-            empty($values['type'])
-        ) {
-            throw new MissingArgumentException(['content', 'name', 'type']);
-        }
-
-        return $this->getHttpClient()->put('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId), $values);
+        return $this->getHttpClient()->put("/zones/{$zoneId}/dns_records/{$dnsRecordId}", $values);
     }
 
     /**
@@ -255,21 +167,10 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone ID that you want to delete DNS Record for.
      * @param string $dnsRecordId DNS ID to delete.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Delete DNS Record response
      */
     public function delete(string $zoneId, string $dnsRecordId): CloudFlareResponse
     {
-
-        if(empty($zoneId)) {
-            throw new InvalidArgumentException('Zone ID is required.');
-        }
-
-        if(empty($dnsRecordId)) {
-            throw new InvalidArgumentException('DNS ID is required.');
-        }
-
-        return $this->getHttpClient()->delete('/zones/'.rawurlencode($zoneId).'/dns_records/'.rawurlencode($dnsRecordId));
+        return $this->getHttpClient()->delete("/zones/{$zoneId}/dns_records/{$dnsRecordId}");
     }
 }

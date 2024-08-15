@@ -3,8 +3,7 @@
 namespace SergkeiM\CloudFlare\Endpoints;
 
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\Exceptions\MissingArgumentException;
+use SergkeiM\CloudFlare\Endpoints\Accounts\Members;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -20,7 +19,7 @@ class Accounts extends AbstractEndpoint
      *
      * @return CloudFlareResponse List Accounts response.
      */
-    public function all(array $params = []): CloudFlareResponse
+    public function list(array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get('/accounts', $params);
     }
@@ -32,18 +31,11 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountId Account ID to fetch details.
      *
-     * @throws InvalidArgumentException
-     *
      * @return CloudFlareResponse Account Details response.
      */
     public function details(string $accountId): CloudFlareResponse
     {
-
-        if(empty($accountId)) {
-            throw new InvalidArgumentException('Account ID is required.');
-        }
-
-        return $this->getHttpClient()->get('/accounts/'.rawurlencode($accountId));
+        return $this->getHttpClient()->get("/accounts/{$accountId}");
     }
 
     /**
@@ -54,22 +46,22 @@ class Accounts extends AbstractEndpoint
      * @param string $accountId Account ID that you want to update.
      * @param array $values Values to set on account.
      *
-     * @throws InvalidArgumentException
-     * @throws MissingArgumentException
-     *
      * @return CloudFlareResponse Update Account response.
      */
     public function update(string $accountId, array $values): CloudFlareResponse
     {
+        $this->requiredParams(['name'], $values);
 
-        if(empty($accountId)) {
-            throw new InvalidArgumentException('Account ID is required.');
-        }
+        return $this->getHttpClient()->put("/accounts/{$accountId}", $values);
+    }
 
-        if(empty($values['name'])) {
-            throw new MissingArgumentException('name');
-        }
-
-        return $this->getHttpClient()->put('/accounts/'.rawurlencode($accountId), $values);
+    /**
+     * Account Members
+     *
+     * @return Members
+     */
+    public function members(): Members
+    {
+        return new Members($this->getClient());
     }
 }
