@@ -7,12 +7,27 @@ use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 
 class PageRules extends AbstractEndpoint
 {
+
+    /**
+     * Returns a list of settings (and their details) that Page Rules can apply to matching requests.
+     *
+     * @link https://developers.cloudflare.com/api/operations/available-page-rules-settings-list-available-page-rules-settings
+     *
+     * @param string $zoneId Zone ID to list Page Rules settings.
+     *
+     * @return CloudFlareResponse List available Page Rules settings response
+     */
+    public function settings(string $zoneId): CloudFlareResponse
+    {
+        return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules/settings");
+    }
+
     /**
      * List Page Rules in a zone.
      *
      * @link https://developers.cloudflare.com/api/operations/page-rules-list-page-rules
      *
-     * @param string $zoneId Zone ID to list DNS records.
+     * @param string $zoneId Zone ID to list Page Rules records.
      * @param array $params Query Parameters
      *
      * @return CloudFlareResponse List Page Rules response
@@ -45,13 +60,13 @@ class PageRules extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/page-rules-get-a-page-rule
      *
      * @param string $zoneId Zone ID to fetch details.
-     * @param string $pageruleId Page Rule ID to fetch details.
+     * @param string $pageRuleId Page Rule ID to fetch details.
      *
      * @return CloudFlareResponse Get a Page Rule response
      */
-    public function details(string $zoneId, string $pageruleId): CloudFlareResponse
+    public function details(string $zoneId, string $pageRuleId): CloudFlareResponse
     {
-        return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules/{$pageruleId}");
+        return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules/{$pageRuleId}");
     }
 
     /**
@@ -60,13 +75,13 @@ class PageRules extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/page-rules-edit-a-page-rule
      *
      * @param string $zoneId Zone ID to update Page Rule on.
-     * @param string $pageruleId Page Rule ID to update.
+     * @param string $pageRuleId Page Rule ID to update.
      *
      * @return CloudFlareResponse Edit a Page Rule response
      */
-    public function update(string $zoneId, string $pageruleId, array $values): CloudFlareResponse
+    public function update(string $zoneId, string $pageRuleId, array $values): CloudFlareResponse
     {
-        return $this->getHttpClient()->patch("/zones/{$zoneId}/pagerules/{$pageruleId}", $values);
+        return $this->getHttpClient()->patch("/zones/{$zoneId}/pagerules/{$pageRuleId}", $values);
     }
 
     /**
@@ -75,15 +90,15 @@ class PageRules extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/page-rules-update-a-page-rule
      *
      * @param string $zoneId Zone ID to overwrite Page Rule on.
-     * @param string $pageruleId Page Rule ID to overwrite.
+     * @param string $pageRuleId Page Rule ID to overwrite.
      *
      * @return CloudFlareResponse Overwrite Page Rule response
      */
-    public function overwrite(string $zoneId, string $pageruleId, array $values): CloudFlareResponse
+    public function overwrite(string $zoneId, string $pageRuleId, array $values): CloudFlareResponse
     {
         $this->requiredParams(['actions', 'targets'], $values);
 
-        return $this->getHttpClient()->put("/zones/{$zoneId}/pagerules/{$pageruleId}", $values);
+        return $this->getHttpClient()->put("/zones/{$zoneId}/pagerules/{$pageRuleId}", $values);
     }
 
     /**
@@ -92,12 +107,12 @@ class PageRules extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/page-rules-delete-a-page-rule
      *
      * @param string $zoneId Zone ID that you want to delete Page Rule for.
-     * @param string $pageruleId Page Rule ID to delete.
+     * @param string $pageRuleId Page Rule ID to delete.
      *
      * @return CloudFlareResponse Delete a Page Rule response
      */
-    public function delete(string $zoneId, string $pageruleId): CloudFlareResponse
+    public function delete(string $zoneId, string $pageRuleId): CloudFlareResponse
     {
-        return $this->getHttpClient()->delete("/zones/{$zoneId}/pagerules/{$pageruleId}");
+        return $this->getHttpClient()->delete("/zones/{$zoneId}/pagerules/{$pageRuleId}");
     }
 }
