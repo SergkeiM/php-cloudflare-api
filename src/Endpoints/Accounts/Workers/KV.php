@@ -4,7 +4,6 @@ namespace SergkeiM\CloudFlare\Endpoints\Accounts\Workers;
 
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
 
 class KV extends AbstractEndpoint
 {

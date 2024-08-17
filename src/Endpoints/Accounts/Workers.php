@@ -21,7 +21,7 @@ class Workers extends AbstractEndpoint
      * Retrieves Workers KV request metrics for the given account.
      *
      * @link https://developers.cloudflare.com/api/operations/workers-kv-request-analytics-query-request-analytics
-     * 
+     *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
