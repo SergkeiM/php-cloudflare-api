@@ -7,7 +7,6 @@ use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 
 class PageRules extends AbstractEndpoint
 {
-
     /**
      * Returns a list of settings (and their details) that Page Rules can apply to matching requests.
      *
