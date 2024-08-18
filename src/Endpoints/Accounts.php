@@ -6,7 +6,6 @@ use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 use SergkeiM\CloudFlare\Endpoints\Accounts\Roles;
 use SergkeiM\CloudFlare\Endpoints\Accounts\Members;
 use SergkeiM\CloudFlare\Endpoints\Accounts\AuditLogs;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -86,15 +85,5 @@ class Accounts extends AbstractEndpoint
     public function auditLogs(): AuditLogs
     {
         return new AuditLogs($this->getClient());
-    }
-
-    /**
-     * Account workers
-     *
-     * @return Workers
-     */
-    public function workers(): Workers
-    {
-        return new Workers($this->getClient());
     }
 }

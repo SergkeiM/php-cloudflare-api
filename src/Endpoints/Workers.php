@@ -1,19 +1,20 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Accounts;
+namespace SergkeiM\CloudFlare\Endpoints;
 
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Settings;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Cron;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Deployments;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Domains;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Environment;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Scripts;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Subdomain;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Logs;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\Versions;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Workers\KV;
+use SergkeiM\CloudFlare\Endpoints\Workers\Settings;
+use SergkeiM\CloudFlare\Endpoints\Workers\Cron;
+use SergkeiM\CloudFlare\Endpoints\Workers\Deployments;
+use SergkeiM\CloudFlare\Endpoints\Workers\Domains;
+use SergkeiM\CloudFlare\Endpoints\Workers\Environment;
+use SergkeiM\CloudFlare\Endpoints\Workers\Scripts;
+use SergkeiM\CloudFlare\Endpoints\Workers\Subdomain;
+use SergkeiM\CloudFlare\Endpoints\Workers\Logs;
+use SergkeiM\CloudFlare\Endpoints\Workers\Versions;
+use SergkeiM\CloudFlare\Endpoints\Workers\KV;
+use SergkeiM\CloudFlare\Endpoints\Workers\Routes;
 
 class Workers extends AbstractEndpoint
 {
@@ -145,5 +146,15 @@ class Workers extends AbstractEndpoint
     public function kv(): KV
     {
         return new KV($this->getClient());
+    }
+
+    /**
+     * Worker Zone Routes
+     *
+     * @return Routes
+     */
+    public function routes(): Routes
+    {
+        return new Routes($this->getClient());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Accounts\Workers;
+namespace SergkeiM\CloudFlare\Endpoints\Workers;
 
 use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;

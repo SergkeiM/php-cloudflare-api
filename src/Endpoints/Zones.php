@@ -7,7 +7,6 @@ use SergkeiM\CloudFlare\Endpoints\Zones\Cache;
 use SergkeiM\CloudFlare\Endpoints\Zones\CloudConnector;
 use SergkeiM\CloudFlare\Endpoints\Zones\DNS;
 use SergkeiM\CloudFlare\Endpoints\Zones\PageRules;
-use SergkeiM\CloudFlare\Endpoints\Zones\Workers;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/zones-get
@@ -163,15 +162,5 @@ class Zones extends AbstractEndpoint
     public function pageRules(): PageRules
     {
         return new PageRules($this->getClient());
-    }
-
-    /**
-     * Zone Workers
-     *
-     * @return Workers
-     */
-    public function workers(): Workers
-    {
-        return new Workers($this->getClient());
     }
 }

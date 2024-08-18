@@ -2,6 +2,7 @@ node_modules
 *.iml
 .idea
 *.log*
+!*.logs.md
 .nuxt
 .vscode
 .DS_Store
