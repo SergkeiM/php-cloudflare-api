@@ -17,7 +17,7 @@ class KV extends AbstractEndpoint
      *
      * @return CloudFlareResponse List Namespaces response
      */
-    public function list(string $accountId, array $params): CloudFlareResponse
+    public function list(string $accountId, array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces", $params);
     }
@@ -99,7 +99,7 @@ class KV extends AbstractEndpoint
      *
      * @return CloudFlareResponse Delete multiple key-value pairs response
      */
-    public function listKeys(string $accountId, string $namespaceId, array $params): CloudFlareResponse
+    public function listKeys(string $accountId, string $namespaceId, array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/keys", $params);
     }
