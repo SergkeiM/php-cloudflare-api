@@ -10,7 +10,7 @@ class CloudConnector extends AbstractEndpoint
     /**
      * @link https://developers.cloudflare.com/api/operations/zone-cloud-connector-rules
      *
-     * @param string $zoneId Zone ID.
+     * @param string $zoneId Zone Identifier.
      *
      * @return CloudFlareResponse Cloud Connector rules response.
      */
@@ -22,7 +22,7 @@ class CloudConnector extends AbstractEndpoint
     /**
      * @link https://developers.cloudflare.com/api/operations/zone-cloud-conenctor-rules-put
      *
-     * @param string $zoneId Zone ID.
+     * @param string $zoneId Zone Identifier.
      * @param array $values List of Cloud Connector rules.
      *
      * @return CloudFlareResponse Cloud Connector rules response.
