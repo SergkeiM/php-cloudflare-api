@@ -13,6 +13,7 @@ use CloudFlare\Endpoints\Workers\Subdomain;
 use CloudFlare\Endpoints\Workers\Logs;
 use CloudFlare\Endpoints\Workers\Versions;
 use CloudFlare\Endpoints\Workers\KV;
+use CloudFlare\Endpoints\Workers\DurableObjects;
 use CloudFlare\Endpoints\Workers\Routes;
 
 class Workers extends AbstractEndpoint
@@ -145,6 +146,16 @@ class Workers extends AbstractEndpoint
     public function kv(): KV
     {
         return new KV($this->getClient());
+    }
+
+    /**
+     * Worker Durable Objects
+     *
+     * @return DurableObjects
+     */
+    public function kv(): DurableObjects
+    {
+        return new DurableObjects($this->getClient());
     }
 
     /**

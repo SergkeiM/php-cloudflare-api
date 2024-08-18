@@ -19,7 +19,7 @@ class Versions extends AbstractEndpoint
      *
      * @return CloudFlareResponse List Versions response
      */
-    public function list(string $accountId, string $scriptName, array $params): CloudFlareResponse
+    public function list(string $accountId, string $scriptName, array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/versions", $params);
     }
