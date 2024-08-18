@@ -14,7 +14,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-scan-dns-records
      *
-     * @param string $zoneId Zone ID to scan DNS Records
+     * @param string $zoneId Zone Identifier.
      *
      * @return CloudFlareResponse Scan DNS Records response
      */
@@ -28,7 +28,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
      *
-     * @param string $zoneId Zone ID to list DNS records.
+     * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
      *
      * @return CloudFlareResponse List DNS Records response
@@ -47,7 +47,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record
      *
-     * @param string $zoneId Zone ID that you want to create a new DNS record for.
+     * @param string $zoneId Zone Identifier.
      * @param array $values Values to set on DNS.
      *
      * @return CloudFlareResponse Create DNS Record response
@@ -64,7 +64,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-export-dns-records
      *
-     * @param string $zoneId Zone ID to export DNS records
+     * @param string $zoneId Zone Identifier.
      *
      * @return CloudFlareResponse Export DNS Records response
      */
@@ -78,7 +78,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-import-dns-records
      *
-     * @param string $zoneId Zone ID to import DNS records.
+     * @param string $zoneId Zone Identifier.
      * @param string $content Content of BIND config to import.
      * @param string $proxied Should DNS records be proxied.
      *
@@ -107,7 +107,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-dns-record-details
      *
-     * @param string $zoneId Zone ID to fetch details.
+     * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to fetch details.
      *
      * @return CloudFlareResponse DNS Record Details response
@@ -126,7 +126,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record
      *
-     * @param string $zoneId Zone ID to update DNS record on.
+     * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to update.
      *
      * @return CloudFlareResponse Update DNS Record response
@@ -147,7 +147,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-update-dns-record
      *
-     * @param string $zoneId Zone ID to overwrite DNS record on.
+     * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to overwrite.
      *
      * @return CloudFlareResponse Overwrite DNS Record response
@@ -164,7 +164,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record
      *
-     * @param string $zoneId Zone ID that you want to delete DNS Record for.
+     * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to delete.
      *
      * @return CloudFlareResponse Delete DNS Record response

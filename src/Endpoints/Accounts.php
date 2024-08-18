@@ -31,7 +31,7 @@ class Accounts extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/accounts-account-details
      *
-     * @param string $accountId Account ID to fetch details.
+     * @param string $accountId Account identifier.
      *
      * @return CloudFlareResponse Account Details response.
      */
@@ -45,7 +45,7 @@ class Accounts extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/accounts-update-account
      *
-     * @param string $accountId Account ID that you want to update.
+     * @param string $accountId Account identifier.
      * @param array $values Values to set on account.
      *
      * @return CloudFlareResponse Update Account response.
