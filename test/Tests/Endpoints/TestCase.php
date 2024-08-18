@@ -1,12 +1,12 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Tests\Endpoints;
+namespace CloudFlare\Tests\Endpoints;
 
 use Psr\Http\Client\ClientInterface;
 use ReflectionMethod;
-use SergkeiM\CloudFlare\Client;
+use CloudFlare\Client;
 use GuzzleHttp\Psr7\Response as Psr7Response;
-use SergkeiM\CloudFlare\HttpClient\Response;
+use CloudFlare\HttpClient\Response;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {

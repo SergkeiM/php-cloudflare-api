@@ -1,9 +1,9 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Workers;
+namespace CloudFlare\Endpoints\Workers;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Contracts\CloudFlareResponse;
 
 class Cron extends AbstractEndpoint
 {

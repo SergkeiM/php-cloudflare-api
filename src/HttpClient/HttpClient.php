@@ -1,13 +1,13 @@
 <?php
 
-namespace SergkeiM\CloudFlare\HttpClient;
+namespace CloudFlare\HttpClient;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
-use SergkeiM\CloudFlare\Exceptions\RequestException;
-use SergkeiM\CloudFlare\Exceptions\ConnectionException;
+use CloudFlare\Exceptions\RequestException;
+use CloudFlare\Exceptions\ConnectionException;
 
 /**
  * API HttpClient.
@@ -73,7 +73,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function get(string $url, $query = null, array $options = [])
     {
@@ -89,7 +89,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function head(string $url, $query = null, array $options = [])
     {
@@ -106,7 +106,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -123,7 +123,7 @@ class HttpClient
     * @param  array  $data
     * @param  array  $options
     * @param  string  $format
-    * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+    * @return \CloudFlare\Contracts\CloudFlareResponse
     */
     public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -140,7 +140,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -157,7 +157,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function delete(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -177,7 +177,7 @@ class HttpClient
      * @throws ConnectionException
      * @throws RequestException
      *
-     * @return \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @return \CloudFlare\Contracts\CloudFlareResponse
      */
     public function send(string $method, string $url, array $options = [])
     {

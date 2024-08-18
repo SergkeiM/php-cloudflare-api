@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SergkeiM\\CloudFlare\\": "src/"
+            "CloudFlare\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SergkeiM\\CloudFlare\\Tests\\": "test/Tests/"
+            "CloudFlare\\Tests\\": "test/Tests/"
         }
     },
     "config": {

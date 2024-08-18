@@ -1,11 +1,11 @@
 <?php
 
-namespace SergkeiM\CloudFlare;
+namespace CloudFlare;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
-use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
-use SergkeiM\CloudFlare\HttpClient\HttpClient;
+use CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Exceptions\BadMethodCallException;
+use CloudFlare\Exceptions\InvalidArgumentException;
+use CloudFlare\HttpClient\HttpClient;
 
 /**
  * Simple PHP CloudFlare client.

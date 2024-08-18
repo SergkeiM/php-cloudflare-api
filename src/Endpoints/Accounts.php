@@ -1,11 +1,11 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints;
+namespace CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Roles;
-use SergkeiM\CloudFlare\Endpoints\Accounts\Members;
-use SergkeiM\CloudFlare\Endpoints\Accounts\AuditLogs;
+use CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\Accounts\Roles;
+use CloudFlare\Endpoints\Accounts\Members;
+use CloudFlare\Endpoints\Accounts\AuditLogs;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts

@@ -1,9 +1,9 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Accounts;
+namespace CloudFlare\Endpoints\Accounts;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Contracts\CloudFlareResponse;
 
 class Roles extends AbstractEndpoint
 {

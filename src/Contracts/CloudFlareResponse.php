@@ -1,6 +1,6 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Contracts;
+namespace CloudFlare\Contracts;
 
 use Stringable;
 use Psr\Http\Message\ResponseInterface;

@@ -1,10 +1,10 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Workers;
+namespace CloudFlare\Endpoints\Workers;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
+use CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Exceptions\BadMethodCallException;
 
 class Versions extends AbstractEndpoint
 {

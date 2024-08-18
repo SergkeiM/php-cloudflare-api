@@ -1,12 +1,12 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Tests;
+namespace CloudFlare\Tests;
 
 use Psr\Http\Client\ClientInterface;
-use SergkeiM\CloudFlare\Client;
-use SergkeiM\CloudFlare\Endpoints;
-use SergkeiM\CloudFlare\Exceptions\BadMethodCallException;
-use SergkeiM\CloudFlare\Exceptions\InvalidArgumentException;
+use CloudFlare\Client;
+use CloudFlare\Endpoints;
+use CloudFlare\Exceptions\BadMethodCallException;
+use CloudFlare\Exceptions\InvalidArgumentException;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
@@ -16,19 +16,6 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     public function shouldNotHaveToPassHttpClientToConstructor()
     {
         $client = new Client('token');
-
-        $this->assertInstanceOf(ClientInterface::class, $client->getHttpClient());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldPassHttpClientInterfaceToConstructor()
-    {
-        $httpClientMock = $this->getMockBuilder(ClientInterface::class)
-            ->getMock();
-
-        $client = Client::createWithHttpClient('token', $httpClientMock);
 
         $this->assertInstanceOf(ClientInterface::class, $client->getHttpClient());
     }
@@ -82,6 +69,8 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         return [
             ['accounts', Endpoints\Accounts::class],
             ['zones', Endpoints\Zones::class],
+            ['workers', Endpoints\Workers::class],
+            ['ips', Endpoints\IP::class],
         ];
     }
 }

@@ -1,23 +1,23 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Exceptions;
+namespace CloudFlare\Exceptions;
 
 use GuzzleHttp\Psr7\Message;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Contracts\CloudFlareResponse;
 
 class RequestException extends HttpClientException
 {
     /**
      * The response instance.
      *
-     * @var \SergkeiM\CloudFlare\Contracts\CloudFlareResponse
+     * @var \CloudFlare\Contracts\CloudFlareResponse
      */
     public $response;
 
     /**
      * Create a new exception instance.
      *
-     * @param  \SergkeiM\CloudFlare\Contracts\CloudFlareResponse  $response
+     * @param  \CloudFlare\Contracts\CloudFlareResponse  $response
      * @return void
      */
     public function __construct(CloudFlareResponse $response)
@@ -30,7 +30,7 @@ class RequestException extends HttpClientException
     /**
      * Prepare the exception message.
      *
-     * @param  \SergkeiM\CloudFlare\Contracts\CloudFlareResponse  $response
+     * @param  \CloudFlare\Contracts\CloudFlareResponse  $response
      * @return string
      */
     protected function prepareMessage(CloudFlareResponse $response)

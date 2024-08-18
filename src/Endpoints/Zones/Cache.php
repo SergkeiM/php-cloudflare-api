@@ -1,8 +1,8 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Zones;
+namespace CloudFlare\Endpoints\Zones;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Endpoints\AbstractEndpoint;
 
 class Cache extends AbstractEndpoint
 {

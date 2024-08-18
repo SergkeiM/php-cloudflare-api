@@ -1,6 +1,6 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Contracts;
+namespace CloudFlare\Contracts;
 
 /**
  * @template TKey of array-key

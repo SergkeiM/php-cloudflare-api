@@ -1,6 +1,6 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Exceptions;
+namespace CloudFlare\Exceptions;
 
 class HttpClientException extends \Exception
 {

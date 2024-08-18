@@ -1,8 +1,8 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Tests\Endpoints;
+namespace CloudFlare\Tests\Endpoints;
 
-use SergkeiM\CloudFlare\Endpoints\Accounts;
+use CloudFlare\Endpoints\Accounts;
 
 class AccountsTest extends TestCase
 {

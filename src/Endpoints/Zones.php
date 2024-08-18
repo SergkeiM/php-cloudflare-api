@@ -1,12 +1,12 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints;
+namespace CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Endpoints\Zones\Cache;
-use SergkeiM\CloudFlare\Endpoints\Zones\CloudConnector;
-use SergkeiM\CloudFlare\Endpoints\Zones\DNS;
-use SergkeiM\CloudFlare\Endpoints\Zones\PageRules;
+use CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\Zones\Cache;
+use CloudFlare\Endpoints\Zones\CloudConnector;
+use CloudFlare\Endpoints\Zones\DNS;
+use CloudFlare\Endpoints\Zones\PageRules;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/zones-get

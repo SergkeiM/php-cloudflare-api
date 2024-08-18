@@ -1,8 +1,8 @@
 <?php
 
-namespace SergkeiM\CloudFlare\HttpClient;
+namespace CloudFlare\HttpClient;
 
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Contracts\CloudFlareResponse;
 use Psr\Http\Message\ResponseInterface;
 
 class Response implements CloudFlareResponse

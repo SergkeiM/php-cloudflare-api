@@ -1,9 +1,9 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints\Zones;
+namespace CloudFlare\Endpoints\Zones;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\AbstractEndpoint;
+use CloudFlare\Contracts\CloudFlareResponse;
 
 class PageRules extends AbstractEndpoint
 {

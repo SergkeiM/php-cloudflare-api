@@ -1,19 +1,19 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints;
+namespace CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
-use SergkeiM\CloudFlare\Endpoints\Workers\Settings;
-use SergkeiM\CloudFlare\Endpoints\Workers\Cron;
-use SergkeiM\CloudFlare\Endpoints\Workers\Deployments;
-use SergkeiM\CloudFlare\Endpoints\Workers\Domains;
-use SergkeiM\CloudFlare\Endpoints\Workers\Environment;
-use SergkeiM\CloudFlare\Endpoints\Workers\Scripts;
-use SergkeiM\CloudFlare\Endpoints\Workers\Subdomain;
-use SergkeiM\CloudFlare\Endpoints\Workers\Logs;
-use SergkeiM\CloudFlare\Endpoints\Workers\Versions;
-use SergkeiM\CloudFlare\Endpoints\Workers\KV;
-use SergkeiM\CloudFlare\Endpoints\Workers\Routes;
+use CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Endpoints\Workers\Settings;
+use CloudFlare\Endpoints\Workers\Cron;
+use CloudFlare\Endpoints\Workers\Deployments;
+use CloudFlare\Endpoints\Workers\Domains;
+use CloudFlare\Endpoints\Workers\Environment;
+use CloudFlare\Endpoints\Workers\Scripts;
+use CloudFlare\Endpoints\Workers\Subdomain;
+use CloudFlare\Endpoints\Workers\Logs;
+use CloudFlare\Endpoints\Workers\Versions;
+use CloudFlare\Endpoints\Workers\KV;
+use CloudFlare\Endpoints\Workers\Routes;
 
 class Workers extends AbstractEndpoint
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace SergkeiM\CloudFlare\Endpoints;
+namespace CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Contracts\CloudFlareResponse;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/cloudflare-i-ps-cloudflare-ip-details
