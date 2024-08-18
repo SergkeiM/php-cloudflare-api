@@ -2,7 +2,6 @@
 
 namespace SergkeiM\CloudFlare\Endpoints;
 
-use SergkeiM\CloudFlare\Endpoints\AbstractEndpoint;
 use SergkeiM\CloudFlare\Contracts\CloudFlareResponse;
 use SergkeiM\CloudFlare\Endpoints\Workers\Settings;
 use SergkeiM\CloudFlare\Endpoints\Workers\Cron;
