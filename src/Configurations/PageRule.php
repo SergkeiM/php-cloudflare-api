@@ -15,28 +15,16 @@ class PageRule implements Configuration
     /**
      * The priority of the rule, used to define which Page Rule is processed over another. A higher number indicates a higher priority. For example, if you have a catch-all Page Rule (rule A: /images/*) but want a more specific Page Rule to take precedence (rule B: /images/special/*), specify a higher priority for rule B so it overrides rule A.
      */
-    private ?int $priority;
+    private ?int $priority = null;
 
     /**
      * The status of the Page Rule.
      */
-    private ?bool $status;
+    private ?bool $status = null;
 
     public function __construct(private string $target)
     {
 
-    }
-    /**
-     * A target based on the URL of the request.
-     * @param string $target
-     * @return \CloudFlare\Configurations\PageRule
-     */
-    public function setTarget(string $target): self
-    {
-
-        $this->target = $target;
-
-        return $this;
     }
 
     /**
@@ -405,15 +393,26 @@ class PageRule implements Configuration
     /**
      * addAction
      * @param string $id
-     * @param array|string $value
+     * @param mixed $value
      * @return \CloudFlare\Configurations\PageRule
      */
-    private function addAction(string $id, array|string $value): self
+    private function addAction(string $id, mixed $value): self
     {
-        $this->actions[] = [
+        $ids = array_column($this->actions, 'id');
+        $index = array_search($id, $ids);
+
+        $newValue = [
             'id' => $id,
             'value' => $this->transformValue($value)
         ];
+
+        if ($index !== false) {
+            // Override the existing action value with new value.
+            $this->actions[$index] = $newValue;
+        } else {
+            // Add the new action because doesn't exists
+            $this->actions[] = $newValue;
+        }
 
         return $this;
     }
