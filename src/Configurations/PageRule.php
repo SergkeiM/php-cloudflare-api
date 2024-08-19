@@ -2,7 +2,6 @@
 
 namespace CloudFlare\Configurations;
 
-use CloudFlare\Client;
 use CloudFlare\Exceptions\ConfigurationException;
 use CloudFlare\Contracts\Configuration;
 
@@ -30,6 +29,29 @@ class PageRule implements Configuration
         private string $target
     ) {
 
+    }
+
+    /**
+     * Enable Page Rule.
+     * @param bool $status
+     * @return \CloudFlare\Configurations\PageRule
+     */
+    public function enable(): self
+    {
+        $this->setStatus(true);
+
+        return $this;
+    }
+
+    /**
+     * Disable Page Rule.
+     * @return \CloudFlare\Configurations\PageRule
+     */
+    public function disable(): self
+    {
+        $this->setStatus(true);
+
+        return $this;
     }
 
     /**
