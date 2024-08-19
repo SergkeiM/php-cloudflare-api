@@ -1,11 +1,11 @@
 <?php
 
-namespace CloudFlare\Tests;
+namespace Cloudflare\Tests;
 
-use CloudFlare\Client;
-use CloudFlare\Endpoints;
-use CloudFlare\Exceptions\BadMethodCallException;
-use CloudFlare\Exceptions\InvalidArgumentException;
+use Cloudflare\Client;
+use Cloudflare\Endpoints;
+use Cloudflare\Exceptions\BadMethodCallException;
+use Cloudflare\Exceptions\InvalidArgumentException;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {

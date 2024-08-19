@@ -1,10 +1,10 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Configurations\Workers\Deployment;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Configurations\Workers\Deployment;
 
 class Deployments extends AbstractEndpoint
 {
@@ -16,9 +16,9 @@ class Deployments extends AbstractEndpoint
       * @param string $accountId Account identifier.
       * @param string $scriptMame Name of the script, used in URLs and route configuration.
       *
-      * @return \CloudFlare\Contracts\CloudFlareResponse List Deployments response
+      * @return \Cloudflare\Contracts\CloudflareResponse List Deployments response
       */
-    public function get(string $accountId, string $scriptMame): CloudFlareResponse
+    public function get(string $accountId, string $scriptMame): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments");
     }
@@ -30,17 +30,17 @@ class Deployments extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      * @param string $scriptMame Name of the script, used in URLs and route configuration.
-     * @param array|\CloudFlare\Configurations\Workers\Deployment $values Dployment config.
+     * @param array|\Cloudflare\Configurations\Workers\Deployment $values Dployment config.
      * @param bool $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Create Deployment response
+     * @return \Cloudflare\Contracts\CloudflareResponse Create Deployment response
      */
     public function create(
         string $accountId,
         string $scriptMame,
         array|Deployment $values,
         bool $force = false
-    ): CloudFlareResponse {
+    ): CloudflareResponse {
 
         if(is_array($values)) {
             $this->requiredParams(['strategy', 'versions'], $values);

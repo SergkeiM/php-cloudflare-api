@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Configurations\Zones;
+namespace Cloudflare\Configurations\Zones;
 
-use CloudFlare\Exceptions\ConfigurationException;
-use CloudFlare\Contracts\Configuration;
+use Cloudflare\Exceptions\ConfigurationException;
+use Cloudflare\Contracts\Configuration;
 
 class PageRule implements Configuration
 {
@@ -34,7 +34,7 @@ class PageRule implements Configuration
     /**
      * Enable Page Rule.
      * @param bool $status
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function enable(): self
     {
@@ -45,7 +45,7 @@ class PageRule implements Configuration
 
     /**
      * Disable Page Rule.
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function disable(): self
     {
@@ -57,7 +57,7 @@ class PageRule implements Configuration
     /**
      * The status of the Page Rule.
      * @param bool $status
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function setStatus(bool $status): self
     {
@@ -77,7 +77,7 @@ class PageRule implements Configuration
      * Enable Always Use HTTPS feature. If enabled, any http:// URL is converted to https:// through a 301 redirect.
      * If this option does not appear, you do not have an active Edge Certificate.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function alwaysUseHTTPS(bool $value): self
     {
@@ -87,7 +87,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off Automatic HTTPS Rewrites.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function automaticHTTPSRewrites(bool $value): self
     {
@@ -97,7 +97,7 @@ class PageRule implements Configuration
     /**
      * Control how long resources cached by client browsers remain valid. The Cloudflare dashboard and the API both prohibit setting Browser Cache TTL to 0 for non-Enterprise domains.
      * @param int $ttl
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function browserCacheTTL(int $ttl): self
     {
@@ -107,7 +107,7 @@ class PageRule implements Configuration
     /**
      * Inspect the visitor's browser for headers commonly associated with spammers and certain bots.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function browserIntegrityCheck(bool $value): self
     {
@@ -117,8 +117,8 @@ class PageRule implements Configuration
     /**
      * Bypass Cache on Cookie
      * @param string $value
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function bypassCacheOnCookie(string $value): self
     {
@@ -132,7 +132,7 @@ class PageRule implements Configuration
     /**
      * Separate cached content based on the visitor’s device type.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function cacheByDeviceType(bool $value): self
     {
@@ -143,7 +143,7 @@ class PageRule implements Configuration
      * Also referred to as Custom Cache Key.
      * Control specifically what variables to include when deciding which resources to cache. This allows customers to determine what to cache based on something other than just the URL.
      * @param string $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function cacheKey(string $value): self
     {
@@ -158,8 +158,8 @@ class PageRule implements Configuration
      * - **aggressive**: Standard. Caches all static content that has a query string.
      * - **cache_everything**: Treats all content as static and caches all file types beyond the [Cloudflare default cached content](https://developers.cloudflare.com/cache/concepts/default-cache-behavior/#default-cached-file-extensions). Respects cache headers from the origin web server unless Edge Cache TTL is also set in the Page Rule. When combined with an Edge Cache TTL > 0, Cache Everything removes cookies from the origin web server response.
      * @param string $value
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function cacheLevel(string $value): self
     {
@@ -174,8 +174,8 @@ class PageRule implements Configuration
      * Apply the Cache Everything option (Cache Level setting) based on a regular expression match against a cookie name.
      * If you add both this setting and Bypass Cache on Cookie to the same page rule, Cache On Cookie takes precedence over Bypass Cache on Cookie.
      * @param string $value
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function cacheOnCookie(string $value): self
     {
@@ -190,7 +190,7 @@ class PageRule implements Configuration
      * Turn off all active Cloudflare Apps (deprecated).
      * @deprecated
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function disableApps(bool $value): self
     {
@@ -200,7 +200,7 @@ class PageRule implements Configuration
     /**
      * Turn off Rocket Loader, Mirage, and Polish.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function disablePerformance(bool $value): self
     {
@@ -210,7 +210,7 @@ class PageRule implements Configuration
     /**
      * Turn off Zaraz.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function disableZaraz(bool $value): self
     {
@@ -220,8 +220,8 @@ class PageRule implements Configuration
     /**
      * Specify how long to cache a resource in the Cloudflare global network. Edge Cache TTL is not visible in response headers.
      * @param int $ttl
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function edgeCacheTTL(int $ttl): self
     {
@@ -235,7 +235,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off Email Obfuscation.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function emailObfuscation(bool $value): self
     {
@@ -246,8 +246,8 @@ class PageRule implements Configuration
      * Redirects one URL to another using an HTTP 301/302 redirect. Refer to Wildcard matching and referencing.
      * @param string $forwardingUrl
      * @param int $statusCode
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function forwardingURL(string $forwardingUrl, int $statusCode = 301): self
     {
@@ -264,7 +264,7 @@ class PageRule implements Configuration
     /**
      * 	Apply a specific host header.
      * @param string $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function hostHeaderOverride(string $value): self
     {
@@ -274,7 +274,7 @@ class PageRule implements Configuration
     /**
      * 	Cloudflare adds a CF-IPCountry HTTP header containing the country code that corresponds to the visitor.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function IPGeoLocationHeader(bool $value): self
     {
@@ -284,7 +284,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off Mirage.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function mirage(bool $value): self
     {
@@ -294,7 +294,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off the Opportunistic Encryption.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function opportunisticEncryption(bool $value): self
     {
@@ -304,7 +304,7 @@ class PageRule implements Configuration
     /**
      * Origin Cache Control is enabled by default for Free, Pro, and Business domains and disabled by default for Enterprise domains.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function originCacheControl(bool $value): self
     {
@@ -314,7 +314,7 @@ class PageRule implements Configuration
     /**
      * 	Turn off Email Obfuscation, Rate Limiting (previous version, deprecated), Scrape Shield, URL (Zone) Lockdown, and WAF managed rules (previous version, deprecated).
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function disableSecurity(bool $value): self
     {
@@ -324,7 +324,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off Cloudflare error pages generated from issues sent from the origin server. If enabled, this setting triggers error pages issued by the origin.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function originErrorPagePassthru(bool $value): self
     {
@@ -334,7 +334,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off the reordering of query strings. When query strings have the same structure, caching improves.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function queryStringSort(bool $value): self
     {
@@ -344,7 +344,7 @@ class PageRule implements Configuration
     /**
      * Change the origin address to the value specified in this setting.
      * @param string $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function resolveOverride(string $value): self
     {
@@ -354,7 +354,7 @@ class PageRule implements Configuration
     /**
      * 	Turn on or off byte-for-byte equivalency checks between the Cloudflare cache and the origin server.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function respectStrongEtag(bool $value): self
     {
@@ -364,7 +364,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off whether Cloudflare should wait for an entire file from the origin server before forwarding it to the site visitor. By default, Cloudflare sends packets to the client as they arrive from the origin server
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function responseBuffering(bool $value): self
     {
@@ -374,7 +374,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off Rocket Loader in the Cloudflare Speed app.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function rocketLoader(bool $value): self
     {
@@ -384,8 +384,8 @@ class PageRule implements Configuration
     /**
      * Control options for the SSL feature of the Edge Certificates tab in the Cloudflare SSL/TLS app.
      * @param string $value
-     * @throws \CloudFlare\Exceptions\ConfigurationException
-     * @return \CloudFlare\Configurations\PageRule
+     * @throws \Cloudflare\Exceptions\ConfigurationException
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function ssl(string $value): self
     {
@@ -399,7 +399,7 @@ class PageRule implements Configuration
     /**
      * Turn on or off the True-Client-IP Header feature of the Cloudflare Network app.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function trueClientIpHeader(bool $value): self
     {
@@ -410,7 +410,7 @@ class PageRule implements Configuration
      * Turn on or off WAF managed rules (previous version, deprecated).
      * You cannot enable or disable individual WAF managed rules via Page Rules.
      * @param bool $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     public function waf(bool $value): self
     {
@@ -421,7 +421,7 @@ class PageRule implements Configuration
      * addAction
      * @param string $id
      * @param mixed $value
-     * @return \CloudFlare\Configurations\PageRule
+     * @return \Cloudflare\Configurations\PageRule
      */
     private function addAction(string $id, mixed $value): self
     {

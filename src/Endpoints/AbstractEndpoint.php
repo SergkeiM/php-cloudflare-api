@@ -1,10 +1,10 @@
 <?php
 
-namespace CloudFlare\Endpoints;
+namespace Cloudflare\Endpoints;
 
-use CloudFlare\Client;
-use CloudFlare\HttpClient\HttpClient;
-use CloudFlare\Exceptions\MissingArgumentException;
+use Cloudflare\Client;
+use Cloudflare\HttpClient\HttpClient;
+use Cloudflare\Exceptions\MissingArgumentException;
 
 abstract class AbstractEndpoint
 {

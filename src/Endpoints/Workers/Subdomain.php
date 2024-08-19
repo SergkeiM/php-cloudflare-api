@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Subdomain extends AbstractEndpoint
 {
@@ -14,9 +14,9 @@ class Subdomain extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      *
-     * @return CloudFlareResponse Get Subdomain response
+     * @return CloudflareResponse Get Subdomain response
      */
-    public function get(string $accountId): CloudFlareResponse
+    public function get(string $accountId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/subdomain");
     }
@@ -29,9 +29,9 @@ class Subdomain extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $subdomain Subdomain.
      *
-     * @return CloudFlareResponse Create Subdomain response.
+     * @return CloudflareResponse Create Subdomain response.
      */
-    public function create(string $accountId, string $subdomain): CloudFlareResponse
+    public function create(string $accountId, string $subdomain): CloudflareResponse
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/workers/subdomain", [
             'subdomain' => $subdomain

@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudFlare\Tests\Configurations\Zones;
+namespace Cloudflare\Tests\Configurations\Zones;
 
-use CloudFlare\Configurations\Zones\CachePurge;
+use Cloudflare\Configurations\Zones\CachePurge;
 
 class CachePurgeTest extends \PHPUnit\Framework\TestCase
 {

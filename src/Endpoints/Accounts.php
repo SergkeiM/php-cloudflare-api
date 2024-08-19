@@ -1,11 +1,11 @@
 <?php
 
-namespace CloudFlare\Endpoints;
+namespace Cloudflare\Endpoints;
 
-use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Endpoints\Accounts\Roles;
-use CloudFlare\Endpoints\Accounts\Members;
-use CloudFlare\Endpoints\Accounts\AuditLogs;
+use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Endpoints\Accounts\Roles;
+use Cloudflare\Endpoints\Accounts\Members;
+use Cloudflare\Endpoints\Accounts\AuditLogs;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -19,9 +19,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param array $params Array containing the necessary params.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse List Accounts response.
+     * @return \Cloudflare\Contracts\CloudflareResponse List Accounts response.
      */
-    public function list(array $params = []): CloudFlareResponse
+    public function list(array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get('/accounts', $params);
     }
@@ -35,9 +35,9 @@ class Accounts extends AbstractEndpoint
      * @param string $type The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise.
      * @param string $unit Tenant unit ID. Information related to the tenant unit, and optionally, an id of the unit to create the account on. [see](https://developers.cloudflare.com/tenant/how-to/manage-accounts/)
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
-    public function create(string $name, string $type, string $unit = null): CloudFlareResponse
+    public function create(string $name, string $type, string $unit = null): CloudflareResponse
     {
         $values = [
             'name' => $name,
@@ -60,9 +60,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Account Details response.
+     * @return \Cloudflare\Contracts\CloudflareResponse Account Details response.
      */
-    public function details(string $accountId): CloudFlareResponse
+    public function details(string $accountId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}");
     }
@@ -76,9 +76,9 @@ class Accounts extends AbstractEndpoint
      * @param string $name Account name.
      * @param array $settings Account settings.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Update Account response.
+     * @return \Cloudflare\Contracts\CloudflareResponse Update Account response.
      */
-    public function update(string $accountId, string $name, array $settings = []): CloudFlareResponse
+    public function update(string $accountId, string $name, array $settings = []): CloudflareResponse
     {
 
         $values = [
@@ -99,9 +99,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountIdAccount identifier.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
-    public function delete(string $accountId): CloudFlareResponse
+    public function delete(string $accountId): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}");
     }
@@ -109,7 +109,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Account Roles
      *
-     * @return \CloudFlare\Endpoints\Accounts\Roles
+     * @return \Cloudflare\Endpoints\Accounts\Roles
      */
     public function roles(): Roles
     {
@@ -119,7 +119,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Account Members
      *
-     * @return \CloudFlare\Endpoints\Accounts\Members
+     * @return \Cloudflare\Endpoints\Accounts\Members
      */
     public function members(): Members
     {
@@ -129,7 +129,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Account audit logs
      *
-     * @return \CloudFlare\Endpoints\Accounts\AuditLogs
+     * @return \Cloudflare\Endpoints\Accounts\AuditLogs
      */
     public function auditLogs(): AuditLogs
     {

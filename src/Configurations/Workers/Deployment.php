@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudFlare\Configurations\Workers;
+namespace Cloudflare\Configurations\Workers;
 
-use CloudFlare\Contracts\Configuration;
+use Cloudflare\Contracts\Configuration;
 
 class Deployment implements Configuration
 {
@@ -29,7 +29,7 @@ class Deployment implements Configuration
     /**
      * Set deployment message
      * @param string $message Human-readable message about the deployment.
-     * @return \CloudFlare\Configurations\Workers\Deployment
+     * @return \Cloudflare\Configurations\Workers\Deployment
      */
     public function setMessage(string $message): self
     {
@@ -42,7 +42,7 @@ class Deployment implements Configuration
      * Add Version.
      * @param string $version_id
      * @param float|int $percentage
-     * @return \CloudFlare\Configurations\Workers\Deployment
+     * @return \Cloudflare\Configurations\Workers\Deployment
      */
     public function addVersion(string $version_id, float|int $percentage = 100): self
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace CloudFlare\Contracts;
+namespace Cloudflare\Contracts;
 
 use Stringable;
 use Psr\Http\Message\ResponseInterface;
 
-interface CloudFlareResponse extends Stringable
+interface CloudflareResponse extends Stringable
 {
     public function __construct(ResponseInterface $response);
 

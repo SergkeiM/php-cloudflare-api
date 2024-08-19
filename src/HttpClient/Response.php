@@ -1,11 +1,11 @@
 <?php
 
-namespace CloudFlare\HttpClient;
+namespace Cloudflare\HttpClient;
 
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Contracts\CloudflareResponse;
 use Psr\Http\Message\ResponseInterface;
 
-class Response implements CloudFlareResponse
+class Response implements CloudflareResponse
 {
     /**
      * The underlying PSR response.

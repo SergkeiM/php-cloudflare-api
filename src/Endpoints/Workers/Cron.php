@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Cron extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Cron extends AbstractEndpoint
       * @param string $accountId Account identifier.
       * @param string $scriptName Name of the script, used in URLs and route configuration.
       *
-      * @return CloudFlareResponse Get Cron Triggers response
+      * @return CloudflareResponse Get Cron Triggers response
       */
-    public function get(string $accountId, string $scriptName): CloudFlareResponse
+    public function get(string $accountId, string $scriptName): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptName}/schedules");
     }
@@ -31,9 +31,9 @@ class Cron extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param array $schedules Values to set on Script schedules.
      *
-     * @return CloudFlareResponse Create Worker Account Settings response
+     * @return CloudflareResponse Create Worker Account Settings response
      */
-    public function update(string $accountId, string $scriptName, array $schedules): CloudFlareResponse
+    public function update(string $accountId, string $scriptName, array $schedules): CloudflareResponse
     {
         $values = [];
 

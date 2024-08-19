@@ -1,6 +1,6 @@
 <?php
 
-namespace CloudFlare\Contracts;
+namespace Cloudflare\Contracts;
 
 interface Configuration extends Arrayable
 {

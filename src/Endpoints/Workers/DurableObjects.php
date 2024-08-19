@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class DurableObjects extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class DurableObjects extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse List Namespaces response
+     * @return CloudflareResponse List Namespaces response
      */
-    public function list(string $accountId, array $params = []): CloudFlareResponse
+    public function list(string $accountId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/durable_objects/namespaces", $params);
     }
@@ -31,9 +31,9 @@ class DurableObjects extends AbstractEndpoint
      * @param string $id ID of the namespace.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse List Objects response
+     * @return CloudflareResponse List Objects response
      */
-    public function listObjects(string $accountId, string $id, array $params = []): CloudFlareResponse
+    public function listObjects(string $accountId, string $id, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/durable_objects/namespaces/{$id}/objectss", $params);
     }

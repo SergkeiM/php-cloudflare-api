@@ -1,13 +1,15 @@
 <?php
 
-namespace CloudFlare\Endpoints;
+namespace Cloudflare\Endpoints;
 
-use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Endpoints\Zones\Cache;
-use CloudFlare\Endpoints\Zones\CloudConnector;
-use CloudFlare\Endpoints\Zones\DNS;
-use CloudFlare\Endpoints\Zones\PageRules;
-use CloudFlare\Configurations\Zones\CachePurge;
+use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Endpoints\Zones\Cache;
+use Cloudflare\Endpoints\Zones\CloudConnector;
+use Cloudflare\Endpoints\Zones\DNS;
+use Cloudflare\Endpoints\Zones\PageRules;
+use Cloudflare\Endpoints\Zones\Hold;
+use Cloudflare\Endpoints\Zones\Lockdown;
+use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/zones-get
@@ -21,9 +23,9 @@ class Zones extends AbstractEndpoint
      *
      * @param array $params Query Parameters.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse List zones of account found.
+     * @return \Cloudflare\Contracts\CloudflareResponse List zones of account found.
      */
-    public function list(array $params = []): CloudFlareResponse
+    public function list(array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get('/zones', $params);
     }
@@ -37,9 +39,9 @@ class Zones extends AbstractEndpoint
      * @param string $name The domain name
      * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
-    public function create(string $accountId, string $name, string $type = 'full'): CloudFlareResponse
+    public function create(string $accountId, string $name, string $type = 'full'): CloudflareResponse
     {
         return $this->getHttpClient()->post('/zones', [
             'name' => $name,
@@ -57,9 +59,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Delete Zone response.
+     * @return \Cloudflare\Contracts\CloudflareResponse Delete Zone response.
      */
-    public function delete(string $zoneId): CloudFlareResponse
+    public function delete(string $zoneId): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}");
     }
@@ -71,9 +73,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Zone Details response.
+     * @return \Cloudflare\Contracts\CloudflareResponse Zone Details response.
      */
-    public function details(string $zoneId): CloudFlareResponse
+    public function details(string $zoneId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}");
     }
@@ -87,9 +89,9 @@ class Zones extends AbstractEndpoint
      * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup. This parameter is only available to Enterprise customers or if it has been explicitly enabled on a zone.
      * @param array $vanityNameServers An array of domains used for custom name servers. This is only available for Business and Enterprise plans.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
-    public function update(string $zoneId, string $type, array $vanityNameServers = []): CloudFlareResponse
+    public function update(string $zoneId, string $type, array $vanityNameServers = []): CloudflareResponse
     {
 
         $options = [
@@ -111,9 +113,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Activation Check Response
+     * @return \Cloudflare\Contracts\CloudflareResponse Activation Check Response
      */
-    public function activationCheck(string $zoneId): CloudFlareResponse
+    public function activationCheck(string $zoneId): CloudflareResponse
     {
         return $this->getHttpClient()->put("/zones/{$zoneId}/activation_check");
     }
@@ -124,11 +126,11 @@ class Zones extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/zone-purge
      *
      * @param string $zoneId Zone Identifier.
-     * @param array|\CloudFlare\Configurations\Zones\CachePurge $purgeBy
+     * @param array|\Cloudflare\Configurations\Zones\CachePurge $purgeBy
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Purge Cached Content Response
+     * @return \Cloudflare\Contracts\CloudflareResponse Purge Cached Content Response
      */
-    public function purge(string $zoneId, array|CachePurge $purgeBy): CloudFlareResponse
+    public function purge(string $zoneId, array|CachePurge $purgeBy): CloudflareResponse
     {
         if(is_array($purgeBy)) {
             $this->requiredAnyParams(['files', 'tags', 'hosts', 'prefixes'], $purgeBy);
@@ -142,7 +144,7 @@ class Zones extends AbstractEndpoint
     /**
      * Zone cache settings
      *
-     * @return Cache
+     * @return \Cloudflare\Endpoints\Zones\Cache
      */
     public function cache(): Cache
     {
@@ -152,7 +154,7 @@ class Zones extends AbstractEndpoint
     /**
      * Zone Cloud Connector rules
      *
-     * @return CloudConnector
+     * @return \Cloudflare\Endpoints\Zones\CloudConnector
      */
     public function cloudConnector(): CloudConnector
     {
@@ -162,7 +164,7 @@ class Zones extends AbstractEndpoint
     /**
      * Zone DNS
      *
-     * @return DNS
+     * @return \Cloudflare\Endpoints\Zones\DNS
      */
     public function dns(): DNS
     {
@@ -172,10 +174,30 @@ class Zones extends AbstractEndpoint
     /**
      * Zone PageRules
      *
-     * @return PageRules
+     * @return \Cloudflare\Endpoints\Zones\PageRules
      */
     public function pageRules(): PageRules
     {
         return new PageRules($this->getClient());
+    }
+
+    /**
+     * Zone Holds
+     *
+     * @return \Cloudflare\Endpoints\Zones\Hold
+     */
+    public function holds(): Hold
+    {
+        return new Hold($this->getClient());
+    }
+
+    /**
+     * Zone Lockdown
+     *
+     * @return \Cloudflare\Endpoints\Zones\Lockdown
+     */
+    public function lockdowns(): Hold
+    {
+        return new Lockdown($this->getClient());
     }
 }

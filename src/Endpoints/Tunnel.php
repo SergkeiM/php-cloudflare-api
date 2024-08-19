@@ -1,16 +1,16 @@
 <?php
 
-namespace CloudFlare\Endpoints;
+namespace Cloudflare\Endpoints;
 
-use CloudFlare\Endpoints\Tunnel\Routes;
-use CloudFlare\Endpoints\Tunnel\VirtualNetworks;
+use Cloudflare\Endpoints\Tunnel\Routes;
+use Cloudflare\Endpoints\Tunnel\VirtualNetworks;
 
 class Tunnel extends AbstractEndpoint
 {
     /**
      * Tunnel routing
      *
-     * @return \CloudFlare\Endpoints\Tunnel\Routes
+     * @return \Cloudflare\Endpoints\Tunnel\Routes
      */
     public function routes(): Routes
     {
@@ -19,7 +19,7 @@ class Tunnel extends AbstractEndpoint
 
     /**
      * Tunnel virtual networks
-     * @return \CloudFlare\Endpoints\Tunnel\VirtualNetworks
+     * @return \Cloudflare\Endpoints\Tunnel\VirtualNetworks
      */
     public function virtualNetworks(): VirtualNetworks
     {

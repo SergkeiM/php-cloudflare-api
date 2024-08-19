@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudFlare\Tests\Configurations\Workers;
+namespace Cloudflare\Tests\Configurations\Workers;
 
-use CloudFlare\Configurations\Workers\Deployment;
+use Cloudflare\Configurations\Workers\Deployment;
 
 class DeploymentTest extends \PHPUnit\Framework\TestCase
 {

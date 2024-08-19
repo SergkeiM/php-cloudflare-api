@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Domains extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse List Domains response
+     * @return CloudflareResponse List Domains response
      */
-    public function get(string $accountId, array $params = []): CloudFlareResponse
+    public function get(string $accountId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains", $params);
     }
@@ -30,9 +30,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $values Values to set on account.
      *
-     * @return CloudFlareResponse Attach to Domain response
+     * @return CloudflareResponse Attach to Domain response
      */
-    public function attach(string $accountId, array $values = []): CloudFlareResponse
+    public function attach(string $accountId, array $values = []): CloudflareResponse
     {
         $this->requiredParams(['environment', 'hostname', 'service', 'zone_id'], $values);
 
@@ -47,9 +47,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.
      *
-     * @return CloudFlareResponse Detach from Domain response
+     * @return CloudflareResponse Detach from Domain response
      */
-    public function detach(string $accountId, string $domainId = []): CloudFlareResponse
+    public function detach(string $accountId, string $domainId = []): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/domains/{$domainId}");
     }
@@ -62,9 +62,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.
      *
-     * @return CloudFlareResponse Get a Domain response
+     * @return CloudflareResponse Get a Domain response
      */
-    public function domain(string $accountId, string $domainId = []): CloudFlareResponse
+    public function domain(string $accountId, string $domainId = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains/{$domainId}");
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Tunnel;
+namespace Cloudflare\Endpoints\Tunnel;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Routes extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Routes extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse List tunnel routes response
+     * @return \Cloudflare\Contracts\CloudflareResponse List tunnel routes response
      */
-    public function list(string $accountId, array $params = []): CloudFlareResponse
+    public function list(string $accountId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/routes", $params);
     }
@@ -31,9 +31,9 @@ class Routes extends AbstractEndpoint
      * @param string $ip IP
      * @param string $virtualNetworkId UUID of the virtual network.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Get tunnel route by IP response
+     * @return \Cloudflare\Contracts\CloudflareResponse Get tunnel route by IP response
      */
-    public function getByIP(string $accountId, string $ip, string $virtualNetworkId = null): CloudFlareResponse
+    public function getByIP(string $accountId, string $ip, string $virtualNetworkId = null): CloudflareResponse
     {
 
         $params = [];
@@ -55,9 +55,9 @@ class Routes extends AbstractEndpoint
      * @param string $virtualNetworkId UUID of the virtual network.
      * @param string $comment Optional remark describing the route.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Create a tunnel route response
+     * @return \Cloudflare\Contracts\CloudflareResponse Create a tunnel route response
      */
-    public function create(string $accountId, string $network, string $virtualNetworkId = null, string $comment = null): CloudFlareResponse
+    public function create(string $accountId, string $network, string $virtualNetworkId = null, string $comment = null): CloudflareResponse
     {
 
         $values = [
@@ -84,9 +84,9 @@ class Routes extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $routeId UUID of the route.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Get a tunnel route response
+     * @return \Cloudflare\Contracts\CloudflareResponse Get a tunnel route response
      */
-    public function details(string $accountId, string $routeId): CloudFlareResponse
+    public function details(string $accountId, string $routeId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/routes/{$routeId}");
     }
@@ -98,9 +98,9 @@ class Routes extends AbstractEndpoint
      * @param string $routeId UUID of the route.
      * @param array $values The fields that are meant to be updated
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Update a tunnel route response
+     * @return \Cloudflare\Contracts\CloudflareResponse Update a tunnel route response
      */
-    public function update(string $accountId, string $routeId, array $values = []): CloudFlareResponse
+    public function update(string $accountId, string $routeId, array $values = []): CloudflareResponse
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/teamnet/routes/{$routeId}", $values);
     }
@@ -113,9 +113,9 @@ class Routes extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $routeId UUID of the route.
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse Delete a tunnel route response
+     * @return \Cloudflare\Contracts\CloudflareResponse Delete a tunnel route response
      */
-    public function delete(string $accountId, string $routeId): CloudFlareResponse
+    public function delete(string $accountId, string $routeId): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/teamnet/routes/{$routeId}");
     }

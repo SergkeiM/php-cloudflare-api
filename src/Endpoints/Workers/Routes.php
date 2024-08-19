@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Routes extends AbstractEndpoint
 {
@@ -14,9 +14,9 @@ class Routes extends AbstractEndpoint
      *
      * @param string $zoneId Zone identifier.
      *
-     * @return CloudFlareResponse List available Workers Routes response.
+     * @return CloudflareResponse List available Workers Routes response.
      */
-    public function get(string $zoneId, array $params = []): CloudFlareResponse
+    public function get(string $zoneId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes", $params);
     }
@@ -29,9 +29,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param array $values Values.
      *
-     * @return CloudFlareResponse Create Route response
+     * @return CloudflareResponse Create Route response
      */
-    public function create(string $zoneId, array $values): CloudFlareResponse
+    public function create(string $zoneId, array $values): CloudflareResponse
     {
         $this->requiredParams(['pattern'], $values);
 
@@ -46,9 +46,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
      *
-     * @return CloudFlareResponse Get Route response
+     * @return CloudflareResponse Get Route response
      */
-    public function details(string $zoneId, string $routeId): CloudFlareResponse
+    public function details(string $zoneId, string $routeId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes/{$routeId}");
     }
@@ -62,9 +62,9 @@ class Routes extends AbstractEndpoint
      * @param string $routeId Route Identifier.
      * @param array $values Values.
      *
-     * @return CloudFlareResponse Update Route response
+     * @return CloudflareResponse Update Route response
      */
-    public function update(string $zoneId, string $routeId, array $values): CloudFlareResponse
+    public function update(string $zoneId, string $routeId, array $values): CloudflareResponse
     {
         return $this->getHttpClient()->put("/zones/{$zoneId}/workers/routes/{$routeId}", $values);
     }
@@ -77,9 +77,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
      *
-     * @return CloudFlareResponse Delete Route response.
+     * @return CloudflareResponse Delete Route response.
      */
-    public function delete(string $zoneId, string $routeId): CloudFlareResponse
+    public function delete(string $zoneId, string $routeId): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/workers/routes/{$routeId}");
     }

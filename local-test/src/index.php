@@ -3,8 +3,8 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
-use CloudFlare\Client;
-use CloudFlare\Configurations\Zones\CachePurge;
+use Cloudflare\Client;
+use Cloudflare\Configurations\Zones\CachePurge;
 
 $dotenv = Dotenv::createUnsafeMutable(__DIR__.'/../');
 $dotenv->load();

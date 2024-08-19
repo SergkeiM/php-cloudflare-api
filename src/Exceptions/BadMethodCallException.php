@@ -1,6 +1,6 @@
 <?php
 
-namespace CloudFlare\Exceptions;
+namespace Cloudflare\Exceptions;
 
 class BadMethodCallException extends \BadMethodCallException
 {

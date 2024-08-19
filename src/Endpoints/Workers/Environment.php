@@ -1,10 +1,10 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Exceptions\BadMethodCallException;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Exceptions\BadMethodCallException;
 
 class Environment extends AbstractEndpoint
 {
@@ -17,9 +17,9 @@ class Environment extends AbstractEndpoint
      * @param string $serviceName Name of Worker to bind to
      * @param string $environmentName Environment of the Worker.
      *
-     * @return CloudFlareResponse Get script content response
+     * @return CloudflareResponse Get script content response
      */
-    public function get(string $accountId, string $serviceName, string $environmentName): CloudFlareResponse
+    public function get(string $accountId, string $serviceName, string $environmentName): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/services/{$serviceName}/environments/{$environmentName}/content");
     }
@@ -33,9 +33,9 @@ class Environment extends AbstractEndpoint
      * @param string $serviceName Name of Worker to bind to
      * @param string $environmentName Environment of the Worker.
      *
-     * @return CloudFlareResponse Get script content response
+     * @return CloudflareResponse Get script content response
      */
-    public function update(string $accountId, string $serviceName, string $environmentName): CloudFlareResponse
+    public function update(string $accountId, string $serviceName, string $environmentName): CloudflareResponse
     {
         // TODO
 
@@ -51,9 +51,9 @@ class Environment extends AbstractEndpoint
      * @param string $serviceName Name of Worker to bind to
      * @param string $environmentName Environment of the Worker.
      *
-     * @return CloudFlareResponse Get script content response
+     * @return CloudflareResponse Get script content response
      */
-    public function getSettings(string $accountId, string $serviceName, string $environmentName): CloudFlareResponse
+    public function getSettings(string $accountId, string $serviceName, string $environmentName): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/services/{$serviceName}/environments/{$environmentName}/settings");
     }
@@ -68,9 +68,9 @@ class Environment extends AbstractEndpoint
      * @param string $environmentName Environment of the Worker.
      * @param array $values Settings values.
      *
-     * @return CloudFlareResponse Patch script settings
+     * @return CloudflareResponse Patch script settings
      */
-    public function updateSettings(string $accountId, string $serviceName, string $environmentName, array $values): CloudFlareResponse
+    public function updateSettings(string $accountId, string $serviceName, string $environmentName, array $values): CloudflareResponse
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/workers/services/{$serviceName}/environments/{$environmentName}/settings", $values);
     }

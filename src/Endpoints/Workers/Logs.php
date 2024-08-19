@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Logs extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Logs extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudFlareResponse List Tails response
+     * @return CloudflareResponse List Tails response
      */
-    public function get(string $accountId, string $scriptName): CloudFlareResponse
+    public function get(string $accountId, string $scriptName): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
     }
@@ -30,9 +30,9 @@ class Logs extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudFlareResponse Start Tail response
+     * @return CloudflareResponse Start Tail response
      */
-    public function start(string $accountId, string $scriptName): CloudFlareResponse
+    public function start(string $accountId, string $scriptName): CloudflareResponse
     {
         return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
     }
@@ -46,9 +46,9 @@ class Logs extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param string $id Identifier for the tail.
      *
-     * @return CloudFlareResponse Start Tail response
+     * @return CloudflareResponse Start Tail response
      */
-    public function delete(string $accountId, string $scriptName, string $id): CloudFlareResponse
+    public function delete(string $accountId, string $scriptName, string $id): CloudflareResponse
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails/{$id}");
     }

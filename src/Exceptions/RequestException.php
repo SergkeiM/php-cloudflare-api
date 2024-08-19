@@ -1,26 +1,26 @@
 <?php
 
-namespace CloudFlare\Exceptions;
+namespace Cloudflare\Exceptions;
 
 use GuzzleHttp\Psr7\Message;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class RequestException extends HttpClientException
 {
     /**
      * The response instance.
      *
-     * @var \CloudFlare\Contracts\CloudFlareResponse
+     * @var \Cloudflare\Contracts\CloudflareResponse
      */
     public $response;
 
     /**
      * Create a new exception instance.
      *
-     * @param  \CloudFlare\Contracts\CloudFlareResponse  $response
+     * @param  \Cloudflare\Contracts\CloudflareResponse  $response
      * @return void
      */
-    public function __construct(CloudFlareResponse $response)
+    public function __construct(CloudflareResponse $response)
     {
         parent::__construct($this->prepareMessage($response), $response->status());
 
@@ -30,10 +30,10 @@ class RequestException extends HttpClientException
     /**
      * Prepare the exception message.
      *
-     * @param  \CloudFlare\Contracts\CloudFlareResponse  $response
+     * @param  \Cloudflare\Contracts\CloudflareResponse  $response
      * @return string
      */
-    protected function prepareMessage(CloudFlareResponse $response)
+    protected function prepareMessage(CloudflareResponse $response)
     {
         $message = "HTTP request returned status code {$response->status()}";
 

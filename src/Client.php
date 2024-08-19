@@ -1,20 +1,20 @@
 <?php
 
-namespace CloudFlare;
+namespace Cloudflare;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Exceptions\BadMethodCallException;
-use CloudFlare\Exceptions\InvalidArgumentException;
-use CloudFlare\HttpClient\HttpClient;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Exceptions\BadMethodCallException;
+use Cloudflare\Exceptions\InvalidArgumentException;
+use Cloudflare\HttpClient\HttpClient;
 
 /**
- * Simple PHP CloudFlare client.
+ * Simple PHP Cloudflare client.
  *
- * @method \CloudFlare\Endpoints\Accounts accounts()
- * @method \CloudFlare\Endpoints\Zones zones()
- * @method \CloudFlare\Endpoints\IP ips()
- * @method \CloudFlare\Endpoints\Workers workers()
- * @method \CloudFlare\Endpoints\Tunnel tunnel()
+ * @method \Cloudflare\Endpoints\Accounts accounts()
+ * @method \Cloudflare\Endpoints\Zones zones()
+ * @method \Cloudflare\Endpoints\IP ips()
+ * @method \Cloudflare\Endpoints\Workers workers()
+ * @method \Cloudflare\Endpoints\Tunnel tunnel()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -29,7 +29,7 @@ class Client
     private $httpClient;
 
     /**
-     * @param string $token CloudFlare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token
+     * @param string $token Cloudflare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token
      * @param array $middlewares Guzzle middlewares. https://docs.guzzlephp.org/en/stable/handlers-and-middleware.html#middleware
      * @return void
      */

@@ -1,6 +1,6 @@
 {
     "name": "sergkeim/php-cloudflare-api",
-    "description": "A simple PHP CloudFlare API client.",
+    "description": "A simple PHP Cloudflare API client.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "CloudFlare\\": "src/"
+            "Cloudflare\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CloudFlare\\Tests\\": "test/Tests/"
+            "Cloudflare\\Tests\\": "test/Tests/"
         }
     },
     "config": {

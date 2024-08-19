@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudFlare\Configurations\Zones;
+namespace Cloudflare\Configurations\Zones;
 
-use CloudFlare\Contracts\Configuration;
+use Cloudflare\Contracts\Configuration;
 
 class CachePurge implements Configuration
 {
@@ -14,7 +14,7 @@ class CachePurge implements Configuration
      * @link https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/#purge-cache-by-cache-tags-enterprise-only
      *
      * @param array $tags Any assets served with a Cache-tag response header that matches one of the provided values will be purged from the cache. (Enterprise only)
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function byTags(array $tags): self
     {
@@ -31,7 +31,7 @@ class CachePurge implements Configuration
      * @link https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/
      *
      * @param array $hosts Any assets at URLs with a host that matches one of the provided values will be purged from the cache. (Enterprise only)
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function byHosts(array $hosts): self
     {
@@ -48,7 +48,7 @@ class CachePurge implements Configuration
      * @link https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/
      *
      * @param array $prefixes Any assets in the directory will be purged from cache. (Enterprise only)
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function byPrefixes(array $prefixes): self
     {
@@ -66,7 +66,7 @@ class CachePurge implements Configuration
      *
      * @param array $files Purges assets in the Cloudflare cache that match the URL(s) exactly, except these single-file purge exclusions
      *
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function byFiles(array $files): self
     {
@@ -86,7 +86,7 @@ class CachePurge implements Configuration
      * @param string $device One of: `mobile`, `tablet`, `desktop`.
      * @param string $country ISO-3166-1 alpha-2 country code.
      * @param string $language
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function byFilesAdvanced(
         string $url,
@@ -133,7 +133,7 @@ class CachePurge implements Configuration
 
     /**
      * For more information, please refer to [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
-     * @return \CloudFlare\Configurations\Zones\CachePurge
+     * @return \Cloudflare\Configurations\Zones\CachePurge
      */
     public function everything(): self
     {

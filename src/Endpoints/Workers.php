@@ -1,20 +1,20 @@
 <?php
 
-namespace CloudFlare\Endpoints;
+namespace Cloudflare\Endpoints;
 
-use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Endpoints\Workers\Settings;
-use CloudFlare\Endpoints\Workers\Cron;
-use CloudFlare\Endpoints\Workers\Deployments;
-use CloudFlare\Endpoints\Workers\Domains;
-use CloudFlare\Endpoints\Workers\Environment;
-use CloudFlare\Endpoints\Workers\Scripts;
-use CloudFlare\Endpoints\Workers\Subdomain;
-use CloudFlare\Endpoints\Workers\Logs;
-use CloudFlare\Endpoints\Workers\Versions;
-use CloudFlare\Endpoints\Workers\KV;
-use CloudFlare\Endpoints\Workers\DurableObjects;
-use CloudFlare\Endpoints\Workers\Routes;
+use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Endpoints\Workers\Settings;
+use Cloudflare\Endpoints\Workers\Cron;
+use Cloudflare\Endpoints\Workers\Deployments;
+use Cloudflare\Endpoints\Workers\Domains;
+use Cloudflare\Endpoints\Workers\Environment;
+use Cloudflare\Endpoints\Workers\Scripts;
+use Cloudflare\Endpoints\Workers\Subdomain;
+use Cloudflare\Endpoints\Workers\Logs;
+use Cloudflare\Endpoints\Workers\Versions;
+use Cloudflare\Endpoints\Workers\KV;
+use Cloudflare\Endpoints\Workers\DurableObjects;
+use Cloudflare\Endpoints\Workers\Routes;
 
 class Workers extends AbstractEndpoint
 {
@@ -26,9 +26,9 @@ class Workers extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse Query Request Analytics response
+     * @return CloudflareResponse Query Request Analytics response
      */
-    public function analytics(string $accountId, array $params = []): CloudFlareResponse
+    public function analytics(string $accountId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics", $params);
     }
@@ -41,9 +41,9 @@ class Workers extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse Query Stored Data Analytics response
+     * @return CloudflareResponse Query Stored Data Analytics response
      */
-    public function storedDataAnalytics(string $accountId, array $params = []): CloudFlareResponse
+    public function storedDataAnalytics(string $accountId, array $params = []): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics/stored", $params);
     }

@@ -1,13 +1,13 @@
 <?php
 
-namespace CloudFlare\HttpClient;
+namespace Cloudflare\HttpClient;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
-use CloudFlare\Exceptions\RequestException;
-use CloudFlare\Exceptions\ConnectionException;
+use Cloudflare\Exceptions\RequestException;
+use Cloudflare\Exceptions\ConnectionException;
 
 /**
  * API HttpClient.
@@ -22,7 +22,7 @@ class HttpClient
     protected Client $client;
 
     /**
-     * The base URL for CloudFlare API requests.
+     * The base URL for Cloudflare API requests.
      *
      * @var string
      */
@@ -68,12 +68,12 @@ class HttpClient
     }
 
     /**
-     * Issue a GET request to the given CloudGlare endpoint.
+     * Issue a GET request to the given Cloudflare endpoint.
      *
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function get(string $url, $query = null, array $options = [])
     {
@@ -84,12 +84,12 @@ class HttpClient
     }
 
     /**
-     * Issue a HEAD request to the given CloudGlare endpoint.
+     * Issue a HEAD request to the given Cloudflare endpoint.
      *
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function head(string $url, $query = null, array $options = [])
     {
@@ -100,13 +100,13 @@ class HttpClient
     }
 
     /**
-     * Issue a POST request to the given CloudGlare endpoint.
+     * Issue a POST request to the given Cloudflare endpoint.
      *
      * @param  string  $url
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -117,13 +117,13 @@ class HttpClient
     }
 
     /**
-    * Issue a PATCH request to the given CloudGlare endpoint.
+    * Issue a PATCH request to the given Cloudflare endpoint.
     *
     * @param  string  $url
     * @param  array  $data
     * @param  array  $options
     * @param  string  $format
-    * @return \CloudFlare\Contracts\CloudFlareResponse
+    * @return \Cloudflare\Contracts\CloudflareResponse
     */
     public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -134,13 +134,13 @@ class HttpClient
     }
 
     /**
-     * Issue a PUT request to the given CloudGlare endpoint.
+     * Issue a PUT request to the given Cloudflare endpoint.
      *
      * @param  string  $url
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -151,13 +151,13 @@ class HttpClient
     }
 
     /**
-     * Issue a DELETE request to the given CloudGlare endpoint.
+     * Issue a DELETE request to the given Cloudflare endpoint.
      *
      * @param  string  $url
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function delete(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -168,7 +168,7 @@ class HttpClient
     }
 
     /**
-     * Send the request to the given CloudGlare endpoint.
+     * Send the request to the given Cloudflare endpoint.
      *
      * @param  string  $method
      * @param  string  $url
@@ -177,7 +177,7 @@ class HttpClient
      * @throws ConnectionException
      * @throws RequestException
      *
-     * @return \CloudFlare\Contracts\CloudFlareResponse
+     * @return \Cloudflare\Contracts\CloudflareResponse
      */
     public function send(string $method, string $url, array $options = [])
     {

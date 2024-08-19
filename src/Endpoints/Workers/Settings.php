@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Workers;
+namespace Cloudflare\Endpoints\Workers;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class Settings extends AbstractEndpoint
 {
@@ -14,9 +14,9 @@ class Settings extends AbstractEndpoint
       *
       * @param string $accountId Account identifier.
       *
-      * @return CloudFlareResponse Fetch Worker Account Settings response
+      * @return CloudflareResponse Fetch Worker Account Settings response
       */
-    public function get(string $accountId): CloudFlareResponse
+    public function get(string $accountId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/account-settings");
     }
@@ -30,9 +30,9 @@ class Settings extends AbstractEndpoint
      * @param string $usageModel Default usage model.
      * @param boolean $greenCompute Green compute.
      *
-     * @return CloudFlareResponse Create Worker Account Settings response
+     * @return CloudflareResponse Create Worker Account Settings response
      */
-    public function create(string $accountId, string $usageModel, bool $greenCompute): CloudFlareResponse
+    public function create(string $accountId, string $usageModel, bool $greenCompute): CloudflareResponse
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/workers/account-settings", [
             'default_usage_model' => $usageModel,

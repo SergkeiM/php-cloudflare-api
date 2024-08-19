@@ -1,8 +1,8 @@
 <?php
 
-namespace CloudFlare\Tests\Configurations\Zones;
+namespace Cloudflare\Tests\Configurations\Zones;
 
-use CloudFlare\Configurations\Zones\PageRule;
+use Cloudflare\Configurations\Zones\PageRule;
 
 class PageRuleTest extends \PHPUnit\Framework\TestCase
 {

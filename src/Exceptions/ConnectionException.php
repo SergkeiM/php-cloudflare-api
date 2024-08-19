@@ -1,6 +1,6 @@
 <?php
 
-namespace CloudFlare\Exceptions;
+namespace Cloudflare\Exceptions;
 
 class ConnectionException extends HttpClientException
 {

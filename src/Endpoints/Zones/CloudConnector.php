@@ -1,9 +1,9 @@
 <?php
 
-namespace CloudFlare\Endpoints\Zones;
+namespace Cloudflare\Endpoints\Zones;
 
-use CloudFlare\Endpoints\AbstractEndpoint;
-use CloudFlare\Contracts\CloudFlareResponse;
+use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Contracts\CloudflareResponse;
 
 class CloudConnector extends AbstractEndpoint
 {
@@ -12,9 +12,9 @@ class CloudConnector extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return CloudFlareResponse Cloud Connector rules response.
+     * @return CloudflareResponse Cloud Connector rules response.
      */
-    public function get(string $zoneId): CloudFlareResponse
+    public function get(string $zoneId): CloudflareResponse
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/cloud_connector/rules");
     }
@@ -25,9 +25,9 @@ class CloudConnector extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array $values List of Cloud Connector rules.
      *
-     * @return CloudFlareResponse Cloud Connector rules response.
+     * @return CloudflareResponse Cloud Connector rules response.
      */
-    public function update(string $zoneId, array $values): CloudFlareResponse
+    public function update(string $zoneId, array $values): CloudflareResponse
     {
 
         $this->requiredParams(['name'], $values);
