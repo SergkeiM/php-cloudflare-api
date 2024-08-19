@@ -10,9 +10,11 @@ use CloudFlare\HttpClient\HttpClient;
 /**
  * Simple PHP CloudFlare client.
  *
- * @method Endpoints\Accounts accounts()
- * @method Endpoints\Zones zones()
- * @method Endpoints\IP ips()
+ * @method \CloudFlare\Endpoints\Accounts accounts()
+ * @method \CloudFlare\Endpoints\Zones zones()
+ * @method \CloudFlare\Endpoints\IP ips()
+ * @method \CloudFlare\Endpoints\Workers workers()
+ * @method \CloudFlare\Endpoints\Tunnel tunnel()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -68,6 +70,9 @@ class Client
                 break;
             case 'workers':
                 $api = new Endpoints\Workers($this);
+                break;
+            case 'tunnel':
+                $api = new Endpoints\Tunnel($this);
                 break;
 
             default:
