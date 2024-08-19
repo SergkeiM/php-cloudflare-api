@@ -102,7 +102,6 @@ class Response implements CloudFlareResponse
         return !$this->successful();
     }
 
-
     /**
      * @param  string  $key
      * @param  mixed  $default

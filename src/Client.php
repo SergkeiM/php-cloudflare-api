@@ -67,7 +67,7 @@ class Client
                 $api = new Endpoints\IP($this);
                 break;
             case 'workers':
-                $api = new Endpoints\IP($this);
+                $api = new Endpoints\Workers($this);
                 break;
 
             default:

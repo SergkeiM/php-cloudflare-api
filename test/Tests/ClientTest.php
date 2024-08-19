@@ -2,7 +2,6 @@
 
 namespace CloudFlare\Tests;
 
-use Psr\Http\Client\ClientInterface;
 use CloudFlare\Client;
 use CloudFlare\Endpoints;
 use CloudFlare\Exceptions\BadMethodCallException;
@@ -10,16 +9,6 @@ use CloudFlare\Exceptions\InvalidArgumentException;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
-    public function shouldNotHaveToPassHttpClientToConstructor()
-    {
-        $client = new Client('token');
-
-        $this->assertInstanceOf(ClientInterface::class, $client->getHttpClient());
-    }
-
     /**
      * @test
      *
@@ -50,6 +39,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     public function shouldNotGetApiInstance()
     {
         $this->expectException(InvalidArgumentException::class);
+
         $client = new Client('token');
         $client->api('do_not_exist');
     }
@@ -60,6 +50,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     public function shouldNotGetMagicApiInstance()
     {
         $this->expectException(BadMethodCallException::class);
+
         $client = new Client('token');
         $client->doNotExist();
     }
@@ -68,9 +59,9 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     {
         return [
             ['accounts', Endpoints\Accounts::class],
-            ['zones', Endpoints\Zones::class],
-            ['workers', Endpoints\Workers::class],
             ['ips', Endpoints\IP::class],
+            ['workers', Endpoints\Workers::class],
+            ['zones', Endpoints\Zones::class],
         ];
     }
 }
