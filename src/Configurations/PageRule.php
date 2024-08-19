@@ -5,11 +5,9 @@ namespace CloudFlare\Configurations;
 use CloudFlare\Client;
 use CloudFlare\Exceptions\ConfigurationException;
 use CloudFlare\Contracts\Configuration;
-use CloudFlare\Contracts\CloudFlareResponse;
 
 class PageRule implements Configuration
 {
-
     /**
      * The set of actions to perform if the targets of this rule match the request. Actions can redirect to another URL or override settings, but not both.
      */
@@ -27,13 +25,10 @@ class PageRule implements Configuration
 
     /**
      * @param string $target A target based on the URL of the request.
-     * @param mixed $client A CloudFlare client instance.
      */
     public function __construct(
-        private string $target,
-        private ?Client $client = null
-    )
-    {
+        private string $target
+    ) {
 
     }
 
@@ -469,49 +464,5 @@ class PageRule implements Configuration
         }
 
         return $options;
-    }
-
-    /**
-     * Create a Page Rule
-     * 
-     * @link https://developers.cloudflare.com/api/operations/page-rules-create-a-page-rule
-     * 
-     * @param string $zoneId Zone Identifier.
-     * 
-     * @return \CloudFlare\Contracts\CloudFlareResponse
-     */
-    public function create(string $zoneId): CloudFlareResponse
-    {
-        return $this->client->zones()->pagerules()->create($zoneId, $this->toArray());
-    }
-
-    /**
-     * Updates one or more fields of an existing Page Rule.
-     * 
-     * @link https://developers.cloudflare.com/api/operations/page-rules-edit-a-page-rule
-     * 
-     * @param string $zoneId Zone Identifier.
-     * @param string $pageRuleId Page Rule Identifier.
-     * 
-     * @return \CloudFlare\Contracts\CloudFlareResponse
-     */
-    public function update(string $zoneId, string $pageRuleId): CloudFlareResponse
-    {
-        return $this->client->zones()->pagerules()->update($zoneId, $pageRuleId, $this->toArray());
-    }
-
-    /**
-     * Replaces the configuration of an existing Page Rule. The configuration of the updated Page Rule will exactly match the data passed in the API request.
-     * 
-     * @link https://developers.cloudflare.com/api/operations/page-rules-update-a-page-rule
-     * 
-     * @param string $zoneId Zone Identifier.
-     * @param string $pageRuleId Page Rule Identifier.
-     * 
-     * @return \CloudFlare\Contracts\CloudFlareResponse
-     */
-    public function overwrite(string $zoneId, string $pageRuleId): CloudFlareResponse
-    {
-        return $this->client->zones()->pagerules()->overwrite($zoneId, $pageRuleId, $this->toArray());
     }
 }
