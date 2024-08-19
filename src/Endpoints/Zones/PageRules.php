@@ -4,7 +4,7 @@ namespace CloudFlare\Endpoints\Zones;
 
 use CloudFlare\Endpoints\AbstractEndpoint;
 use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Contracts\Configuration;
+use CloudFlare\Configurations\Zones\PageRule;
 
 class PageRules extends AbstractEndpoint
 {
@@ -43,11 +43,11 @@ class PageRules extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/page-rules-create-a-page-rule
      *
      * @param string $zoneId Zone Identifier.
-     * @param array|\CloudFlare\Contracts\Configuration $values Values to set on Page Rule.
+     * @param array|\CloudFlare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
      * @return \CloudFlare\Contracts\CloudFlareResponse Create a Page Rule response
      */
-    public function create(string $zoneId, array|Configuration $values): CloudFlareResponse
+    public function create(string $zoneId, array|PageRule $values): CloudFlareResponse
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);

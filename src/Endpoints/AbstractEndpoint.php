@@ -59,4 +59,22 @@ abstract class AbstractEndpoint
             }
         }
     }
+
+    /**
+     * @param array $keys
+     * @param array $values
+     *
+     * @throws MissingArgumentException
+     * @return void
+     */
+    protected function requiredAnyParams(array $keys, array $values): void
+    {
+        foreach ($keys as $key) {
+            if (isset($values[$key]) && !empty($values[$key])) {
+                return;
+            }
+        }
+
+        throw new MissingArgumentException($keys);
+    }
 }

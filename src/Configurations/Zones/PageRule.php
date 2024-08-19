@@ -1,6 +1,6 @@
 <?php
 
-namespace CloudFlare\Configurations;
+namespace CloudFlare\Configurations\Zones;
 
 use CloudFlare\Exceptions\ConfigurationException;
 use CloudFlare\Contracts\Configuration;

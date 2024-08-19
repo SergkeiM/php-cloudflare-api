@@ -4,7 +4,7 @@ namespace CloudFlare\Endpoints\Workers;
 
 use CloudFlare\Endpoints\AbstractEndpoint;
 use CloudFlare\Contracts\CloudFlareResponse;
-use CloudFlare\Contracts\Configuration;
+use CloudFlare\Configurations\Workers\Deployment;
 
 class Deployments extends AbstractEndpoint
 {
@@ -30,7 +30,7 @@ class Deployments extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      * @param string $scriptMame Name of the script, used in URLs and route configuration.
-     * @param array|\CloudFlare\Contracts\Configuration $values Dployment config.
+     * @param array|\CloudFlare\Configurations\Workers\Deployment $values Dployment config.
      * @param bool $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
      *
      * @return \CloudFlare\Contracts\CloudFlareResponse Create Deployment response
@@ -38,7 +38,7 @@ class Deployments extends AbstractEndpoint
     public function create(
         string $accountId,
         string $scriptMame,
-        array|Configuration $values,
+        array|Deployment $values,
         bool $force = false
     ): CloudFlareResponse {
 
