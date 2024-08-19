@@ -5,11 +5,6 @@ namespace CloudFlare\Contracts;
 use Stringable;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @template TKey of array-key
- * @template TValue
- */
-
 interface CloudFlareResponse extends Stringable
 {
     public function __construct(ResponseInterface $response);
