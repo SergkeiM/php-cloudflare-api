@@ -153,7 +153,7 @@ class Workers extends AbstractEndpoint
      *
      * @return DurableObjects
      */
-    public function kv(): DurableObjects
+    public function durableObjects(): DurableObjects
     {
         return new DurableObjects($this->getClient());
     }
