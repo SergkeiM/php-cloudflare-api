@@ -19,11 +19,38 @@ class Accounts extends AbstractEndpoint
      *
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudFlareResponse List Accounts response.
+     * @return \CloudFlare\Contracts\CloudFlareResponse List Accounts response.
      */
     public function list(array $params = []): CloudFlareResponse
     {
         return $this->getHttpClient()->get('/accounts', $params);
+    }
+
+    /**
+     * Create an account (only available for tenant admins at this time)
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-creation
+     *
+     * @param string $name Account name
+     * @param string $type The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise.
+     * @param string $unit Tenant unit ID. Information related to the tenant unit, and optionally, an id of the unit to create the account on. [see](https://developers.cloudflare.com/tenant/how-to/manage-accounts/)
+     *
+     * @return \CloudFlare\Contracts\CloudFlareResponse
+     */
+    public function create(string $name, string $type, string $unit = null): CloudFlareResponse
+    {
+        $values = [
+            'name' => $name,
+            'type' => $type
+        ];
+
+        if(!is_null($unit)) {
+            $values['unit'] = [
+                'id' => $unit
+            ];
+        }
+
+        return $this->getHttpClient()->post("/accounts", $values);
     }
 
     /**
@@ -33,7 +60,7 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      *
-     * @return CloudFlareResponse Account Details response.
+     * @return \CloudFlare\Contracts\CloudFlareResponse Account Details response.
      */
     public function details(string $accountId): CloudFlareResponse
     {
@@ -46,21 +73,43 @@ class Accounts extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/accounts-update-account
      *
      * @param string $accountId Account identifier.
-     * @param array $values Values to set on account.
+     * @param string $name Account name.
+     * @param array $settings Account settings.
      *
-     * @return CloudFlareResponse Update Account response.
+     * @return \CloudFlare\Contracts\CloudFlareResponse Update Account response.
      */
-    public function update(string $accountId, array $values): CloudFlareResponse
+    public function update(string $accountId, string $name, array $settings = []): CloudFlareResponse
     {
-        $this->requiredParams(['name'], $values);
+
+        $values = [
+            'name' => $name,
+        ];
+
+        if(!empty($settings)) {
+            $values['settings'] = $settings;
+        }
 
         return $this->getHttpClient()->put("/accounts/{$accountId}", $values);
     }
 
     /**
+     * Delete a specific account (only available for tenant admins at this time). This is a permanent operation that will delete any zones or other resources under the account
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-deletion
+     *
+     * @param string $accountIdAccount identifier.
+     *
+     * @return \CloudFlare\Contracts\CloudFlareResponse
+     */
+    public function delete(string $accountId): CloudFlareResponse
+    {
+        return $this->getHttpClient()->delete("/accounts/{$accountId}");
+    }
+
+    /**
      * Account Roles
      *
-     * @return Roles
+     * @return \CloudFlare\Endpoints\Accounts\Roles
      */
     public function roles(): Roles
     {
@@ -70,7 +119,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Account Members
      *
-     * @return Members
+     * @return \CloudFlare\Endpoints\Accounts\Members
      */
     public function members(): Members
     {
@@ -80,7 +129,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Account audit logs
      *
-     * @return AuditLogs
+     * @return \CloudFlare\Endpoints\Accounts\AuditLogs
      */
     public function auditLogs(): AuditLogs
     {

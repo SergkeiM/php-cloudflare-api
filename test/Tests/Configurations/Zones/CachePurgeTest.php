@@ -47,7 +47,7 @@ class CachePurgeTest extends \PHPUnit\Framework\TestCase
         ], $cachePurge->toArray());
     }
 
-    
+
 
     /**
      * @test
