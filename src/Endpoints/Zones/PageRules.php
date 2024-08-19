@@ -80,11 +80,11 @@ class PageRules extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
-     * @param array|\CloudFlare\Contracts\Configuration $values Values to set on Page Rule.
+     * @param array|\CloudFlare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
      * @return \CloudFlare\Contracts\CloudFlareResponse Edit a Page Rule response
      */
-    public function update(string $zoneId, string $pageRuleId, array|Configuration $values): CloudFlareResponse
+    public function update(string $zoneId, string $pageRuleId, array|PageRule $values): CloudFlareResponse
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
@@ -102,11 +102,11 @@ class PageRules extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
-     * @param array|\CloudFlare\Contracts\Configuration $values Values to set on Page Rule.
+     * @param array|\CloudFlare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
      * @return \CloudFlare\Contracts\CloudFlareResponse Overwrite Page Rule response
      */
-    public function overwrite(string $zoneId, string $pageRuleId, Configuration|array $values): CloudFlareResponse
+    public function overwrite(string $zoneId, string $pageRuleId, PageRule|array $values): CloudFlareResponse
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
