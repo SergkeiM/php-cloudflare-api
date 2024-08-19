@@ -4,6 +4,7 @@ namespace CloudFlare\Endpoints\Workers;
 
 use CloudFlare\Endpoints\AbstractEndpoint;
 use CloudFlare\Contracts\CloudFlareResponse;
+use CloudFlare\Contracts\Configuration;
 
 class Deployments extends AbstractEndpoint
 {
@@ -15,7 +16,7 @@ class Deployments extends AbstractEndpoint
       * @param string $accountId Account identifier.
       * @param string $scriptMame Name of the script, used in URLs and route configuration.
       *
-      * @return CloudFlareResponse List Deployments response
+      * @return \CloudFlare\Contracts\CloudFlareResponse List Deployments response
       */
     public function get(string $accountId, string $scriptMame): CloudFlareResponse
     {
@@ -28,23 +29,35 @@ class Deployments extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/worker-cron-trigger-update-cron-triggers
      *
      * @param string $accountId Account identifier.
-     * @param string $scriptMame Name of the script.
-     * @param array $values Name of the script.
-     * @param boolean $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
+     * @param string $scriptMame Name of the script, used in URLs and route configuration.
+     * @param array|\CloudFlare\Contracts\Configuration $values Dployment config.
+     * @param bool $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
      *
-     * @return CloudFlareResponse Create Worker Account Settings response
+     * @return \CloudFlare\Contracts\CloudFlareResponse Create Deployment response
      */
-    public function create(string $accountId, string $scriptMame, array $values, bool $force = false): CloudFlareResponse
-    {
-        $this->requiredParams([
-            'strategy',
-            'versions'
-        ], $values);
+    public function create(
+        string $accountId,
+        string $scriptMame,
+        array|Configuration $values,
+        bool $force = false
+    ): CloudFlareResponse {
 
-        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments", $values, [
-            'query' => [
-                'force' => $force
-            ]
-        ]);
+        if(is_array($values)) {
+            $this->requiredParams(['strategy', 'versions'], $values);
+        } else {
+            $values = $values->toArray();
+        }
+
+        $options = [];
+
+        if($force) {
+            $options = [
+                'query' => [
+                    'force' => $force
+                ]
+            ];
+        }
+
+        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments", $values, $options);
     }
 }
