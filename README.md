@@ -1,4 +1,4 @@
-# PHP Cloudflare API
+# PHP Client for Cloudflare API
 
 ![Build Status](https://github.com/SergkeiM/php-cloudflare-api/actions/workflows/tests.yml/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/sergkeim/php-cloudflare-api/v/stable)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
@@ -6,7 +6,11 @@
 [![Monthly Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/d/monthly)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
 [![Daily Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/d/daily)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
 
-A simple Object Oriented wrapper for Cloudflare API, written with PHP.
+> **Note**: This library is under active development as I expand it to cover Cloudflare API. Consider the public API of this package a little unstable as I work towards a v1.0.
+
+A simple Object Oriented PHP Client for Cloudflare API.
+
+This library provides convenient access to the Cloudflare REST API using PHP.
 
 - [☁️ Cloudflare API v4](https://developers.cloudflare.com/api/)
 - [📄 Documentation](https://php-cloudflare-api.vercel.app/)
@@ -35,3 +39,7 @@ composer require sergkeim/php-cloudflare-api
 ## License 📎
 
 `php-cloudflare-api` is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+
+---
+
+Cloudflare, the Cloudflare logo, and Cloudflare Workers are trademarks and/or registered trademarks of Cloudflare, Inc. in the United States and other jurisdictions.

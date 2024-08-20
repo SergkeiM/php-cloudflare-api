@@ -6,11 +6,7 @@ export default defineAppConfig({
         image: '/preview.png',
         url: 'https://php-cloudflare-api.vercel.app',
         socials: {
-            github: 'SergkeiM/php-cloudflare-api',
-            cloudflare: {
-                icon: 'logos:cloudflare-icon',
-                href: 'https://www.cloudflare.com/'
-            },
+            github: 'SergkeiM/php-cloudflare-api'
         },
         github: {
             owner: 'SergkeiM',
