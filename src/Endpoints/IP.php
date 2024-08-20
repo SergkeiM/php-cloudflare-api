@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Endpoints;
 
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/cloudflare-i-ps-cloudflare-ip-details
@@ -15,9 +15,9 @@ class IP extends AbstractEndpoint
      * For JD Cloud IPs: https://developers.cloudflare.com/china-network/reference/infrastructure/ .
      * @link https://developers.cloudflare.com/api/operations/cloudflare-i-ps-cloudflare-ip-details
      *
-     * @return CloudflareResponse Cloudflare/JD Cloud IP Details response
+     * @return ResponseInterface Cloudflare/JD Cloud IP Details response
      */
-    public function get(): CloudflareResponse
+    public function get(): ResponseInterface
     {
         return $this->getHttpClient()->get('/ips');
     }

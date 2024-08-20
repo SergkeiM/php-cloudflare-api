@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class KV extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class KV extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse List Namespaces response
+     * @return ResponseInterface List Namespaces response
      */
-    public function list(string $accountId, array $params = []): CloudflareResponse
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces", $params);
     }
@@ -30,9 +30,9 @@ class KV extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $title A human-readable string name for a Namespace.
      *
-     * @return CloudflareResponse Create a Namespace response
+     * @return ResponseInterface Create a Namespace response
      */
-    public function create(string $accountId, string $title): CloudflareResponse
+    public function create(string $accountId, string $title): ResponseInterface
     {
 
         return $this->getHttpClient()->post("/accounts/{$accountId}/storage/kv/namespaces", [
@@ -48,9 +48,9 @@ class KV extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $namespaceId Namespace identifier tag.
      *
-     * @return CloudflareResponse Get a Namespace response
+     * @return ResponseInterface Get a Namespace response
      */
-    public function details(string $accountId, string $namespaceId): CloudflareResponse
+    public function details(string $accountId, string $namespaceId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}");
     }
@@ -64,9 +64,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param string $title A human-readable string name for a Namespace.
      *
-     * @return CloudflareResponse Update Member response
+     * @return ResponseInterface Update Member response
      */
-    public function update(string $accountId, string $namespaceId, string $title): CloudflareResponse
+    public function update(string $accountId, string $namespaceId, string $title): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}", [
             'title' => $title
@@ -81,9 +81,9 @@ class KV extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $namespaceId Namespace identifier tag.
      *
-     * @return CloudflareResponse Remove a Namespace response
+     * @return ResponseInterface Remove a Namespace response
      */
-    public function delete(string $accountId, string $namespaceId): CloudflareResponse
+    public function delete(string $accountId, string $namespaceId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}");
     }
@@ -97,9 +97,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse Delete multiple key-value pairs response
+     * @return ResponseInterface Delete multiple key-value pairs response
      */
-    public function listKeys(string $accountId, string $namespaceId, array $params = []): CloudflareResponse
+    public function listKeys(string $accountId, string $namespaceId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/keys", $params);
     }
@@ -113,9 +113,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param string $keyName A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. Use percent-encoding to define key names as part of a URL.
      *
-     * @return CloudflareResponse Read the metadata for a key response
+     * @return ResponseInterface Read the metadata for a key response
      */
-    public function keyMetadata(string $accountId, string $namespaceId, string $keyName): CloudflareResponse
+    public function keyMetadata(string $accountId, string $namespaceId, string $keyName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/metadata/{$keyName}");
     }
@@ -129,9 +129,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param string $keyName A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. Use percent-encoding to define key names as part of a URL.
      *
-     * @return CloudflareResponse Read key-value pair response
+     * @return ResponseInterface Read key-value pair response
      */
-    public function keyDetails(string $accountId, string $namespaceId, string $keyName): CloudflareResponse
+    public function keyDetails(string $accountId, string $namespaceId, string $keyName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/values/{$keyName}");
     }
@@ -149,9 +149,9 @@ class KV extends AbstractEndpoint
      * @param string $keyName A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. Use percent-encoding to define key names as part of a URL.
      * @param array $values keys and values.
      *
-     * @return CloudflareResponse Write key-value pair with metadata response
+     * @return ResponseInterface Write key-value pair with metadata response
      */
-    public function writeKeyWithMetadata(string $accountId, string $namespaceId, string $keyName, array $values): CloudflareResponse
+    public function writeKeyWithMetadata(string $accountId, string $namespaceId, string $keyName, array $values): ResponseInterface
     {
 
         return $this->getHttpClient()->put("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/values/{$keyName}", $values);
@@ -166,9 +166,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param string $keyName A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. Use percent-encoding to define key names as part of a URL.
      *
-     * @return CloudflareResponse Delete key-value pair response
+     * @return ResponseInterface Delete key-value pair response
      */
-    public function deleteKey(string $accountId, string $namespaceId, string $keyName): CloudflareResponse
+    public function deleteKey(string $accountId, string $namespaceId, string $keyName): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/values/{$keyName}");
     }
@@ -184,9 +184,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param array $values keys and values.
      *
-     * @return CloudflareResponse Write multiple key-value pairs response
+     * @return ResponseInterface Write multiple key-value pairs response
      */
-    public function writeMultipleKeys(string $accountId, string $namespaceId, array $values): CloudflareResponse
+    public function writeMultipleKeys(string $accountId, string $namespaceId, array $values): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk", $values);
     }
@@ -200,9 +200,9 @@ class KV extends AbstractEndpoint
      * @param string $namespaceId Namespace identifier tag.
      * @param array $keys Keys.
      *
-     * @return CloudflareResponse Delete multiple key-value pairs response
+     * @return ResponseInterface Delete multiple key-value pairs response
      */
-    public function deleteMultipleKeys(string $accountId, string $namespaceId, array $keys): CloudflareResponse
+    public function deleteMultipleKeys(string $accountId, string $namespaceId, array $keys): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk/delete", $keys);
     }

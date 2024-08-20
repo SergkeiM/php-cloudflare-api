@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Endpoints;
 
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Accounts\Roles;
 use Cloudflare\Endpoints\Accounts\Members;
 use Cloudflare\Endpoints\Accounts\AuditLogs;
@@ -19,9 +19,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param array $params Array containing the necessary params.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List Accounts response.
+     * @return \Cloudflare\Contracts\ResponseInterface List Accounts response.
      */
-    public function list(array $params = []): CloudflareResponse
+    public function list(array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get('/accounts', $params);
     }
@@ -35,9 +35,9 @@ class Accounts extends AbstractEndpoint
      * @param string $type The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise.
      * @param string $unit Tenant unit ID. Information related to the tenant unit, and optionally, an id of the unit to create the account on. [see](https://developers.cloudflare.com/tenant/how-to/manage-accounts/)
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function create(string $name, string $type, string $unit = null): CloudflareResponse
+    public function create(string $name, string $type, string $unit = null): ResponseInterface
     {
         $values = [
             'name' => $name,
@@ -60,9 +60,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Account Details response.
+     * @return \Cloudflare\Contracts\ResponseInterface Account Details response.
      */
-    public function details(string $accountId): CloudflareResponse
+    public function details(string $accountId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}");
     }
@@ -76,9 +76,9 @@ class Accounts extends AbstractEndpoint
      * @param string $name Account name.
      * @param array $settings Account settings.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Update Account response.
+     * @return \Cloudflare\Contracts\ResponseInterface Update Account response.
      */
-    public function update(string $accountId, string $name, array $settings = []): CloudflareResponse
+    public function update(string $accountId, string $name, array $settings = []): ResponseInterface
     {
 
         $values = [
@@ -99,9 +99,9 @@ class Accounts extends AbstractEndpoint
      *
      * @param string $accountIdAccount identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function delete(string $accountId): CloudflareResponse
+    public function delete(string $accountId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}");
     }

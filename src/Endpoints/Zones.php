@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Endpoints;
 
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Zones\Cache;
 use Cloudflare\Endpoints\Zones\CloudConnector;
 use Cloudflare\Endpoints\Zones\DNS;
@@ -24,9 +24,9 @@ class Zones extends AbstractEndpoint
      *
      * @param array $params Query Parameters.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List zones of account found.
+     * @return \Cloudflare\Contracts\ResponseInterface List zones of account found.
      */
-    public function list(array $params = []): CloudflareResponse
+    public function list(array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get('/zones', $params);
     }
@@ -40,9 +40,9 @@ class Zones extends AbstractEndpoint
      * @param string $name The domain name
      * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function create(string $accountId, string $name, string $type = 'full'): CloudflareResponse
+    public function create(string $accountId, string $name, string $type = 'full'): ResponseInterface
     {
         return $this->getHttpClient()->post('/zones', [
             'name' => $name,
@@ -60,9 +60,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Delete Zone response.
+     * @return \Cloudflare\Contracts\ResponseInterface Delete Zone response.
      */
-    public function delete(string $zoneId): CloudflareResponse
+    public function delete(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}");
     }
@@ -74,9 +74,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Zone Details response.
+     * @return \Cloudflare\Contracts\ResponseInterface Zone Details response.
      */
-    public function details(string $zoneId): CloudflareResponse
+    public function details(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}");
     }
@@ -90,9 +90,9 @@ class Zones extends AbstractEndpoint
      * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup. This parameter is only available to Enterprise customers or if it has been explicitly enabled on a zone.
      * @param array $vanityNameServers An array of domains used for custom name servers. This is only available for Business and Enterprise plans.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function update(string $zoneId, string $type, array $vanityNameServers = []): CloudflareResponse
+    public function update(string $zoneId, string $type, array $vanityNameServers = []): ResponseInterface
     {
 
         $options = [
@@ -114,9 +114,9 @@ class Zones extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Activation Check Response
+     * @return \Cloudflare\Contracts\ResponseInterface Activation Check Response
      */
-    public function activationCheck(string $zoneId): CloudflareResponse
+    public function activationCheck(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->put("/zones/{$zoneId}/activation_check");
     }
@@ -129,9 +129,9 @@ class Zones extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array|\Cloudflare\Configurations\Zones\CachePurge $purgeBy
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Purge Cached Content Response
+     * @return \Cloudflare\Contracts\ResponseInterface Purge Cached Content Response
      */
-    public function purge(string $zoneId, array|CachePurge $purgeBy): CloudflareResponse
+    public function purge(string $zoneId, array|CachePurge $purgeBy): ResponseInterface
     {
         if(is_array($purgeBy)) {
             $this->requiredAnyParams(['files', 'tags', 'hosts', 'prefixes'], $purgeBy);

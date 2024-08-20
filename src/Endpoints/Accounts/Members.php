@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Accounts;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Members extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Members extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse List Members response.
+     * @return ResponseInterface List Members response.
      */
-    public function list(string $accountId, array $params = []): CloudflareResponse
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/members", $params);
     }
@@ -30,9 +30,9 @@ class Members extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $values Values to set on Member.
      *
-     * @return CloudflareResponse Add Member response
+     * @return ResponseInterface Add Member response
      */
-    public function add(string $accountId, array $values): CloudflareResponse
+    public function add(string $accountId, array $values): ResponseInterface
     {
 
         $this->requiredParams(['email', 'roles'], $values);
@@ -48,9 +48,9 @@ class Members extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.
      *
-     * @return CloudflareResponse Remove Member response
+     * @return ResponseInterface Remove Member response
      */
-    public function delete(string $accountId, string $memberId): CloudflareResponse
+    public function delete(string $accountId, string $memberId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/members/{$memberId}");
     }
@@ -63,9 +63,9 @@ class Members extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.
      *
-     * @return CloudflareResponse Member Details response
+     * @return ResponseInterface Member Details response
      */
-    public function details(string $accountId, string $memberId): CloudflareResponse
+    public function details(string $accountId, string $memberId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/members/{$memberId}");
     }
@@ -79,9 +79,9 @@ class Members extends AbstractEndpoint
      * @param string $memberId Member identifier.
      * @param array $roles Role identifiers.
      *
-     * @return CloudflareResponse Update Member response
+     * @return ResponseInterface Update Member response
      */
-    public function updateRoles(string $accountId, string $memberId, array $roles): CloudflareResponse
+    public function updateRoles(string $accountId, string $memberId, array $roles): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/members/{$memberId}", [
             'roles' => $roles
@@ -97,9 +97,9 @@ class Members extends AbstractEndpoint
      * @param string $memberId Member identifier.
      * @param array $policies Policies associated with this member.
      *
-     * @return CloudflareResponse Update Member response
+     * @return ResponseInterface Update Member response
      */
-    public function updatePolicies(string $accountId, string $memberId, array $policies): CloudflareResponse
+    public function updatePolicies(string $accountId, string $memberId, array $policies): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/members/{$memberId}", [
             'policies' => $policies

@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Exceptions\BadMethodCallException;
 
 class Versions extends AbstractEndpoint
@@ -17,9 +17,9 @@ class Versions extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse List Versions response
+     * @return ResponseInterface List Versions response
      */
-    public function list(string $accountId, string $scriptName, array $params = []): CloudflareResponse
+    public function list(string $accountId, string $scriptName, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/versions", $params);
     }
@@ -32,9 +32,9 @@ class Versions extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Start Tail response
+     * @return ResponseInterface Start Tail response
      */
-    public function upload(string $accountId, string $scriptName): CloudflareResponse
+    public function upload(string $accountId, string $scriptName): ResponseInterface
     {
         //TODO
         //return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
@@ -50,9 +50,9 @@ class Versions extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param string $versionId Version identifier.
      *
-     * @return CloudflareResponse Get Version Detail response
+     * @return ResponseInterface Get Version Detail response
      */
-    public function details(string $accountId, string $scriptName, string $versionId): CloudflareResponse
+    public function details(string $accountId, string $scriptName, string $versionId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/versions/{$versionId}");
     }

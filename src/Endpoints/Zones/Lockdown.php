@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Zones;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Lockdown extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Lockdown extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List Zone Lockdown rules response
+     * @return \Cloudflare\Contracts\ResponseInterface List Zone Lockdown rules response
      */
-    public function list(string $zoneId, array $params = []): CloudflareResponse
+    public function list(string $zoneId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/firewall/lockdowns", $params);
     }
@@ -31,9 +31,9 @@ class Lockdown extends AbstractEndpoint
      * @param string $value The IP address/range to match. You can only use prefix lengths /16 and /24. This address/range will be compared to the IP address of incoming requests.
      * @param array $urls The URLs to include in the current WAF override. You can use wildcards. Each entered URL will be escaped before use, which means you can only use simple wildcard patterns.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Create a Zone Lockdown rule response.
+     * @return \Cloudflare\Contracts\ResponseInterface Create a Zone Lockdown rule response.
      */
-    public function create(string $zoneId, string $value, array $urls): CloudflareResponse
+    public function create(string $zoneId, string $value, array $urls): ResponseInterface
     {
         $values = [
             'urls' => $urls,
@@ -54,9 +54,9 @@ class Lockdown extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $lockdownId Lockdown identifier
      * .
-     * @return \Cloudflare\Contracts\CloudflareResponse Get a Zone Lockdown rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Get a Zone Lockdown rule response
      */
-    public function details(string $zoneId, string $lockdownId): CloudflareResponse
+    public function details(string $zoneId, string $lockdownId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/firewall/lockdowns/{$lockdownId}");
     }
@@ -71,9 +71,9 @@ class Lockdown extends AbstractEndpoint
      * @param string $value The IP address/range to match. You can only use prefix lengths /16 and /24. This address/range will be compared to the IP address of incoming requests.
      * @param array $urls The URLs to include in the current WAF override. You can use wildcards. Each entered URL will be escaped before use, which means you can only use simple wildcard patterns.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Update a Zone Lockdown rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Update a Zone Lockdown rule response
      */
-    public function update(string $zoneId, string $lockdownId, string $value, array $urls): CloudflareResponse
+    public function update(string $zoneId, string $lockdownId, string $value, array $urls): ResponseInterface
     {
         $values = [
             'urls' => $urls,
@@ -94,9 +94,9 @@ class Lockdown extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $lockdownId Lockdown identifier
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Delete a Zone Lockdown rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Delete a Zone Lockdown rule response
      */
-    public function delete(string $zoneId, string $lockdownId): CloudflareResponse
+    public function delete(string $zoneId, string $lockdownId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/firewall/lockdowns/{$lockdownId}");
     }

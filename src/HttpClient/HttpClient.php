@@ -73,7 +73,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function get(string $url, $query = null, array $options = [])
     {
@@ -89,7 +89,7 @@ class HttpClient
      * @param  string  $url
      * @param  array|string|null  $query
      * @param  array  $options
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function head(string $url, $query = null, array $options = [])
     {
@@ -106,7 +106,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -123,7 +123,7 @@ class HttpClient
     * @param  array  $data
     * @param  array  $options
     * @param  string  $format
-    * @return \Cloudflare\Contracts\CloudflareResponse
+    * @return \Cloudflare\Contracts\ResponseInterface
     */
     public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -140,7 +140,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -157,7 +157,7 @@ class HttpClient
      * @param  array  $data
      * @param  array  $options
      * @param  string  $format
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function delete(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
@@ -177,7 +177,7 @@ class HttpClient
      * @throws ConnectionException
      * @throws RequestException
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse
+     * @return \Cloudflare\Contracts\ResponseInterface
      */
     public function send(string $method, string $url, array $options = [])
     {
