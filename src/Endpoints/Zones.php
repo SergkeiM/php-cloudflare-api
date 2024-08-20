@@ -6,6 +6,7 @@ use Cloudflare\Contracts\CloudflareResponse;
 use Cloudflare\Endpoints\Zones\Cache;
 use Cloudflare\Endpoints\Zones\CloudConnector;
 use Cloudflare\Endpoints\Zones\DNS;
+use Cloudflare\Endpoints\Zones\DNSSEC;
 use Cloudflare\Endpoints\Zones\PageRules;
 use Cloudflare\Endpoints\Zones\Hold;
 use Cloudflare\Endpoints\Zones\Lockdown;
@@ -172,6 +173,16 @@ class Zones extends AbstractEndpoint
     }
 
     /**
+     * Zone DNSSEC
+     *
+     * @return \Cloudflare\Endpoints\Zones\DNSSEC
+     */
+    public function dnssec(): DNSSEC
+    {
+        return new DNSSEC($this->getClient());
+    }
+
+    /**
      * Zone PageRules
      *
      * @return \Cloudflare\Endpoints\Zones\PageRules
@@ -196,7 +207,7 @@ class Zones extends AbstractEndpoint
      *
      * @return \Cloudflare\Endpoints\Zones\Lockdown
      */
-    public function lockdowns(): Hold
+    public function lockdowns(): Lockdown
     {
         return new Lockdown($this->getClient());
     }
