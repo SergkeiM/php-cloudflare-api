@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Endpoints;
 
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Workers\Settings;
 use Cloudflare\Endpoints\Workers\Cron;
 use Cloudflare\Endpoints\Workers\Deployments;
@@ -26,9 +26,9 @@ class Workers extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse Query Request Analytics response
+     * @return ResponseInterface Query Request Analytics response
      */
-    public function analytics(string $accountId, array $params = []): CloudflareResponse
+    public function analytics(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics", $params);
     }
@@ -41,9 +41,9 @@ class Workers extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse Query Stored Data Analytics response
+     * @return ResponseInterface Query Stored Data Analytics response
      */
-    public function storedDataAnalytics(string $accountId, array $params = []): CloudflareResponse
+    public function storedDataAnalytics(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics/stored", $params);
     }

@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Routes extends AbstractEndpoint
 {
@@ -14,9 +14,9 @@ class Routes extends AbstractEndpoint
      *
      * @param string $zoneId Zone identifier.
      *
-     * @return CloudflareResponse List available Workers Routes response.
+     * @return ResponseInterface List available Workers Routes response.
      */
-    public function get(string $zoneId, array $params = []): CloudflareResponse
+    public function get(string $zoneId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes", $params);
     }
@@ -29,9 +29,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param array $values Values.
      *
-     * @return CloudflareResponse Create Route response
+     * @return ResponseInterface Create Route response
      */
-    public function create(string $zoneId, array $values): CloudflareResponse
+    public function create(string $zoneId, array $values): ResponseInterface
     {
         $this->requiredParams(['pattern'], $values);
 
@@ -46,9 +46,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
      *
-     * @return CloudflareResponse Get Route response
+     * @return ResponseInterface Get Route response
      */
-    public function details(string $zoneId, string $routeId): CloudflareResponse
+    public function details(string $zoneId, string $routeId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes/{$routeId}");
     }
@@ -62,9 +62,9 @@ class Routes extends AbstractEndpoint
      * @param string $routeId Route Identifier.
      * @param array $values Values.
      *
-     * @return CloudflareResponse Update Route response
+     * @return ResponseInterface Update Route response
      */
-    public function update(string $zoneId, string $routeId, array $values): CloudflareResponse
+    public function update(string $zoneId, string $routeId, array $values): ResponseInterface
     {
         return $this->getHttpClient()->put("/zones/{$zoneId}/workers/routes/{$routeId}", $values);
     }
@@ -77,9 +77,9 @@ class Routes extends AbstractEndpoint
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
      *
-     * @return CloudflareResponse Delete Route response.
+     * @return ResponseInterface Delete Route response.
      */
-    public function delete(string $zoneId, string $routeId): CloudflareResponse
+    public function delete(string $zoneId, string $routeId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/workers/routes/{$routeId}");
     }

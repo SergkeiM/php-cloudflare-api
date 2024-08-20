@@ -3,11 +3,11 @@
 namespace Cloudflare\Contracts;
 
 use Stringable;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
-interface CloudflareResponse extends Stringable
+interface ResponseInterface extends Stringable
 {
-    public function __construct(ResponseInterface $response);
+    public function __construct(HttpResponseInterface $response);
 
     /**
      * Get the body of the response.

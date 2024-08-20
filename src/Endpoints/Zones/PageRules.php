@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Zones;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Configurations\Zones\PageRule;
 
 class PageRules extends AbstractEndpoint
@@ -15,9 +15,9 @@ class PageRules extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List available Page Rules settings response
+     * @return \Cloudflare\Contracts\ResponseInterface List available Page Rules settings response
      */
-    public function settings(string $zoneId): CloudflareResponse
+    public function settings(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules/settings");
     }
@@ -30,9 +30,9 @@ class PageRules extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List Page Rules response
+     * @return \Cloudflare\Contracts\ResponseInterface List Page Rules response
      */
-    public function list(string $zoneId, array $params = []): CloudflareResponse
+    public function list(string $zoneId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules", $params);
     }
@@ -45,9 +45,9 @@ class PageRules extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array|\Cloudflare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Create a Page Rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Create a Page Rule response
      */
-    public function create(string $zoneId, array|PageRule $values): CloudflareResponse
+    public function create(string $zoneId, array|PageRule $values): ResponseInterface
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
@@ -66,9 +66,9 @@ class PageRules extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Get a Page Rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Get a Page Rule response
      */
-    public function details(string $zoneId, string $pageRuleId): CloudflareResponse
+    public function details(string $zoneId, string $pageRuleId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/pagerules/{$pageRuleId}");
     }
@@ -82,9 +82,9 @@ class PageRules extends AbstractEndpoint
      * @param string $pageRuleId Page Rule Identifier.
      * @param array|\Cloudflare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Edit a Page Rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Edit a Page Rule response
      */
-    public function update(string $zoneId, string $pageRuleId, array|PageRule $values): CloudflareResponse
+    public function update(string $zoneId, string $pageRuleId, array|PageRule $values): ResponseInterface
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
@@ -104,9 +104,9 @@ class PageRules extends AbstractEndpoint
      * @param string $pageRuleId Page Rule Identifier.
      * @param array|\Cloudflare\Configurations\Zones\PageRule $values Values to set on Page Rule.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Overwrite Page Rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Overwrite Page Rule response
      */
-    public function overwrite(string $zoneId, string $pageRuleId, PageRule|array $values): CloudflareResponse
+    public function overwrite(string $zoneId, string $pageRuleId, PageRule|array $values): ResponseInterface
     {
         if(is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
@@ -125,9 +125,9 @@ class PageRules extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Delete a Page Rule response
+     * @return \Cloudflare\Contracts\ResponseInterface Delete a Page Rule response
      */
-    public function delete(string $zoneId, string $pageRuleId): CloudflareResponse
+    public function delete(string $zoneId, string $pageRuleId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/pagerules/{$pageRuleId}");
     }

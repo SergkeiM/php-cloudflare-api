@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Domains extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse List Domains response
+     * @return ResponseInterface List Domains response
      */
-    public function get(string $accountId, array $params = []): CloudflareResponse
+    public function get(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains", $params);
     }
@@ -30,9 +30,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $values Values to set on account.
      *
-     * @return CloudflareResponse Attach to Domain response
+     * @return ResponseInterface Attach to Domain response
      */
-    public function attach(string $accountId, array $values = []): CloudflareResponse
+    public function attach(string $accountId, array $values = []): ResponseInterface
     {
         $this->requiredParams(['environment', 'hostname', 'service', 'zone_id'], $values);
 
@@ -47,9 +47,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.
      *
-     * @return CloudflareResponse Detach from Domain response
+     * @return ResponseInterface Detach from Domain response
      */
-    public function detach(string $accountId, string $domainId = []): CloudflareResponse
+    public function detach(string $accountId, string $domainId = []): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/domains/{$domainId}");
     }
@@ -62,9 +62,9 @@ class Domains extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.
      *
-     * @return CloudflareResponse Get a Domain response
+     * @return ResponseInterface Get a Domain response
      */
-    public function domain(string $accountId, string $domainId = []): CloudflareResponse
+    public function domain(string $accountId, string $domainId = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains/{$domainId}");
     }

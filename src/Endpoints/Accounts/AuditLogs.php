@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Accounts;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class AuditLogs extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class AuditLogs extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse Get account audit logs response.
+     * @return ResponseInterface Get account audit logs response.
      */
-    public function list(string $accountId, array $params = []): CloudflareResponse
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/audit_logs", $params);
     }

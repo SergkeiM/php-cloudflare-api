@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Accounts;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Roles extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Roles extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return CloudflareResponse List Roles response.
+     * @return ResponseInterface List Roles response.
      */
-    public function list(string $accountId, array $params = []): CloudflareResponse
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/roles", $params);
     }
@@ -30,9 +30,9 @@ class Roles extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $roleId Role identifier.
      *
-     * @return CloudflareResponse Role Details response
+     * @return ResponseInterface Role Details response
      */
-    public function details(string $accountId, string $roleId): CloudflareResponse
+    public function details(string $accountId, string $roleId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/roles/{$roleId}");
     }

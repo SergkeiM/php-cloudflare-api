@@ -2,10 +2,10 @@
 
 namespace Cloudflare\HttpClient;
 
-use Cloudflare\Contracts\CloudflareResponse;
-use Psr\Http\Message\ResponseInterface;
+use Cloudflare\Contracts\ResponseInterface;
+use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
-class Response implements CloudflareResponse
+class Response implements ResponseInterface
 {
     /**
      * The underlying PSR response.
@@ -27,7 +27,7 @@ class Response implements CloudflareResponse
      * @param  \Psr\Http\Message\ResponseInterface  $response
      * @return void
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(HttpResponseInterface $response)
     {
         $this->response = $response;
     }

@@ -3,6 +3,14 @@ name: PHP Tests
 on: [pull_request]
 
 jobs:
+  lint:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
+        with:
+          args: check
   test:
     name: Test on PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest

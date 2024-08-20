@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Zones;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Hold extends AbstractEndpoint
 {
@@ -14,9 +14,9 @@ class Hold extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Successful Response
+     * @return \Cloudflare\Contracts\ResponseInterface Successful Response
      */
-    public function details(string $zoneId): CloudflareResponse
+    public function details(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/hold");
     }
@@ -29,9 +29,9 @@ class Hold extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param bool $includeSubdomains If provided, the zone hold will extend to block any subdomain of the given zone, as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with the hostname 'example.com' and include_subdomains=true will block 'example.com', 'staging.example.com', 'api.staging.example.com', etc.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Successful Response
+     * @return \Cloudflare\Contracts\ResponseInterface Successful Response
      */
-    public function create(string $zoneId, bool $includeSubdomains = true): CloudflareResponse
+    public function create(string $zoneId, bool $includeSubdomains = true): ResponseInterface
     {
         return $this->getHttpClient()->post("/zones/{$zoneId}/hold", [
             'include_subdomains' => $includeSubdomains
@@ -45,9 +45,9 @@ class Hold extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      * @param string $holdAfter If provided, the hold will be temporarily disabled, then automatically re-enabled by the system at the time specified in this RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
-     * @return \Cloudflare\Contracts\CloudflareResponse Successful Response
+     * @return \Cloudflare\Contracts\ResponseInterface Successful Response
      */
-    public function delete(string $zoneId, string $holdAfter = null): CloudflareResponse
+    public function delete(string $zoneId, string $holdAfter = null): ResponseInterface
     {
         $values = [];
 

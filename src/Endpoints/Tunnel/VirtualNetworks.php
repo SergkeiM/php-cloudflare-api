@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Tunnel;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class VirtualNetworks extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class VirtualNetworks extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse List virtual networks response
+     * @return \Cloudflare\Contracts\ResponseInterface List virtual networks response
      */
-    public function list(string $accountId, array $params = []): CloudflareResponse
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/virtual_networks", $params);
     }
@@ -32,9 +32,9 @@ class VirtualNetworks extends AbstractEndpoint
      * @param bool $isDefault If `true`, this virtual network is the default for the account.
      * @param string $comment Optional remark describing the virtual network.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Create a virtual network response
+     * @return \Cloudflare\Contracts\ResponseInterface Create a virtual network response
      */
-    public function create(string $accountId, string $name, bool $isDefault = false, string $comment = null): CloudflareResponse
+    public function create(string $accountId, string $name, bool $isDefault = false, string $comment = null): ResponseInterface
     {
 
         $values = [
@@ -58,9 +58,9 @@ class VirtualNetworks extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $virtualNetworkId UUID of the virtual network.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse A virtual network response.
+     * @return \Cloudflare\Contracts\ResponseInterface A virtual network response.
      */
-    public function details(string $accountId, string $virtualNetworkId): CloudflareResponse
+    public function details(string $accountId, string $virtualNetworkId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/virtual_networks/{$virtualNetworkId}");
     }
@@ -74,9 +74,9 @@ class VirtualNetworks extends AbstractEndpoint
      * @param string $virtualNetworkId UUID of the virtual network.
      * @param array $values he fields that are meant to be updated
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Update a virtual network response
+     * @return \Cloudflare\Contracts\ResponseInterface Update a virtual network response
      */
-    public function update(string $accountId, string $virtualNetworkId, array $values = []): CloudflareResponse
+    public function update(string $accountId, string $virtualNetworkId, array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/teamnet/virtual_networks/{$virtualNetworkId}", $values);
     }
@@ -89,9 +89,9 @@ class VirtualNetworks extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $virtualNetworkId UUID of the virtual network.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Delete a virtual network response
+     * @return \Cloudflare\Contracts\ResponseInterface Delete a virtual network response
      */
-    public function delete(string $accountId, string $virtualNetworkId): CloudflareResponse
+    public function delete(string $accountId, string $virtualNetworkId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/teamnet/virtual_networks/{$virtualNetworkId}");
     }

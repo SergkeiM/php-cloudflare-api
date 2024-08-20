@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class Logs extends AbstractEndpoint
 {
@@ -15,9 +15,9 @@ class Logs extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse List Tails response
+     * @return ResponseInterface List Tails response
      */
-    public function get(string $accountId, string $scriptName): CloudflareResponse
+    public function get(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
     }
@@ -30,9 +30,9 @@ class Logs extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Start Tail response
+     * @return ResponseInterface Start Tail response
      */
-    public function start(string $accountId, string $scriptName): CloudflareResponse
+    public function start(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
     }
@@ -46,9 +46,9 @@ class Logs extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param string $id Identifier for the tail.
      *
-     * @return CloudflareResponse Start Tail response
+     * @return ResponseInterface Start Tail response
      */
-    public function delete(string $accountId, string $scriptName, string $id): CloudflareResponse
+    public function delete(string $accountId, string $scriptName, string $id): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails/{$id}");
     }

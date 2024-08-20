@@ -4,7 +4,7 @@ namespace Cloudflare\Endpoints\Zones;
 
 use GuzzleHttp\RequestOptions;
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 
 class DNS extends AbstractEndpoint
 {
@@ -16,9 +16,9 @@ class DNS extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return CloudflareResponse Scan DNS Records response
+     * @return ResponseInterface Scan DNS Records response
      */
-    public function scan(string $zoneId): CloudflareResponse
+    public function scan(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->post("/zones/{$zoneId}/dns_records/scan");
     }
@@ -31,9 +31,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
      *
-     * @return CloudflareResponse List DNS Records response
+     * @return ResponseInterface List DNS Records response
      */
-    public function list(string $zoneId, array $params = []): CloudflareResponse
+    public function list(string $zoneId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records", $params);
     }
@@ -50,9 +50,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param array $values Values to set on DNS.
      *
-     * @return CloudflareResponse Create DNS Record response
+     * @return ResponseInterface Create DNS Record response
      */
-    public function create(string $zoneId, array $values): CloudflareResponse
+    public function create(string $zoneId, array $values): ResponseInterface
     {
         $this->requiredParams(['content', 'name', 'type'], $values);
 
@@ -66,9 +66,9 @@ class DNS extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      *
-     * @return CloudflareResponse Export DNS Records response
+     * @return ResponseInterface Export DNS Records response
      */
-    public function export(string $zoneId): CloudflareResponse
+    public function export(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records/export");
     }
@@ -82,9 +82,9 @@ class DNS extends AbstractEndpoint
      * @param string $content Content of BIND config to import.
      * @param string $proxied Should DNS records be proxied.
      *
-     * @return CloudflareResponse Export DNS Records response
+     * @return ResponseInterface Export DNS Records response
      */
-    public function import(string $zoneId, string $content, bool $proxied = true): CloudflareResponse
+    public function import(string $zoneId, string $content, bool $proxied = true): ResponseInterface
     {
         return $this->getHttpClient()->post(
             "/zones/{$zoneId}/dns_records/import",
@@ -110,9 +110,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to fetch details.
      *
-     * @return CloudflareResponse DNS Record Details response
+     * @return ResponseInterface DNS Record Details response
      */
-    public function details(string $zoneId, string $dnsRecordId): CloudflareResponse
+    public function details(string $zoneId, string $dnsRecordId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/dns_records/{$dnsRecordId}");
     }
@@ -129,9 +129,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to update.
      *
-     * @return CloudflareResponse Update DNS Record response
+     * @return ResponseInterface Update DNS Record response
      */
-    public function update(string $zoneId, string $dnsRecordId, array $values): CloudflareResponse
+    public function update(string $zoneId, string $dnsRecordId, array $values): ResponseInterface
     {
         $this->requiredParams(['content', 'name', 'type'], $values);
 
@@ -150,9 +150,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to overwrite.
      *
-     * @return CloudflareResponse Overwrite DNS Record response
+     * @return ResponseInterface Overwrite DNS Record response
      */
-    public function overwrite(string $zoneId, string $dnsRecordId, array $values): CloudflareResponse
+    public function overwrite(string $zoneId, string $dnsRecordId, array $values): ResponseInterface
     {
         $this->requiredParams(['content', 'name', 'type'], $values);
 
@@ -167,9 +167,9 @@ class DNS extends AbstractEndpoint
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to delete.
      *
-     * @return CloudflareResponse Delete DNS Record response
+     * @return ResponseInterface Delete DNS Record response
      */
-    public function delete(string $zoneId, string $dnsRecordId): CloudflareResponse
+    public function delete(string $zoneId, string $dnsRecordId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/dns_records/{$dnsRecordId}");
     }

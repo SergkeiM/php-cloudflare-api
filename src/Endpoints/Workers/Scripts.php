@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Exceptions\BadMethodCallException;
 
 class Scripts extends AbstractEndpoint
@@ -15,9 +15,9 @@ class Scripts extends AbstractEndpoint
      *
      * @param string $accountId Account identifier.
      *
-     * @return CloudflareResponse List Workers response
+     * @return ResponseInterface List Workers response
      */
-    public function get(string $accountId): CloudflareResponse
+    public function get(string $accountId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts");
     }
@@ -30,9 +30,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Download Worker response
+     * @return ResponseInterface Download Worker response
      */
-    public function download(string $accountId, string $scriptName): CloudflareResponse
+    public function download(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}");
     }
@@ -45,9 +45,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Upload Worker Module response
+     * @return ResponseInterface Upload Worker Module response
      */
-    public function upload(string $accountId, string $scriptName): CloudflareResponse
+    public function upload(string $accountId, string $scriptName): ResponseInterface
     {
         //TODO
         // return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}");
@@ -63,9 +63,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Upload Worker Module response
+     * @return ResponseInterface Upload Worker Module response
      */
-    public function updateContent(string $accountId, string $scriptName): CloudflareResponse
+    public function updateContent(string $accountId, string $scriptName): ResponseInterface
     {
         //TODO
         // return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}/content");
@@ -81,9 +81,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Fetch script content
+     * @return ResponseInterface Fetch script content
      */
-    public function getContent(string $accountId, string $scriptName): CloudflareResponse
+    public function getContent(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/content/v2");
     }
@@ -96,9 +96,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Fetch script settings
+     * @return ResponseInterface Fetch script settings
      */
-    public function getScriptSettings(string $accountId, string $scriptName): CloudflareResponse
+    public function getScriptSettings(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/script-settings");
     }
@@ -112,9 +112,9 @@ class Scripts extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param array $values Script settings values.
      *
-     * @return CloudflareResponse Patch script settings
+     * @return ResponseInterface Patch script settings
      */
-    public function updateScriptSettings(string $accountId, string $scriptName, array $values): CloudflareResponse
+    public function updateScriptSettings(string $accountId, string $scriptName, array $values): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/workers/scripts/{$scriptName}/script-settings", $values);
     }
@@ -127,9 +127,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Fetch settings
+     * @return ResponseInterface Fetch settings
      */
-    public function getSettings(string $accountId, string $scriptName): CloudflareResponse
+    public function getSettings(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/settings");
     }
@@ -143,9 +143,9 @@ class Scripts extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param array $values Settings values.
      *
-     * @return CloudflareResponse Patch settings
+     * @return ResponseInterface Patch settings
      */
-    public function updateSettings(string $accountId, string $scriptName, array $values): CloudflareResponse
+    public function updateSettings(string $accountId, string $scriptName, array $values): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/workers/scripts/{$scriptName}/settings", $values);
     }
@@ -158,9 +158,9 @@ class Scripts extends AbstractEndpoint
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
-     * @return CloudflareResponse Fetch Usage Model response
+     * @return ResponseInterface Fetch Usage Model response
      */
-    public function getUsageModel(string $accountId, string $scriptName): CloudflareResponse
+    public function getUsageModel(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/usage-model");
     }
@@ -174,9 +174,9 @@ class Scripts extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param string $usageModel Usage model.
      *
-     * @return CloudflareResponse Patch settings
+     * @return ResponseInterface Patch settings
      */
-    public function updateUsageModel(string $accountId, string $scriptName, string $usageModel): CloudflareResponse
+    public function updateUsageModel(string $accountId, string $scriptName, string $usageModel): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}/usage-model", [
             'usage_model' => $usageModel
@@ -192,12 +192,12 @@ class Scripts extends AbstractEndpoint
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param boolean $force If set to true, delete will not be stopped by associated service binding, durable object, or other binding. Any of these associated bindings/durable objects will be deleted along with the script.
      *
-     * @return CloudflareResponse Delete Worker response
+     * @return ResponseInterface Delete Worker response
      */
-    public function delete(string $accountId, string $scriptName, bool $force = false): CloudflareResponse
+    public function delete(string $accountId, string $scriptName, bool $force = false): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/scripts/{$scriptName}", [
             'force' => $force
-        ], format: 'query');
+        ], [], 'query');
     }
 }

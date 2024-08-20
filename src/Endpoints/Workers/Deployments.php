@@ -3,7 +3,7 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
-use Cloudflare\Contracts\CloudflareResponse;
+use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Configurations\Workers\Deployment;
 
 class Deployments extends AbstractEndpoint
@@ -16,9 +16,9 @@ class Deployments extends AbstractEndpoint
       * @param string $accountId Account identifier.
       * @param string $scriptMame Name of the script, used in URLs and route configuration.
       *
-      * @return \Cloudflare\Contracts\CloudflareResponse List Deployments response
+      * @return \Cloudflare\Contracts\ResponseInterface List Deployments response
       */
-    public function get(string $accountId, string $scriptMame): CloudflareResponse
+    public function get(string $accountId, string $scriptMame): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments");
     }
@@ -33,14 +33,14 @@ class Deployments extends AbstractEndpoint
      * @param array|\Cloudflare\Configurations\Workers\Deployment $values Dployment config.
      * @param bool $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
      *
-     * @return \Cloudflare\Contracts\CloudflareResponse Create Deployment response
+     * @return \Cloudflare\Contracts\ResponseInterface Create Deployment response
      */
     public function create(
         string $accountId,
         string $scriptMame,
         array|Deployment $values,
         bool $force = false
-    ): CloudflareResponse {
+    ): ResponseInterface {
 
         if(is_array($values)) {
             $this->requiredParams(['strategy', 'versions'], $values);
