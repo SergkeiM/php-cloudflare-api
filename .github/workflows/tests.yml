@@ -3,11 +3,13 @@ name: PHP Tests
 on: [pull_request]
 
 jobs:
-  fix:
+  lint:
     name: PHP-CS-Fixer
-    uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
-    with:
-      args: check
+    runs-on: ubuntu-latest
+    steps:
+        uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
+        with:
+          args: check
   test:
     name: Test on PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
