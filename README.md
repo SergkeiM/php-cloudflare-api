@@ -45,9 +45,7 @@ composer require sergkeim/php-cloudflare-api
 
 * Thanks to [Cloudflare](https://developers.cloudflare.com/api/) for the high quality API and documentation.
 * Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
-* Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager?tab=readme-ov-file) that provides some manager functionality for Laravel.
-* Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) that provides some testing functionality for Laravel.
-* Thanks to [Guzzle](https://github.com/guzzle/guzzle) for the HTTP Client that makes it easy to send HTTP requests
+* Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager?tab=readme-ov-file) and [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench).
 
 ## License 📎
 
