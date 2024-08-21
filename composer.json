@@ -1,15 +1,23 @@
 {
     "name": "sergkeim/php-cloudflare-api",
-    "description": "A simple PHP Cloudflare API client.",
+    "description": "PHP Client for Cloudflare API.",
     "type": "library",
+    "keywords": ["cloudflare", "cloudflare-api", "php-cloudflare-api"],
     "license": "MIT",
     "authors": [
         {
             "name": "Sergkei Melingk",
             "email": "sergio11of@gmail.com",
-            "homepage": "https://github.com/SergkeiM"
+            "homepage": "https://github.com/SergkeiM",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "source": "https://github.com/SergkeiM/php-cloudflare-api",
+        "issues": "https://github.com/SergkeiM/php-cloudflare-api/issues",
+        "email": "sergio11of@gmail.com",
+        "docs": "https://php-cloudflare-api.vercel.app/"
+    },
     "require": {
         "php": "^8.0",
         "ext-json": "*",
