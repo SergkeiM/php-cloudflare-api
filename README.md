@@ -30,7 +30,7 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 
 * PHP >= 8.0
 * Minimal API around the [Guzzle HTTP client](https://github.com/guzzle/guzzle)
-* Laravel support
+* Laravel >= 9 support
 
 ## Quick install 🚀
 
