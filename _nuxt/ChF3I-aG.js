@@ -1,0 +1,1 @@
+import{l as n,c as t,e as o,$ as c}from"./DwzOwapp.js";const r={};function a(e,s){return t(),o("p",null,[c(e.$slots,"default",{},void 0,!0)])}const l=n(r,[["render",a],["__scopeId","data-v-66eab024"]]);export{l as default};
