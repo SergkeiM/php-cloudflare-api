@@ -2,7 +2,7 @@
 
 A simple PHP Client for [Cloudflare API](https://developers.cloudflare.com/api/).
 
-![Banner](https://repository-images.githubusercontent.com/839240046/7a761947-2534-41f5-806f-45f0729183b4)
+![Banner](https://repository-images.githubusercontent.com/839240046/15cbfac2-aaa9-4910-a718-23c2d7727812)
 
 <p align="center">
     <a href="https://github.com/sergkeim/php-cloudflare-api/actions?query=workflow%3ATests">
