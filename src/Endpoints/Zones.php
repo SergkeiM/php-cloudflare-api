@@ -22,12 +22,21 @@ class Zones extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/zones-get
      *
+     * @param string $accountId Account Identifier.
      * @param array $params Query Parameters.
      *
-     * @return \Cloudflare\Contracts\ResponseInterface List zones of account found.
+     * @return \Cloudflare\Contracts\ResponseInterface List Zones response
      */
-    public function list(array $params = []): ResponseInterface
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
+        $params = [
+            ...$params,
+            'account' => [
+                ...($params['account'] ?? []),
+                'id' => $accountId
+            ]
+        ];
+
         return $this->getHttpClient()->get('/zones', $params);
     }
 
@@ -54,20 +63,6 @@ class Zones extends AbstractEndpoint
     }
 
     /**
-     * Delete Zone
-     *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-delete
-     *
-     * @param string $zoneId Zone Identifier.
-     *
-     * @return \Cloudflare\Contracts\ResponseInterface Delete Zone response.
-     */
-    public function delete(string $zoneId): ResponseInterface
-    {
-        return $this->getHttpClient()->delete("/zones/{$zoneId}");
-    }
-
-    /**
      * Zone Details
      *
      * @link https://developers.cloudflare.com/api/operations/zones-0-get
@@ -79,6 +74,20 @@ class Zones extends AbstractEndpoint
     public function details(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}");
+    }
+
+    /**
+     * Delete Zone
+     *
+     * @link https://developers.cloudflare.com/api/operations/zones-0-delete
+     *
+     * @param string $zoneId Zone Identifier.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Delete Zone response.
+     */
+    public function delete(string $zoneId): ResponseInterface
+    {
+        return $this->getHttpClient()->delete("/zones/{$zoneId}");
     }
 
     /**

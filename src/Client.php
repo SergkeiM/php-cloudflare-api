@@ -15,6 +15,7 @@ use Cloudflare\HttpClient\HttpClient;
  * @method \Cloudflare\Endpoints\IP ips()
  * @method \Cloudflare\Endpoints\Workers workers()
  * @method \Cloudflare\Endpoints\Tunnel tunnel()
+ * @method \Cloudflare\Endpoints\D1 d1()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -73,6 +74,9 @@ class Client
                 break;
             case 'tunnel':
                 $api = new Endpoints\Tunnel($this);
+                break;
+            case 'd1':
+                $api = new Endpoints\D1($this);
                 break;
 
             default:
