@@ -2,8 +2,6 @@
 
 A simple PHP Client for [Cloudflare API](https://developers.cloudflare.com/api/).
 
-![Banner](/docs/public/preview.jpg)
-
 <p align="center">
     <a href="https://github.com/sergkeim/php-cloudflare-api/actions?query=workflow%3ATests">
         <img src="https://img.shields.io/github/actions/workflow/status/sergkeim/php-cloudflare-api/tests.yml?label=Tests&style=flat-square" alt="Build Status"/>
