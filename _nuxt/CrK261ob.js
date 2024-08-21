@@ -1,0 +1,1 @@
+import{l as t,c as n,e as c,$ as o}from"./DEVyt2Gp.js";const r={};function s(e,_){return n(),c("th",null,[o(e.$slots,"default",{},void 0,!0)])}const l=t(r,[["render",s],["__scopeId","data-v-6ebcb19e"]]);export{l as default};
