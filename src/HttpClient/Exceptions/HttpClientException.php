@@ -1,6 +1,6 @@
 <?php
 
-namespace Cloudflare\Exceptions;
+namespace Cloudflare\HttpClient\Exceptions;
 
 class HttpClientException extends \Exception
 {

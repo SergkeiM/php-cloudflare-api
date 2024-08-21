@@ -6,8 +6,15 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
-use Cloudflare\Exceptions\RequestException;
-use Cloudflare\Exceptions\ConnectionException;
+use Cloudflare\HttpClient\Exceptions\BadRequestException;
+use Cloudflare\HttpClient\Exceptions\AuthenticationException;
+use Cloudflare\HttpClient\Exceptions\PermissionDeniedException;
+use Cloudflare\HttpClient\Exceptions\NotFoundException;
+use Cloudflare\HttpClient\Exceptions\UnprocessableEntityException;
+use Cloudflare\HttpClient\Exceptions\RateLimitException;
+use Cloudflare\HttpClient\Exceptions\InternalServerException;
+use Cloudflare\HttpClient\Exceptions\RequestException;
+use Cloudflare\HttpClient\Exceptions\ConnectionException;
 
 /**
  * API HttpClient.
@@ -174,8 +181,15 @@ class HttpClient
      * @param  string  $url
      * @param  array  $options
      *
-     * @throws ConnectionException
-     * @throws RequestException
+     * @throws \Cloudflare\HttpClient\Exceptions\BadRequestException
+     * @throws \Cloudflare\HttpClient\Exceptions\AuthenticationException
+     * @throws \Cloudflare\HttpClient\Exceptions\PermissionDeniedException
+     * @throws \Cloudflare\HttpClient\Exceptions\NotFoundException
+     * @throws \Cloudflare\HttpClient\Exceptions\UnprocessableEntityException
+     * @throws \Cloudflare\HttpClient\Exceptions\RateLimitException
+     * @throws \Cloudflare\HttpClient\Exceptions\InternalServerException
+     * @throws \Cloudflare\HttpClient\Exceptions\RequestException
+     * @throws \Cloudflare\HttpClient\Exceptions\ConnectionException
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
@@ -187,16 +201,25 @@ class HttpClient
 
             if ($response->failed()) {
 
-                throw new RequestException($response);
+                $status = $response->status();
+
+                match (true) {
+                    $status === 400 => throw new BadRequestException($response),
+                    $status === 401 => throw new AuthenticationException($response),
+                    $status === 403 => throw new PermissionDeniedException($response),
+                    $status === 404 => throw new NotFoundException($response),
+                    $status === 422 => throw new UnprocessableEntityException($response),
+                    $status === 429 => throw new RateLimitException($response),
+                    $status >= 500 => throw new InternalServerException($response),
+                    default => throw new RequestException($response),
+                };
             }
 
             return $response;
 
         } catch (ConnectException $e) {
 
-            $exception = new ConnectionException($e->getMessage(), 0, $e);
-
-            throw $exception;
+            throw new ConnectionException($e->getMessage(), 0, $e);
         }
 
     }

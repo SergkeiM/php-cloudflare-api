@@ -5,7 +5,8 @@ $finder = (new PhpCsFixer\Finder())
     ->exclude([
         "local-test",
         ".github",
-        "vendor"
+        "vendor",
+        "node_modules"
     ]);
 
 return (new PhpCsFixer\Config())

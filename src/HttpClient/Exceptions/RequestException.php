@@ -1,6 +1,6 @@
 <?php
 
-namespace Cloudflare\Exceptions;
+namespace Cloudflare\HttpClient\Exceptions;
 
 use GuzzleHttp\Psr7\Message;
 use Cloudflare\Contracts\ResponseInterface;
