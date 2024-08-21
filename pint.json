@@ -1,8 +1,0 @@
-{
-    "preset": "psr12",
-    "exclude": [
-        "local-test",
-        ".github",
-        "vendor"
-    ]
-}
