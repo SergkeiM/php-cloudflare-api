@@ -7,7 +7,7 @@ description: Audit logs summarize the history of changes made within your Cloudf
 
 Audit logs summarize the history of changes made within your Cloudflare account. Audit logs include account level actions like login, as well as zone configuration changes.
 
-:button-link[Cloudflare API docs]{href="https://developers.cloudflare.com/api/operations/audit-logs-get-account-audit-logs" blank}
+:button-link[Cloudflare API docs]{icon="heroicons-outline:external-link" href="https://developers.cloudflare.com/api/operations/audit-logs-get-account-audit-logs" blank}
 
 ## Get
 

@@ -2,14 +2,14 @@
 title: Cloudflare D1
 description: Cloudflare D1
 navigation:
-    title: Cloudflare D1
+    title: D1
 ---
 
 # Cloudflare D1
 
 D1 is Cloudflare’s native serverless database. D1 allows you to build applications that handle large amounts of users at no extra cost. With D1, you can restore your database to any minute within the last 30 days.
 
-:button-link[Cloudflare API docs]{href="https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases" blank}
+:button-link[Cloudflare API docs]{icon="heroicons-outline:external-link" href="https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases" blank}
 
 ## List
 

@@ -17,12 +17,12 @@ export default defineAppConfig({
         },
         aside: {
           level: 1,
-          collapsed: true,
+          collapsed: false,
         },
         header: {
             logo: {
-                dark: '/logo-new.png',
-                light: '/logo-new.png',
+                dark: '/logo-light.png',
+                light: '/logo-dark.png',
             },
         },
         footer: {
