@@ -2,7 +2,7 @@
     "name": "sergkeim/php-cloudflare-api",
     "description": "PHP Client for Cloudflare API.",
     "type": "library",
-    "keywords": ["cloudflare", "cloudflare-api", "php-cloudflare-api"],
+    "keywords": ["cloudflare", "cloudflare-api", "api"],
     "license": "MIT",
     "authors": [
         {
