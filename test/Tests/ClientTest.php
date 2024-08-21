@@ -55,7 +55,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         $client->doNotExist();
     }
 
-    public function getApiClassesProvider()
+    public static function getApiClassesProvider()
     {
         return [
             ['accounts', Endpoints\Accounts::class],
