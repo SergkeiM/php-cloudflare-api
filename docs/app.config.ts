@@ -16,7 +16,8 @@ export default defineAppConfig({
             edit: true
         },
         aside: {
-            level: 1,
+          level: 1,
+          collapsed: true,
         },
         header: {
             logo: {
