@@ -3,7 +3,7 @@ name: PHP Tests
 on: [pull_request]
 
 jobs:
-  lint:
+  cs-fixer:
     name: PHP-CS-Fixer
     runs-on: ubuntu-latest
     steps:
@@ -11,24 +11,68 @@ jobs:
       - uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
         with:
           args: check
-  test:
-    name: Test on PHP ${{ matrix.php-versions }}
+  tests:
+    name: PHP ${{ matrix.php }}; Laravel ${{ matrix.laravel }}
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        php-versions: ['8.0', '8.1', '8.2']
+        php: ['8.0', '8.1', '8.2', '8.3']
+        laravel: ['9', '10', '11']
+        exclude:
+          - php: '8.0'
+            laravel: '10'
+          - php: '8.0'
+            laravel: '11'
+          - php: '8.1'
+            laravel: '11'
+          - php: '8.3'
+            laravel: '9'
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
           coverage: none
+        env:
+          update: true
 
-      - name: Install Composer Dependencies
-        uses: ramsey/composer-install@v3
+      - name: Setup Problem Matchers
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Run phpunit
-        run: vendor/bin/phpunit --verbose
+      - name: Select Laravel 9
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:9.*" "phpunit/phpunit:^9.6" --no-update --no-interaction
+        if: "matrix.laravel == '9'"
+
+      - name: Select Laravel 10
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:10.*" "phpunit/phpunit:^10.1" --no-update --no-interaction
+        if: "matrix.laravel == '10'"
+
+      - name: Select Laravel 11
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:11.*" "phpunit/phpunit:^10.5" --no-update --no-interaction
+        if: "matrix.laravel == '11'"
+      
+      - name: Install PHP Dependencies
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --no-interaction --no-progress
+      
+      - name: Execute PHPUnit
+        run: vendor/bin/phpunit

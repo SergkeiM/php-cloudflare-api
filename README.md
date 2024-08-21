@@ -1,14 +1,25 @@
 # PHP Client for Cloudflare API
 
-![Build Status](https://github.com/SergkeiM/php-cloudflare-api/actions/workflows/tests.yml/badge.svg)
-[![Latest Stable Version](https://poser.pugx.org/sergkeim/php-cloudflare-api/v/stable)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
-[![Total Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/downloads)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
-[![Monthly Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/d/monthly)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
-[![Daily Downloads](https://poser.pugx.org/sergkeim/php-cloudflare-api/d/daily)](https://packagist.org/packages/sergkeim/php-cloudflare-api)
+A simple PHP Client for [Cloudflare API](https://developers.cloudflare.com/api/).
+
+![Banner](/docs/public/preview.jpg)
+
+<p align="center">
+    <a href="https://github.com/sergkeim/php-cloudflare-api/actions?query=workflow%3ATests">
+        <img src="https://img.shields.io/github/actions/workflow/status/sergkeim/php-cloudflare-api/tests.yml?label=Tests&style=flat-square" alt="Build Status"/>
+    </a>
+    <a href="LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="Software License"/>
+    </a>
+    <a href="https://packagist.org/packages/sergkeim/php-cloudflare-api">
+        <img src="https://img.shields.io/packagist/dt/sergkeim/php-cloudflare-api?style=flat-square" alt="Packagist Downloads"/>
+    </a>
+    <a href="https://github.com/sergkeim/php-cloudflare-api/releases">
+        <img src="https://img.shields.io/github/release/sergkeim/php-cloudflare-api?style=flat-square" alt="Latest Version"/>
+    </a>
+</p>
 
 > **Note**: This package is under active development as I expand it to cover Cloudflare API. Consider the public API of this package a little unstable as I work towards a v1.0.
-
-A simple Object Oriented PHP Client for Cloudflare API.
 
 This package provides convenient access to the Cloudflare REST API using PHP.
 
@@ -34,6 +45,8 @@ composer require sergkeim/php-cloudflare-api
 
 * Thanks to [Cloudflare](https://developers.cloudflare.com/api/) for the high quality API and documentation.
 * Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
+* Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel Manager](https://github.com/GrahamCampbell/Laravel-Manager?tab=readme-ov-file) that provides some manager functionality for Laravel.
+* Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench) that provides some testing functionality for Laravel.
 * Thanks to [Guzzle](https://github.com/guzzle/guzzle) for the HTTP Client that makes it easy to send HTTP requests
 
 ## License 📎
