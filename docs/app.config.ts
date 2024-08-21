@@ -1,10 +1,10 @@
 export default defineAppConfig({
     docus: {
-        title: 'PHP Cloudflare API',
-        description: 'A simple Object Oriented wrapper for Cloudflare API, written with PHP.',
+        title: 'PHP Client for Cloudflare API.',
+        description: 'This package provides convenient access to the Cloudflare REST API using PHP.',
         layout: 'default',
         image: '/preview.png',
-        url: 'https://php-cloudflare-api.vercel.app',
+        url: 'https://php-cloudflare-api.nuxt.space/',
         socials: {
             github: 'SergkeiM/php-cloudflare-api'
         },

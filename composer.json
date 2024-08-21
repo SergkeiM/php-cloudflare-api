@@ -16,7 +16,7 @@
         "source": "https://github.com/SergkeiM/php-cloudflare-api",
         "issues": "https://github.com/SergkeiM/php-cloudflare-api/issues",
         "email": "sergio11of@gmail.com",
-        "docs": "https://php-cloudflare-api.vercel.app/"
+        "docs": "https://php-cloudflare-api.nuxt.space/"
     },
     "require": {
         "php": "^8.0",

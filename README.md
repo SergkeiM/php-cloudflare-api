@@ -13,7 +13,7 @@ A simple Object Oriented PHP Client for Cloudflare API.
 This package provides convenient access to the Cloudflare REST API using PHP.
 
 - [☁️ Cloudflare API v4](https://developers.cloudflare.com/api/)
-- [📄 Documentation](https://php-cloudflare-api.vercel.app/)
+- [📄 Documentation](https://php-cloudflare-api.nuxt.space/)
 
 ## Features ✨
 
