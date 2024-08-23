@@ -44,56 +44,21 @@ class CloudflareServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->registerCloudflareFactory();
-        $this->registerManager();
-        $this->registerBindings();
+        $this->registerCloudflare();
     }
 
     /**
-     * Register the github factory class.
+     * Register the Cloudflare Client class.
      *
      * @return void
      */
-    private function registerCloudflareFactory(): void
+    private function registerCloudflare(): void
     {
-        $this->app->singleton('cloudflare.factory', function (Container $app): CloudflareFactory {
-            return new CloudflareFactory();
+        $this->app->singleton('cloudflare', function (Container $app): Client {
+            return new Client(config('cloudflare.token'));
         });
 
-        $this->app->alias('cloudflare.factory', CloudflareFactory::class);
-    }
-
-    /**
-     * Register the manager class.
-     *
-     * @return void
-     */
-    private function registerManager(): void
-    {
-        $this->app->singleton('cloudflare', function (Container $app): CloudflareManager {
-            $config = $app['config'];
-            $factory = $app['cloudflare.factory'];
-
-            return new CloudflareManager($config, $factory);
-        });
-
-        $this->app->alias('cloudflare', CloudflareManager::class);
-    }
-
-    /**
-     * Register the bindings.
-     *
-     * @return void
-     */
-    private function registerBindings(): void
-    {
-        $this->app->bind('cloudflare.connection', function (Container $app): Client {
-            $manager = $app['cloudflare'];
-
-            return $manager->connection();
-        });
-
-        $this->app->alias('cloudflare.connection', Client::class);
+        $this->app->alias('cloudflare', Client::class);
     }
 
     /**
@@ -104,9 +69,7 @@ class CloudflareServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            'cloudflare.factory',
             'cloudflare',
-            'cloudflare.connection',
         ];
     }
 }

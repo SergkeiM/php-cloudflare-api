@@ -3,7 +3,7 @@
 namespace Cloudflare\Tests\Laravel\Facades;
 
 use Cloudflare\Facades\Cloudflare;
-use Cloudflare\CloudflareManager;
+use Cloudflare\Client;
 use GrahamCampbell\TestBenchCore\FacadeTrait;
 use Cloudflare\Tests\Laravel\AbstractTestCase;
 
@@ -38,6 +38,6 @@ class CloudflareTest extends AbstractTestCase
      */
     protected static function getFacadeRoot(): string
     {
-        return CloudflareManager::class;
+        return Client::class;
     }
 }
