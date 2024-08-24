@@ -58,5 +58,5 @@ interface ResponseInterface extends Stringable
      * @param  mixed  $default
      * @return mixed
      */
-    protected function get($target, $key, $default = null);
+    public function get($target, $key, $default = null);
 }
