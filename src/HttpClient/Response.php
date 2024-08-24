@@ -107,7 +107,7 @@ class Response implements ResponseInterface
      * @param  mixed  $default
      * @return mixed
      */
-    protected function get($target, $key, $default = null)
+    public function get($target, $key, $default = null)
     {
         $key = explode('.', $key);
 
