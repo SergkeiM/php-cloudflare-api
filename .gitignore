@@ -6,6 +6,7 @@ phpunit.xml
 composer.lock
 composer.phar
 vendor
+.vscode
 .env
 test.json
 test.txt

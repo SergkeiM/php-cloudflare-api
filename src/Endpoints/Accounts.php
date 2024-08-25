@@ -6,6 +6,7 @@ use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Accounts\Roles;
 use Cloudflare\Endpoints\Accounts\Members;
 use Cloudflare\Endpoints\Accounts\AuditLogs;
+use Cloudflare\Endpoints\Accounts\Rulesets;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -134,5 +135,15 @@ class Accounts extends AbstractEndpoint
     public function auditLogs(): AuditLogs
     {
         return new AuditLogs($this->getClient());
+    }
+
+    /**
+     * Account Rulesets
+     *
+     * @return \Cloudflare\Endpoints\Accounts\Rulesets
+     */
+    public function rulesets(): Rulesets
+    {
+        return new Rulesets($this->getClient());
     }
 }

@@ -59,29 +59,16 @@ class Client
      */
     public function api(string $name): AbstractEndpoint
     {
-        switch ($name) {
-            case 'accounts':
-                $api = new Endpoints\Accounts($this);
-                break;
-            case 'zones':
-                $api = new Endpoints\Zones($this);
-                break;
-            case 'ips':
-                $api = new Endpoints\IP($this);
-                break;
-            case 'workers':
-                $api = new Endpoints\Workers($this);
-                break;
-            case 'tunnel':
-                $api = new Endpoints\Tunnel($this);
-                break;
-            case 'd1':
-                $api = new Endpoints\D1($this);
-                break;
 
-            default:
-                throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
-        }
+        $api = match ($name) {
+            'accounts' => new Endpoints\Accounts($this),
+            'zones' => new Endpoints\Zones($this),
+            'ips' => new Endpoints\IP($this),
+            'workers' => new Endpoints\Workers($this),
+            'tunnel' => new Endpoints\Tunnel($this),
+            'd1' => new Endpoints\D1($this),
+            default => throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name))
+        };
 
         return $api;
     }

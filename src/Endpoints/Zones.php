@@ -10,6 +10,7 @@ use Cloudflare\Endpoints\Zones\DNSSEC;
 use Cloudflare\Endpoints\Zones\PageRules;
 use Cloudflare\Endpoints\Zones\Hold;
 use Cloudflare\Endpoints\Zones\Lockdown;
+use Cloudflare\Endpoints\Zones\Rulesets;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -219,5 +220,15 @@ class Zones extends AbstractEndpoint
     public function lockdowns(): Lockdown
     {
         return new Lockdown($this->getClient());
+    }
+
+    /**
+     * Zone Rulesets
+     *
+     * @return \Cloudflare\Endpoints\Zones\Rulesets
+     */
+    public function rulesets(): Rulesets
+    {
+        return new Rulesets($this->getClient());
     }
 }
