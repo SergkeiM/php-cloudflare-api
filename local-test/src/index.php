@@ -4,20 +4,32 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Cloudflare\Client;
+use Cloudflare\ExpressionBuilder;
+use Cloudflare\Configurations\Rules\BlockRule;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 $dotenv = Dotenv::createUnsafeMutable(__DIR__.'/../');
 $dotenv->load();
 
-$cachePurge = new CachePurge();
+$blockRule = new BlockRule(['sss']);
 
-$cachePurge->everything()->byFiles(['myurl'])->byFilesAdvanced(
-    'myurl', 'Desktop', 'GB'
-)->byFilesAdvanced(
-    'myurl2', 'Desktop', 'GB'
-);
+$blockRule->setExpression(function(ExpressionBuilder $builder){
+    return $builder->field('ip.src')->eq('192.168.1.2')->or()->group(function(ExpressionBuilder $bilder){
+        $bilder->not()->field('ssl')->or()->field('udp')->contains(32);
+    })->or()->addExpression('ip.src', 'eq', '127.0.01');
+});
 
-file_put_contents('./test.json', json_encode($cachePurge->toArray(), JSON_PRETTY_PRINT));
+var_dump($blockRule->toArray());
+
+// $cachePurge = new CachePurge();
+
+// $cachePurge->everything()->byFiles(['myurl'])->byFilesAdvanced(
+//     'myurl', 'Desktop', 'GB'
+// )->byFilesAdvanced(
+//     'myurl2', 'Desktop', 'GB'
+// );
+
+// file_put_contents('./test.json', json_encode($cachePurge->toArray(), JSON_PRETTY_PRINT));
 
 // $client = new Client(getenv('CLOUDFLARE_TOKEN'));
 

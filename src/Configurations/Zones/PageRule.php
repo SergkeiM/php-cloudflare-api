@@ -49,7 +49,7 @@ class PageRule implements Configuration
      */
     public function disable(): self
     {
-        $this->setStatus(true);
+        $this->setStatus(false);
 
         return $this;
     }
