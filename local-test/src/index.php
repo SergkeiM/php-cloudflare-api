@@ -11,16 +11,11 @@ use Cloudflare\Configurations\Zones\CachePurge;
 $dotenv = Dotenv::createUnsafeMutable(__DIR__.'/../');
 $dotenv->load();
 
-$blockRule = new BlockRule(['sss']);
+$expression = (new ExpressionBuilder())
+    ->addExpression('ip.src.country', 'eq', 'GB')
+    ->build();
 
-$blockRule->setExpression(function(ExpressionBuilder $builder){
-    return $builder->field('ip.src')->eq('192.168.1.2')->or()->group(function(ExpressionBuilder $bilder){
-        $bilder->not()->field('ssl')->or()->field('udp')->contains(32);
-    })->or()->addExpression('ip.src', 'eq', '127.0.01');
-});
-
-var_dump($blockRule->toArray());
-
+echo $expression;
 // $cachePurge = new CachePurge();
 
 // $cachePurge->everything()->byFiles(['myurl'])->byFilesAdvanced(
