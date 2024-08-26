@@ -25,7 +25,7 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 
 - [☁️ Cloudflare API v4](https://developers.cloudflare.com/api/)
 - [📄 Documentation](https://php-cloudflare-api.nuxt.space/)
-- [📓 Coverage](https://php-cloudflare-api.nuxt.spacee/coverage)
+- [📓 Coverage](https://php-cloudflare-api.nuxt.space/coverage)
 
 ## Features ✨
 
