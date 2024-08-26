@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Configurations\Rules;
 
-class SetCacheSettingsRule extends Rule
+class CacheSettingsRule extends Rule
 {
     /**
      * The action to perform when the rule matches. (set_cache_settings)

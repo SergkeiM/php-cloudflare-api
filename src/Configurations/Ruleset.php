@@ -7,34 +7,34 @@ use Cloudflare\Exceptions\BadMethodCallException;
 use Cloudflare\Configurations\Rules\Rule;
 
 /**
- * @method void managed() Set the kind to 'managed'
- * @method void custom() Set the kind to 'custom'
- * @method void root() Set the kind to 'root'
- * @method void zone() Set the kind to 'zone'
+ * @method \Cloudflare\Configurations\Ruleset managed() Set the kind to 'managed'
+ * @method \Cloudflare\Configurations\Ruleset custom() Set the kind to 'custom'
+ * @method \Cloudflare\Configurations\Ruleset root() Set the kind to 'root'
+ * @method \Cloudflare\Configurations\Ruleset zone() Set the kind to 'zone'
  *
- * @method void ddosL4() Set the phase to 'ddos_l4'
- * @method void ddosL7() Set the phase to 'ddos_l7'
- * @method void configSettings() Set the phase to 'http_config_settings'
- * @method void customErrors() Set the phase to 'http_custom_errors'
- * @method void logCustomFields() Set the phase to 'http_log_custom_fields'
- * @method void rateLimit() Set the phase to 'http_ratelimit'
- * @method void requestCacheSettings() Set the phase to 'http_request_cache_settings'
- * @method void requestDynamicRedirect() Set the phase to 'http_request_dynamic_redirect'
- * @method void requestFirewallCustom() Set the phase to 'http_request_firewall_custom'
- * @method void requestFirewallManaged() Set the phase to 'http_request_firewall_managed'
- * @method void requestLateTransform() Set the phase to 'http_request_late_transform'
- * @method void requestOrigin() Set the phase to 'http_request_origin'
- * @method void requestRedirect() Set the phase to 'http_request_redirect'
- * @method void requestSanitize() Set the phase to 'http_request_sanitize'
- * @method void requestSbfm() Set the phase to 'http_request_sbfm'
- * @method void requestSelectConfiguration() Set the phase to 'http_request_select_configuration'
- * @method void requestTransform() Set the phase to 'http_request_transform'
- * @method void responseCompression() Set the phase to 'http_response_compression'
- * @method void responseFirewallManaged() Set the phase to 'http_response_firewall_managed'
- * @method void responseHeadersTransform() Set the phase to 'http_response_headers_transform'
- * @method void magicTransit() Set the phase to 'magic_transit'
- * @method void magicTransitIdsManaged() Set the phase to 'magic_transit_ids_managed'
- * @method void magicTransitManaged() Set the phase to 'magic_transit_managed'
+ * @method \Cloudflare\Configurations\Ruleset ddosL4() Set the phase to 'ddos_l4'
+ * @method \Cloudflare\Configurations\Ruleset ddosL7() Set the phase to 'ddos_l7'
+ * @method \Cloudflare\Configurations\Ruleset configSettings() Set the phase to 'http_config_settings'
+ * @method \Cloudflare\Configurations\Ruleset customErrors() Set the phase to 'http_custom_errors'
+ * @method \Cloudflare\Configurations\Ruleset logCustomFields() Set the phase to 'http_log_custom_fields'
+ * @method \Cloudflare\Configurations\Ruleset rateLimit() Set the phase to 'http_ratelimit'
+ * @method \Cloudflare\Configurations\Ruleset requestCacheSettings() Set the phase to 'http_request_cache_settings'
+ * @method \Cloudflare\Configurations\Ruleset requestDynamicRedirect() Set the phase to 'http_request_dynamic_redirect'
+ * @method \Cloudflare\Configurations\Ruleset requestFirewallCustom() Set the phase to 'http_request_firewall_custom'
+ * @method \Cloudflare\Configurations\Ruleset requestFirewallManaged() Set the phase to 'http_request_firewall_managed'
+ * @method \Cloudflare\Configurations\Ruleset requestLateTransform() Set the phase to 'http_request_late_transform'
+ * @method \Cloudflare\Configurations\Ruleset requestOrigin() Set the phase to 'http_request_origin'
+ * @method \Cloudflare\Configurations\Ruleset requestRedirect() Set the phase to 'http_request_redirect'
+ * @method \Cloudflare\Configurations\Ruleset requestSanitize() Set the phase to 'http_request_sanitize'
+ * @method \Cloudflare\Configurations\Ruleset requestSbfm() Set the phase to 'http_request_sbfm'
+ * @method \Cloudflare\Configurations\Ruleset requestSelectConfiguration() Set the phase to 'http_request_select_configuration'
+ * @method \Cloudflare\Configurations\Ruleset requestTransform() Set the phase to 'http_request_transform'
+ * @method \Cloudflare\Configurations\Ruleset responseCompression() Set the phase to 'http_response_compression'
+ * @method \Cloudflare\Configurations\Ruleset responseFirewallManaged() Set the phase to 'http_response_firewall_managed'
+ * @method \Cloudflare\Configurations\Ruleset responseHeadersTransform() Set the phase to 'http_response_headers_transform'
+ * @method \Cloudflare\Configurations\Ruleset magicTransit() Set the phase to 'magic_transit'
+ * @method \Cloudflare\Configurations\Ruleset magicTransitIdsManaged() Set the phase to 'magic_transit_ids_managed'
+ * @method \Cloudflare\Configurations\Ruleset magicTransitManaged() Set the phase to 'magic_transit_managed'
  */
 
 class Ruleset implements Configuration
@@ -43,13 +43,13 @@ class Ruleset implements Configuration
      * The kind of the ruleset.
      * @var string
      */
-    private string $kind;
+    private string $kind = '';
 
     /**
      * The phase of the ruleset.
      * @var string
      */
-    private string $phase;
+    private string $phase = '';
 
     /**
      * An array of rules.
@@ -61,7 +61,7 @@ class Ruleset implements Configuration
      * An informative description of the ruleset.
      * @var string
      */
-    private string $description;
+    private null|string $description = null;
 
     private $kinds = [
         'managed' => 'managed',
@@ -160,11 +160,18 @@ class Ruleset implements Configuration
     public function __call($name, $arguments)
     {
         if (array_key_exists($name, $this->phases)) {
+
             $this->phase = $this->phases[$name];
+
         } elseif (array_key_exists($name, $this->kinds)) {
+
             $this->kind = $this->kinds[$name];
+
         } else {
+
             throw new BadMethodCallException(sprintf('Undefined method called: "%s"', $name));
         }
+
+        return $this;
     }
 }

@@ -9,17 +9,11 @@ use Stringable;
 
 /**
  * @method \Cloudflare\ExpressionBuilder eq() eq(mixed $value)
- * @method \Cloudflare\ExpressionBuilder equal() equal(mixed $value) Alias to eq()
  * @method \Cloudflare\ExpressionBuilder ne() ne(mixed $value)
- * @method \Cloudflare\ExpressionBuilder notEqual() notEqual(mixed $value) Alias to ne()
  * @method \Cloudflare\ExpressionBuilder lt() lt(mixed $value)
- * @method \Cloudflare\ExpressionBuilder lessThan() lessThan(mixed $value) Alias to lessThan()
  * @method \Cloudflare\ExpressionBuilder le() le(mixed $value)
- * @method \Cloudflare\ExpressionBuilder lessThanOrEqual() lessThanOrEqual(mixed $value) Alias to le()
  * @method \Cloudflare\ExpressionBuilder gt() gt(mixed $value)
- * @method \Cloudflare\ExpressionBuilder greaterThan() greaterThan(mixed $value) Alias to gt()
  * @method \Cloudflare\ExpressionBuilder ge() ge(mixed $value)
- * @method \Cloudflare\ExpressionBuilder greaterThanOrEqual() greaterThanOrEqual(mixed $value) Alias to ge()
  * @method \Cloudflare\ExpressionBuilder contains() contains(mixed $value)
  * @method \Cloudflare\ExpressionBuilder matches() matches(mixed $value)
  * @method \Cloudflare\ExpressionBuilder in() in(mixed $value)
@@ -178,15 +172,15 @@ class ExpressionBuilder implements Stringable
     ];
 
     private array $comparisonOperators = [
-        'eq' => "equal",
-        'ne' => "notEqual",
-        'lt' => "lessThan",
-        'le' => "lessThanOrEqual",
-        'gt' => "greaterThan",
-        'ge' => "greaterThanOrEqual",
-        'contains' => "contains",
-        'matches' => "matches",
-        'in' => "in",
+        'eq',
+        'ne',
+        'lt',
+        'le',
+        'gt',
+        'ge',
+        'contains',
+        'matches',
+        'in',
     ];
 
     private array $logicalOperators = [
@@ -358,7 +352,7 @@ class ExpressionBuilder implements Stringable
 
     public function __call($name, $arguments)
     {
-        if (array_key_exists($name, $this->comparisonOperators) || in_array($name, $this->comparisonOperators)) {
+        if (in_array($name, $this->comparisonOperators)) {
 
             return $this->addExpression(operator: $name, value: $arguments[0]);
 

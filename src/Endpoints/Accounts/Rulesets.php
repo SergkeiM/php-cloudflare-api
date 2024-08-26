@@ -4,7 +4,7 @@ namespace Cloudflare\Endpoints\Accounts;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Configurations\Rulesets\Ruleset;
+use Cloudflare\Configurations\Ruleset;
 
 class Rulesets extends AbstractEndpoint
 {
@@ -28,7 +28,7 @@ class Rulesets extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/operations/createAccountRuleset
      *
      * @param string $accountId Account Identifier.
-     * @param array|\Cloudflare\Configurations\Rulesets\Ruleset $values A ruleset object.
+     * @param array|\Cloudflare\Configurations\Ruleset $values A ruleset object.
      *
      * @return \Cloudflare\Contracts\ResponseInterface A ruleset response.
      */

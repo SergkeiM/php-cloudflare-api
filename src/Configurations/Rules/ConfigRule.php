@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Configurations\Rules;
 
-class SetConfigRule extends Rule
+class ConfigRule extends Rule
 {
     /**
      * The action to perform when the rule matches. (set_config)
@@ -12,6 +12,8 @@ class SetConfigRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return [
+            'ssl' => 'flexible'
+        ];
     }
 }

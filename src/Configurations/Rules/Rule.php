@@ -25,13 +25,7 @@ abstract class Rule implements Configuration
      * The expression defining which traffic will match the rule.
      * @var string|ExpressionBuilder
      */
-    protected null|string|ExpressionBuilder $expression = null;
-
-    /**
-     * Whether to generate a log when the rule matches.
-     * @var bool
-     */
-    protected bool $logging = false;
+    protected string|bool|ExpressionBuilder $expression = true;
 
     /**
      * Whether the rule should be executed.
@@ -58,15 +52,6 @@ abstract class Rule implements Configuration
     protected null|string $description = null;
 
     /**
-     * Get Rule ID
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    /**
      * Enable Rule.
      * @return \Cloudflare\Configurations\Rules\Rule
      */
@@ -84,28 +69,6 @@ abstract class Rule implements Configuration
     public function disable(): self
     {
         $this->enabled = false;
-
-        return $this;
-    }
-
-    /**
-     * Enable logging.
-     * @return \Cloudflare\Configurations\Rules\Rule
-     */
-    public function enableLogging(): self
-    {
-        $this->logging = true;
-
-        return $this;
-    }
-
-    /**
-     * Disable logging.
-     * @return \Cloudflare\Configurations\Rules\Rule
-     */
-    public function disableLogging(): self
-    {
-        $this->logging = false;
 
         return $this;
     }
@@ -161,7 +124,9 @@ abstract class Rule implements Configuration
             $this->expression = (string)$expression($bilder);
 
         } else {
+
             $this->expression = (string)$expression;
+
         }
 
         return $this;
@@ -171,18 +136,10 @@ abstract class Rule implements Configuration
 
     public function toArray(): array
     {
-
-        if(empty($expression = $this->expression)) {
-            throw new ConfigurationException('Expression is required.');
-        }
-
         $options = [
             'action' => $this->action,
             'enabled' => $this->enabled,
-            'logging' => [
-                'enabled' => $this->logging
-            ],
-            'expression' => $expression
+            'expression' => $this->expression
         ];
 
         if(!is_null($actionParameters = $this->getActionParameters())) {

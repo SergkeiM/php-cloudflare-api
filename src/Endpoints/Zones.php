@@ -11,6 +11,7 @@ use Cloudflare\Endpoints\Zones\PageRules;
 use Cloudflare\Endpoints\Zones\Hold;
 use Cloudflare\Endpoints\Zones\Lockdown;
 use Cloudflare\Endpoints\Zones\Rulesets;
+use Cloudflare\Endpoints\Zones\Rules;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -230,5 +231,14 @@ class Zones extends AbstractEndpoint
     public function rulesets(): Rulesets
     {
         return new Rulesets($this->getClient());
+    }
+
+    /**
+     * Zone Rules
+     * @return \Cloudflare\Endpoints\Zones\Rules
+     */
+    public function rules(): Rules
+    {
+        return new Rules($this->getClient());
     }
 }
