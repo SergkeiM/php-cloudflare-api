@@ -16,6 +16,7 @@ use Cloudflare\HttpClient\HttpClient;
  * @method \Cloudflare\Endpoints\Workers workers()
  * @method \Cloudflare\Endpoints\Tunnel tunnel()
  * @method \Cloudflare\Endpoints\D1 d1()
+ * @method \Cloudflare\Endpoints\LoadBalancers loadBalancers()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -67,6 +68,7 @@ class Client
             'workers' => new Endpoints\Workers($this),
             'tunnel' => new Endpoints\Tunnel($this),
             'd1' => new Endpoints\D1($this),
+            'loadBalancers' => new Endpoints\LoadBalancers($this),
             default => throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name))
         };
 
