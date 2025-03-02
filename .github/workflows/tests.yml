@@ -16,16 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.0', '8.1', '8.2', '8.3']
-        laravel: ['9', '10', '11']
+        php: ['8.0', '8.1', '8.2', '8.3', '8.4']
+        laravel: ['9', '10', '11', '12']
         exclude:
           - php: '8.0'
             laravel: '10'
           - php: '8.0'
             laravel: '11'
+          - php: '8.0'
+            laravel: '12'
           - php: '8.1'
             laravel: '11'
+          - php: '8.1'
+            laravel: '12'
           - php: '8.3'
+            laravel: '9'
+          - php: '8.4'
             laravel: '9'
     steps:
       - name: Checkout Code
@@ -67,6 +73,14 @@ jobs:
           command: composer require "laravel/framework:11.*" "phpunit/phpunit:^10.5" --no-update --no-interaction
         if: "matrix.laravel == '11'"
       
+      - name: Select Laravel 12
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:12.*" "phpunit/phpunit:^11.5" --no-update --no-interaction
+        if: "matrix.laravel == '12'"
+
       - name: Install PHP Dependencies
         uses: nick-invision/retry@v3
         with:
