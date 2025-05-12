@@ -1,6 +1,8 @@
 * text=auto
 
-/doc export-ignore
+/docs export-ignore
+/local-test export-ignore
 /test export-ignore
 /.* export-ignore
+/pint.json export-ignore
 /phpunit.xml.dist export-ignore
