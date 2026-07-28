@@ -19,36 +19,6 @@ use Cloudflare\Endpoints\Workers\Routes;
 class Workers extends AbstractEndpoint
 {
     /**
-     * Retrieves Workers KV request metrics for the given account.
-     *
-     * @link https://developers.cloudflare.com/api/operations/workers-kv-request-analytics-query-request-analytics
-     *
-     * @param string $accountId Account identifier.
-     * @param array $params Array containing the necessary params.
-     *
-     * @return ResponseInterface Query Request Analytics response
-     */
-    public function analytics(string $accountId, array $params = []): ResponseInterface
-    {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics", $params);
-    }
-
-    /**
-     * Retrieves Workers KV stored data metrics for the given account.
-     *
-     * @link https://developers.cloudflare.com/api/operations/workers-kv-stored-data-analytics-query-stored-data-analytics
-     *
-     * @param string $accountId Account identifier.
-     * @param array $params Array containing the necessary params.
-     *
-     * @return ResponseInterface Query Stored Data Analytics response
-     */
-    public function storedDataAnalytics(string $accountId, array $params = []): ResponseInterface
-    {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/storage/analytics/stored", $params);
-    }
-
-    /**
      * Worker Account Settings
      *
      * @return Settings
