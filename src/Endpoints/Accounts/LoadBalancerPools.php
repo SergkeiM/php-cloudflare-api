@@ -116,4 +116,50 @@ class LoadBalancerPools extends AbstractEndpoint
     {
         return $this->getHttpClient()->post("/accounts/{$accountId}/load_balancers/pools/{$poolId}/preview", $values);
     }
+
+    /**
+     * Apply changes to an existing pool, overwriting only the supplied properties.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pool
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $poolId Pool Identifier.
+     * @param array $values Values to patch on the pool.
+     *
+     * @return ResponseInterface Patch a pool response
+     */
+    public function patch(string $accountId, string $poolId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/accounts/{$accountId}/load_balancers/pools/{$poolId}", $values);
+    }
+
+    /**
+     * Apply changes to a number of existing pools, overwriting the supplied properties. Returns the list of affected pools.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pools
+     *
+     * @param string $accountId Account Identifier.
+     * @param array $values List of pool patches to apply, each identified by `id`.
+     *
+     * @return ResponseInterface Patch pools response
+     */
+    public function patchMultiplePools(string $accountId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/accounts/{$accountId}/load_balancers/pools", $values);
+    }
+
+    /**
+     * List the load balancers that reference a given pool.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-list-pool-references
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $poolId Pool Identifier.
+     *
+     * @return ResponseInterface List pool references response
+     */
+    public function references(string $accountId, string $poolId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/pools/{$poolId}/references");
+    }
 }

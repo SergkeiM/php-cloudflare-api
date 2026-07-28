@@ -171,4 +171,72 @@ class LoadBalancerPoolsTest extends TestCase
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/load_balancers/pools/pool_id/preview', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldPatchPool()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    'id' => 'pool_id',
+                    'enabled' => false,
+                ],
+            ])),
+        ]);
+
+        $response = $client->accounts()->loadBalancerPools()->patch('account_id', 'pool_id', [
+            'enabled' => false,
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertFalse($response->json('result.enabled'));
+
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/load_balancers/pools/pool_id', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldPatchMultiplePools()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['id' => 'pool_id', 'enabled' => false],
+                ],
+            ])),
+        ]);
+
+        $response = $client->accounts()->loadBalancerPools()->patchMultiplePools('account_id', [
+            ['id' => 'pool_id', 'enabled' => false],
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertFalse($response->json('result.0.enabled'));
+
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/load_balancers/pools', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldListPoolReferences()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['reference_type' => 'referral', 'resource_id' => 'load_balancer_id'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->accounts()->loadBalancerPools()->references('account_id', 'pool_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('load_balancer_id', $response->json('result.0.resource_id'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/load_balancers/pools/pool_id/references', $this->lastRequest()->getUri()->getPath());
+    }
 }

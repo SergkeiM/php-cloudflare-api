@@ -20,4 +20,19 @@ class LoadBalancerRegions extends AbstractEndpoint
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/regions");
     }
+
+    /**
+     * Get a single Load Balancer region mapping for an account.
+     *
+     * @link https://developers.cloudflare.com/api/operations/load-balancer-regions-get-region
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $regionId Region Identifier.
+     *
+     * @return ResponseInterface Get region response
+     */
+    public function details(string $accountId, string $regionId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/regions/{$regionId}");
+    }
 }

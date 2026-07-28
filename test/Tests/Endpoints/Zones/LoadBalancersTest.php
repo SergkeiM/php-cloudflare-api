@@ -124,4 +124,28 @@ class LoadBalancersTest extends TestCase
         $this->assertSame('DELETE', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/zones/zone_id/load_balancers/load_balancer_id', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldPatchLoadBalancer()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    'id' => 'load_balancer_id',
+                    'enabled' => false,
+                ],
+            ])),
+        ]);
+
+        $response = $client->zones()->loadBalancers()->patch('zone_id', 'load_balancer_id', [
+            'enabled' => false,
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertFalse($response->json('result.enabled'));
+
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/load_balancers/load_balancer_id', $this->lastRequest()->getUri()->getPath());
+    }
 }

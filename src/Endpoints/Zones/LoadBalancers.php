@@ -85,4 +85,20 @@ class LoadBalancers extends AbstractEndpoint
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/load_balancers/{$loadBalancerId}");
     }
+
+    /**
+     * Apply changes to an existing load balancer, overwriting only the supplied properties.
+     *
+     * @link https://developers.cloudflare.com/api/operations/load-balancers-patch-load-balancer
+     *
+     * @param string $zoneId Zone Identifier.
+     * @param string $loadBalancerId Load Balancer Identifier.
+     * @param array $values Values to patch on the load balancer.
+     *
+     * @return ResponseInterface Patch a load balancer response
+     */
+    public function patch(string $zoneId, string $loadBalancerId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/zones/{$zoneId}/load_balancers/{$loadBalancerId}", $values);
+    }
 }

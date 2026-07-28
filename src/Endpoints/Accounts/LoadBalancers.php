@@ -85,4 +85,64 @@ class LoadBalancers extends AbstractEndpoint
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/load_balancers/{$loadBalancerId}");
     }
+
+    /**
+     * Apply changes to an existing load balancer, overwriting only the supplied properties.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancers-patch-account-load-balancer
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $loadBalancerId Load Balancer Identifier.
+     * @param array $values Values to patch on the load balancer.
+     *
+     * @return ResponseInterface Patch a load balancer response
+     */
+    public function patch(string $accountId, string $loadBalancerId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/accounts/{$accountId}/load_balancers/{$loadBalancerId}", $values);
+    }
+
+    /**
+     * Fetches the current load balancer usage for an account.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancers-list-load-balancer-usage
+     *
+     * @param string $accountId Account Identifier.
+     *
+     * @return ResponseInterface List load balancer usage response
+     */
+    public function usage(string $accountId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/usage");
+    }
+
+    /**
+     * Search load balancing resources (Load Balancers, Pools, Monitors) by name.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-search-search-resources
+     *
+     * @param string $accountId Account Identifier.
+     * @param array $params Query Parameters, e.g. `query`, `references`, `page`, `per_page`.
+     *
+     * @return ResponseInterface Search resources response
+     */
+    public function search(string $accountId, array $params = []): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/search", $params);
+    }
+
+    /**
+     * Get the result of a previously requested monitor or pool preview.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-preview-result
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $previewId Preview Identifier.
+     *
+     * @return ResponseInterface Preview result response
+     */
+    public function previewResult(string $accountId, string $previewId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/preview/{$previewId}");
+    }
 }

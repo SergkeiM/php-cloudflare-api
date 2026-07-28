@@ -145,4 +145,49 @@ class LoadBalancerMonitorsTest extends TestCase
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/load_balancers/monitors/monitor_id/preview', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldPatchMonitor()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    'id' => 'monitor_id',
+                    'method' => 'POST',
+                ],
+            ])),
+        ]);
+
+        $response = $client->accounts()->loadBalancerMonitors()->patch('account_id', 'monitor_id', [
+            'method' => 'POST',
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $response->json('result.method'));
+
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/load_balancers/monitors/monitor_id', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldListMonitorReferences()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['reference_type' => 'referral', 'resource_id' => 'load_balancer_id'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->accounts()->loadBalancerMonitors()->references('account_id', 'monitor_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('load_balancer_id', $response->json('result.0.resource_id'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/load_balancers/monitors/monitor_id/references', $this->lastRequest()->getUri()->getPath());
+    }
 }
