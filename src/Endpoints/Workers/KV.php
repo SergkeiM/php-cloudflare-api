@@ -50,7 +50,7 @@ class KV extends AbstractEndpoint
      *
      * @return ResponseInterface Get a Namespace response
      */
-    public function details(string $accountId, string $namespaceId): ResponseInterface
+    public function get(string $accountId, string $namespaceId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}");
     }

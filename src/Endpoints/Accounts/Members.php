@@ -65,7 +65,7 @@ class Members extends AbstractEndpoint
      *
      * @return ResponseInterface Member Details response
      */
-    public function details(string $accountId, string $memberId): ResponseInterface
+    public function get(string $accountId, string $memberId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/members/{$memberId}");
     }

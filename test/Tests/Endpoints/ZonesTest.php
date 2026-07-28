@@ -4,7 +4,6 @@ namespace Cloudflare\Tests\Endpoints;
 
 use Cloudflare\Configurations\Zones\CachePurge;
 use Cloudflare\Exceptions\MissingArgumentException;
-use Cloudflare\Endpoints\Zones\Cache;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\Test;
@@ -55,7 +54,7 @@ class ZonesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->details('zone_id');
+        $response = $client->zones()->get('zone_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());
@@ -77,13 +76,13 @@ class ZonesTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdateWithoutVanityNameServers()
+    public function shouldEditWithoutVanityNameServers()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->update('zone_id', 'full');
+        $response = $client->zones()->edit('zone_id', 'full');
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());
@@ -91,13 +90,13 @@ class ZonesTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdateWithVanityNameServers()
+    public function shouldEditWithVanityNameServers()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->update('zone_id', 'full', ['ns1.example.com']);
+        $response = $client->zones()->edit('zone_id', 'full', ['ns1.example.com']);
 
         $this->assertTrue($response->successful());
         $this->assertSame([
@@ -158,13 +157,5 @@ class ZonesTest extends TestCase
         $this->expectException(MissingArgumentException::class);
 
         $client->zones()->purge('zone_id', []);
-    }
-
-    #[Test]
-    public function shouldGetCache()
-    {
-        $client = $this->mockClient([]);
-
-        $this->assertInstanceOf(Cache::class, $client->zones()->cache());
     }
 }

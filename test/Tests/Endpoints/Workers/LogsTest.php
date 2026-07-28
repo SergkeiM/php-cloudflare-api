@@ -18,7 +18,7 @@ class LogsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'tail_id']]])),
         ]);
 
-        $response = $client->workers()->logs()->get('account_id', 'script_name');
+        $response = $client->workers()->logs()->list('account_id', 'script_name');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

@@ -52,7 +52,7 @@ class Versions extends AbstractEndpoint
      *
      * @return ResponseInterface Get Version Detail response
      */
-    public function details(string $accountId, string $scriptName, string $versionId): ResponseInterface
+    public function get(string $accountId, string $scriptName, string $versionId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/versions/{$versionId}");
     }

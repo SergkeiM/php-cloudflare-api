@@ -19,7 +19,7 @@ class ScriptsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'script_name']]])),
         ]);
 
-        $response = $client->workers()->scripts()->get('account_id');
+        $response = $client->workers()->scripts()->list('account_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

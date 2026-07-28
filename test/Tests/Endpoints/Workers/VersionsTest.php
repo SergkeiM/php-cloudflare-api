@@ -43,7 +43,7 @@ class VersionsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'version_id']])),
         ]);
 
-        $response = $client->workers()->versions()->details('account_id', 'script_name', 'version_id');
+        $response = $client->workers()->versions()->get('account_id', 'script_name', 'version_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

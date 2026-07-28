@@ -57,7 +57,7 @@ class D1 extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Database details response
      */
-    public function details(string $accountId, string $databaseId): ResponseInterface
+    public function get(string $accountId, string $databaseId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/d1/database/{$databaseId}");
     }

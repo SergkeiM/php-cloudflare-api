@@ -19,7 +19,7 @@ class DeploymentsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'deployment_id']]])),
         ]);
 
-        $response = $client->workers()->deployments()->get('account_id', 'script_name');
+        $response = $client->workers()->deployments()->list('account_id', 'script_name');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

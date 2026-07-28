@@ -32,7 +32,7 @@ class Roles extends AbstractEndpoint
      *
      * @return ResponseInterface Role Details response
      */
-    public function details(string $accountId, string $roleId): ResponseInterface
+    public function get(string $accountId, string $roleId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/roles/{$roleId}");
     }

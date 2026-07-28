@@ -47,7 +47,7 @@ class KVTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'namespace_id']])),
         ]);
 
-        $response = $client->workers()->kv()->details('account_id', 'namespace_id');
+        $response = $client->workers()->kv()->get('account_id', 'namespace_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

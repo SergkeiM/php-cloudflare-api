@@ -3,23 +3,7 @@
 namespace Cloudflare\Endpoints;
 
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Endpoints\Zones\Cache;
-use Cloudflare\Endpoints\Zones\CloudConnector;
-use Cloudflare\Endpoints\Zones\DNS;
-use Cloudflare\Endpoints\Zones\DNSSEC;
-use Cloudflare\Endpoints\Zones\PageRules;
-use Cloudflare\Endpoints\Zones\Hold;
-use Cloudflare\Endpoints\Zones\Lockdown;
-use Cloudflare\Endpoints\Zones\Rulesets;
-use Cloudflare\Endpoints\Zones\Rules;
-use Cloudflare\Endpoints\Zones\Ssl;
-use Cloudflare\Endpoints\Zones\OriginCACertificates;
-use Cloudflare\Endpoints\Zones\Filters;
-use Cloudflare\Endpoints\Zones\FirewallRules;
-use Cloudflare\Endpoints\Zones\AccessRules;
-use Cloudflare\Endpoints\Zones\RateLimits;
-use Cloudflare\Endpoints\Zones\BotManagement;
-use Cloudflare\Endpoints\Zones\LoadBalancers;
+use Cloudflare\Endpoints\Zones\Holds;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -79,7 +63,7 @@ class Zones extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Zone Details response.
      */
-    public function details(string $zoneId): ResponseInterface
+    public function get(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}");
     }
@@ -109,7 +93,7 @@ class Zones extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function update(string $zoneId, string $type, array $vanityNameServers = []): ResponseInterface
+    public function edit(string $zoneId, string $type, array $vanityNameServers = []): ResponseInterface
     {
 
         $options = [
@@ -160,171 +144,12 @@ class Zones extends AbstractEndpoint
     }
 
     /**
-     * Zone cache settings
-     *
-     * @return \Cloudflare\Endpoints\Zones\Cache
-     */
-    public function cache(): Cache
-    {
-        return new Cache($this->getClient());
-    }
-
-    /**
-     * Zone Cloud Connector rules
-     *
-     * @return \Cloudflare\Endpoints\Zones\CloudConnector
-     */
-    public function cloudConnector(): CloudConnector
-    {
-        return new CloudConnector($this->getClient());
-    }
-
-    /**
-     * Zone DNS
-     *
-     * @return \Cloudflare\Endpoints\Zones\DNS
-     */
-    public function dns(): DNS
-    {
-        return new DNS($this->getClient());
-    }
-
-    /**
-     * Zone DNSSEC
-     *
-     * @return \Cloudflare\Endpoints\Zones\DNSSEC
-     */
-    public function dnssec(): DNSSEC
-    {
-        return new DNSSEC($this->getClient());
-    }
-
-    /**
-     * Zone PageRules
-     *
-     * @return \Cloudflare\Endpoints\Zones\PageRules
-     */
-    public function pageRules(): PageRules
-    {
-        return new PageRules($this->getClient());
-    }
-
-    /**
      * Zone Holds
      *
-     * @return \Cloudflare\Endpoints\Zones\Hold
+     * @return \Cloudflare\Endpoints\Zones\Holds
      */
-    public function holds(): Hold
+    public function holds(): Holds
     {
-        return new Hold($this->getClient());
-    }
-
-    /**
-     * Zone Lockdown
-     *
-     * @return \Cloudflare\Endpoints\Zones\Lockdown
-     */
-    public function lockdowns(): Lockdown
-    {
-        return new Lockdown($this->getClient());
-    }
-
-    /**
-     * Zone Rulesets
-     *
-     * @return \Cloudflare\Endpoints\Zones\Rulesets
-     */
-    public function rulesets(): Rulesets
-    {
-        return new Rulesets($this->getClient());
-    }
-
-    /**
-     * Zone Rules
-     * @return \Cloudflare\Endpoints\Zones\Rules
-     */
-    public function rules(): Rules
-    {
-        return new Rules($this->getClient());
-    }
-
-    /**
-     * Zone SSL/TLS settings
-     *
-     * @return \Cloudflare\Endpoints\Zones\Ssl
-     */
-    public function ssl(): Ssl
-    {
-        return new Ssl($this->getClient());
-    }
-
-    /**
-     * Zone Origin CA Certificates
-     *
-     * @return \Cloudflare\Endpoints\Zones\OriginCACertificates
-     */
-    public function originCACertificates(): OriginCACertificates
-    {
-        return new OriginCACertificates($this->getClient());
-    }
-
-    /**
-     * Zone Filters
-     *
-     * @return \Cloudflare\Endpoints\Zones\Filters
-     */
-    public function filters(): Filters
-    {
-        return new Filters($this->getClient());
-    }
-
-    /**
-     * Zone Firewall Rules
-     *
-     * @return \Cloudflare\Endpoints\Zones\FirewallRules
-     */
-    public function firewallRules(): FirewallRules
-    {
-        return new FirewallRules($this->getClient());
-    }
-
-    /**
-     * Zone IP Access Rules
-     *
-     * @return \Cloudflare\Endpoints\Zones\AccessRules
-     */
-    public function accessRules(): AccessRules
-    {
-        return new AccessRules($this->getClient());
-    }
-
-    /**
-     * Zone Rate Limits
-     *
-     * @return \Cloudflare\Endpoints\Zones\RateLimits
-     */
-    public function rateLimits(): RateLimits
-    {
-        return new RateLimits($this->getClient());
-    }
-
-    /**
-     * Zone Bot Management
-     *
-     * @return \Cloudflare\Endpoints\Zones\BotManagement
-     */
-    public function botManagement(): BotManagement
-    {
-        return new BotManagement($this->getClient());
-    }
-
-    /**
-     * Zone Load Balancers
-     *
-     * @return \Cloudflare\Endpoints\Zones\LoadBalancers
-     */
-    public function loadBalancers(): LoadBalancers
-    {
-        return new LoadBalancers($this->getClient());
+        return new Holds($this->getClient());
     }
 }

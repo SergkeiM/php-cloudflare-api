@@ -66,7 +66,7 @@ class AccountsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
         ]);
 
-        $response = $client->accounts()->details('account_id');
+        $response = $client->accounts()->get('account_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

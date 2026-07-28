@@ -18,7 +18,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'route_id']]])),
         ]);
 
-        $response = $client->workers()->routes()->get('zone_id');
+        $response = $client->workers()->routes()->list('zone_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());
@@ -49,7 +49,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'route_id']])),
         ]);
 
-        $response = $client->workers()->routes()->details('zone_id', 'route_id');
+        $response = $client->workers()->routes()->get('zone_id', 'route_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

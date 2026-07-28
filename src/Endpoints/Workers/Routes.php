@@ -16,7 +16,7 @@ class Routes extends AbstractEndpoint
      *
      * @return ResponseInterface List available Workers Routes response.
      */
-    public function get(string $zoneId, array $params = []): ResponseInterface
+    public function list(string $zoneId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes", $params);
     }
@@ -48,7 +48,7 @@ class Routes extends AbstractEndpoint
      *
      * @return ResponseInterface Get Route response
      */
-    public function details(string $zoneId, string $routeId): ResponseInterface
+    public function get(string $zoneId, string $routeId): ResponseInterface
     {
         return $this->getHttpClient()->get("/zones/{$zoneId}/workers/routes/{$routeId}");
     }

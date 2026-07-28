@@ -63,7 +63,7 @@ class MembersTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'member_id']])),
         ]);
 
-        $response = $client->accounts()->members()->details('account_id', 'member_id');
+        $response = $client->accounts()->members()->get('account_id', 'member_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

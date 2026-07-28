@@ -17,7 +17,7 @@ class Scripts extends AbstractEndpoint
      *
      * @return ResponseInterface List Workers response
      */
-    public function get(string $accountId): ResponseInterface
+    public function list(string $accountId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts");
     }
