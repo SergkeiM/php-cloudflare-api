@@ -40,6 +40,6 @@ class SkipRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

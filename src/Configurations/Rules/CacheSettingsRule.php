@@ -12,6 +12,6 @@ class CacheSettingsRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

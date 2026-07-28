@@ -6,7 +6,10 @@ RUN apt-get update \
         git \
         unzip \
         libzip-dev \
+        $PHPIZE_DEPS \
     && docker-php-ext-install zip \
+    && pecl install pcov \
+    && docker-php-ext-enable pcov \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

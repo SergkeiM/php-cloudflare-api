@@ -55,7 +55,7 @@ class PageRules extends AbstractEndpoint
             $values = $values->toArray();
         }
 
-        return $this->$this->getHttpClient()->post("/zones/{$zoneId}/pagerules", $values);
+        return $this->getHttpClient()->post("/zones/{$zoneId}/pagerules", $values);
     }
 
     /**

@@ -30,9 +30,15 @@ class CloudflareServiceProvider extends ServiceProvider
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => $this->app->configPath('cloudflare.php')]);
-        } elseif ($this->app instanceof LumenApplication) {
+        }
+        // @codeCoverageIgnoreStart
+        // Lumen is discontinued and not an installed dependency here (only
+        // referenced for interface compatibility); this branch cannot be
+        // exercised without adding a dependency on an abandoned framework.
+        elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('cloudflare');
         }
+        // @codeCoverageIgnoreEnd
 
         $this->mergeConfigFrom($source, 'cloudflare');
     }

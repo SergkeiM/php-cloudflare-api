@@ -3,6 +3,8 @@
 phpunit.xml
 .phpunit.cache
 .phpunit.result.cache
+clover.xml
+coverage-report
 composer.lock
 composer.phar
 vendor

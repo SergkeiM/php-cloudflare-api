@@ -35,7 +35,7 @@ class Routes extends AbstractEndpoint
     {
         $this->requiredParams(['pattern'], $values);
 
-        return $this->$this->getHttpClient()->post("/zones/{$zoneId}/workers/routes", $values);
+        return $this->getHttpClient()->post("/zones/{$zoneId}/workers/routes", $values);
     }
 
     /**
