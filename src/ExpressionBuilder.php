@@ -225,7 +225,7 @@ class ExpressionBuilder implements Stringable
      * @param mixed $value
      * @return \Cloudflare\ExpressionBuilder
      */
-    public function addExpression(string $field = null, string $operator = null, mixed $value = null): self
+    public function addExpression(?string $field = null, ?string $operator = null, mixed $value = null): self
     {
         if ($operator && $value) {
 
@@ -254,7 +254,7 @@ class ExpressionBuilder implements Stringable
      *
      * @return \Cloudflare\ExpressionBuilder
      */
-    public function addFunction(string $functionName, string $field, string $operator = null, mixed $value = null): self
+    public function addFunction(string $functionName, string $field, ?string $operator = null, mixed $value = null): self
     {
         if (! $this->isFieldName($field)) {
 

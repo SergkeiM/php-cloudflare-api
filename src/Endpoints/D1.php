@@ -33,7 +33,7 @@ class D1 extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Returns the created D1 database's metadata
      */
-    public function create(string $accountId, string $name, string $location = null): ResponseInterface
+    public function create(string $accountId, string $name, ?string $location = null): ResponseInterface
     {
 
         $body = [
@@ -94,7 +94,7 @@ class D1 extends AbstractEndpoint
     public function export(
         string $accountId,
         string $databaseId,
-        string $currentBookmark = null,
+        ?string $currentBookmark = null,
         bool $noData = false,
         bool $noSchema = false,
         array $tables = []
@@ -134,9 +134,9 @@ class D1 extends AbstractEndpoint
         string $accountId,
         string $databaseId,
         string $action = 'init',
-        string $etag = null,
-        string $filename = null,
-        string $currentBookmark = null
+        ?string $etag = null,
+        ?string $filename = null,
+        ?string $currentBookmark = null
     ): ResponseInterface {
 
         $body = [

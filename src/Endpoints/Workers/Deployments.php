@@ -20,7 +20,7 @@ class Deployments extends AbstractEndpoint
       */
     public function get(string $accountId, string $scriptMame): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments");
     }
 
     /**
@@ -58,6 +58,6 @@ class Deployments extends AbstractEndpoint
             ];
         }
 
-        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments", $values, $options);
+        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments", $values, $options);
     }
 }

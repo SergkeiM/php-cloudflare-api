@@ -49,7 +49,7 @@ class Domains extends AbstractEndpoint
      *
      * @return ResponseInterface Detach from Domain response
      */
-    public function detach(string $accountId, string $domainId = []): ResponseInterface
+    public function detach(string $accountId, string $domainId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/accounts/{$accountId}/workers/domains/{$domainId}");
     }
@@ -64,7 +64,7 @@ class Domains extends AbstractEndpoint
      *
      * @return ResponseInterface Get a Domain response
      */
-    public function domain(string $accountId, string $domainId = []): ResponseInterface
+    public function domain(string $accountId, string $domainId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains/{$domainId}");
     }

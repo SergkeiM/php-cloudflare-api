@@ -47,7 +47,7 @@ class Hold extends AbstractEndpoint
      * @param string $holdAfter If provided, the hold will be temporarily disabled, then automatically re-enabled by the system at the time specified in this RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
      * @return \Cloudflare\Contracts\ResponseInterface Successful Response
      */
-    public function delete(string $zoneId, string $holdAfter = null): ResponseInterface
+    public function delete(string $zoneId, ?string $holdAfter = null): ResponseInterface
     {
         $values = [];
 

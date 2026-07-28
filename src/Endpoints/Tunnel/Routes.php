@@ -33,7 +33,7 @@ class Routes extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Get tunnel route by IP response
      */
-    public function getByIP(string $accountId, string $ip, string $virtualNetworkId = null): ResponseInterface
+    public function getByIP(string $accountId, string $ip, ?string $virtualNetworkId = null): ResponseInterface
     {
 
         $params = [];
@@ -57,7 +57,7 @@ class Routes extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Create a tunnel route response
      */
-    public function create(string $accountId, string $network, string $virtualNetworkId = null, string $comment = null): ResponseInterface
+    public function create(string $accountId, string $network, ?string $virtualNetworkId = null, ?string $comment = null): ResponseInterface
     {
 
         $values = [

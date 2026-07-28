@@ -26,14 +26,15 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 - [☁️ Cloudflare API v4](https://developers.cloudflare.com/api/)
 - [📄 Documentation](https://php-cloudflare-api.nuxt.space/)
 - [📓 Coverage](https://php-cloudflare-api.nuxt.space/coverage)
+- [📝 Changelog](https://github.com/SergkeiM/php-cloudflare-api/releases)
 
 ## Features ✨
 
-* PHP >= 8.0
+* PHP >= 8.2
 * Minimal API around the [Guzzle HTTP client](https://github.com/guzzle/guzzle)
 * Light and fast thanks to lazy loading of API classes
 * Extensively documented
-* Laravel >= 9 support
+* Laravel >= 12 support
 
 ## Quick install 🚀
 
@@ -44,6 +45,50 @@ This command will get you up and running quickly.
 ```bash
 composer require sergkeim/php-cloudflare-api
 ```
+
+## Running Tests 🧪
+
+If you don't have PHP/Composer installed locally, a Docker setup is provided so you can install dependencies and run the test suite without installing anything on your machine.
+
+A `./dock` helper script wraps the common `docker compose` commands (it starts the container automatically if it isn't already running):
+
+```bash
+./dock build           # Build the image (only needed once, or after Dockerfile changes)
+./dock install          # composer install
+./dock test              # Run the full PHPUnit suite
+./dock test --filter=SslTest  # Pass any args straight through to phpunit
+./dock cs                 # Check code style (php-cs-fixer, dry run)
+./dock fix                # Fix code style (php-cs-fixer)
+./dock sh                # Open a shell in the container
+./dock down               # Stop and remove the container
+./dock matrix              # Run the full PHP x Laravel support matrix locally (mirrors CI)
+./dock help               # List all commands
+```
+
+### Support matrix
+
+This package requires **PHP >= 8.2** and supports **Laravel 12 and 13** (via `illuminate/contracts` and `illuminate/support`). `./dock matrix` builds and tests every supported PHP/Laravel combination locally, in isolated containers, mirroring `.github/workflows/tests.yml`:
+
+| PHP | Laravel 12 | Laravel 13 |
+| --- | :---: | :---: |
+| 8.2 | ✅ | — (Laravel 13 requires PHP >= 8.3) |
+| 8.3 | ✅ | ✅ |
+| 8.4 | ✅ | ✅ |
+| 8.5 | ✅ | ✅ |
+
+Each matrix cell runs `composer update` and the full test suite inside its own container/vendor volume, so runs never interfere with each other or with your host `composer.json`/`composer.lock`.
+
+Or use `docker compose` directly if you prefer:
+
+```bash
+docker compose build
+docker compose up -d
+docker compose exec php composer install
+docker compose exec php composer test
+docker compose down
+```
+
+The `php` service mounts the repository into the container, so changes you make on your host are picked up immediately without rebuilding.
 
 ## Thanks 🙏
 

@@ -3,10 +3,10 @@ name: studio-nuxt-build
 run-name: studio nuxt build
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches:
-      - 'master'
+  # Deploy docs once a GitHub Release is published, so the site always
+  # reflects a released version rather than every commit to master.
+  release:
+    types: [published]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -54,7 +54,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          version: ${{ matrix.node }}
+          node-version: ${{ matrix.node }}
           cache: ${{ steps.pkgman.outputs.cache }}
 
       - name: Install dependencies
@@ -70,7 +70,7 @@ jobs:
         run: npx nuxi build --preset github_pages
         env:
           NUXT_PUBLIC_STUDIO_API_URL: https://api.nuxt.studio
-          
+          NUXT_PUBLIC_APP_VERSION: ${{ github.event.release.tag_name }}
 
       # Deployment job
       - name: Deploy 🚀

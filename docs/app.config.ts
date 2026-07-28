@@ -1,3 +1,5 @@
+const version = process.env.NUXT_PUBLIC_APP_VERSION
+
 export default defineAppConfig({
     docus: {
         title: 'PHP Client for Cloudflare API.',
@@ -27,6 +29,11 @@ export default defineAppConfig({
         },
         footer: {
             textLinks: [
+                ...(version ? [{
+                    target: '_blank',
+                    text: version,
+                    href: `https://github.com/SergkeiM/php-cloudflare-api/releases/tag/${version}`
+                }] : []),
                 {
                     target: '_blank',
                     text: 'Cloudflare Fundamentals',

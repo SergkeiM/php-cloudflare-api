@@ -90,9 +90,9 @@ class CachePurge implements Configuration
      */
     public function byFilesAdvanced(
         string $url,
-        string $device = null,
-        string $country = null,
-        string $language = null
+        ?string $device = null,
+        ?string $country = null,
+        ?string $language = null
     ): self {
 
         $index = false;

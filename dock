@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+#
+# Convenience wrapper around docker compose for local development.
+#
+# Usage: ./dock <command> [args...]
+#
+#   ./dock build           Build (or rebuild) the default php image
+#   ./dock up              Start the default php container in the background
+#   ./dock down            Stop and remove all containers
+#   ./dock install         Run `composer install`
+#   ./dock update          Run `composer update`
+#   ./dock test [args...]  Run the PHPUnit suite, e.g. ./dock test --filter=SslTest
+#   ./dock cs              Check code style (php-cs-fixer, dry run)
+#   ./dock fix             Fix code style (php-cs-fixer)
+#   ./dock sh              Open a shell in the container
+#   ./dock exec <cmd...>   Run an arbitrary command in the container
+#   ./dock matrix          Run the full PHP x Laravel support matrix (mirrors CI)
+
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+SERVICE="php"
+
+# The support matrix this project targets, mirroring .github/workflows/tests.yml.
+# Format: "<compose-service>:<laravel-major>". Combos not listed here are not supported
+# (e.g. php82:13 is excluded because Laravel 13 requires PHP >= 8.3).
+MATRIX_COMBOS="
+php82:12
+php83:12
+php83:13
+php84:12
+php84:13
+php85:12
+php85:13
+"
+
+is_running() {
+    local service="$1"
+    [ -n "$(docker compose ps -q "$service" 2>/dev/null)" ] \
+        && [ "$(docker inspect -f '{{.State.Running}}' "$(docker compose ps -q "$service")" 2>/dev/null)" = "true" ]
+}
+
+ensure_up() {
+    local service="$1"
+    if ! is_running "$service"; then
+        echo "Starting ${service} container..."
+        docker compose up -d "$service"
+    fi
+}
+
+run_matrix_cell() {
+    local service="$1"
+    local laravel="$2"
+
+    echo "=== ${service} / Laravel ${laravel} ==="
+    docker compose build -q "$service"
+    ensure_up "$service"
+
+    # Run in an isolated copy inside the container so the matrix run never
+    # touches this repo's actual composer.json/composer.lock on the host.
+    docker compose exec -T "$service" bash -c '
+        set -e
+        rm -rf /tmp/matrix-build
+        mkdir -p /tmp/matrix-build
+        cp -r /app/. /tmp/matrix-build/
+        rm -rf /tmp/matrix-build/vendor /tmp/matrix-build/.git
+        cd /tmp/matrix-build
+        composer require "laravel/framework:^'"$laravel"'" --no-update --no-interaction -q
+        composer update --no-interaction -q
+        vendor/bin/phpunit
+    '
+}
+
+cmd="${1:-help}"
+shift || true
+
+case "$cmd" in
+    build)
+        docker compose build "$SERVICE"
+        ;;
+    up)
+        docker compose up -d "$SERVICE"
+        ;;
+    down)
+        docker compose down
+        ;;
+    restart)
+        docker compose down
+        docker compose up -d "$SERVICE"
+        ;;
+    install)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" composer install "$@"
+        ;;
+    update)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" composer update "$@"
+        ;;
+    test)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" vendor/bin/phpunit "$@"
+        ;;
+    cs)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" vendor/bin/php-cs-fixer fix --dry-run --diff "$@"
+        ;;
+    fix)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" vendor/bin/php-cs-fixer fix "$@"
+        ;;
+    sh|shell)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" bash
+        ;;
+    exec)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" "$@"
+        ;;
+    matrix)
+        failures=0
+        for combo in $MATRIX_COMBOS; do
+            service="${combo%%:*}"
+            laravel="${combo##*:}"
+            if ! run_matrix_cell "$service" "$laravel"; then
+                failures=$((failures + 1))
+            fi
+            echo
+        done
+        if [ "$failures" -gt 0 ]; then
+            echo "Matrix failed: ${failures} cell(s) failed." >&2
+            exit 1
+        fi
+        echo "All matrix cells passed."
+        ;;
+    help|--help|-h)
+        sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'
+        ;;
+    *)
+        echo "Unknown command: ${cmd}" >&2
+        echo "Run './dock help' for usage." >&2
+        exit 1
+        ;;
+esac

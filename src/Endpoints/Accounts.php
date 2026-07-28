@@ -7,6 +7,19 @@ use Cloudflare\Endpoints\Accounts\Roles;
 use Cloudflare\Endpoints\Accounts\Members;
 use Cloudflare\Endpoints\Accounts\AuditLogs;
 use Cloudflare\Endpoints\Accounts\Rulesets;
+use Cloudflare\Endpoints\Accounts\LoadBalancers;
+use Cloudflare\Endpoints\Accounts\LoadBalancerMonitors;
+use Cloudflare\Endpoints\Accounts\LoadBalancerPools;
+use Cloudflare\Endpoints\Accounts\LoadBalancerRegions;
+use Cloudflare\Endpoints\Accounts\R2Buckets;
+use Cloudflare\Endpoints\Accounts\R2Cors;
+use Cloudflare\Endpoints\Accounts\R2Lifecycle;
+use Cloudflare\Endpoints\Accounts\R2Lock;
+use Cloudflare\Endpoints\Accounts\R2CustomDomains;
+use Cloudflare\Endpoints\Accounts\R2ManagedDomain;
+use Cloudflare\Endpoints\Accounts\R2Sippy;
+use Cloudflare\Endpoints\Accounts\R2EventNotifications;
+use Cloudflare\Endpoints\Accounts\R2Metrics;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -38,7 +51,7 @@ class Accounts extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function create(string $name, string $type, string $unit = null): ResponseInterface
+    public function create(string $name, string $type, ?string $unit = null): ResponseInterface
     {
         $values = [
             'name' => $name,
@@ -145,5 +158,135 @@ class Accounts extends AbstractEndpoint
     public function rulesets(): Rulesets
     {
         return new Rulesets($this->getClient());
+    }
+
+    /**
+     * Account Load Balancers
+     *
+     * @return \Cloudflare\Endpoints\Accounts\LoadBalancers
+     */
+    public function loadBalancers(): LoadBalancers
+    {
+        return new LoadBalancers($this->getClient());
+    }
+
+    /**
+     * Account Load Balancer Monitors
+     *
+     * @return \Cloudflare\Endpoints\Accounts\LoadBalancerMonitors
+     */
+    public function loadBalancerMonitors(): LoadBalancerMonitors
+    {
+        return new LoadBalancerMonitors($this->getClient());
+    }
+
+    /**
+     * Account Load Balancer Pools
+     *
+     * @return \Cloudflare\Endpoints\Accounts\LoadBalancerPools
+     */
+    public function loadBalancerPools(): LoadBalancerPools
+    {
+        return new LoadBalancerPools($this->getClient());
+    }
+
+    /**
+     * Account Load Balancer Regions
+     *
+     * @return \Cloudflare\Endpoints\Accounts\LoadBalancerRegions
+     */
+    public function loadBalancerRegions(): LoadBalancerRegions
+    {
+        return new LoadBalancerRegions($this->getClient());
+    }
+
+    /**
+     * Account R2 Buckets
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Buckets
+     */
+    public function r2Buckets(): R2Buckets
+    {
+        return new R2Buckets($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket CORS
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Cors
+     */
+    public function r2Cors(): R2Cors
+    {
+        return new R2Cors($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Lifecycle
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Lifecycle
+     */
+    public function r2Lifecycle(): R2Lifecycle
+    {
+        return new R2Lifecycle($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Object Lock
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Lock
+     */
+    public function r2Lock(): R2Lock
+    {
+        return new R2Lock($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Custom Domains
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2CustomDomains
+     */
+    public function r2CustomDomains(): R2CustomDomains
+    {
+        return new R2CustomDomains($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Managed Domain
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2ManagedDomain
+     */
+    public function r2ManagedDomain(): R2ManagedDomain
+    {
+        return new R2ManagedDomain($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Sippy
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Sippy
+     */
+    public function r2Sippy(): R2Sippy
+    {
+        return new R2Sippy($this->getClient());
+    }
+
+    /**
+     * Account R2 Bucket Event Notifications
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2EventNotifications
+     */
+    public function r2EventNotifications(): R2EventNotifications
+    {
+        return new R2EventNotifications($this->getClient());
+    }
+
+    /**
+     * Account R2 Metrics
+     *
+     * @return \Cloudflare\Endpoints\Accounts\R2Metrics
+     */
+    public function r2Metrics(): R2Metrics
+    {
+        return new R2Metrics($this->getClient());
     }
 }
