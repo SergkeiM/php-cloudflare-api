@@ -12,6 +12,6 @@ class ScoreRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

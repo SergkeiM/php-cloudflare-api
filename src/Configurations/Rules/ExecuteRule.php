@@ -12,6 +12,6 @@ class ExecuteRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

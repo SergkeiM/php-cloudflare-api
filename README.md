@@ -71,7 +71,7 @@ This package requires **PHP >= 8.2** and supports **Laravel 12 and 13** (via `il
 
 | PHP | Laravel 12 | Laravel 13 |
 | --- | :---: | :---: |
-| 8.2 | ✅ | — (Laravel 13 requires PHP >= 8.3) |
+| 8.2 | ✅ | ❌ |
 | 8.3 | ✅ | ✅ |
 | 8.4 | ✅ | ✅ |
 | 8.5 | ✅ | ✅ |

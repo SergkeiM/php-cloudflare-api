@@ -12,6 +12,6 @@ class RewriteRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

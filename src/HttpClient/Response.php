@@ -114,6 +114,9 @@ class Response implements ResponseInterface
         foreach ($key as $i => $segment) {
             unset($key[$i]);
 
+            // @codeCoverageIgnoreStart
+            // $key is always exploded into string segments above, so $segment
+            // can never actually be null or a float; kept as defensive guards.
             if (is_null($segment)) {
                 return $target;
             }
@@ -121,6 +124,7 @@ class Response implements ResponseInterface
             if (is_float($segment)) {
                 $segment = (string) $segment;
             }
+            // @codeCoverageIgnoreEnd
 
             if (is_array($target) && array_key_exists($segment, $target)) {
                 $target = $target[$segment];

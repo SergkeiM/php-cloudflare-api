@@ -12,6 +12,6 @@ class LogCustomFieldRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

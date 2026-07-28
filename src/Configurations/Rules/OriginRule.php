@@ -12,6 +12,6 @@ class OriginRule extends Rule
 
     protected function getActionParameters(): ?array
     {
-
+        return null;
     }
 }

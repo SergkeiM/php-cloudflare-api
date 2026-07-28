@@ -12,6 +12,27 @@ class DurableObjectsTest extends TestCase
     use InteractsWithMockClient;
 
     #[Test]
+    public function shouldList()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['id' => 'namespace_id'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->workers()->durableObjects()->list('account_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('namespace_id', $response->json('result.0.id'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/workers/durable_objects/namespaces', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
     public function shouldListObjects()
     {
         $client = $this->mockClient([
