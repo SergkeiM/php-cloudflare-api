@@ -75,7 +75,7 @@ class HttpClientTest extends TestCase
 
         $this->expectException($expectedException);
 
-        $client->zones()->details('zone_id');
+        $client->zones()->get('zone_id');
     }
 
     #[Test]
@@ -93,6 +93,6 @@ class HttpClientTest extends TestCase
 
         $this->expectException(ConnectionException::class);
 
-        $client->zones()->details('zone_id');
+        $client->zones()->get('zone_id');
     }
 }

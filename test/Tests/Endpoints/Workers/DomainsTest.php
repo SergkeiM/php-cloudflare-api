@@ -18,7 +18,7 @@ class DomainsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'domain_id']]])),
         ]);
 
-        $response = $client->workers()->domains()->get('account_id');
+        $response = $client->workers()->domains()->list('account_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());
@@ -65,7 +65,7 @@ class DomainsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'domain_id']])),
         ]);
 
-        $response = $client->workers()->domains()->domain('account_id', 'domain_id');
+        $response = $client->workers()->domains()->get('account_id', 'domain_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

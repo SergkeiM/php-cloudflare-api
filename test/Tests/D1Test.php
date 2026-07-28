@@ -63,7 +63,7 @@ class D1Test extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['uuid' => 'database_id']])),
         ]);
 
-        $response = $client->d1()->details('account_id', 'database_id');
+        $response = $client->d1()->get('account_id', 'database_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

@@ -18,7 +18,7 @@ class Deployments extends AbstractEndpoint
       *
       * @return \Cloudflare\Contracts\ResponseInterface List Deployments response
       */
-    public function get(string $accountId, string $scriptMame): ResponseInterface
+    public function list(string $accountId, string $scriptMame): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments");
     }

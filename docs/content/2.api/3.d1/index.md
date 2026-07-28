@@ -33,7 +33,7 @@ $response = $client->d1()->create('ACCOUNT_ID', 'name', 'location');
 Returns the specified D1 database.
 
 ```php [php]
-$response = $client->d1()->details('ACCOUNT_ID', 'DATABASE_ID');
+$response = $client->d1()->get('ACCOUNT_ID', 'DATABASE_ID');
 ```
 
 ## Delete

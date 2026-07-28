@@ -91,7 +91,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'route_id']])),
         ]);
 
-        $response = $client->tunnel()->routes()->details('account_id', 'route_id');
+        $response = $client->tunnel()->routes()->get('account_id', 'route_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());
@@ -105,7 +105,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'route_id']])),
         ]);
 
-        $response = $client->tunnel()->routes()->update('account_id', 'route_id', ['comment' => 'updated']);
+        $response = $client->tunnel()->routes()->edit('account_id', 'route_id', ['comment' => 'updated']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

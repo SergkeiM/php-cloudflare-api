@@ -32,7 +32,7 @@ class RolesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'role_id']])),
         ]);
 
-        $response = $client->accounts()->roles()->details('account_id', 'role_id');
+        $response = $client->accounts()->roles()->get('account_id', 'role_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());

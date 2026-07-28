@@ -66,7 +66,7 @@ class VirtualNetworksTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'vnet_id']])),
         ]);
 
-        $response = $client->tunnel()->virtualNetworks()->details('account_id', 'vnet_id');
+        $response = $client->tunnel()->virtualNetworks()->get('account_id', 'vnet_id');
 
         $this->assertTrue($response->successful());
         $this->assertSame('GET', $this->lastRequest()->getMethod());
@@ -80,7 +80,7 @@ class VirtualNetworksTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'vnet_id']])),
         ]);
 
-        $response = $client->tunnel()->virtualNetworks()->update('account_id', 'vnet_id', ['comment' => 'updated']);
+        $response = $client->tunnel()->virtualNetworks()->edit('account_id', 'vnet_id', ['comment' => 'updated']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

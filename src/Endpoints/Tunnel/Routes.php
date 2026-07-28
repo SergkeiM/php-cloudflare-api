@@ -86,7 +86,7 @@ class Routes extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Get a tunnel route response
      */
-    public function details(string $accountId, string $routeId): ResponseInterface
+    public function get(string $accountId, string $routeId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/routes/{$routeId}");
     }
@@ -100,7 +100,7 @@ class Routes extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Update a tunnel route response
      */
-    public function update(string $accountId, string $routeId, array $values = []): ResponseInterface
+    public function edit(string $accountId, string $routeId, array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/teamnet/routes/{$routeId}", $values);
     }

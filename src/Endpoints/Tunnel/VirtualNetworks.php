@@ -60,7 +60,7 @@ class VirtualNetworks extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface A virtual network response.
      */
-    public function details(string $accountId, string $virtualNetworkId): ResponseInterface
+    public function get(string $accountId, string $virtualNetworkId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/teamnet/virtual_networks/{$virtualNetworkId}");
     }
@@ -76,7 +76,7 @@ class VirtualNetworks extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Update a virtual network response
      */
-    public function update(string $accountId, string $virtualNetworkId, array $values = []): ResponseInterface
+    public function edit(string $accountId, string $virtualNetworkId, array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/teamnet/virtual_networks/{$virtualNetworkId}", $values);
     }

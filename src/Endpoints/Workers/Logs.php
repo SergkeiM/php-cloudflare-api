@@ -17,7 +17,7 @@ class Logs extends AbstractEndpoint
      *
      * @return ResponseInterface List Tails response
      */
-    public function get(string $accountId, string $scriptName): ResponseInterface
+    public function list(string $accountId, string $scriptName): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/tails");
     }

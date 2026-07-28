@@ -17,7 +17,7 @@ class Domains extends AbstractEndpoint
      *
      * @return ResponseInterface List Domains response
      */
-    public function get(string $accountId, array $params = []): ResponseInterface
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains", $params);
     }
@@ -64,7 +64,7 @@ class Domains extends AbstractEndpoint
      *
      * @return ResponseInterface Get a Domain response
      */
-    public function domain(string $accountId, string $domainId): ResponseInterface
+    public function get(string $accountId, string $domainId): ResponseInterface
     {
         return $this->getHttpClient()->get("/accounts/{$accountId}/workers/domains/{$domainId}");
     }
