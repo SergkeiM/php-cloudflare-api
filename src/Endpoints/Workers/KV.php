@@ -204,6 +204,6 @@ class KV extends AbstractEndpoint
      */
     public function deleteMultipleKeys(string $accountId, string $namespaceId, array $keys): ResponseInterface
     {
-        return $this->getHttpClient()->delete("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk/delete", $keys);
+        return $this->getHttpClient()->post("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk/delete", $keys);
     }
 }
