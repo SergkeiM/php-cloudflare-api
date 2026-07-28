@@ -51,7 +51,7 @@ class Hold extends AbstractEndpoint
     {
         $values = [];
 
-        if(!is_null($holdAfter)) {
+        if (!is_null($holdAfter)) {
             $values = [
                 'hold_after' => $holdAfter
             ];

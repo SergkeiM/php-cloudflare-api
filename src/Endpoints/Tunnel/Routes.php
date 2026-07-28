@@ -38,7 +38,7 @@ class Routes extends AbstractEndpoint
 
         $params = [];
 
-        if(!is_null($virtualNetworkId)) {
+        if (!is_null($virtualNetworkId)) {
             $params['virtual_network_id'] = $virtualNetworkId;
         }
 
@@ -64,11 +64,11 @@ class Routes extends AbstractEndpoint
             'network' => $network,
         ];
 
-        if(!is_null($virtualNetworkId)) {
+        if (!is_null($virtualNetworkId)) {
             $values['virtual_network_id'] = $virtualNetworkId;
         }
 
-        if(!is_null($comment)) {
+        if (!is_null($comment)) {
             $values['comment'] = $comment;
         }
 

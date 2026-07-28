@@ -99,15 +99,15 @@ class CachePurge implements Configuration
 
         $headers = [];
 
-        if(!is_null($device)) {
+        if (!is_null($device)) {
             $headers['CF-Device-Type'] = $device;
         }
 
-        if(!is_null($country)) {
+        if (!is_null($country)) {
             $headers['CF-IPCountry'] = mb_strtoupper($country);
         }
 
-        if(!is_null($language)) {
+        if (!is_null($language)) {
             $headers['accept-language'] = $language;
         }
 
@@ -116,7 +116,7 @@ class CachePurge implements Configuration
             'headers' => $headers
         ];
 
-        if(isset($this->options['files']) && !empty($this->options['files'])) {
+        if (isset($this->options['files']) && !empty($this->options['files'])) {
 
             $urls = array_column($this->options['files'], 'url');
             $index = array_search($url, $urls);

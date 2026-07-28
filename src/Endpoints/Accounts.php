@@ -58,7 +58,7 @@ class Accounts extends AbstractEndpoint
             'type' => $type
         ];
 
-        if(!is_null($unit)) {
+        if (!is_null($unit)) {
             $values['unit'] = [
                 'id' => $unit
             ];
@@ -99,7 +99,7 @@ class Accounts extends AbstractEndpoint
             'name' => $name,
         ];
 
-        if(!empty($settings)) {
+        if (!empty($settings)) {
             $values['settings'] = $settings;
         }
 

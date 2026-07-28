@@ -116,7 +116,7 @@ class Zones extends AbstractEndpoint
             'type' => $type
         ];
 
-        if(!empty($vanityNameServers)) {
+        if (!empty($vanityNameServers)) {
 
             $options['vanity_name_servers'] = $vanityNameServers;
         }
@@ -150,7 +150,7 @@ class Zones extends AbstractEndpoint
      */
     public function purge(string $zoneId, array|CachePurge $purgeBy): ResponseInterface
     {
-        if(is_array($purgeBy)) {
+        if (is_array($purgeBy)) {
             $this->requiredAnyParams(['files', 'tags', 'hosts', 'prefixes'], $purgeBy);
         } else {
             $purgeBy = $purgeBy->toArray();

@@ -40,7 +40,7 @@ class D1 extends AbstractEndpoint
             'name' => $name
         ];
 
-        if(!is_null($location)) {
+        if (!is_null($location)) {
             $body['primary_location_hint'] = $location;
         }
 
@@ -106,7 +106,7 @@ class D1 extends AbstractEndpoint
             'tables' => $tables,
         ];
 
-        if(!is_null($currentBookmark)) {
+        if (!is_null($currentBookmark)) {
             $body['current_bookmark'] = $currentBookmark;
         }
 
@@ -143,27 +143,27 @@ class D1 extends AbstractEndpoint
             'action' => $action,
         ];
 
-        if($action === 'ingest' && is_null($filename)) {
+        if ($action === 'ingest' && is_null($filename)) {
             throw new MissingArgumentException(['filename']);
         }
 
-        if($action === 'poll' && is_null($currentBookmark)) {
+        if ($action === 'poll' && is_null($currentBookmark)) {
             throw new MissingArgumentException(['current_bookmark']);
         }
 
-        if(in_array($action, ['init', 'ingest']) && is_null($etag)) {
+        if (in_array($action, ['init', 'ingest']) && is_null($etag)) {
             throw new MissingArgumentException(['etag']);
         }
 
-        if(in_array($action, ['init', 'ingest'])) {
+        if (in_array($action, ['init', 'ingest'])) {
             $body['etag'] = $etag;
         }
 
-        if($action === 'ingest') {
+        if ($action === 'ingest') {
             $body['filename'] = $filename;
         }
 
-        if($action === 'poll') {
+        if ($action === 'poll') {
             $body['current_bookmark'] = $currentBookmark;
         }
 

@@ -42,7 +42,7 @@ class VirtualNetworks extends AbstractEndpoint
             'is_default' => $isDefault,
         ];
 
-        if(!is_null($comment)) {
+        if (!is_null($comment)) {
             $values['comment'] = $comment;
         }
 

@@ -150,7 +150,7 @@ class Ruleset implements Configuration
             'rules' =>  array_map(fn (Rule $rule) => $rule->toArray(), $this->rules)
         ];
 
-        if(!is_null($this->description)) {
+        if (!is_null($this->description)) {
             $options['description'] = $this->description;
         }
 

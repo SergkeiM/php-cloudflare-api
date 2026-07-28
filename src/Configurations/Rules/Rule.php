@@ -117,7 +117,7 @@ abstract class Rule implements Configuration
     public function setExpression(string|ExpressionBuilder|Closure $expression): self
     {
 
-        if($expression instanceof Closure) {
+        if ($expression instanceof Closure) {
 
             $bilder = new ExpressionBuilder();
 
@@ -142,19 +142,19 @@ abstract class Rule implements Configuration
             'expression' => $this->expression
         ];
 
-        if(!is_null($actionParameters = $this->getActionParameters())) {
+        if (!is_null($actionParameters = $this->getActionParameters())) {
             $options['action_parameters'] = $actionParameters;
         }
 
-        if(!is_null($this->description)) {
+        if (!is_null($this->description)) {
             $options['description'] = $this->description;
         }
 
-        if(!is_null($this->id)) {
+        if (!is_null($this->id)) {
             $options['id'] = $this->id;
         }
 
-        if(!is_null($this->ref)) {
+        if (!is_null($this->ref)) {
             $options['ref'] = $this->ref;
         }
 

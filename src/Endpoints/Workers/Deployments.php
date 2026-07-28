@@ -42,7 +42,7 @@ class Deployments extends AbstractEndpoint
         bool $force = false
     ): ResponseInterface {
 
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['strategy', 'versions'], $values);
         } else {
             $values = $values->toArray();
@@ -50,7 +50,7 @@ class Deployments extends AbstractEndpoint
 
         $options = [];
 
-        if($force) {
+        if ($force) {
             $options = [
                 'query' => [
                     'force' => $force
