@@ -11,6 +11,7 @@ use Cloudflare\Endpoints\Accounts\LoadBalancers;
 use Cloudflare\Endpoints\Accounts\LoadBalancerMonitors;
 use Cloudflare\Endpoints\Accounts\LoadBalancerPools;
 use Cloudflare\Endpoints\Accounts\LoadBalancerRegions;
+use Cloudflare\Endpoints\Accounts\LoadBalancerMonitorGroups;
 use Cloudflare\Endpoints\Accounts\R2Buckets;
 use Cloudflare\Endpoints\Accounts\R2Cors;
 use Cloudflare\Endpoints\Accounts\R2Lifecycle;
@@ -198,6 +199,16 @@ class Accounts extends AbstractEndpoint
     public function loadBalancerRegions(): LoadBalancerRegions
     {
         return new LoadBalancerRegions($this->getClient());
+    }
+
+    /**
+     * Account Load Balancer Monitor Groups
+     *
+     * @return \Cloudflare\Endpoints\Accounts\LoadBalancerMonitorGroups
+     */
+    public function loadBalancerMonitorGroups(): LoadBalancerMonitorGroups
+    {
+        return new LoadBalancerMonitorGroups($this->getClient());
     }
 
     /**
