@@ -47,6 +47,41 @@ class RulesetsTest extends TestCase
     }
 
     #[Test]
+    public function shouldCreateWithEmptyRulesArray()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $response = $client->accounts()->rulesets()->create('account_id', [
+            'name' => 'my ruleset',
+            'kind' => 'root',
+            'phase' => 'http_request_firewall_custom',
+            'rules' => [],
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+    }
+
+    #[Test]
+    public function shouldCreateWithoutRulesKey()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $response = $client->accounts()->rulesets()->create('account_id', [
+            'name' => 'my ruleset',
+            'kind' => 'root',
+            'phase' => 'http_request_firewall_custom',
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+    }
+
+    #[Test]
     public function shouldCreateWithRulesetObject()
     {
         $client = $this->mockClient([

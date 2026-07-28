@@ -35,7 +35,7 @@ class Rulesets extends AbstractEndpoint
     public function create(string $accountId, array|Ruleset $values): ResponseInterface
     {
         if (is_array($values)) {
-            $this->requiredParams(['name', 'kind', 'phase', 'rules'], $values);
+            $this->requiredParams(['name', 'kind', 'phase'], $values);
         } else {
             $values = $values->toArray();
         }
