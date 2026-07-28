@@ -5,7 +5,6 @@ namespace Cloudflare;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
 
 class CloudflareServiceProvider extends ServiceProvider
 {
@@ -31,14 +30,6 @@ class CloudflareServiceProvider extends ServiceProvider
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => $this->app->configPath('cloudflare.php')]);
         }
-        // @codeCoverageIgnoreStart
-        // Lumen is discontinued and not an installed dependency here (only
-        // referenced for interface compatibility); this branch cannot be
-        // exercised without adding a dependency on an abandoned framework.
-        elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('cloudflare');
-        }
-        // @codeCoverageIgnoreEnd
 
         $this->mergeConfigFrom($source, 'cloudflare');
     }
