@@ -97,4 +97,35 @@ class LoadBalancerMonitors extends AbstractEndpoint
     {
         return $this->getHttpClient()->post("/accounts/{$accountId}/load_balancers/monitors/{$monitorId}/preview", $values);
     }
+
+    /**
+     * Apply changes to an existing monitor, overwriting only the supplied properties.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-patch-monitor
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $monitorId Monitor Identifier.
+     * @param array $values Values to patch on the monitor.
+     *
+     * @return ResponseInterface Patch a monitor response
+     */
+    public function patch(string $accountId, string $monitorId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/accounts/{$accountId}/load_balancers/monitors/{$monitorId}", $values);
+    }
+
+    /**
+     * List the load balancers and pools that reference a given monitor.
+     *
+     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-list-monitor-references
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $monitorId Monitor Identifier.
+     *
+     * @return ResponseInterface List monitor references response
+     */
+    public function references(string $accountId, string $monitorId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/monitors/{$monitorId}/references");
+    }
 }
