@@ -19,7 +19,7 @@ class Cron extends AbstractEndpoint
       */
     public function get(string $accountId, string $scriptName): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptName}/schedules");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/schedules");
     }
 
     /**
@@ -43,6 +43,6 @@ class Cron extends AbstractEndpoint
             ];
         }
 
-        return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/${scriptName}/schedules", $values);
+        return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}/schedules", $values);
     }
 }

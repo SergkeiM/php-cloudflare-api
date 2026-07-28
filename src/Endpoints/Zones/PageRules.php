@@ -49,7 +49,7 @@ class PageRules extends AbstractEndpoint
      */
     public function create(string $zoneId, array|PageRule $values): ResponseInterface
     {
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
         } else {
             $values = $values->toArray();
@@ -86,7 +86,7 @@ class PageRules extends AbstractEndpoint
      */
     public function update(string $zoneId, string $pageRuleId, array|PageRule $values): ResponseInterface
     {
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
         } else {
             $values = $values->toArray();
@@ -108,7 +108,7 @@ class PageRules extends AbstractEndpoint
      */
     public function overwrite(string $zoneId, string $pageRuleId, PageRule|array $values): ResponseInterface
     {
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['actions', 'targets'], $values);
         } else {
             $values = $values->toArray();

@@ -25,9 +25,8 @@ class Client
 {
     /**
      * HTTP Client wrapper for Guzzle.
-     * @var HttpClient
      */
-    private $httpClient;
+    private readonly HttpClient $httpClient;
 
     /**
      * @param string $token Cloudflare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token

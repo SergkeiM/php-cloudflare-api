@@ -452,7 +452,7 @@ class PageRule implements Configuration
     private function transformValue(mixed $value): mixed
     {
 
-        if(is_bool($value)) {
+        if (is_bool($value)) {
             return $value === true ? 'on' : 'off';
         }
 

@@ -6,14 +6,13 @@ use Cloudflare\Client;
 use Cloudflare\Endpoints;
 use Cloudflare\Exceptions\BadMethodCallException;
 use Cloudflare\Exceptions\InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 class ClientTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     *
-     * @dataProvider getApiClassesProvider
-     */
+    #[Test]
+    #[DataProvider('getApiClassesProvider')]
     public function shouldGetApiInstance($apiName, $class)
     {
         $client = new Client('token');
@@ -21,11 +20,8 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf($class, $client->api($apiName));
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider getApiClassesProvider
-     */
+    #[Test]
+    #[DataProvider('getApiClassesProvider')]
     public function shouldGetMagicApiInstance($apiName, $class)
     {
         $client = new Client('token');
@@ -33,9 +29,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf($class, $client->$apiName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldNotGetApiInstance()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -44,9 +38,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
         $client->api('do_not_exist');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldNotGetMagicApiInstance()
     {
         $this->expectException(BadMethodCallException::class);

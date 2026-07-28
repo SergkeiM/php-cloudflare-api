@@ -34,7 +34,7 @@ class VirtualNetworks extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Create a virtual network response
      */
-    public function create(string $accountId, string $name, bool $isDefault = false, string $comment = null): ResponseInterface
+    public function create(string $accountId, string $name, bool $isDefault = false, ?string $comment = null): ResponseInterface
     {
 
         $values = [
@@ -42,7 +42,7 @@ class VirtualNetworks extends AbstractEndpoint
             'is_default' => $isDefault,
         ];
 
-        if(!is_null($comment)) {
+        if (!is_null($comment)) {
             $values['comment'] = $comment;
         }
 

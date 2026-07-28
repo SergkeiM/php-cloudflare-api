@@ -9,19 +9,11 @@ use Cloudflare\Exceptions\MissingArgumentException;
 abstract class AbstractEndpoint
 {
     /**
-     * @var Client $client
-     */
-    private $client;
-    /**
      * Create a new API instance.
-     *
-     * @param Client $client
-     *
-     * @return void
      */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
+    public function __construct(
+        private readonly Client $client
+    ) {
     }
 
     /**

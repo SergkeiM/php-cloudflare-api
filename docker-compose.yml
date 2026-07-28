@@ -1,0 +1,69 @@
+x-php-service: &php-service
+  build:
+    context: .
+    dockerfile: docker/php/Dockerfile
+  working_dir: /app
+  command: ["tail", "-f", "/dev/null"]
+
+services:
+  php:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.2"
+    volumes:
+      - .:/app
+      - vendor-php:/app/vendor
+
+  php82:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.2"
+    volumes:
+      - .:/app
+      - vendor-php82:/app/vendor
+
+  php83:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.3"
+    volumes:
+      - .:/app
+      - vendor-php83:/app/vendor
+
+  php84:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.4"
+    volumes:
+      - .:/app
+      - vendor-php84:/app/vendor
+
+  php85:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.5"
+    volumes:
+      - .:/app
+      - vendor-php85:/app/vendor
+
+volumes:
+  vendor-php:
+  vendor-php82:
+  vendor-php83:
+  vendor-php84:
+  vendor-php85:

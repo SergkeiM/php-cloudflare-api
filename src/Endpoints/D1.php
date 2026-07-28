@@ -33,14 +33,14 @@ class D1 extends AbstractEndpoint
      *
      * @return \Cloudflare\Contracts\ResponseInterface Returns the created D1 database's metadata
      */
-    public function create(string $accountId, string $name, string $location = null): ResponseInterface
+    public function create(string $accountId, string $name, ?string $location = null): ResponseInterface
     {
 
         $body = [
             'name' => $name
         ];
 
-        if(!is_null($location)) {
+        if (!is_null($location)) {
             $body['primary_location_hint'] = $location;
         }
 
@@ -94,7 +94,7 @@ class D1 extends AbstractEndpoint
     public function export(
         string $accountId,
         string $databaseId,
-        string $currentBookmark = null,
+        ?string $currentBookmark = null,
         bool $noData = false,
         bool $noSchema = false,
         array $tables = []
@@ -106,7 +106,7 @@ class D1 extends AbstractEndpoint
             'tables' => $tables,
         ];
 
-        if(!is_null($currentBookmark)) {
+        if (!is_null($currentBookmark)) {
             $body['current_bookmark'] = $currentBookmark;
         }
 
@@ -134,36 +134,36 @@ class D1 extends AbstractEndpoint
         string $accountId,
         string $databaseId,
         string $action = 'init',
-        string $etag = null,
-        string $filename = null,
-        string $currentBookmark = null
+        ?string $etag = null,
+        ?string $filename = null,
+        ?string $currentBookmark = null
     ): ResponseInterface {
 
         $body = [
             'action' => $action,
         ];
 
-        if($action === 'ingest' && is_null($filename)) {
+        if ($action === 'ingest' && is_null($filename)) {
             throw new MissingArgumentException(['filename']);
         }
 
-        if($action === 'poll' && is_null($currentBookmark)) {
+        if ($action === 'poll' && is_null($currentBookmark)) {
             throw new MissingArgumentException(['current_bookmark']);
         }
 
-        if(in_array($action, ['init', 'ingest']) && is_null($etag)) {
+        if (in_array($action, ['init', 'ingest']) && is_null($etag)) {
             throw new MissingArgumentException(['etag']);
         }
 
-        if(in_array($action, ['init', 'ingest'])) {
+        if (in_array($action, ['init', 'ingest'])) {
             $body['etag'] = $etag;
         }
 
-        if($action === 'ingest') {
+        if ($action === 'ingest') {
             $body['filename'] = $filename;
         }
 
-        if($action === 'poll') {
+        if ($action === 'poll') {
             $body['current_bookmark'] = $currentBookmark;
         }
 

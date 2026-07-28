@@ -225,7 +225,7 @@ class ExpressionBuilder implements Stringable
      * @param mixed $value
      * @return \Cloudflare\ExpressionBuilder
      */
-    public function addExpression(string $field = null, string $operator = null, mixed $value = null): self
+    public function addExpression(?string $field = null, ?string $operator = null, mixed $value = null): self
     {
         if ($operator && $value) {
 
@@ -254,7 +254,7 @@ class ExpressionBuilder implements Stringable
      *
      * @return \Cloudflare\ExpressionBuilder
      */
-    public function addFunction(string $functionName, string $field, string $operator = null, mixed $value = null): self
+    public function addFunction(string $functionName, string $field, ?string $operator = null, mixed $value = null): self
     {
         if (! $this->isFieldName($field)) {
 
@@ -281,7 +281,7 @@ class ExpressionBuilder implements Stringable
     public function field(string $field): self
     {
 
-        if(!$this->isFieldName($field)) {
+        if (!$this->isFieldName($field)) {
             throw new InvalidArgumentException(sprintf('Undefined field name: "%s"', $field));
         }
 
@@ -332,7 +332,7 @@ class ExpressionBuilder implements Stringable
 
             return '"'.trim($value).'"';
 
-        } elseif(is_array($value)) {
+        } elseif (is_array($value)) {
 
             return "{".implode(" ", array_map(fn (string $v) => $this->formatValue($v), $value))."}";
         }
@@ -356,7 +356,7 @@ class ExpressionBuilder implements Stringable
 
             return $this->addExpression(operator: $name, value: $arguments[0]);
 
-        } elseif(in_array($name, $this->logicalOperators)) {
+        } elseif (in_array($name, $this->logicalOperators)) {
 
             return $this->addExpression($name);
 

@@ -3,12 +3,11 @@
 namespace Cloudflare\Tests\Configurations\Zones;
 
 use Cloudflare\Configurations\Zones\PageRule;
+use PHPUnit\Framework\Attributes\Test;
 
 class PageRuleTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldNotHaveActions()
     {
         $pageRule = new PageRule('example.com/*');
@@ -27,9 +26,7 @@ class PageRuleTest extends \PHPUnit\Framework\TestCase
         ], $pageRule->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHaveZarazDisabled()
     {
         $pageRule = (new PageRule('example.com/*'))->disableZaraz(true);

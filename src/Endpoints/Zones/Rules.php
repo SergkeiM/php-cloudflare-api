@@ -10,7 +10,7 @@ class Rules extends AbstractEndpoint
 {
     public function create(string $zoneId, string $rulesetId, array|Rule $values): ResponseInterface
     {
-        if(is_array($values)) {
+        if (is_array($values)) {
             //$this->requiredParams(['name', 'kind', 'phase', 'rules'], $values);
         } else {
             $values = $values->toArray();

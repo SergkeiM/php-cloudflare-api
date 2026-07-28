@@ -1,6 +1,9 @@
 * text=auto
 
-/doc export-ignore
+/docs export-ignore
 /test export-ignore
 /.* export-ignore
 /phpunit.xml.dist export-ignore
+/docker export-ignore
+/docker-compose.yml export-ignore
+/dock export-ignore

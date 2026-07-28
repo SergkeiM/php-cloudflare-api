@@ -12,6 +12,14 @@ use Cloudflare\Endpoints\Zones\Hold;
 use Cloudflare\Endpoints\Zones\Lockdown;
 use Cloudflare\Endpoints\Zones\Rulesets;
 use Cloudflare\Endpoints\Zones\Rules;
+use Cloudflare\Endpoints\Zones\Ssl;
+use Cloudflare\Endpoints\Zones\OriginCACertificates;
+use Cloudflare\Endpoints\Zones\Filters;
+use Cloudflare\Endpoints\Zones\FirewallRules;
+use Cloudflare\Endpoints\Zones\AccessRules;
+use Cloudflare\Endpoints\Zones\RateLimits;
+use Cloudflare\Endpoints\Zones\BotManagement;
+use Cloudflare\Endpoints\Zones\LoadBalancers;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -31,13 +39,11 @@ class Zones extends AbstractEndpoint
      */
     public function list(string $accountId, array $params = []): ResponseInterface
     {
-        $params = [
-            ...$params,
-            'account' => [
-                ...($params['account'] ?? []),
+        $params = array_merge($params, [
+            'account' => array_merge($params['account'] ?? [], [
                 'id' => $accountId
-            ]
-        ];
+            ])
+        ]);
 
         return $this->getHttpClient()->get('/zones', $params);
     }
@@ -110,7 +116,7 @@ class Zones extends AbstractEndpoint
             'type' => $type
         ];
 
-        if(!empty($vanityNameServers)) {
+        if (!empty($vanityNameServers)) {
 
             $options['vanity_name_servers'] = $vanityNameServers;
         }
@@ -144,7 +150,7 @@ class Zones extends AbstractEndpoint
      */
     public function purge(string $zoneId, array|CachePurge $purgeBy): ResponseInterface
     {
-        if(is_array($purgeBy)) {
+        if (is_array($purgeBy)) {
             $this->requiredAnyParams(['files', 'tags', 'hosts', 'prefixes'], $purgeBy);
         } else {
             $purgeBy = $purgeBy->toArray();
@@ -240,5 +246,85 @@ class Zones extends AbstractEndpoint
     public function rules(): Rules
     {
         return new Rules($this->getClient());
+    }
+
+    /**
+     * Zone SSL/TLS settings
+     *
+     * @return \Cloudflare\Endpoints\Zones\Ssl
+     */
+    public function ssl(): Ssl
+    {
+        return new Ssl($this->getClient());
+    }
+
+    /**
+     * Zone Origin CA Certificates
+     *
+     * @return \Cloudflare\Endpoints\Zones\OriginCACertificates
+     */
+    public function originCACertificates(): OriginCACertificates
+    {
+        return new OriginCACertificates($this->getClient());
+    }
+
+    /**
+     * Zone Filters
+     *
+     * @return \Cloudflare\Endpoints\Zones\Filters
+     */
+    public function filters(): Filters
+    {
+        return new Filters($this->getClient());
+    }
+
+    /**
+     * Zone Firewall Rules
+     *
+     * @return \Cloudflare\Endpoints\Zones\FirewallRules
+     */
+    public function firewallRules(): FirewallRules
+    {
+        return new FirewallRules($this->getClient());
+    }
+
+    /**
+     * Zone IP Access Rules
+     *
+     * @return \Cloudflare\Endpoints\Zones\AccessRules
+     */
+    public function accessRules(): AccessRules
+    {
+        return new AccessRules($this->getClient());
+    }
+
+    /**
+     * Zone Rate Limits
+     *
+     * @return \Cloudflare\Endpoints\Zones\RateLimits
+     */
+    public function rateLimits(): RateLimits
+    {
+        return new RateLimits($this->getClient());
+    }
+
+    /**
+     * Zone Bot Management
+     *
+     * @return \Cloudflare\Endpoints\Zones\BotManagement
+     */
+    public function botManagement(): BotManagement
+    {
+        return new BotManagement($this->getClient());
+    }
+
+    /**
+     * Zone Load Balancers
+     *
+     * @return \Cloudflare\Endpoints\Zones\LoadBalancers
+     */
+    public function loadBalancers(): LoadBalancers
+    {
+        return new LoadBalancers($this->getClient());
     }
 }

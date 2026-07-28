@@ -3,12 +3,11 @@
 namespace Cloudflare\Tests\Configurations\Zones;
 
 use Cloudflare\Configurations\Zones\CachePurge;
+use PHPUnit\Framework\Attributes\Test;
 
 class CachePurgeTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldBeEmpty()
     {
         $cachePurge = new CachePurge();
@@ -16,9 +15,7 @@ class CachePurgeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $cachePurge->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHavePurgeEverything()
     {
         $cachePurge = (new CachePurge())->everything();
@@ -28,9 +25,7 @@ class CachePurgeTest extends \PHPUnit\Framework\TestCase
         ], $cachePurge->toArray());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHaveDevice()
     {
         $cachePurge = (new CachePurge())->byFilesAdvanced('https://example.com/script.js', 'mobile');
@@ -49,9 +44,7 @@ class CachePurgeTest extends \PHPUnit\Framework\TestCase
 
 
 
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldHaveCountry()
     {
         $cachePurge = (new CachePurge())->byFilesAdvanced('https://example.com/script.js', country: 'de');

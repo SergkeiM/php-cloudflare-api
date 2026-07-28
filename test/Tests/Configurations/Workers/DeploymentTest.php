@@ -3,12 +3,11 @@
 namespace Cloudflare\Tests\Configurations\Workers;
 
 use Cloudflare\Configurations\Workers\Deployment;
+use PHPUnit\Framework\Attributes\Test;
 
 class DeploymentTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function shouldNotHaveVersions()
     {
         $deployment = new Deployment('This is a human-readable message about the deployment');

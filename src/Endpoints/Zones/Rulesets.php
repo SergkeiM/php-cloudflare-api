@@ -34,7 +34,7 @@ class Rulesets extends AbstractEndpoint
      */
     public function create(string $zoneId, array|Ruleset $values): ResponseInterface
     {
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['name', 'kind', 'phase', 'rules'], $values);
         } else {
             $values = $values->toArray();

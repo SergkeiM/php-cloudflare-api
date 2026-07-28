@@ -20,7 +20,7 @@ class Deployments extends AbstractEndpoint
       */
     public function get(string $accountId, string $scriptMame): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments");
     }
 
     /**
@@ -42,7 +42,7 @@ class Deployments extends AbstractEndpoint
         bool $force = false
     ): ResponseInterface {
 
-        if(is_array($values)) {
+        if (is_array($values)) {
             $this->requiredParams(['strategy', 'versions'], $values);
         } else {
             $values = $values->toArray();
@@ -50,7 +50,7 @@ class Deployments extends AbstractEndpoint
 
         $options = [];
 
-        if($force) {
+        if ($force) {
             $options = [
                 'query' => [
                     'force' => $force
@@ -58,6 +58,6 @@ class Deployments extends AbstractEndpoint
             ];
         }
 
-        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/${scriptMame}/deployments", $values, $options);
+        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments", $values, $options);
     }
 }

@@ -22,18 +22,14 @@ use Cloudflare\HttpClient\Exceptions\ConnectionException;
 class HttpClient
 {
     /**
-     * Guzzle HTTP
-     *
-     * @var Client
+     * The base URL for Cloudflare API requests.
      */
-    protected Client $client;
+    protected const BASE_URL = 'https://api.cloudflare.com/client/v4/';
 
     /**
-     * The base URL for Cloudflare API requests.
-     *
-     * @var string
+     * Guzzle HTTP
      */
-    protected string $baseUrl = 'https://api.cloudflare.com/client/v4/';
+    protected readonly Client $client;
 
     /**
      * @param  string  $token
@@ -52,7 +48,7 @@ class HttpClient
         }
 
         $this->client = new Client([
-            'stack' => $stack,
+            'handler' => $stack,
             RequestOptions::HTTP_ERRORS => false,
             RequestOptions::HEADERS => [
                 'Authorization' => "Bearer {$token}",
@@ -84,10 +80,9 @@ class HttpClient
      */
     public function get(string $url, $query = null, array $options = [])
     {
-        return $this->send('GET', $url, is_null($query) ? $options : [
-            ...$options,
+        return $this->send('GET', $url, is_null($query) ? $options : array_merge($options, [
             'query' => $query,
-        ]);
+        ]));
     }
 
     /**
@@ -100,10 +95,9 @@ class HttpClient
      */
     public function head(string $url, $query = null, array $options = [])
     {
-        return $this->send('HEAD', $url, is_null($query) ? $options : [
-            ...$options,
+        return $this->send('HEAD', $url, is_null($query) ? $options : array_merge($options, [
             'query' => $query,
-        ]);
+        ]));
     }
 
     /**
@@ -117,10 +111,9 @@ class HttpClient
      */
     public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
-        return $this->send('POST', $url, [
-            ...$options,
+        return $this->send('POST', $url, array_merge($options, [
             $format => $data,
-        ]);
+        ]));
     }
 
     /**
@@ -134,10 +127,9 @@ class HttpClient
     */
     public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
-        return $this->send('PATCH', $url, [
-            ...$options,
+        return $this->send('PATCH', $url, array_merge($options, [
             $format => $data,
-        ]);
+        ]));
     }
 
     /**
@@ -151,10 +143,9 @@ class HttpClient
      */
     public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
-        return $this->send('PUT', $url, [
-            ...$options,
+        return $this->send('PUT', $url, array_merge($options, [
             $format => $data,
-        ]);
+        ]));
     }
 
     /**
@@ -168,10 +159,9 @@ class HttpClient
      */
     public function delete(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
-        return $this->send('DELETE', $url, empty($data) ? [] : [
-            ...$options,
+        return $this->send('DELETE', $url, empty($data) ? $options : array_merge($options, [
             $format => $data,
-        ]);
+        ]));
     }
 
     /**
@@ -197,7 +187,7 @@ class HttpClient
     {
         try {
 
-            $response = new Response($this->client->request($method, $this->baseUrl.ltrim($url, '/'), $options));
+            $response = new Response($this->client->request($method, self::BASE_URL.ltrim($url, '/'), $options));
 
             if ($response->failed()) {
 
