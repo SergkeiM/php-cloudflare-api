@@ -35,6 +35,6 @@ class DurableObjects extends AbstractEndpoint
      */
     public function listObjects(string $accountId, string $id, array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/durable_objects/namespaces/{$id}/objectss", $params);
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/durable_objects/namespaces/{$id}/objects", $params);
     }
 }

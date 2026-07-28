@@ -50,9 +50,8 @@ class SslTest extends TestCase
         $this->assertSame('txt', $response->json('result.validation_method'));
 
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());
-        $this->assertSame('/client/v4/zones/zone_id/ssl/verification', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame('/client/v4/zones/zone_id/ssl/verification/cert_pack_uuid', $this->lastRequest()->getUri()->getPath());
         $this->assertSame([
-            'cert_pack_uuid' => 'cert_pack_uuid',
             'validation_method' => 'txt',
         ], json_decode((string) $this->lastRequest()->getBody(), true));
     }

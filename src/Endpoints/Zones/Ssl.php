@@ -35,8 +35,7 @@ class Ssl extends AbstractEndpoint
      */
     public function editVerification(string $zoneId, string $certPackUuid, string $validationMethod): ResponseInterface
     {
-        return $this->getHttpClient()->patch("/zones/{$zoneId}/ssl/verification", [
-            'cert_pack_uuid' => $certPackUuid,
+        return $this->getHttpClient()->patch("/zones/{$zoneId}/ssl/verification/{$certPackUuid}", [
             'validation_method' => $validationMethod,
         ]);
     }
