@@ -16,7 +16,7 @@
         "source": "https://github.com/SergkeiM/php-cloudflare-api",
         "issues": "https://github.com/SergkeiM/php-cloudflare-api/issues",
         "email": "sergio11of@gmail.com",
-        "docs": "https://php-cloudflare-api.nuxt.space/"
+        "docs": "https://sergkeim.github.io/php-cloudflare-api/"
     },
     "require": {
         "php": "^8.2",
@@ -27,7 +27,8 @@
     "require-dev": {
         "phpunit/phpunit": "^10.5.13 || ^11.0 || ^12.0",
         "friendsofphp/php-cs-fixer": "^3.62",
-        "graham-campbell/testbench": "^6.3"
+        "graham-campbell/testbench": "^6.3",
+        "phpdocumentor/reflection-docblock": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -51,7 +52,8 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "fix": "vendor/bin/php-cs-fixer fix"
+        "fix": "vendor/bin/php-cs-fixer fix",
+        "docs:generate-client": "php bin/generate-client-docs.php"
     },
     "extra": {
         "laravel": {
