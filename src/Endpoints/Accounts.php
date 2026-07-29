@@ -3,9 +3,10 @@
 namespace Cloudflare\Endpoints;
 
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Endpoints\Accounts\Roles;
 use Cloudflare\Endpoints\Accounts\Members;
-use Cloudflare\Endpoints\Accounts\AuditLogs;
+use Cloudflare\Endpoints\Accounts\Logs;
+use Cloudflare\Endpoints\Accounts\Subscriptions;
+use Cloudflare\Endpoints\Accounts\Tokens;
 
 /**
  * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
@@ -107,13 +108,46 @@ class Accounts extends AbstractEndpoint
     }
 
     /**
-     * Account Roles
+     * Get account profile.
      *
-     * @return \Cloudflare\Endpoints\Accounts\Roles
+     * @link https://developers.cloudflare.com/api/operations/Accounts_getAccountProfile
+     *
+     * @param string $accountId Account identifier.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Account Profile response.
      */
-    public function roles(): Roles
+    public function profile(string $accountId): ResponseInterface
     {
-        return new Roles($this->getClient());
+        return $this->getHttpClient()->get("/accounts/{$accountId}/profile");
+    }
+
+    /**
+     * Modify account profile.
+     *
+     * @link https://developers.cloudflare.com/api/operations/Accounts_modifyAccountProfile
+     *
+     * @param string $accountId Account identifier.
+     * @param array $values Account profile values.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Update Account Profile response.
+     */
+    public function updateProfile(string $accountId, array $values = []): ResponseInterface
+    {
+        return $this->getHttpClient()->put("/accounts/{$accountId}/profile", $values);
+    }
+
+    /**
+     * List account organizations.
+     *
+     * @link https://developers.cloudflare.com/api/operations/Accounts_listAccountOrganizations
+     *
+     * @param string $accountId Account identifier.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface List Account Organizations response.
+     */
+    public function organizations(string $accountId): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/accounts/{$accountId}/organizations");
     }
 
     /**
@@ -127,12 +161,32 @@ class Accounts extends AbstractEndpoint
     }
 
     /**
-     * Account audit logs
+     * Account Logs
      *
-     * @return \Cloudflare\Endpoints\Accounts\AuditLogs
+     * @return \Cloudflare\Endpoints\Accounts\Logs
      */
-    public function auditLogs(): AuditLogs
+    public function logs(): Logs
     {
-        return new AuditLogs($this->getClient());
+        return new Logs($this->getClient());
+    }
+
+    /**
+     * Account Subscriptions
+     *
+     * @return \Cloudflare\Endpoints\Accounts\Subscriptions
+     */
+    public function subscriptions(): Subscriptions
+    {
+        return new Subscriptions($this->getClient());
+    }
+
+    /**
+     * Account Owned API Tokens
+     *
+     * @return \Cloudflare\Endpoints\Accounts\Tokens
+     */
+    public function tokens(): Tokens
+    {
+        return new Tokens($this->getClient());
     }
 }

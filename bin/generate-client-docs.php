@@ -267,17 +267,26 @@ MD;
 
 // ---------------------------------------------------------------------
 // 4. Walk the tree and write files
+//
+// Recursive to any depth: a node with no child accessors renders as a
+// flat NN.slug.md file; a node with children renders as a folder with
+// its own 00.index.md (API methods + a Related list) plus one file
+// (flat or, recursively, another folder) per child.
 // ---------------------------------------------------------------------
 
-@mkdir($outDir, 0777, true);
-file_put_contents($outDir . '/.navigation.yml', "title: Client Reference\nicon: i-lucide-terminal\n");
-
-$topIndex = 0;
-foreach ($topLevel as $accessorName => $class) {
+function writeNode(
+    DocBlockFactory $docFactory,
+    string $accessorName,
+    string $accessorChain,
+    string $class,
+    string $dir,
+    int $prefixIndex,
+    string $urlPath
+): void {
     [$rc, $apiMethods, $children] = analyzeClass($class);
 
     $slug = kebab($accessorName);
-    $prefix = str_pad((string) $topIndex++, 2, '0', STR_PAD_LEFT);
+    $prefix = str_pad((string) $prefixIndex, 2, '0', STR_PAD_LEFT);
     $title = humanize($accessorName);
 
     $classDoc = docblockFor($docFactory, $rc);
@@ -285,21 +294,21 @@ foreach ($topLevel as $accessorName => $class) {
     $classSummary = $realSummary !== '' ? $realSummary : "{$title} endpoint reference.";
 
     if (empty($children)) {
-        // flat file: docs/content/2.client/NN.slug.md
+        // flat file: .../NN.slug.md
         $body = frontmatter($title, $classSummary);
         if ($realSummary !== '') {
             $body .= $realSummary . "\n\n";
         }
         foreach ($apiMethods as $m) {
-            $body .= renderMethodSection($docFactory, $m, "{$accessorName}()");
+            $body .= renderMethodSection($docFactory, $m, $accessorChain);
         }
-        file_put_contents("{$outDir}/{$prefix}.{$slug}.md", $body);
-        continue;
+        file_put_contents("{$dir}/{$prefix}.{$slug}.md", $body);
+        return;
     }
 
-    // folder with index.md + one file per child
-    $dir = "{$outDir}/{$prefix}.{$slug}";
-    @mkdir($dir, 0777, true);
+    // folder with index.md + one file (or subfolder) per child
+    $nodeDir = "{$dir}/{$prefix}.{$slug}";
+    @mkdir($nodeDir, 0777, true);
 
     $body = frontmatter($title, $classSummary);
     if ($realSummary !== '') {
@@ -307,47 +316,65 @@ foreach ($topLevel as $accessorName => $class) {
     }
 
     foreach ($apiMethods as $m) {
-        $body .= renderMethodSection($docFactory, $m, "{$accessorName}()");
+        $body .= renderMethodSection($docFactory, $m, $accessorChain);
     }
 
-    if (!empty($children)) {
-        $body .= "## Related\n\n";
-        foreach ($children as $childAccessor => $childClass) {
-            $childTitle = humanize($childAccessor);
-            $body .= "- [{$childTitle}](/client/{$slug}/" . kebab($childAccessor) . ")\n";
-        }
-        $body .= "\n";
+    $body .= "## Related\n\n";
+    foreach ($children as $childAccessor => $childClass) {
+        $childTitle = humanize($childAccessor);
+        $body .= "- [{$childTitle}]({$urlPath}/" . kebab($childAccessor) . ")\n";
     }
+    $body .= "\n";
 
-    file_put_contents("{$dir}/00.index.md", $body);
+    file_put_contents("{$nodeDir}/00.index.md", $body);
 
     $childIndex = 1;
     foreach ($children as $childAccessor => $childClass) {
-        [$childRc, $childApiMethods, $grandchildren] = analyzeClass($childClass);
-
-        $childSlug = kebab($childAccessor);
-        $childPrefix = str_pad((string) $childIndex++, 2, '0', STR_PAD_LEFT);
-        $childTitle = humanize($childAccessor);
-
-        $childClassDoc = docblockFor($docFactory, $childRc);
-        $realChildSummary = $childClassDoc?->getSummary() ?: '';
-        $childSummary = $realChildSummary !== '' ? $realChildSummary : "{$childTitle} endpoint reference.";
-
-        $childBody = frontmatter($childTitle, $childSummary);
-        if ($realChildSummary !== '') {
-            $childBody .= $realChildSummary . "\n\n";
-        }
-
-        foreach ($childApiMethods as $m) {
-            $childBody .= renderMethodSection($docFactory, $m, "{$accessorName}()->{$childAccessor}()");
-        }
-
-        if (!empty($grandchildren)) {
-            fwrite(STDERR, "WARNING: {$childClass} has its own child accessors — grandchild nesting isn't handled, methods skipped: " . implode(', ', array_keys($grandchildren)) . "\n");
-        }
-
-        file_put_contents("{$dir}/{$childPrefix}.{$childSlug}.md", $childBody);
+        writeNode(
+            $docFactory,
+            $childAccessor,
+            "{$accessorChain}->{$childAccessor}()",
+            $childClass,
+            $nodeDir,
+            $childIndex++,
+            "{$urlPath}/" . kebab($childAccessor)
+        );
     }
+}
+
+function rrmdir(string $dir): void
+{
+    if (!is_dir($dir)) {
+        return;
+    }
+    foreach (scandir($dir) as $entry) {
+        if ($entry === '.' || $entry === '..') {
+            continue;
+        }
+        $path = "{$dir}/{$entry}";
+        is_dir($path) ? rrmdir($path) : unlink($path);
+    }
+    rmdir($dir);
+}
+
+// Wipe the generated tree first so renumbered/removed accessors don't
+// leave stale files behind (this whole directory is mechanical output;
+// hand-curated docs live under 2.api instead).
+rrmdir($outDir);
+@mkdir($outDir, 0777, true);
+file_put_contents($outDir . '/.navigation.yml', "title: Client Reference\nicon: i-lucide-terminal\n");
+
+$topIndex = 0;
+foreach ($topLevel as $accessorName => $class) {
+    writeNode(
+        $docFactory,
+        $accessorName,
+        "{$accessorName}()",
+        $class,
+        $outDir,
+        $topIndex++,
+        '/client/' . kebab($accessorName)
+    );
 }
 
 echo "Generated client reference docs in {$outDir}\n";

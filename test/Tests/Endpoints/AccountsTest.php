@@ -116,4 +116,47 @@ class AccountsTest extends TestCase
         $this->assertSame('DELETE', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldGetProfile()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
+        ]);
+
+        $response = $client->accounts()->profile('account_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/profile', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldUpdateProfile()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
+        ]);
+
+        $response = $client->accounts()->updateProfile('account_id', ['name' => 'renamed']);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/profile', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame(['name' => 'renamed'], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldListOrganizations()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => [['id' => 'organization_id']]])),
+        ]);
+
+        $response = $client->accounts()->organizations('account_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/organizations', $this->lastRequest()->getUri()->getPath());
+    }
 }
