@@ -1,0 +1,23 @@
+# Usage
+
+> Usage endpoint reference.
+
+## Get
+
+Returns cost and usage data for all accounts within an organization, aligned with the FinOps FOCUS v1.3 Cost and Usage dataset specification.
+
+<params-table :params="[{"name":"organizationId","type":"string","required":true,"description":"Organization identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params, e.g. from, to.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->organizations()->billing()->usage()->get('ORGANIZATION_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/billable-usage-v2-get-organization-usage">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

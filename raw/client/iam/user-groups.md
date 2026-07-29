@@ -1,0 +1,107 @@
+# User Groups
+
+> User Groups endpoint reference.
+
+## List
+
+List all the user groups for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params, e.g. id, name, fuzzyName.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->iam()->userGroups()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-list">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Create a new user group under the specified account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"values","type":"array","required":true,"description":"User Group values, requires name."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->iam()->userGroups()->create('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-create">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get information about a specific user group in an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"userGroupId","type":"string","required":true,"description":"User Group identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->iam()->userGroups()->get('ACCOUNT_ID', 'USER_GROUP_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-details">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Modify an existing user group.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"userGroupId","type":"string","required":true,"description":"User Group identifier."},{"name":"values","type":"array","required":false,"description":"User Group values, e.g. name, policies.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->iam()->userGroups()->update('ACCOUNT_ID', 'USER_GROUP_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-update">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Remove a user group from an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"userGroupId","type":"string","required":true,"description":"User Group identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->iam()->userGroups()->delete('ACCOUNT_ID', 'USER_GROUP_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-delete">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Related
+
+- [Members](/client/iam/user-groups/members)

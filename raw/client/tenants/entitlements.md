@@ -1,0 +1,23 @@
+# Entitlements
+
+> Entitlements endpoint reference.
+
+## Get
+
+List of innate entitlements available for the Tenant.
+
+<params-table :params="[{"name":"tenantId","type":"string","required":true,"description":"Tenant identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tenants()->entitlements()->get('TENANT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_listEntitlements">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
