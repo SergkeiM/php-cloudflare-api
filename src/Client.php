@@ -31,6 +31,7 @@ use Cloudflare\HttpClient\HttpClient;
  * @method \Cloudflare\Endpoints\BotManagement botManagement()
  * @method \Cloudflare\Endpoints\CloudConnector cloudConnector()
  * @method \Cloudflare\Endpoints\R2 r2()
+ * @method \Cloudflare\Endpoints\Iam iam()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -96,6 +97,7 @@ class Client
             'botManagement' => new Endpoints\BotManagement($this),
             'cloudConnector' => new Endpoints\CloudConnector($this),
             'r2' => new Endpoints\R2($this),
+            'iam' => new Endpoints\Iam($this),
             default => throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name))
         };
 
