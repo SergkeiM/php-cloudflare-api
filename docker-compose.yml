@@ -61,6 +61,19 @@ services:
       - .:/app
       - vendor-php85:/app/vendor
 
+  docs:
+    <<: *php-service
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        PHP_VERSION: "8.2"
+    user: "1000:1000"
+    command: ["composer", "docs:generate-client"]
+    volumes:
+      - .:/app
+      - vendor-php:/app/vendor
+
 volumes:
   vendor-php:
   vendor-php82:

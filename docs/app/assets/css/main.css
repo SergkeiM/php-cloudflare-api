@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+    /* Cloudflare's brand orange (#F6821F) at 600, with a generated tint/shade scale. */
+    --color-cloudflare-50: #fef7f0;
+    --color-cloudflare-100: #feecdd;
+    --color-cloudflare-200: #fcd6b5;
+    --color-cloudflare-300: #fab880;
+    --color-cloudflare-400: #f89a4a;
+    --color-cloudflare-500: #f68422;
+    --color-cloudflare-600: #f6821f;
+    --color-cloudflare-700: #ce6308;
+    --color-cloudflare-800: #a75007;
+    --color-cloudflare-900: #894206;
+    --color-cloudflare-950: #622f04;
+}

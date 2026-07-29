@@ -15,6 +15,7 @@
 #   ./dock sh              Open a shell in the container
 #   ./dock exec <cmd...>   Run an arbitrary command in the container
 #   ./dock matrix          Run the full PHP x Laravel support matrix (mirrors CI)
+#   ./dock docs            Regenerate docs/content/2.client from the Endpoint classes
 
 set -euo pipefail
 
@@ -117,6 +118,9 @@ case "$cmd" in
         ensure_up "$SERVICE"
         docker compose exec "$SERVICE" "$@"
         ;;
+    docs)
+        docker compose run --rm docs
+        ;;
     matrix)
         failures=0
         for combo in $MATRIX_COMBOS; do
@@ -134,7 +138,7 @@ case "$cmd" in
         echo "All matrix cells passed."
         ;;
     help|--help|-h)
-        sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'
+        sed -n '2,18p' "$0" | sed 's/^# \{0,1\}//'
         ;;
     *)
         echo "Unknown command: ${cmd}" >&2
