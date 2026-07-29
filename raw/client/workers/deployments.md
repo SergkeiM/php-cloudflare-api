@@ -1,0 +1,43 @@
+# Deployments
+
+> Deployments endpoint reference.
+
+## List
+
+List of Worker Deployments. The first deployment in the list is the latest deployment actively serving traffic.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptMame","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->deployments()->list('ACCOUNT_ID', 'SCRIPT_MAME');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-deployments-list-deployments">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Deployments configure how [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions) are deployed to traffic. A deployment can consist of one or two versions of a Worker.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptMame","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."},{"name":"values","type":"mixed","required":true,"description":"Dployment config."},{"name":"force","type":"bool","required":false,"description":"If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.","default":"false"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->deployments()->create('ACCOUNT_ID', 'SCRIPT_MAME', $values, true);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-cron-trigger-update-cron-triggers">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

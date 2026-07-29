@@ -1,0 +1,147 @@
+# Zones
+
+> Zones endpoint reference.
+
+## List
+
+Lists, searches, sorts, and filters your zones. Listing zones across more than 500 accounts is currently not allowed.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"params","type":"array","required":false,"description":"Query Parameters.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-get">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Create Zone
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"name","type":"string","required":true,"description":"The domain name"},{"name":"type","type":"string","required":false,"description":"A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup.","default":"'full'"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->create('ACCOUNT_ID', 'NAME', 'TYPE');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-post">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Zone Details
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->get('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-get">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Delete Zone
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->delete('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-delete">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Edit
+
+Edit Zone
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."},{"name":"type","type":"string","required":true,"description":"A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup. This parameter is only available to Enterprise customers or if it has been explicitly enabled on a zone."},{"name":"vanityNameServers","type":"array","required":false,"description":"An array of domains used for custom name servers. This is only available for Business and Enterprise plans.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->edit('ZONE_ID', 'TYPE', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-patch">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Activation Check
+
+Triggeres a new activation check for a PENDING Zone. This can be triggered every 5 min for paygo/ent customers, every hour for FREE Zones.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->activationCheck('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/put-zones-zone_id-activation_check">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Purge
+
+Purge Cached Content
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."},{"name":"purgeBy","type":"mixed","required":true}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zones()->purge('ZONE_ID', $purgeBy);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zone-purge">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Related
+
+- [Holds](/client/zones/holds)

@@ -1,0 +1,123 @@
+# Members
+
+> Members endpoint reference.
+
+## List
+
+List all members of an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-list-members">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Add
+
+Add a user to the list of members for this account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"values","type":"array","required":true,"description":"Values to set on Member."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->add('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-add-member">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Remove a member from an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"memberId","type":"string","required":true,"description":"Member identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->delete('ACCOUNT_ID', 'MEMBER_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-remove-member">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get information about a specific member of an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"memberId","type":"string","required":true,"description":"Member identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->get('ACCOUNT_ID', 'MEMBER_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-remove-member">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update Roles
+
+Modify an account member roles.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"memberId","type":"string","required":true,"description":"Member identifier."},{"name":"roles","type":"array","required":true,"description":"Role identifiers."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->updateRoles('ACCOUNT_ID', 'MEMBER_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-update-member">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update Policies
+
+Modify an account member policies.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"memberId","type":"string","required":true,"description":"Member identifier."},{"name":"policies","type":"array","required":true,"description":"Policies associated with this member."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->members()->updatePolicies('ACCOUNT_ID', 'MEMBER_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-update-member">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

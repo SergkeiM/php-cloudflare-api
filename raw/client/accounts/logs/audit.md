@@ -1,0 +1,63 @@
+# Audit
+
+> Audit endpoint reference.
+
+## List
+
+Gets a list of audit logs for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params, requires since and before.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->logs()->audit()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-logs">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## History
+
+Returns the chronological change history for the resource identified by the given audit log entry.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"id","type":"string","required":true,"description":"Audit log entry identifier used to locate the resource."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params, requires action_time, since and before.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->logs()->audit()->history('ACCOUNT_ID', 'ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-log-history">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Product Categories
+
+Lists the available audit log product categories and the resource products each one expands to.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->logs()->audit()->productCategories('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-list-account-product-categories">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

@@ -1,0 +1,43 @@
+# Lifecycle
+
+> Lifecycle endpoint reference.
+
+## Get
+
+Get the lifecycle configuration for a bucket.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->lifecycle()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-lifecycle-configuration">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Set the lifecycle configuration for a bucket.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"rules","type":"array","required":true,"description":"Lifecycle rules to set on the bucket."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->lifecycle()->update('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-put-bucket-lifecycle-configuration">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

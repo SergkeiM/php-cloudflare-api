@@ -1,0 +1,83 @@
+# Event Notifications
+
+> Event Notifications endpoint reference.
+
+## List
+
+Read the event notification configuration for a bucket, listing rules for all configured queues.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->eventNotifications()->list('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get the event notification configuration for a bucket and a specific queue.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"queueId","type":"string","required":true,"description":"Queue Identifier."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->eventNotifications()->get('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration-for-queue">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Create or update the event notification configuration for a bucket and a specific queue.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"queueId","type":"string","required":true,"description":"Queue Identifier."},{"name":"values","type":"array","required":true,"description":"Values to set, e.g. `rules`."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->eventNotifications()->update('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', [], 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-update-configuration-for-queue">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Delete the event notification configuration for a bucket and a specific queue.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"queueId","type":"string","required":true,"description":"Queue Identifier."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->eventNotifications()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-delete-configuration-for-queue">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

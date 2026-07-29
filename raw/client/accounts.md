@@ -1,0 +1,170 @@
+# Accounts
+
+> Accounts endpoint reference.
+
+## List
+
+List all accounts you have ownership or verified access to.
+
+<params-table :params="[{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->list([]);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/accounts-list-accounts">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Create an account (only available for tenant admins at this time)
+
+<params-table :params="[{"name":"name","type":"string","required":true,"description":"Account name"},{"name":"type","type":"string","required":true,"description":"The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise."},{"name":"unit","type":"string|null","required":false,"description":"Tenant unit ID. Information related to the tenant unit, and optionally, an id of the unit to create the account on. [see](https://developers.cloudflare.com/tenant/how-to/manage-accounts/)"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->create('NAME', 'TYPE', 'UNIT');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-creation">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get information about a specific account that you are a member of.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->get('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/accounts-account-details">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Update an existing account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"name","type":"string","required":true,"description":"Account name."},{"name":"settings","type":"array","required":false,"description":"Account settings.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->update('ACCOUNT_ID', 'NAME', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/accounts-update-account">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Delete a specific account (only available for tenant admins at this time). This is a permanent operation that will delete any zones or other resources under the account
+
+<params-table :params="[{"name":"accountId","type":"string","required":true}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->delete('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-deletion">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Profile
+
+Get account profile.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->profile('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Accounts_getAccountProfile">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update Profile
+
+Modify account profile.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"values","type":"array","required":false,"description":"Account profile values.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->updateProfile('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Accounts_modifyAccountProfile">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Organizations
+
+List account organizations.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->organizations('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Accounts_listAccountOrganizations">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Related
+
+- [Members](/client/accounts/members)
+- [Logs](/client/accounts/logs)
+- [Subscriptions](/client/accounts/subscriptions)
+- [Tokens](/client/accounts/tokens)

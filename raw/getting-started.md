@@ -1,0 +1,16 @@
+# Introduction
+
+> Welcome to PHP Client for Cloudflare API documentation.
+
+A simple Object Oriented PHP Client for [Cloudflare API](https://developers.cloudflare.com/api).
+This package provides convenient access to the Cloudflare REST API using PHP.
+
+## Installation
+
+Requires PHP 8.2 or higher. Install `php-cloudflare-api` via Composer:
+
+```bash [composer]
+composer require sergkeim/php-cloudflare-api
+```
+
+Using Laravel? See the [Laravel](/getting-started/laravel) page for the service provider and facade setup.

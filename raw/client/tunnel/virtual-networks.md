@@ -1,0 +1,103 @@
+# Virtual Networks
+
+> Virtual Networks endpoint reference.
+
+## List
+
+Lists and filters virtual networks in an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tunnel()->virtualNetworks()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/tunnel-virtual-network-list-virtual-networks">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Adds a new virtual network to an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"name","type":"string","required":true,"description":"A user-friendly name for the virtual network."},{"name":"isDefault","type":"bool","required":false,"description":"If `true`, this virtual network is the default for the account.","default":"false"},{"name":"comment","type":"string|null","required":false,"description":"Optional remark describing the virtual network."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tunnel()->virtualNetworks()->create('ACCOUNT_ID', 'NAME', true, 'COMMENT');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/tunnel-virtual-network-create-a-virtual-network">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get a virtual network.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"virtualNetworkId","type":"string","required":true,"description":"UUID of the virtual network."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tunnel()->virtualNetworks()->get('ACCOUNT_ID', 'VIRTUAL_NETWORK_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/tunnel-virtual-network-get">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Edit
+
+Updates an existing virtual network.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"virtualNetworkId","type":"string","required":true,"description":"UUID of the virtual network."},{"name":"values","type":"array","required":false,"description":"he fields that are meant to be updated","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tunnel()->virtualNetworks()->edit('ACCOUNT_ID', 'VIRTUAL_NETWORK_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/tunnel-virtual-network-update">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Deletes an existing virtual network.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"virtualNetworkId","type":"string","required":true,"description":"UUID of the virtual network."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tunnel()->virtualNetworks()->delete('ACCOUNT_ID', 'VIRTUAL_NETWORK_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/tunnel-virtual-network-delete">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

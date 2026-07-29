@@ -1,0 +1,19 @@
+# IPs
+
+> IPs endpoint reference.
+
+## Get
+
+Get IPs used on the Cloudflare/JD Cloud network
+For Cloudflare IPs: [https://www.cloudflare.com/ips](https://www.cloudflare.com/ips)
+For JD Cloud IPs: [https://developers.cloudflare.com/china-network/reference/infrastructure/](https://developers.cloudflare.com/china-network/reference/infrastructure/) .
+
+```php [php]
+$response = $client->ips()->get();
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/cloudflare-i-ps-cloudflare-ip-details">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

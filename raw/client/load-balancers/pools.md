@@ -1,0 +1,203 @@
+# Pools
+
+> Pools endpoint reference.
+
+## List
+
+List configured load balancer pools for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->list('ACCOUNT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-list-pools">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Create a new load balancer pool for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"values","type":"array","required":true,"description":"Values to set on the pool, e.g. `name`, `origins`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->create('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-create-pool">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get a single configured load balancer pool for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->get('ACCOUNT_ID', 'POOL_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-details">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Update an existing load balancer pool for an account, overwriting the full configuration.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":true,"description":"Values to set on the pool, e.g. `name`, `origins`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->update('ACCOUNT_ID', 'POOL_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-update-pool">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Edit
+
+Apply changes to an existing pool, overwriting only the supplied properties.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":true,"description":"Values to patch on the pool."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->edit('ACCOUNT_ID', 'POOL_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pool">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Bulk Edit
+
+Apply changes to a number of existing pools, overwriting the supplied properties. Returns the list of affected pools.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"values","type":"array","required":true,"description":"List of pool patches to apply, each identified by `id`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->bulkEdit('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pools">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Delete a load balancer pool for an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->delete('ACCOUNT_ID', 'POOL_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-delete-pool">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Health
+
+Fetch the latest pool health status for a single pool.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->health('ACCOUNT_ID', 'POOL_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-health-details">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Preview
+
+Preview pool health using the specified monitor and show the effective response.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":false,"description":"The monitor details to run the preview with.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->preview('ACCOUNT_ID', 'POOL_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-preview-pool">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## References
+
+List the load balancers that reference a given pool.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->loadBalancers()->pools()->references('ACCOUNT_ID', 'POOL_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-list-pool-references">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

@@ -1,0 +1,83 @@
+# Environment
+
+> Environment endpoint reference.
+
+## Get
+
+Get script content from a worker with an environment
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"serviceName","type":"string","required":true,"description":"Name of Worker to bind to"},{"name":"environmentName","type":"string","required":true,"description":"Environment of the Worker."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->environment()->get('ACCOUNT_ID', 'SERVICE_NAME', 'ENVIRONMENT_NAME');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-environment-get-script-content">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Put script content from a worker with an environment
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"serviceName","type":"string","required":true,"description":"Name of Worker to bind to"},{"name":"environmentName","type":"string","required":true,"description":"Environment of the Worker."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->environment()->update('ACCOUNT_ID', 'SERVICE_NAME', 'ENVIRONMENT_NAME');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-environment-put-script-content">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get Settings
+
+Get script settings from a worker with an environment
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"serviceName","type":"string","required":true,"description":"Name of Worker to bind to"},{"name":"environmentName","type":"string","required":true,"description":"Environment of the Worker."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->environment()->getSettings('ACCOUNT_ID', 'SERVICE_NAME', 'ENVIRONMENT_NAME');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-environment-get-settings">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update Settings
+
+Patch script metadata, such as bindings
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"serviceName","type":"string","required":true,"description":"Name of Worker to bind to"},{"name":"environmentName","type":"string","required":true,"description":"Environment of the Worker."},{"name":"values","type":"array","required":true,"description":"Settings values."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->workers()->environment()->updateSettings('ACCOUNT_ID', 'SERVICE_NAME', 'ENVIRONMENT_NAME', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-environment-patch-settings">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
