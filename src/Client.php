@@ -32,6 +32,10 @@ use Cloudflare\HttpClient\HttpClient;
  * @method \Cloudflare\Endpoints\CloudConnector cloudConnector()
  * @method \Cloudflare\Endpoints\R2 r2()
  * @method \Cloudflare\Endpoints\Iam iam()
+ * @method \Cloudflare\Endpoints\User user()
+ * @method \Cloudflare\Endpoints\Organizations organizations()
+ * @method \Cloudflare\Endpoints\Memberships memberships()
+ * @method \Cloudflare\Endpoints\Tenants tenants()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -98,6 +102,10 @@ class Client
             'cloudConnector' => new Endpoints\CloudConnector($this),
             'r2' => new Endpoints\R2($this),
             'iam' => new Endpoints\Iam($this),
+            'user' => new Endpoints\User($this),
+            'organizations' => new Endpoints\Organizations($this),
+            'memberships' => new Endpoints\Memberships($this),
+            'tenants' => new Endpoints\Tenants($this),
             default => throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name))
         };
 
