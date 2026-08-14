@@ -32,9 +32,10 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 
 * PHP >= 8.2
 * Minimal API around the [Guzzle HTTP client](https://github.com/guzzle/guzzle)
+* Framework agnostic — Guzzle and the PSR interfaces are the only runtime dependencies
 * Light and fast thanks to lazy loading of API classes
 * Extensively documented
-* Laravel >= 12 support
+* Optional Laravel integration (service provider + facade), tested against Laravel 12 and 13
 
 ## Quick install 🚀
 
@@ -67,7 +68,9 @@ A `./dock` helper script wraps the common `docker compose` commands (it starts t
 
 ### Support matrix
 
-This package requires **PHP >= 8.2** and supports **Laravel 12 and 13** (via `illuminate/contracts` and `illuminate/support`). `./dock matrix` builds and tests every supported PHP/Laravel combination locally, in isolated containers, mirroring `.github/workflows/tests.yml`:
+This package requires **PHP >= 8.2**.
+
+The Laravel service provider and facade ship in the package but are an *optional* integration. The integration is tested against **Laravel 12 and 13**. `./dock matrix` builds and tests every supported PHP/Laravel combination locally, in isolated containers, mirroring `.github/workflows/tests.yml`:
 
 | PHP | Laravel 12 | Laravel 13 |
 | --- | :---: | :---: |
