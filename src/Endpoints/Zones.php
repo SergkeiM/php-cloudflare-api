@@ -4,6 +4,7 @@ namespace Cloudflare\Endpoints;
 
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Zones\Holds;
+use Cloudflare\Endpoints\Zones\Settings;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -151,5 +152,15 @@ class Zones extends AbstractEndpoint
     public function holds(): Holds
     {
         return new Holds($this->getClient());
+    }
+
+    /**
+     * Zone Settings
+     *
+     * @return \Cloudflare\Endpoints\Zones\Settings
+     */
+    public function settings(): Settings
+    {
+        return new Settings($this->getClient());
     }
 }
