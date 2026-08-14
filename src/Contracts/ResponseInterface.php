@@ -31,7 +31,7 @@ interface ResponseInterface extends Stringable
     public function status();
 
     /**
-     * Determine if the request was successful.
+     * Determine if the request was successful, meaning any 2xx status.
      *
      * @return bool
      */
@@ -47,6 +47,8 @@ interface ResponseInterface extends Stringable
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
+     * Supports dot notation, e.g. `$response->json('result.id')`.
+     *
      * @param  string|null  $key
      * @param  mixed  $default
      * @return mixed
@@ -54,9 +56,23 @@ interface ResponseInterface extends Stringable
     public function json($key = null, $default = null);
 
     /**
-     * @param  string  $key
-     * @param  mixed  $default
-     * @return mixed
+     * Errors Cloudflare reported in the response envelope.
+     *
+     * @return array<int, array>
      */
-    public function get($target, $key, $default = null);
+    public function errors();
+
+    /**
+     * Informational messages Cloudflare returned in the response envelope.
+     *
+     * @return array<int, array>
+     */
+    public function messages();
+
+    /**
+     * Determine if Cloudflare reported any errors in the response envelope.
+     *
+     * @return bool
+     */
+    public function hasErrors();
 }
