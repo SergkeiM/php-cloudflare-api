@@ -30,6 +30,10 @@ trait InteractsWithMockClient
     /**
      * @param ResponseInterface[] $responses
      * @param ClientOptions|null $clientOptions Transport configuration to build the client with. The mock handler is appended to its middlewares.
+     *
+     * Retries are off unless $clientOptions asks for them, so a single queued
+     * response is enough for the vast majority of tests.
+     *
      * @return Client
      */
     protected function mockClient(array $responses, ?ClientOptions $clientOptions = null): Client
@@ -51,6 +55,7 @@ trait InteractsWithMockClient
             connectTimeout: $clientOptions?->connectTimeout ?? ClientOptions::DEFAULT_CONNECT_TIMEOUT,
             headers: $clientOptions?->headers ?? [],
             middlewares: $middlewares,
+            maxRetries: $clientOptions?->maxRetries ?? 0,
         ));
     }
 

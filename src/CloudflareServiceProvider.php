@@ -60,6 +60,7 @@ class CloudflareServiceProvider extends ServiceProvider
                 timeout: (float) $config->get('cloudflare.timeout', ClientOptions::DEFAULT_TIMEOUT),
                 connectTimeout: (float) $config->get('cloudflare.connect_timeout', ClientOptions::DEFAULT_CONNECT_TIMEOUT),
                 headers: (array) $config->get('cloudflare.headers', []),
+                maxRetries: (int) $config->get('cloudflare.max_retries', ClientOptions::DEFAULT_MAX_RETRIES),
             ));
         });
 

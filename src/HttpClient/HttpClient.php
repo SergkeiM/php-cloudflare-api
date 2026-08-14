@@ -46,6 +46,12 @@ class HttpClient
 
         $stack = HandlerStack::create();
 
+        // Pushed before the user's middlewares so it wraps them: they observe
+        // every attempt, rather than only the outcome of the last one.
+        if ($this->options->maxRetries > 0) {
+            $stack->push(Retry::middleware($this->options->maxRetries), 'cloudflare_retry');
+        }
+
         foreach ($this->options->middlewares as $middleware) {
             $stack->push($middleware);
         }

@@ -23,6 +23,7 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertSame(ClientOptions::DEFAULT_TIMEOUT, $options->timeout);
         $this->assertSame(ClientOptions::DEFAULT_CONNECT_TIMEOUT, $options->connectTimeout);
         $this->assertSame([], $options->headers);
+        $this->assertSame(ClientOptions::DEFAULT_MAX_RETRIES, $options->maxRetries);
     }
 
     public function testCloudflareClientReadsOptionsFromConfig(): void
@@ -31,6 +32,7 @@ class ServiceProviderTest extends AbstractTestCase
         $this->app['config']->set('cloudflare.timeout', 90);
         $this->app['config']->set('cloudflare.connect_timeout', 3);
         $this->app['config']->set('cloudflare.headers', ['X-Trace' => 'abc']);
+        $this->app['config']->set('cloudflare.max_retries', 5);
 
         $options = $this->app->make('cloudflare')->getOptions();
 
@@ -38,5 +40,6 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertSame(90.0, $options->timeout);
         $this->assertSame(3.0, $options->connectTimeout);
         $this->assertSame(['X-Trace' => 'abc'], $options->headers);
+        $this->assertSame(5, $options->maxRetries);
     }
 }

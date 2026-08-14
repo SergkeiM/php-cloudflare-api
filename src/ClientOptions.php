@@ -42,6 +42,11 @@ final readonly class ClientOptions
     public const DEFAULT_USER_AGENT = 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)';
 
     /**
+     * Attempts made after the initial request before giving up.
+     */
+    public const DEFAULT_MAX_RETRIES = 2;
+
+    /**
      * Base URL every request is resolved against, with a guaranteed trailing slash.
      */
     public string $baseUrl;
@@ -71,11 +76,17 @@ final readonly class ClientOptions
     public array $middlewares;
 
     /**
+     * Attempts made after the initial request before giving up. `0` disables retries.
+     */
+    public int $maxRetries;
+
+    /**
      * @param string|null $baseUrl Base URL for API requests. Defaults to the Cloudflare API v4 endpoint.
      * @param float $timeout Seconds to wait for a response. `0` disables the timeout.
      * @param float $connectTimeout Seconds to wait while connecting. `0` disables the timeout.
      * @param array<string, string|string[]> $headers Additional headers sent with every request. `Authorization` is always managed by the client and cannot be overridden here.
      * @param array<int, callable> $middlewares Guzzle middlewares.
+     * @param int $maxRetries Attempts made after the initial request before giving up. `0` disables retries.
      *
      * @throws InvalidArgumentException
      */
@@ -84,13 +95,15 @@ final readonly class ClientOptions
         float $timeout = self::DEFAULT_TIMEOUT,
         float $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT,
         array $headers = [],
-        array $middlewares = []
+        array $middlewares = [],
+        int $maxRetries = self::DEFAULT_MAX_RETRIES
     ) {
         $this->baseUrl = self::normalizeBaseUrl($baseUrl);
         $this->timeout = self::normalizeTimeout($timeout, 'timeout');
         $this->connectTimeout = self::normalizeTimeout($connectTimeout, 'connectTimeout');
         $this->headers = self::normalizeHeaders($headers);
         $this->middlewares = self::normalizeMiddlewares($middlewares);
+        $this->maxRetries = self::normalizeMaxRetries($maxRetries);
     }
 
     /**
@@ -156,6 +169,21 @@ final readonly class ClientOptions
         }
 
         return $headers;
+    }
+
+    /**
+     * @param int $maxRetries
+     *
+     * @throws InvalidArgumentException
+     * @return int
+     */
+    private static function normalizeMaxRetries(int $maxRetries): int
+    {
+        if ($maxRetries < 0) {
+            throw new InvalidArgumentException(sprintf('The maxRetries must be zero or greater, %d given.', $maxRetries));
+        }
+
+        return $maxRetries;
     }
 
     /**

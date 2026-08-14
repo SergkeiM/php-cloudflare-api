@@ -208,14 +208,10 @@ class HttpClientTest extends TestCase
     public function shouldWrapConnectExceptionIntoConnectionException()
     {
         $request = new Request('GET', 'https://api.cloudflare.com/client/v4/zones/zone_id');
-        $mock = new \GuzzleHttp\Handler\MockHandler([
+
+        $client = $this->mockClient([
             new ConnectException('Could not resolve host', $request),
         ]);
-
-        $client = new \Cloudflare\Client('token', new \Cloudflare\ClientOptions(middlewares: [
-            \GuzzleHttp\Middleware::history($this->requestHistory),
-            fn (callable $handler) => fn ($req, array $options) => $mock($req, $options),
-        ]));
 
         $this->expectException(ConnectionException::class);
 
