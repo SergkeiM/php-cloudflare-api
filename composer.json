@@ -28,7 +28,8 @@
         "graham-campbell/testbench": "^6.3",
         "illuminate/contracts": "^12.0 || ^13.0",
         "illuminate/support": "^12.0 || ^13.0",
-        "phpdocumentor/reflection-docblock": "^6.0"
+        "phpdocumentor/reflection-docblock": "^6.0",
+        "phpstan/phpstan": "^2.1"
     },
     "suggest": {
         "illuminate/contracts": "Required to use the Laravel service provider and facade (^12.0 || ^13.0). Already present in any Laravel application.",
@@ -56,6 +57,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
+        "analyse": "vendor/bin/phpstan analyse",
         "fix": "vendor/bin/php-cs-fixer fix",
         "docs:generate-client": "php bin/generate-client-docs.php"
     },

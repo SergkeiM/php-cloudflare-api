@@ -87,7 +87,7 @@ class D1 extends AbstractEndpoint
      * @param string $currentBookmark To poll an in-progress export, provide the current bookmark (returned by your first polling response)
      * @param bool $noData Export only the table definitions, not their contents
      * @param bool $noSchema Export only each table's contents, not its definition
-     * @param array[string] $tables Filter the export to just one or more tables. Passing an empty array is the same as not passing anything and means: export all tables.
+     * @param string[] $tables Filter the export to just one or more tables. Passing an empty array is the same as not passing anything and means: export all tables.
      *
      * @return \Cloudflare\Contracts\ResponseInterface Polled successfully, task no longer running (errored or complete)
      */
@@ -178,7 +178,7 @@ class D1 extends AbstractEndpoint
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param string $query Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch.
-     * @param array[string] $params Query params.
+     * @param array<int, mixed> $params Query params.
      *
      * @return \Cloudflare\Contracts\ResponseInterface Query response
      */
@@ -200,7 +200,7 @@ class D1 extends AbstractEndpoint
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param string $query Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch.
-     * @param array[string] $params Query params.
+     * @param array<int, mixed> $params Query params.
      *
      * @return \Cloudflare\Contracts\ResponseInterface Raw query response
      */

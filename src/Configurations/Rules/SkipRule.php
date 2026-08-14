@@ -18,7 +18,7 @@ class SkipRule extends Rule
 
     /**
      * Enable logging.
-     * @return \Cloudflare\Configurations\Rules\Rule
+     * @return \Cloudflare\Configurations\Rules\SkipRule
      */
     public function enableLogging(): self
     {
@@ -29,7 +29,7 @@ class SkipRule extends Rule
 
     /**
      * Disable logging.
-     * @return \Cloudflare\Configurations\Rules\Rule
+     * @return \Cloudflare\Configurations\Rules\SkipRule
      */
     public function disableLogging(): self
     {

@@ -63,14 +63,14 @@ class Ruleset implements Configuration
      */
     private null|string $description = null;
 
-    private $kinds = [
+    private array $kinds = [
         'managed' => 'managed',
         'custom' => 'custom',
         'root' => 'root',
         'zone' => 'zone',
     ];
 
-    private $phases = [
+    private array $phases = [
         'ddosL4' => 'ddos_l4',
         'ddosL7' => 'ddos_l7',
         'configSettings' => 'http_config_settings',
@@ -157,7 +157,14 @@ class Ruleset implements Configuration
         return $options;
     }
 
-    public function __call($name, $arguments)
+    /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @throws BadMethodCallException
+     * @return \Cloudflare\Configurations\Ruleset
+     */
+    public function __call(string $name, array $arguments): self
     {
         if (array_key_exists($name, $this->phases)) {
 

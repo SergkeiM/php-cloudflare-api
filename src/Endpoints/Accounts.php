@@ -98,7 +98,7 @@ class Accounts extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/operations/account-deletion
      *
-     * @param string $accountIdAccount identifier.
+     * @param string $accountId Account identifier.
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */

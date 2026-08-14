@@ -79,7 +79,7 @@ class DNS extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      * @param string $content Content of BIND config to import.
-     * @param string $proxied Should DNS records be proxied.
+     * @param bool $proxied Should DNS records be proxied.
      *
      * @return ResponseInterface Export DNS Records response
      */
