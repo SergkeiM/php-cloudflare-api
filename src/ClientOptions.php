@@ -151,7 +151,7 @@ final readonly class ClientOptions
     }
 
     /**
-     * @param array<string, string|string[]> $headers
+     * @param array $headers Raw, unvalidated input.
      *
      * @throws InvalidArgumentException
      * @return array<string, string|string[]>
@@ -187,7 +187,7 @@ final readonly class ClientOptions
     }
 
     /**
-     * @param array<int, callable> $middlewares
+     * @param array $middlewares Raw, unvalidated input.
      *
      * @throws InvalidArgumentException
      * @return array<int, callable>

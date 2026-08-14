@@ -21,12 +21,17 @@ use Stringable;
  * @method \Cloudflare\ExpressionBuilder not() not()
  * @method \Cloudflare\ExpressionBuilder and() and()
  * @method \Cloudflare\ExpressionBuilder or() or()
+ *
+ * Subclasses must keep the constructor signature, since `group()` builds a
+ * nested builder of the same type.
+ *
+ * @phpstan-consistent-constructor
  */
 class ExpressionBuilder implements Stringable
 {
     /**
      * Available fields
-     * @var array[]
+     * @var string[]
      */
     private array $fields = [
         "cf.bot_management.detection_ids",
@@ -191,7 +196,7 @@ class ExpressionBuilder implements Stringable
 
     /**
      * array of expressions
-     * @var array[]
+     * @var string[]
      */
     private array $expressions = [];
 
@@ -200,7 +205,7 @@ class ExpressionBuilder implements Stringable
      *
      * @link https://developers.cloudflare.com/ruleset-engine/rules-language/operators/
      *
-     * @param \Closure $callback
+     * @param \Closure $closure The callback receiving a nested builder.
      * @return \Cloudflare\ExpressionBuilder
      */
     public function group(Closure $closure): self
@@ -231,7 +236,7 @@ class ExpressionBuilder implements Stringable
 
             $this->expressions[] = (is_null($field) ? "" : "{$field} ")."{$operator} {$this->formatValue($value)}";
 
-        } else {
+        } elseif (!is_null($field)) {
 
             $this->expressions[] = $field;
 
@@ -334,7 +339,7 @@ class ExpressionBuilder implements Stringable
 
         } elseif (is_array($value)) {
 
-            return "{".implode(" ", array_map(fn (string $v) => $this->formatValue($v), $value))."}";
+            return "{".implode(" ", array_map(fn (mixed $v) => $this->formatValue($v), $value))."}";
         }
 
         return (string)$value;
@@ -350,7 +355,14 @@ class ExpressionBuilder implements Stringable
         return in_array($value, $this->fields);
     }
 
-    public function __call($name, $arguments)
+    /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @throws BadMethodCallException
+     * @return \Cloudflare\ExpressionBuilder
+     */
+    public function __call(string $name, array $arguments): self
     {
         if (in_array($name, $this->comparisonOperators)) {
 

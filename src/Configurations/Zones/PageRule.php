@@ -33,7 +33,6 @@ class PageRule implements Configuration
 
     /**
      * Enable Page Rule.
-     * @param bool $status
      * @return \Cloudflare\Configurations\Zones\PageRule
      */
     public function enable(): self

@@ -4,6 +4,7 @@ namespace Cloudflare;
 
 use Cloudflare\ClientOptions;
 use Cloudflare\Exceptions\ConfigurationException;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
@@ -54,7 +55,8 @@ class CloudflareServiceProvider extends ServiceProvider
     private function registerCloudflare(): void
     {
         $this->app->singleton('cloudflare', function (Container $app): Client {
-            $config = $app['config'];
+            /** @var Repository $config */
+            $config = $app->make('config');
 
             return new Client(self::resolveToken($config), new ClientOptions(
                 baseUrl: $config->get('cloudflare.base_url'),
@@ -71,12 +73,12 @@ class CloudflareServiceProvider extends ServiceProvider
     /**
      * Read the configured API token, treating blanks as absent.
      *
-     * @param \Illuminate\Contracts\Config\Repository $config
+     * @param Repository $config
      *
      * @throws ConfigurationException
      * @return string
      */
-    private static function resolveToken($config): string
+    private static function resolveToken(Repository $config): string
     {
         $token = $config->get('cloudflare.auth.token');
 

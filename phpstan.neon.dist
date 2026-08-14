@@ -1,0 +1,11 @@
+parameters:
+    level: 8
+
+    paths:
+        - src
+
+    ignoreErrors:
+        # Every endpoint takes the Cloudflare query parameters as a plain
+        # `array $params`, and the API accepts arbitrarily shaped filters in
+        # them. Spelling those out per endpoint would document nothing.
+        - identifier: missingType.iterableValue

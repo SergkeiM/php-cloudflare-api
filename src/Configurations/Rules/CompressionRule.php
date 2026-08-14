@@ -20,7 +20,7 @@ class CompressionRule extends Rule
 
     /**
      * The parameters configuring the rule's action.
-     * @return ?array
+     * @return array
      */
     protected function getActionParameters(): array
     {

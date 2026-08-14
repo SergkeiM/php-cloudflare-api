@@ -60,12 +60,17 @@ A `./dock` helper script wraps the common `docker compose` commands (it starts t
 ./dock test              # Run the full PHPUnit suite
 ./dock test --filter=SslTest  # Pass any args straight through to phpunit
 ./dock cs                 # Check code style (php-cs-fixer, dry run)
+./dock analyse            # Run static analysis (phpstan)
 ./dock fix                # Fix code style (php-cs-fixer)
 ./dock sh                # Open a shell in the container
 ./dock down               # Stop and remove the container
 ./dock matrix              # Run the full PHP x Laravel support matrix locally (mirrors CI)
 ./dock help               # List all commands
 ```
+
+### Static analysis
+
+`src` is analysed with [PHPStan](https://phpstan.org) at **level 8**, on the lowest supported PHP version, and CI fails on any error. Run it locally with `./dock analyse` (or `composer analyse`); the configuration lives in `phpstan.neon.dist`.
 
 ### Support matrix
 

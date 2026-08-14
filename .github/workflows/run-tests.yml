@@ -12,6 +12,34 @@ jobs:
       - uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
         with:
           args: check
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Analysed on the lowest supported PHP version, so nothing newer than
+      # the declared floor slips into src/.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+        env:
+          update: true
+
+      - name: Install PHP Dependencies
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --no-interaction --no-progress
+
+      - name: Execute PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --error-format=github
+
   tests:
     name: PHP ${{ matrix.php }}; Laravel ${{ matrix.laravel }}
     runs-on: ubuntu-latest
