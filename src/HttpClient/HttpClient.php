@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
+use Cloudflare\ClientOptions;
 use Cloudflare\HttpClient\Exceptions\BadRequestException;
 use Cloudflare\HttpClient\Exceptions\AuthenticationException;
 use Cloudflare\HttpClient\Exceptions\PermissionDeniedException;
@@ -22,41 +23,40 @@ use Cloudflare\HttpClient\Exceptions\ConnectionException;
 class HttpClient
 {
     /**
-     * The base URL for Cloudflare API requests.
-     */
-    protected const BASE_URL = 'https://api.cloudflare.com/client/v4/';
-
-    /**
      * Guzzle HTTP
      */
     protected readonly Client $client;
 
     /**
+     * Transport configuration this client was built with.
+     */
+    protected readonly ClientOptions $options;
+
+    /**
      * @param  string  $token
-     * @param array $middleware The middleware callables added by users that will handle requests.
+     * @param  \Cloudflare\ClientOptions|null  $options Transport configuration. Defaults to `new ClientOptions()`.
      * @return void
      */
     public function __construct(
         string $token,
-        array $middlewares = []
+        ?ClientOptions $options = null
     ) {
+
+        $this->options = $options ?? new ClientOptions();
 
         $stack = HandlerStack::create();
 
-        foreach ($middlewares as $middleware) {
+        foreach ($this->options->middlewares as $middleware) {
             $stack->push($middleware);
         }
 
         $this->client = new Client([
             'handler' => $stack,
             RequestOptions::HTTP_ERRORS => false,
-            RequestOptions::HEADERS => [
-                'Authorization' => "Bearer {$token}",
-                'User-Agent' => 'php-cloudflare-api (https://github.com/SergkeiM/php-cloudflare-api)'
-            ],
-            RequestOptions::CONNECT_TIMEOUT => 10,
+            RequestOptions::HEADERS => self::buildHeaders($token, $this->options->headers),
+            RequestOptions::CONNECT_TIMEOUT => $this->options->connectTimeout,
             RequestOptions::CRYPTO_METHOD => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
-            RequestOptions::TIMEOUT => 30
+            RequestOptions::TIMEOUT => $this->options->timeout
         ]);
     }
 
@@ -68,6 +68,58 @@ class HttpClient
     public function getGuzzleClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Get the transport configuration this client was built with.
+     *
+     * @return \Cloudflare\ClientOptions
+     */
+    public function getOptions(): ClientOptions
+    {
+        return $this->options;
+    }
+
+    /**
+     * Merge the user supplied headers over the defaults, case-insensitively.
+     *
+     * The credential is owned by the client, so `Authorization` is always applied last.
+     *
+     * @param  string  $token
+     * @param  array<string, string|string[]>  $headers
+     * @return array<string, string|string[]>
+     */
+    private static function buildHeaders(string $token, array $headers): array
+    {
+        $merged = ['User-Agent' => ClientOptions::DEFAULT_USER_AGENT];
+
+        foreach ($headers as $name => $value) {
+            $merged = self::withoutHeader($merged, $name);
+            $merged[$name] = $value;
+        }
+
+        $merged = self::withoutHeader($merged, 'Authorization');
+        $merged['Authorization'] = "Bearer {$token}";
+
+        return $merged;
+    }
+
+    /**
+     * Remove every case-insensitive match for the given header name.
+     *
+     * @param  array<string, string|string[]>  $headers
+     * @param  string  $name
+     * @return array<string, string|string[]>
+     */
+    private static function withoutHeader(array $headers, string $name): array
+    {
+        foreach (array_keys($headers) as $existing) {
+            if (strcasecmp((string) $existing, $name) === 0) {
+                unset($headers[$existing]);
+            }
+        }
+
+        return $headers;
     }
 
     /**
@@ -187,7 +239,7 @@ class HttpClient
     {
         try {
 
-            $response = new Response($this->client->request($method, self::BASE_URL.ltrim($url, '/'), $options));
+            $response = new Response($this->client->request($method, $this->options->baseUrl.ltrim($url, '/'), $options));
 
             if ($response->failed()) {
 

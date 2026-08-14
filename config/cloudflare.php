@@ -6,5 +6,57 @@
 
 return [
 
-    'token' => 'your-token',
+    /*
+    |--------------------------------------------------------------------------
+    | API Token
+    |--------------------------------------------------------------------------
+    |
+    | Your Cloudflare API token.
+    |
+    | https://developers.cloudflare.com/fundamentals/api/get-started/create-token
+    |
+    */
+
+    'token' => env('CLOUDFLARE_TOKEN', 'your-token'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Base URL
+    |--------------------------------------------------------------------------
+    |
+    | Base URL every request is resolved against. Leave null to use the
+    | Cloudflare API v4 endpoint. Useful for pointing at a mock server or a
+    | gateway during testing.
+    |
+    */
+
+    'base_url' => env('CLOUDFLARE_BASE_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Timeouts
+    |--------------------------------------------------------------------------
+    |
+    | Seconds to wait for a response, and seconds to wait while connecting.
+    | Set either to 0 to disable it. Raise `timeout` if you upload large
+    | Worker scripts or run long queries.
+    |
+    */
+
+    'timeout' => env('CLOUDFLARE_TIMEOUT', 30),
+
+    'connect_timeout' => env('CLOUDFLARE_CONNECT_TIMEOUT', 10),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Headers
+    |--------------------------------------------------------------------------
+    |
+    | Additional headers sent with every request. `Authorization` is always
+    | managed by the client and cannot be overridden here.
+    |
+    */
+
+    'headers' => [],
+
 ];

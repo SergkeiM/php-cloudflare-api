@@ -50,15 +50,15 @@ class Client
 
     /**
      * @param string $token Cloudflare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token
-     * @param array $middlewares Guzzle middlewares. https://docs.guzzlephp.org/en/stable/handlers-and-middleware.html#middleware
+     * @param ClientOptions|null $options Transport configuration (base URL, timeouts, headers, Guzzle middlewares). Defaults to `new ClientOptions()`.
      * @return void
      */
     public function __construct(
         string $token,
-        array $middlewares = []
+        ?ClientOptions $options = null
     ) {
 
-        $this->httpClient = new HttpClient($token, $middlewares);
+        $this->httpClient = new HttpClient($token, $options);
     }
 
     /**
@@ -67,6 +67,14 @@ class Client
     public function getHttpClient(): HttpClient
     {
         return $this->httpClient;
+    }
+
+    /**
+     * @return ClientOptions Transport configuration this client was built with.
+     */
+    public function getOptions(): ClientOptions
+    {
+        return $this->httpClient->getOptions();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Cloudflare;
 
+use Cloudflare\ClientOptions;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
@@ -52,7 +53,14 @@ class CloudflareServiceProvider extends ServiceProvider
     private function registerCloudflare(): void
     {
         $this->app->singleton('cloudflare', function (Container $app): Client {
-            return new Client(config('cloudflare.token'));
+            $config = $app['config'];
+
+            return new Client((string) $config->get('cloudflare.token'), new ClientOptions(
+                baseUrl: $config->get('cloudflare.base_url'),
+                timeout: (float) $config->get('cloudflare.timeout', ClientOptions::DEFAULT_TIMEOUT),
+                connectTimeout: (float) $config->get('cloudflare.connect_timeout', ClientOptions::DEFAULT_CONNECT_TIMEOUT),
+                headers: (array) $config->get('cloudflare.headers', []),
+            ));
         });
 
         $this->app->alias('cloudflare', Client::class);

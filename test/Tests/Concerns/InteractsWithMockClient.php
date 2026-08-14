@@ -3,6 +3,7 @@
 namespace Cloudflare\Tests\Concerns;
 
 use Cloudflare\Client;
+use Cloudflare\ClientOptions;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
@@ -20,21 +21,51 @@ trait InteractsWithMockClient
     protected array $requestHistory = [];
 
     /**
+     * Guzzle options as they were resolved for each outgoing request.
+     *
+     * @var array<int, array>
+     */
+    protected array $requestOptions = [];
+
+    /**
      * @param ResponseInterface[] $responses
+     * @param ClientOptions|null $clientOptions Transport configuration to build the client with. The mock handler is appended to its middlewares.
      * @return Client
      */
-    protected function mockClient(array $responses): Client
+    protected function mockClient(array $responses, ?ClientOptions $clientOptions = null): Client
     {
         $mock = new MockHandler($responses);
 
-        return new Client('token', [
+        $middlewares = array_merge($clientOptions?->middlewares ?? [], [
             Middleware::history($this->requestHistory),
-            fn (callable $handler) => fn ($request, array $options) => $mock($request, $options),
+            fn (callable $handler) => function ($request, array $options) use ($mock) {
+                $this->requestOptions[] = $options;
+
+                return $mock($request, $options);
+            },
         ]);
+
+        return new Client('token', new ClientOptions(
+            baseUrl: $clientOptions?->baseUrl,
+            timeout: $clientOptions?->timeout ?? ClientOptions::DEFAULT_TIMEOUT,
+            connectTimeout: $clientOptions?->connectTimeout ?? ClientOptions::DEFAULT_CONNECT_TIMEOUT,
+            headers: $clientOptions?->headers ?? [],
+            middlewares: $middlewares,
+        ));
     }
 
     protected function lastRequest(): RequestInterface
     {
         return end($this->requestHistory)['request'];
+    }
+
+    /**
+     * The Guzzle options resolved for the most recent request.
+     *
+     * @return array
+     */
+    protected function lastRequestOptions(): array
+    {
+        return end($this->requestOptions);
     }
 }
