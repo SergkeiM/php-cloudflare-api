@@ -158,6 +158,26 @@ function docRouteExists(string $route): bool
 }
 
 /**
+ * Drop comments, so a request written out in a docblock as an example is not
+ * mistaken for one this package issues.
+ */
+function withoutComments(string $source): string
+{
+    $code = '';
+
+    foreach (token_get_all($source) as $token) {
+
+        if (is_array($token) && in_array($token[0], [T_COMMENT, T_DOC_COMMENT], true)) {
+            continue;
+        }
+
+        $code .= is_array($token) ? $token[1] : $token;
+    }
+
+    return $code;
+}
+
+/**
  * Every request this package can issue, as `METHOD /path`, mapped to the
  * endpoint classes issuing it.
  *
@@ -175,7 +195,7 @@ function implementedOperations(string $directory): array
             continue;
         }
 
-        $source = (string) file_get_contents($file->getPathname());
+        $source = withoutComments((string) file_get_contents($file->getPathname()));
 
         preg_match_all(
             '/getHttpClient\(\)\s*->\s*(' . HTTP_METHODS . ')\(\s*([\'"])(.+?)\2/s',
