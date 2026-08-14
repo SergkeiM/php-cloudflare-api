@@ -44,4 +44,52 @@ class RulesTest extends TestCase
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/rulesets/ruleset_id/rules', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldUpdateWithArray()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $values = ['action' => 'block', 'expression' => 'false'];
+
+        $response = $client->rulesets()->rules()->update(null, 'zone_id', 'ruleset_id', 'rule_id', $values);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/rulesets/ruleset_id/rules/rule_id', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame($values, json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldUpdateWithRuleObject()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $rule = (new BlockRule(['error' => 'blocked']))->disable()->setExpression('true');
+
+        $response = $client->rulesets()->rules()->update('account_id', null, 'ruleset_id', 'rule_id', $rule);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PATCH', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/rulesets/ruleset_id/rules/rule_id', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame($rule->toArray(), json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldDelete()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $response = $client->rulesets()->rules()->delete(null, 'zone_id', 'ruleset_id', 'rule_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('DELETE', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/rulesets/ruleset_id/rules/rule_id', $this->lastRequest()->getUri()->getPath());
+    }
 }

@@ -114,4 +114,38 @@ class RulesetsTest extends TestCase
         $this->assertSame('DELETE', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/zones/zone_id/rulesets/ruleset_id', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldUpdateWithArray()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $values = ['rules' => [['action' => 'block', 'expression' => 'true']]];
+
+        $response = $client->rulesets()->update(null, 'zone_id', 'ruleset_id', $values);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/rulesets/ruleset_id', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame($values, json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldUpdateWithRulesetObject()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
+        ]);
+
+        $ruleset = (new Ruleset('my ruleset'))->addRule((new BlockRule(['error' => 'blocked']))->setExpression('true'));
+
+        $response = $client->rulesets()->update('account_id', null, 'ruleset_id', $ruleset);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/rulesets/ruleset_id', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame($ruleset->toArray(), json_decode((string) $this->lastRequest()->getBody(), true));
+    }
 }
