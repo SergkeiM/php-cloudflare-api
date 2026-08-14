@@ -2,6 +2,8 @@
 
 namespace Cloudflare\Exceptions;
 
-class InvalidArgumentException extends \InvalidArgumentException
+use Cloudflare\Contracts\ExceptionInterface;
+
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
 }
