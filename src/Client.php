@@ -50,7 +50,7 @@ class Client
 
     /**
      * @param string $token Cloudflare Token https://developers.cloudflare.com/fundamentals/api/get-started/create-token
-     * @param ClientOptions|null $options Transport configuration (base URL, timeouts, headers, Guzzle middlewares). Defaults to `new ClientOptions()`.
+     * @param ClientOptions|null $options Transport configuration (base URL, timeouts, headers, retries, Guzzle middlewares). Defaults to `new ClientOptions()`.
      * @return void
      */
     public function __construct(

@@ -8,16 +8,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | API Token
+    | Credentials
     |--------------------------------------------------------------------------
     |
-    | Your Cloudflare API token.
+    | A token is required. Blank values count as unset, and resolving the
+    | client without one throws a ConfigurationException.
     |
     | https://developers.cloudflare.com/fundamentals/api/get-started/create-token
     |
     */
 
-    'token' => env('CLOUDFLARE_TOKEN', 'your-token'),
+    'auth' => [
+
+        'token' => env('CLOUDFLARE_TOKEN'),
+
+    ],
 
     /*
     |--------------------------------------------------------------------------
