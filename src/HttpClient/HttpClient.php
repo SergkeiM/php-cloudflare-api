@@ -158,6 +158,28 @@ class HttpClient
     }
 
     /**
+     * Iterate over every entry of a paginated Cloudflare endpoint, by path.
+     *
+     * The counterpart of {@see \Cloudflare\Client::paginate()} for endpoints
+     * this package does not wrap yet.
+     *
+     * ```php
+     * foreach ($client->getHttpClient()->paginate('/zones', ['per_page' => 100]) as $zone) {
+     *     echo $zone['name'];
+     * }
+     * ```
+     *
+     * @param  string  $url
+     * @param  array  $query Query Parameters sent with the first page, and carried over to every page after it.
+     * @param  array  $options
+     * @return \Cloudflare\HttpClient\Paginator
+     */
+    public function paginate(string $url, array $query = [], array $options = []): Paginator
+    {
+        return new Paginator(fn (array $params) => $this->get($url, $params, $options), $query);
+    }
+
+    /**
      * Issue a HEAD request to the given Cloudflare endpoint.
      *
      * @param  string  $url

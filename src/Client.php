@@ -6,6 +6,7 @@ use Cloudflare\Endpoints\AbstractEndpoint;
 use Cloudflare\Exceptions\BadMethodCallException;
 use Cloudflare\Exceptions\InvalidArgumentException;
 use Cloudflare\HttpClient\HttpClient;
+use Cloudflare\HttpClient\Paginator;
 
 /**
  * Simple PHP Cloudflare client.
@@ -75,6 +76,36 @@ class Client
     public function getOptions(): ClientOptions
     {
         return $this->httpClient->getOptions();
+    }
+
+    /**
+     * Iterate over every entry of a list endpoint, page by page.
+     *
+     * The callable is handed the query parameters for a page and returns that
+     * page, so any endpoint whose last argument is `array $params` fits:
+     *
+     * ```php
+     * $zones = $client->paginate(
+     *     fn (array $params) => $client->zones()->list('ACCOUNT_ID', $params),
+     *     ['per_page' => 100]
+     * );
+     *
+     * foreach ($zones as $zone) {
+     *     echo $zone['name'];
+     * }
+     * ```
+     *
+     * Pages are requested as they are consumed, so nothing is fetched until
+     * iteration starts and nothing further is fetched once it stops.
+     *
+     * @param callable(array): \Cloudflare\Contracts\ResponseInterface $fetch Fetches one page from the query parameters it is given.
+     * @param array $params Query Parameters sent with the first page, and carried over to every page after it.
+     *
+     * @return Paginator
+     */
+    public function paginate(callable $fetch, array $params = []): Paginator
+    {
+        return new Paginator($fetch, $params);
     }
 
     /**
