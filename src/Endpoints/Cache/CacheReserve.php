@@ -49,7 +49,7 @@ class CacheReserve extends AbstractEndpoint
      * Start clearing the Cache Reserve of a zone.
      *
      * Cache Reserve has to be disabled first, and cannot be re-enabled while
-     * the clear is running. Poll {@see self::status()} for progress.
+     * the clear is running. Poll `status()` for progress.
      *
      * @link https://developers.cloudflare.com/api/resources/cache/subresources/cache_reserve/methods/clear/
      *
