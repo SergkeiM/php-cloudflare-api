@@ -13,6 +13,7 @@ use Cloudflare\HttpClient\Paginator;
  *
  * @method \Cloudflare\Endpoints\Accounts accounts()
  * @method \Cloudflare\Endpoints\Zones zones()
+ * @method \Cloudflare\Endpoints\Cache cache()
  * @method \Cloudflare\Endpoints\IP ips()
  * @method \Cloudflare\Endpoints\Workers workers()
  * @method \Cloudflare\Endpoints\Tunnel tunnel()
@@ -121,6 +122,7 @@ class Client
         $api = match ($name) {
             'accounts' => new Endpoints\Accounts($this),
             'zones' => new Endpoints\Zones($this),
+            'cache' => new Endpoints\Cache($this),
             'ips' => new Endpoints\IP($this),
             'workers' => new Endpoints\Workers($this),
             'tunnel' => new Endpoints\Tunnel($this),

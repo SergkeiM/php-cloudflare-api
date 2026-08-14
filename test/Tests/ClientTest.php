@@ -54,6 +54,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             ['ips', Endpoints\IP::class],
             ['workers', Endpoints\Workers::class],
             ['zones', Endpoints\Zones::class],
+            ['cache', Endpoints\Cache::class],
         ];
     }
 }
