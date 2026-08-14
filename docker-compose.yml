@@ -69,7 +69,7 @@ services:
       args:
         PHP_VERSION: "8.2"
     user: "1000:1000"
-    command: ["composer", "docs:generate-client"]
+    command: ["composer", "docs:generate"]
     volumes:
       - .:/app
       - vendor-php:/app/vendor
