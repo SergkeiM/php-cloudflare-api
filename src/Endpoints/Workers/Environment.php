@@ -3,11 +3,14 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Endpoints\Workers\Concerns\UploadsModules;
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Exceptions\BadMethodCallException;
+use GuzzleHttp\RequestOptions;
 
 class Environment extends AbstractEndpoint
 {
+    use UploadsModules;
+
     /**
      * Get script content from a worker with an environment
      *
@@ -25,21 +28,38 @@ class Environment extends AbstractEndpoint
     }
 
     /**
-     * Put script content from a worker with an environment
+     * Replace the code of a Worker in a given environment.
+     *
+     * The request is a multipart upload: a JSON `metadata` part naming the
+     * entry point, and one part per module holding its source. Settings and
+     * bindings for the environment are left alone.
+     *
+     * ```php
+     * $client->workers()->environment()->update('ACCOUNT_ID', 'my-worker', 'production', [
+     *     ['name' => 'worker.js', 'content' => file_get_contents('dist/worker.js')],
+     * ]);
+     * ```
      *
      * @link https://developers.cloudflare.com/api/operations/worker-environment-put-script-content
+     * @link https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/
      *
      * @param string $accountId Account identifier.
      * @param string $serviceName Name of Worker to bind to
      * @param string $environmentName Environment of the Worker.
+     * @param array $modules The modules making up the Worker. Each one is `['name' => 'worker.js', 'content' => '…']`, optionally with `'type'` to override the default `application/javascript+module`.
+     * @param array $metadata Multipart metadata naming the entry point. `main_module` defaults to the first module.
      *
-     * @return ResponseInterface Get script content response
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
+     *
+     * @return ResponseInterface Put script content response
      */
-    public function update(string $accountId, string $serviceName, string $environmentName): ResponseInterface
+    public function update(string $accountId, string $serviceName, string $environmentName, array $modules, array $metadata = []): ResponseInterface
     {
-        // TODO
-
-        throw new BadMethodCallException('Method update is not implemented yet');
+        return $this->getHttpClient()->put(
+            "/accounts/{$accountId}/workers/services/{$serviceName}/environments/{$environmentName}/content",
+            $this->multipartModules($modules, $metadata),
+            format: RequestOptions::MULTIPART
+        );
     }
 
     /**

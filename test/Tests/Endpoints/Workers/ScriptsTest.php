@@ -2,7 +2,8 @@
 
 namespace Cloudflare\Tests\Endpoints\Workers;
 
-use Cloudflare\Exceptions\BadMethodCallException;
+use Cloudflare\Endpoints\Workers\Scripts;
+use Cloudflare\Exceptions\MissingArgumentException;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\Test;
@@ -41,23 +42,86 @@ class ScriptsTest extends TestCase
     }
 
     #[Test]
-    public function shouldThrowOnUpload()
+    public function shouldUpload()
     {
-        $client = $this->mockClient([]);
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'script_name']])),
+        ]);
 
-        $this->expectException(BadMethodCallException::class);
+        $response = $client->workers()->scripts()->upload('account_id', 'script_name', [
+            ['name' => 'worker.js', 'content' => 'export default {};'],
+        ], [
+            'compatibility_date' => '2026-01-01',
+        ]);
 
-        $client->workers()->scripts()->upload('account_id', 'script_name');
+        $body = (string) $this->lastRequest()->getBody();
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/workers/scripts/script_name', $this->lastRequest()->getUri()->getPath());
+        $this->assertStringStartsWith('multipart/form-data', $this->lastRequest()->getHeaderLine('Content-Type'));
+        $this->assertStringContainsString('{"compatibility_date":"2026-01-01","main_module":"worker.js"}', $body);
+        $this->assertStringContainsString('name="worker.js"; filename="worker.js"', $body);
+        $this->assertStringContainsString('Content-Type: ' . Scripts::DEFAULT_MODULE_TYPE, $body);
+        $this->assertStringContainsString('export default {};', $body);
     }
 
     #[Test]
-    public function shouldThrowOnUpdateContent()
+    public function shouldUploadWithQueryParams()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'script_name']])),
+        ]);
+
+        $response = $client->workers()->scripts()->upload('account_id', 'script_name', [
+            ['name' => 'worker.js', 'content' => 'export default {};'],
+        ], [], ['bindings_inherit' => 'strict']);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('bindings_inherit=strict', $this->lastRequest()->getUri()->getQuery());
+    }
+
+    #[Test]
+    public function shouldThrowWhenUploadingWithoutModules()
     {
         $client = $this->mockClient([]);
 
-        $this->expectException(BadMethodCallException::class);
+        $this->expectException(MissingArgumentException::class);
 
-        $client->workers()->scripts()->updateContent('account_id', 'script_name');
+        $client->workers()->scripts()->upload('account_id', 'script_name', []);
+    }
+
+    #[Test]
+    public function shouldUpdateContent()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'script_name']])),
+        ]);
+
+        $response = $client->workers()->scripts()->updateContent('account_id', 'script_name', [
+            ['name' => 'worker.js', 'content' => 'export default {};'],
+            ['name' => 'lib.wasm', 'content' => 'binary', 'type' => 'application/wasm'],
+        ]);
+
+        $body = (string) $this->lastRequest()->getBody();
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/workers/scripts/script_name/content', $this->lastRequest()->getUri()->getPath());
+        $this->assertStringContainsString('{"main_module":"worker.js"}', $body);
+        $this->assertStringContainsString('Content-Type: application/wasm', $body);
+    }
+
+    #[Test]
+    public function shouldThrowWhenUpdatingContentWithAnIncompleteModule()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->workers()->scripts()->updateContent('account_id', 'script_name', [
+            ['content' => 'export default {};'],
+        ]);
     }
 
     #[Test]

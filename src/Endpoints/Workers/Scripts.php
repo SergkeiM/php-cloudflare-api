@@ -3,11 +3,14 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Endpoints\Workers\Concerns\UploadsModules;
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Exceptions\BadMethodCallException;
+use GuzzleHttp\RequestOptions;
 
 class Scripts extends AbstractEndpoint
 {
+    use UploadsModules;
+
     /**
      * Fetch a list of uploaded workers.
      *
@@ -38,39 +41,80 @@ class Scripts extends AbstractEndpoint
     }
 
     /**
-     * Upload a worker module. You can find more about the multipart metadata on [Cloudflare Docs](https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/).
+     * Upload a Worker, replacing the deployed script and its configuration.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-upload-worker-module
+     * The request is a multipart upload: a JSON `metadata` part describing the
+     * Worker, and one part per module holding its source. Bindings and settings
+     * come from the metadata, so anything left out of it is dropped — send the
+     * whole configuration, not just what changed. To replace only the code, use
+     * `updateContent()`; to stage a Worker without deploying it, upload a
+     * version instead.
+     *
+     * ```php
+     * $client->workers()->scripts()->upload('ACCOUNT_ID', 'my-worker', [
+     *     ['name' => 'worker.js', 'content' => file_get_contents('dist/worker.js')],
+     * ], [
+     *     'compatibility_date' => '2026-01-01',
+     *     'bindings' => [
+     *         ['type' => 'kv_namespace', 'name' => 'KV', 'namespace_id' => 'NAMESPACE_ID'],
+     *     ],
+     * ]);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/update/
+     * @link https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
+     * @param array $modules The modules making up the Worker. Each one is `['name' => 'worker.js', 'content' => '…']`, optionally with `'type'` to override the default `application/javascript+module`.
+     * @param array $metadata Multipart metadata: `compatibility_date`, `bindings`, `migrations`, `placement`, and so on. `main_module` defaults to the first module.
+     * @param array $params Query Parameters, such as `['bindings_inherit' => 'strict']` to fail rather than silently drop bindings that cannot be inherited.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return ResponseInterface Upload Worker Module response
      */
-    public function upload(string $accountId, string $scriptName): ResponseInterface
+    public function upload(string $accountId, string $scriptName, array $modules, array $metadata = [], array $params = []): ResponseInterface
     {
-        //TODO
-        // return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}");
-
-        throw new BadMethodCallException('Method update is not implemented yet');
+        return $this->getHttpClient()->put(
+            "/accounts/{$accountId}/workers/scripts/{$scriptName}",
+            $this->multipartModules($modules, $metadata),
+            $params === [] ? [] : ['query' => $params],
+            RequestOptions::MULTIPART
+        );
     }
 
     /**
-     * Put script content without touching config or metadata
+     * Replace a Worker's code, leaving its configuration and metadata alone.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-put-content
+     * The counterpart of `upload()` for a code-only deploy: bindings,
+     * compatibility date and the rest of the Worker's settings are kept as they
+     * are.
+     *
+     * ```php
+     * $client->workers()->scripts()->updateContent('ACCOUNT_ID', 'my-worker', [
+     *     ['name' => 'worker.js', 'content' => file_get_contents('dist/worker.js')],
+     * ]);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/content/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
+     * @param array $modules The modules making up the Worker. Each one is `['name' => 'worker.js', 'content' => '…']`, optionally with `'type'` to override the default `application/javascript+module`.
+     * @param array $metadata Multipart metadata naming the entry point. `main_module` defaults to the first module.
      *
-     * @return ResponseInterface Upload Worker Module response
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
+     *
+     * @return ResponseInterface Put script content response
      */
-    public function updateContent(string $accountId, string $scriptName): ResponseInterface
+    public function updateContent(string $accountId, string $scriptName, array $modules, array $metadata = []): ResponseInterface
     {
-        //TODO
-        // return $this->getHttpClient()->put("/accounts/{$accountId}/workers/scripts/{$scriptName}/content");
-
-        throw new BadMethodCallException('Method update is not implemented yet');
+        return $this->getHttpClient()->put(
+            "/accounts/{$accountId}/workers/scripts/{$scriptName}/content",
+            $this->multipartModules($modules, $metadata),
+            format: RequestOptions::MULTIPART
+        );
     }
 
     /**

@@ -3,20 +3,13 @@
 namespace Cloudflare\Endpoints\Workers;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
+use Cloudflare\Endpoints\Workers\Concerns\UploadsModules;
 use Cloudflare\Contracts\ResponseInterface;
-use Cloudflare\Exceptions\MissingArgumentException;
 use GuzzleHttp\RequestOptions;
 
 class Versions extends AbstractEndpoint
 {
-    /**
-     * Content type for a module, unless the module names its own.
-     *
-     * ES modules are what `wrangler` emits and what Cloudflare's own examples
-     * use. A service worker script wants `application/javascript`, WebAssembly
-     * `application/wasm`, and a source map `application/source-map`.
-     */
-    public const DEFAULT_MODULE_TYPE = 'application/javascript+module';
+    use UploadsModules;
 
     /**
      * List of Worker Versions. The first version in the list is the latest version.
@@ -66,43 +59,9 @@ class Versions extends AbstractEndpoint
      */
     public function upload(string $accountId, string $scriptName, array $modules, array $metadata = []): ResponseInterface
     {
-        if ($modules === []) {
-            throw new MissingArgumentException('modules');
-        }
-
-        foreach ($modules as $module) {
-            if (!isset($module['name'], $module['content'])) {
-                throw new MissingArgumentException(['name', 'content']);
-            }
-        }
-
-        // Cloudflare needs to know which module to run. `body_part` is the
-        // service worker equivalent, so only fill in the module entry point
-        // when neither is given.
-        if (!isset($metadata['main_module']) && !isset($metadata['body_part'])) {
-            $metadata['main_module'] = $modules[array_key_first($modules)]['name'];
-        }
-
-        $parts = [
-            [
-                'name' => 'metadata',
-                'contents' => json_encode($metadata),
-                'headers' => ['Content-Type' => 'application/json'],
-            ],
-        ];
-
-        foreach ($modules as $module) {
-            $parts[] = [
-                'name' => $module['name'],
-                'filename' => $module['name'],
-                'contents' => $module['content'],
-                'headers' => ['Content-Type' => $module['type'] ?? self::DEFAULT_MODULE_TYPE],
-            ];
-        }
-
         return $this->getHttpClient()->post(
             "/accounts/{$accountId}/workers/scripts/{$scriptName}/versions",
-            $parts,
+            $this->multipartModules($modules, $metadata),
             format: RequestOptions::MULTIPART
         );
     }
