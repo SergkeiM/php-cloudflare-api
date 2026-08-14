@@ -63,7 +63,13 @@
             "php bin/check-coverage.php"
         ],
         "fix": "vendor/bin/php-cs-fixer fix",
-        "docs:generate-client": "php bin/generate-client-docs.php"
+        "docs:generate-client": "php bin/generate-client-docs.php",
+        "docs:generate-coverage": "php bin/generate-coverage-docs.php",
+        "docs:refresh-schema": "php bin/refresh-cloudflare-schema.php",
+        "docs:generate": [
+            "@docs:generate-client",
+            "@docs:generate-coverage"
+        ]
     },
     "extra": {
         "laravel": {
