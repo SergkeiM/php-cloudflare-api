@@ -2,6 +2,8 @@
 
 namespace Cloudflare\Exceptions;
 
-class BadMethodCallException extends \BadMethodCallException
+use Cloudflare\Contracts\ExceptionInterface;
+
+class BadMethodCallException extends \BadMethodCallException implements ExceptionInterface
 {
 }

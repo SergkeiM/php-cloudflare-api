@@ -2,6 +2,8 @@
 
 namespace Cloudflare\HttpClient\Exceptions;
 
-class HttpClientException extends \Exception
+use Cloudflare\Contracts\ExceptionInterface;
+
+class HttpClientException extends \Exception implements ExceptionInterface
 {
 }

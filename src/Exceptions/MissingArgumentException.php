@@ -2,7 +2,7 @@
 
 namespace Cloudflare\Exceptions;
 
-class MissingArgumentException extends \ErrorException
+class MissingArgumentException extends InvalidArgumentException
 {
     /**
      * @param string|array   $required
@@ -15,6 +15,6 @@ class MissingArgumentException extends \ErrorException
             $required = [$required];
         }
 
-        parent::__construct(sprintf('One or more of required ("%s") parameters is missing!', implode('", "', $required)), $code, 1, __FILE__, __LINE__, $previous);
+        parent::__construct(sprintf('One or more of required ("%s") parameters is missing!', implode('", "', $required)), $code, $previous);
     }
 }
