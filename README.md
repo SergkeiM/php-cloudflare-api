@@ -34,6 +34,7 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 * Minimal API around the [Guzzle HTTP client](https://github.com/guzzle/guzzle)
 * Framework agnostic — Guzzle and the PSR interfaces are the only runtime dependencies
 * Light and fast thanks to lazy loading of API classes
+* Lazy pagination — iterate every page of a list endpoint without tracking cursors or page counters
 * Extensively documented
 * Optional Laravel integration (service provider + facade), tested against Laravel 12 and 13
 
