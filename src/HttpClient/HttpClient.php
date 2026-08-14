@@ -7,6 +7,7 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Exception\ConnectException;
 use Cloudflare\ClientOptions;
+use Cloudflare\Exceptions\InvalidArgumentException;
 use Cloudflare\HttpClient\Exceptions\BadRequestException;
 use Cloudflare\HttpClient\Exceptions\AuthenticationException;
 use Cloudflare\HttpClient\Exceptions\PermissionDeniedException;
@@ -33,14 +34,27 @@ class HttpClient
     protected readonly ClientOptions $options;
 
     /**
-     * @param  string  $token
+     * Token presented on every request.
+     */
+    protected readonly string $token;
+
+    /**
+     * @param  string  $token Cloudflare API token.
      * @param  \Cloudflare\ClientOptions|null  $options Transport configuration. Defaults to `new ClientOptions()`.
+     *
+     * @throws InvalidArgumentException
      * @return void
      */
     public function __construct(
         string $token,
         ?ClientOptions $options = null
     ) {
+
+        if (trim($token) === '') {
+            throw new InvalidArgumentException('The API token cannot be empty.');
+        }
+
+        $this->token = $token;
 
         $this->options = $options ?? new ClientOptions();
 
@@ -59,7 +73,7 @@ class HttpClient
         $this->client = new Client([
             'handler' => $stack,
             RequestOptions::HTTP_ERRORS => false,
-            RequestOptions::HEADERS => self::buildHeaders($token, $this->options->headers),
+            RequestOptions::HEADERS => self::buildHeaders($this->token, $this->options->headers),
             RequestOptions::CONNECT_TIMEOUT => $this->options->connectTimeout,
             RequestOptions::CRYPTO_METHOD => STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT,
             RequestOptions::TIMEOUT => $this->options->timeout
@@ -89,7 +103,7 @@ class HttpClient
     /**
      * Merge the user supplied headers over the defaults, case-insensitively.
      *
-     * The credential is owned by the client, so `Authorization` is always applied last.
+     * The token is owned by the client, so `Authorization` is always applied last.
      *
      * @param  string  $token
      * @param  array<string, string|string[]>  $headers

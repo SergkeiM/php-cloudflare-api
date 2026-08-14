@@ -4,6 +4,7 @@ namespace Cloudflare\Tests\Laravel;
 
 use Cloudflare\Client;
 use Cloudflare\ClientOptions;
+use Cloudflare\Exceptions\ConfigurationException;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 
 class ServiceProviderTest extends AbstractTestCase
@@ -41,5 +42,44 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertSame(3.0, $options->connectTimeout);
         $this->assertSame(['X-Trace' => 'abc'], $options->headers);
         $this->assertSame(5, $options->maxRetries);
+    }
+
+    public function testCloudflareClientAuthenticatesWithTheConfiguredToken(): void
+    {
+        $this->app['config']->set('cloudflare.auth.token', 'configured-token');
+
+        $this->assertSame('configured-token', $this->resolveToken());
+    }
+
+    public function testCloudflareClientTreatsABlankTokenAsAbsent(): void
+    {
+        $this->app['config']->set('cloudflare.auth.token', '   ');
+
+        $this->expectException(ConfigurationException::class);
+
+        $this->app->make('cloudflare');
+    }
+
+    public function testCloudflareClientRequiresAToken(): void
+    {
+        $this->app['config']->set('cloudflare.auth.token', null);
+
+        $this->expectException(ConfigurationException::class);
+
+        $this->app->make('cloudflare');
+    }
+
+    /**
+     * The token is private to the client, so read it back with reflection.
+     *
+     * @return string
+     */
+    private function resolveToken(): string
+    {
+        $httpClient = $this->app->make('cloudflare')->getHttpClient();
+
+        $property = new \ReflectionProperty($httpClient, 'token');
+
+        return $property->getValue($httpClient);
     }
 }

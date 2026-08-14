@@ -30,13 +30,14 @@ trait InteractsWithMockClient
     /**
      * @param ResponseInterface[] $responses
      * @param ClientOptions|null $clientOptions Transport configuration to build the client with. The mock handler is appended to its middlewares.
+     * @param string $token API token the client authenticates with.
      *
      * Retries are off unless $clientOptions asks for them, so a single queued
      * response is enough for the vast majority of tests.
      *
      * @return Client
      */
-    protected function mockClient(array $responses, ?ClientOptions $clientOptions = null): Client
+    protected function mockClient(array $responses, ?ClientOptions $clientOptions = null, string $token = 'token'): Client
     {
         $mock = new MockHandler($responses);
 
@@ -49,7 +50,7 @@ trait InteractsWithMockClient
             },
         ]);
 
-        return new Client('token', new ClientOptions(
+        return new Client($token, new ClientOptions(
             baseUrl: $clientOptions?->baseUrl,
             timeout: $clientOptions?->timeout ?? ClientOptions::DEFAULT_TIMEOUT,
             connectTimeout: $clientOptions?->connectTimeout ?? ClientOptions::DEFAULT_CONNECT_TIMEOUT,

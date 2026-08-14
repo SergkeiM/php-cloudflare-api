@@ -3,6 +3,7 @@
 namespace Cloudflare\Tests\HttpClient;
 
 use Cloudflare\ClientOptions;
+use Cloudflare\Exceptions\InvalidArgumentException;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use Cloudflare\HttpClient\Exceptions\AuthenticationException;
 use Cloudflare\HttpClient\Exceptions\BadRequestException;
@@ -134,6 +135,28 @@ class HttpClientTest extends TestCase
         $client->zones()->get('zone_id');
 
         $this->assertSame(['Bearer token'], $this->lastRequest()->getHeader('Authorization'));
+    }
+
+    #[Test]
+    public function shouldUseTheSuppliedToken()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], '{}'),
+        ], null, 'explicit-token');
+
+        $client->zones()->get('zone_id');
+
+        $this->assertSame('Bearer explicit-token', $this->lastRequest()->getHeaderLine('Authorization'));
+    }
+
+    #[TestWith([''])]
+    #[TestWith(['   '])]
+    #[Test]
+    public function shouldRejectBlankToken(string $token)
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new \Cloudflare\Client($token);
     }
 
     #[Test]

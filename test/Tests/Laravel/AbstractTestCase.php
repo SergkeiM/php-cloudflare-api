@@ -16,4 +16,19 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
     {
         return CloudflareServiceProvider::class;
     }
+
+    /**
+     * Setup the application environment.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return void
+     */
+    protected function getEnvironmentSetUp($app): void
+    {
+        parent::getEnvironmentSetUp($app);
+
+        // The package ships without a credential, so give the container one to resolve.
+        $app->config->set('cloudflare.auth.token', 'token');
+    }
 }
