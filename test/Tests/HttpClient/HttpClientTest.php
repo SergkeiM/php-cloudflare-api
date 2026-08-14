@@ -206,6 +206,49 @@ class HttpClientTest extends TestCase
         $this->assertStringContainsString('name=example.com', $this->lastRequest()->getUri()->getQuery());
     }
 
+    #[TestWith([200])]
+    #[TestWith([201])]
+    #[TestWith([202])]
+    #[TestWith([204])]
+    #[Test]
+    public function shouldNotThrowForAny2xxStatus(int $status)
+    {
+        $client = $this->mockClient([
+            new Response($status, [], $status === 204 ? '' : '{}'),
+        ]);
+
+        $response = $client->zones()->get('zone_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame($status, $response->status());
+    }
+
+    #[Test]
+    public function shouldHandleEmptyBodyOnNoContent()
+    {
+        $client = $this->mockClient([
+            new Response(204, [], ''),
+        ]);
+
+        $response = $client->zones()->delete('zone_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertNull($response->json());
+        $this->assertSame('', $response->body());
+    }
+
+    #[Test]
+    public function shouldThrowForRedirectStatus()
+    {
+        $client = $this->mockClient([
+            new Response(302, [], '{}'),
+        ]);
+
+        $this->expectException(RequestException::class);
+
+        $client->zones()->get('zone_id');
+    }
+
     #[TestWith([400, BadRequestException::class])]
     #[TestWith([401, AuthenticationException::class])]
     #[TestWith([403, PermissionDeniedException::class])]

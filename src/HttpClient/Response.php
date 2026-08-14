@@ -85,11 +85,14 @@ class Response implements ResponseInterface
     /**
      * Determine if the request was successful.
      *
+     * True for any 2xx status. Cloudflare answers most endpoints with `200`,
+     * but some return `201`, `202` or `204`, and a `HEAD` request may too.
+     *
      * @return bool
      */
     public function successful()
     {
-        return $this->status() === 200;
+        return $this->status() >= 200 && $this->status() < 300;
     }
 
     /**
@@ -103,36 +106,68 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Errors Cloudflare reported in the response envelope.
+     *
+     * Cloudflare answers some operations with a 2xx status and a body carrying
+     * `"success": false`, notably where part of a bulk request failed, so a
+     * successful status alone does not always mean the operation worked.
+     *
+     * @return array<int, array>
+     */
+    public function errors()
+    {
+        return $this->envelope('errors');
+    }
+
+    /**
+     * Informational messages Cloudflare returned in the response envelope.
+     *
+     * @return array<int, array>
+     */
+    public function messages()
+    {
+        return $this->envelope('messages');
+    }
+
+    /**
+     * Determine if Cloudflare reported any errors in the response envelope.
+     *
+     * @return bool
+     */
+    public function hasErrors()
+    {
+        return $this->errors() !== [];
+    }
+
+    /**
+     * Read a list from the Cloudflare response envelope.
+     *
+     * @param  string  $key
+     * @return array<int, array>
+     */
+    private function envelope(string $key)
+    {
+        $value = $this->json($key);
+
+        return is_array($value) ? $value : [];
+    }
+
+    /**
+     * Resolve a dot notated key against the decoded body.
+     *
+     * @param  mixed  $target
      * @param  string  $key
      * @param  mixed  $default
      * @return mixed
      */
-    public function get($target, $key, $default = null)
+    private function get($target, string $key, $default = null)
     {
-        $key = explode('.', $key);
-
-        foreach ($key as $i => $segment) {
-            unset($key[$i]);
-
-            // @codeCoverageIgnoreStart
-            // $key is always exploded into string segments above, so $segment
-            // can never actually be null or a float; kept as defensive guards.
-            if (is_null($segment)) {
-                return $target;
-            }
-
-            if (is_float($segment)) {
-                $segment = (string) $segment;
-            }
-            // @codeCoverageIgnoreEnd
-
-            if (is_array($target) && array_key_exists($segment, $target)) {
-                $target = $target[$segment];
-            } elseif (is_object($target) && isset($target->{$segment})) {
-                $target = $target->{$segment};
-            } else {
+        foreach (explode('.', $key) as $segment) {
+            if (!is_array($target) || !array_key_exists($segment, $target)) {
                 return $default;
             }
+
+            $target = $target[$segment];
         }
 
         return $target;
