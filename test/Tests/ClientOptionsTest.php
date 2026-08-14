@@ -20,6 +20,22 @@ class ClientOptionsTest extends TestCase
         $this->assertSame(ClientOptions::DEFAULT_CONNECT_TIMEOUT, $options->connectTimeout);
         $this->assertSame([], $options->headers);
         $this->assertSame([], $options->middlewares);
+        $this->assertSame(ClientOptions::DEFAULT_MAX_RETRIES, $options->maxRetries);
+    }
+
+    #[Test]
+    public function shouldAcceptMaxRetries()
+    {
+        $this->assertSame(5, (new ClientOptions(maxRetries: 5))->maxRetries);
+        $this->assertSame(0, (new ClientOptions(maxRetries: 0))->maxRetries);
+    }
+
+    #[Test]
+    public function shouldRejectNegativeMaxRetries()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new ClientOptions(maxRetries: -1);
     }
 
     #[Test]

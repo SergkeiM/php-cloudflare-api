@@ -49,6 +49,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Max Retries
+    |--------------------------------------------------------------------------
+    |
+    | Attempts made after the initial request before giving up. Connection
+    | failures and the 408, 409, 429 and 5xx statuses are retried with
+    | exponential backoff, honouring Cloudflare's `Retry-After` header.
+    | Set to 0 to disable retries.
+    |
+    */
+
+    'max_retries' => env('CLOUDFLARE_MAX_RETRIES', 2),
+
+    /*
+    |--------------------------------------------------------------------------
     | Headers
     |--------------------------------------------------------------------------
     |
