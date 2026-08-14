@@ -12,6 +12,7 @@
 #   ./dock test [args...]  Run the PHPUnit suite, e.g. ./dock test --filter=SslTest
 #   ./dock cs              Check code style (php-cs-fixer, dry run)
 #   ./dock analyse [args]  Run static analysis (phpstan)
+#   ./dock coverage        Run the suite with coverage and check the threshold
 #   ./dock fix             Fix code style (php-cs-fixer)
 #   ./dock sh              Open a shell in the container
 #   ./dock exec <cmd...>   Run an arbitrary command in the container
@@ -111,6 +112,10 @@ case "$cmd" in
         ensure_up "$SERVICE"
         docker compose exec "$SERVICE" vendor/bin/phpstan analyse "$@"
         ;;
+    coverage)
+        ensure_up "$SERVICE"
+        docker compose exec "$SERVICE" composer coverage "$@"
+        ;;
     fix)
         ensure_up "$SERVICE"
         docker compose exec "$SERVICE" vendor/bin/php-cs-fixer fix "$@"
@@ -143,7 +148,7 @@ case "$cmd" in
         echo "All matrix cells passed."
         ;;
     help|--help|-h)
-        sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//'
+        sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'
         ;;
     *)
         echo "Unknown command: ${cmd}" >&2

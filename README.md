@@ -11,6 +11,9 @@ A simple PHP Client for [Cloudflare API](https://developers.cloudflare.com/api/)
     <a href="LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="Software License"/>
     </a>
+    <a href="#coverage">
+        <img src="https://img.shields.io/badge/Coverage-100%25-brightgreen?style=flat-square" alt="Coverage"/>
+    </a>
     <a href="https://packagist.org/packages/sergkeim/php-cloudflare-api">
         <img src="https://img.shields.io/packagist/dt/sergkeim/php-cloudflare-api?style=flat-square" alt="Packagist Downloads"/>
     </a>
@@ -61,6 +64,7 @@ A `./dock` helper script wraps the common `docker compose` commands (it starts t
 ./dock test --filter=SslTest  # Pass any args straight through to phpunit
 ./dock cs                 # Check code style (php-cs-fixer, dry run)
 ./dock analyse            # Run static analysis (phpstan)
+./dock coverage           # Run the suite with coverage and check the threshold
 ./dock fix                # Fix code style (php-cs-fixer)
 ./dock sh                # Open a shell in the container
 ./dock down               # Stop and remove the container

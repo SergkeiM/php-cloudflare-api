@@ -40,6 +40,47 @@ jobs:
       - name: Execute PHPStan
         run: vendor/bin/phpstan analyse --no-progress --error-format=github
 
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    env:
+      # Empty unless the repository has the secret, which the upload step checks.
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: pcov
+        env:
+          update: true
+
+      - name: Install PHP Dependencies
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --no-interaction --no-progress
+
+      - name: Execute PHPUnit with coverage
+        run: vendor/bin/phpunit --coverage-clover=clover.xml
+
+      # The gate lives in the repository, so the same threshold applies locally
+      # and in CI whether or not Codecov is attached.
+      - name: Enforce coverage threshold
+        run: php bin/check-coverage.php clover.xml
+
+      - name: Upload coverage to Codecov
+        if: env.CODECOV_TOKEN != ''
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./clover.xml
+          fail_ci_if_error: true
+
   tests:
     name: PHP ${{ matrix.php }}; Laravel ${{ matrix.laravel }}
     runs-on: ubuntu-latest
@@ -60,7 +101,8 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer:v2
-          coverage: pcov
+          # Coverage is measured once, in the dedicated job above.
+          coverage: none
         env:
           update: true
 

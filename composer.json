@@ -58,6 +58,10 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "analyse": "vendor/bin/phpstan analyse",
+        "coverage": [
+            "vendor/bin/phpunit --coverage-clover=clover.xml --coverage-text",
+            "php bin/check-coverage.php"
+        ],
         "fix": "vendor/bin/php-cs-fixer fix",
         "docs:generate-client": "php bin/generate-client-docs.php"
     },

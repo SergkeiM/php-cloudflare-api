@@ -1,0 +1,23 @@
+# Inert until the repository is activated on codecov.io and CODECOV_TOKEN is set.
+# The hard gate is bin/check-coverage.php, which runs either way; these statuses
+# add the per-file view and the pull request comment on top of it.
+
+coverage:
+  status:
+    project:
+      default:
+        target: 100%
+        threshold: 0%
+    patch:
+      default:
+        target: 100%
+
+comment:
+  layout: "condensed_header, condensed_files"
+  require_changes: true
+
+ignore:
+  - "test/**"
+  - "bin/**"
+  - "docs/**"
+  - "local-test/**"
