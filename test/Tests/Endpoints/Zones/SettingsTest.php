@@ -14,24 +14,6 @@ class SettingsTest extends TestCase
     use InteractsWithMockClient;
 
     #[Test]
-    public function shouldList()
-    {
-        $client = $this->mockClient([
-            new Response(200, [], json_encode(['success' => true, 'result' => [
-                ['id' => 'always_use_https', 'value' => 'off', 'editable' => true],
-                ['id' => 'browser_cache_ttl', 'value' => 14400, 'editable' => true],
-            ]])),
-        ]);
-
-        $response = $client->zones()->settings()->list('zone_id');
-
-        $this->assertTrue($response->successful());
-        $this->assertSame('GET', $this->lastRequest()->getMethod());
-        $this->assertSame('/client/v4/zones/zone_id/settings', $this->lastRequest()->getUri()->getPath());
-        $this->assertSame('always_use_https', $response->json('result.0.id'));
-    }
-
-    #[Test]
     public function shouldGetDetails()
     {
         $client = $this->mockClient([

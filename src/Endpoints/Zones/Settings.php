@@ -14,24 +14,15 @@ use Cloudflare\Exceptions\MissingArgumentException;
  * depends on the setting: most take `'on'`/`'off'`, some an integer, and a few
  * an object.
  *
+ * Settings are read one at a time. Cloudflare deprecated the endpoint returning
+ * all of them at once, and published no replacement, so this package does not
+ * wrap it — if you still need it, issue the request yourself with
+ * `$client->getHttpClient()->get("/zones/{$zoneId}/settings")`.
+ *
  * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/
  */
 class Settings extends AbstractEndpoint
 {
-    /**
-     * Available settings for a zone, with their current values.
-     *
-     * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/methods/list/
-     *
-     * @param string $zoneId Zone Identifier.
-     *
-     * @return \Cloudflare\Contracts\ResponseInterface List zone settings response
-     */
-    public function list(string $zoneId): ResponseInterface
-    {
-        return $this->getHttpClient()->get("/zones/{$zoneId}/settings");
-    }
-
     /**
      * Fetch a single zone setting by name.
      *
