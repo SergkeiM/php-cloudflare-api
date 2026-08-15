@@ -78,6 +78,111 @@ class D1 extends AbstractEndpoint
     }
 
     /**
+     * Updates the specified D1 database, overwriting the full configuration.
+     *
+     * ```php
+     * $client->d1()->update('ACCOUNT_ID', 'DATABASE_ID', [
+     *     'read_replication' => ['mode' => 'auto'],
+     * ]);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/d1/best-practices/read-replication/
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $databaseId Database Identifier.
+     * @param array $values `read_replication` is required, itself carrying a `mode` of `auto` to let D1 place replicas around the world, or `disabled` to use none.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Update D1 database response
+     */
+    public function update(string $accountId, string $databaseId, array $values): ResponseInterface
+    {
+        $this->requiredParams(['read_replication'], $values);
+
+        return $this->getHttpClient()->put("/accounts/{$accountId}/d1/database/{$databaseId}", $values);
+    }
+
+    /**
+     * Applies changes to the specified D1 database, overwriting only the supplied properties.
+     *
+     * @link https://developers.cloudflare.com/d1/best-practices/read-replication/
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $databaseId Database Identifier.
+     * @param array $values Values to patch on the database, e.g. `read_replication`.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Update D1 database partially response
+     */
+    public function edit(string $accountId, string $databaseId, array $values): ResponseInterface
+    {
+        return $this->getHttpClient()->patch("/accounts/{$accountId}/d1/database/{$databaseId}", $values);
+    }
+
+    /**
+     * Get a Time Travel bookmark for a D1 database.
+     *
+     * Without a timestamp you get the current bookmark; with one, the nearest
+     * bookmark at or before it. Feed either into `restore()`.
+     *
+     * @link https://developers.cloudflare.com/d1/reference/time-travel/
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $databaseId Database Identifier.
+     * @param string|null $timestamp ISO 8601 timestamp to find the nearest bookmark at or before. Omit for the current bookmark.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Get D1 database bookmark response
+     */
+    public function bookmark(string $accountId, string $databaseId, ?string $timestamp = null): ResponseInterface
+    {
+        return $this->getHttpClient()->get(
+            "/accounts/{$accountId}/d1/database/{$databaseId}/time_travel/bookmark",
+            $timestamp === null ? null : ['timestamp' => $timestamp]
+        );
+    }
+
+    /**
+     * Restore a D1 database to a previous point in time.
+     *
+     * Give it exactly one of a bookmark or a timestamp — a bookmark from
+     * `bookmark()` names an exact point, a timestamp asks D1 to find the
+     * nearest one.
+     *
+     * ```php
+     * $bookmark = $client->d1()->bookmark('ACCOUNT_ID', 'DATABASE_ID')->json('result.bookmark');
+     *
+     * $client->d1()->restore('ACCOUNT_ID', 'DATABASE_ID', bookmark: $bookmark);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/d1/reference/time-travel/
+     *
+     * @param string $accountId Account Identifier.
+     * @param string $databaseId Database Identifier.
+     * @param string|null $bookmark Bookmark to restore to. Required if `$timestamp` is not given.
+     * @param string|null $timestamp ISO 8601 timestamp to restore to. Required if `$bookmark` is not given.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Restore D1 database response
+     */
+    public function restore(string $accountId, string $databaseId, ?string $bookmark = null, ?string $timestamp = null): ResponseInterface
+    {
+        $this->requiredAnyParams(['bookmark', 'timestamp'], [
+            'bookmark' => $bookmark,
+            'timestamp' => $timestamp,
+        ]);
+
+        return $this->getHttpClient()->post(
+            "/accounts/{$accountId}/d1/database/{$databaseId}/time_travel/restore",
+            [],
+            ['query' => array_filter([
+                'bookmark' => $bookmark,
+                'timestamp' => $timestamp,
+            ], fn ($value) => $value !== null)]
+        );
+    }
+
+    /**
      * Returns a URL where the SQL contents of your D1 can be downloaded. Note: this process may take some time for larger DBs, during which your D1 will be unavailable to serve queries. To avoid blocking your DB unnecessarily, an in-progress export must be continually polled or will automatically cancel.
      *
      * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-export-database
