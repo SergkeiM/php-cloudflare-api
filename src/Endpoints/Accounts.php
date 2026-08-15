@@ -5,6 +5,7 @@ namespace Cloudflare\Endpoints;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Accounts\Members;
 use Cloudflare\Endpoints\Accounts\Logs;
+use Cloudflare\Endpoints\Accounts\Settings;
 use Cloudflare\Endpoints\Accounts\Subscriptions;
 use Cloudflare\Endpoints\Accounts\Tokens;
 
@@ -188,5 +189,15 @@ class Accounts extends AbstractEndpoint
     public function tokens(): Tokens
     {
         return new Tokens($this->getClient());
+    }
+
+    /**
+     * Account Settings
+     *
+     * @return \Cloudflare\Endpoints\Accounts\Settings
+     */
+    public function settings(): Settings
+    {
+        return new Settings($this->getClient());
     }
 }

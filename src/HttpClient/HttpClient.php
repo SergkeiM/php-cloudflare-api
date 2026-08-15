@@ -198,12 +198,12 @@ class HttpClient
      * Issue a POST request to the given Cloudflare endpoint.
      *
      * @param  string  $url
-     * @param  array  $data
+     * @param  array|string|int|float|bool  $data Request body. A scalar is sent as a bare JSON value, which a handful of Cloudflare operations expect.
      * @param  array  $options
      * @param  string  $format
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function post(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
+    public function post(string $url, array|string|int|float|bool $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
         return $this->send('POST', $url, array_merge($options, [
             $format => $data,
@@ -214,12 +214,12 @@ class HttpClient
     * Issue a PATCH request to the given Cloudflare endpoint.
     *
     * @param  string  $url
-    * @param  array  $data
+    * @param  array|string|int|float|bool  $data Request body. A scalar is sent as a bare JSON value, which a handful of Cloudflare operations expect.
     * @param  array  $options
     * @param  string  $format
     * @return \Cloudflare\Contracts\ResponseInterface
     */
-    public function patch(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
+    public function patch(string $url, array|string|int|float|bool $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
         return $this->send('PATCH', $url, array_merge($options, [
             $format => $data,
@@ -230,12 +230,12 @@ class HttpClient
      * Issue a PUT request to the given Cloudflare endpoint.
      *
      * @param  string  $url
-     * @param  array  $data
+     * @param  array|string|int|float|bool  $data Request body. A scalar is sent as a bare JSON value, which a handful of Cloudflare operations expect.
      * @param  array  $options
      * @param  string  $format
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function put(string $url, array $data = [], array $options = [], string $format = RequestOptions::JSON)
+    public function put(string $url, array|string|int|float|bool $data = [], array $options = [], string $format = RequestOptions::JSON)
     {
         return $this->send('PUT', $url, array_merge($options, [
             $format => $data,

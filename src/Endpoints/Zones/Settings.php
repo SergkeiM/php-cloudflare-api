@@ -5,6 +5,8 @@ namespace Cloudflare\Endpoints\Zones;
 use Cloudflare\Endpoints\AbstractEndpoint;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Exceptions\MissingArgumentException;
+use Cloudflare\Endpoints\Zones\Settings\GoogleTagGateway;
+use Cloudflare\Endpoints\Zones\Settings\Zaraz;
 
 /**
  * Zone settings: the per-zone toggles behind the Cloudflare dashboard, from
@@ -70,5 +72,70 @@ class Settings extends AbstractEndpoint
         }
 
         return $this->getHttpClient()->patch("/zones/{$zoneId}/settings/{$settingId}", $values);
+    }
+
+    /**
+     * Replace the Origin TLS Compliance Modes setting for a zone.
+     *
+     * The one setting Cloudflare exposes a full-replace endpoint for: the modes
+     * you send become the whole list, and any mode you leave out is removed. An
+     * empty list clears the constraint. `fips` and `pqh` are supported today,
+     * and Cloudflare may add more, so read the current value before writing if
+     * you mean to keep what is already there.
+     *
+     * ```php
+     * $client->zones()->settings()->replaceOriginTlsComplianceModes('ZONE_ID', ['fips']);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/
+     *
+     * @param string $zoneId Zone Identifier.
+     * @param array $modes TLS compliance modes constraining the key-exchange algorithms Cloudflare offers the origin, e.g. `['fips', 'pqh']`.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Replace Origin TLS Compliance Modes response
+     */
+    public function replaceOriginTlsComplianceModes(string $zoneId, array $modes): ResponseInterface
+    {
+        return $this->getHttpClient()->put("/zones/{$zoneId}/settings/origin_tls_compliance_modes", [
+            'value' => $modes,
+        ]);
+    }
+
+    /**
+     * Delete the Origin TLS Compliance Modes setting for a zone.
+     *
+     * Removes the compliance constraint entirely, returning the zone to
+     * Cloudflare's default of not filtering the key-exchange algorithm list it
+     * offers the origin.
+     *
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/
+     *
+     * @param string $zoneId Zone Identifier.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Delete Origin TLS Compliance Modes response
+     */
+    public function deleteOriginTlsComplianceModes(string $zoneId): ResponseInterface
+    {
+        return $this->getHttpClient()->delete("/zones/{$zoneId}/settings/origin_tls_compliance_modes");
+    }
+
+    /**
+     * Zaraz third-party tool loading
+     *
+     * @return \Cloudflare\Endpoints\Zones\Settings\Zaraz
+     */
+    public function zaraz(): Zaraz
+    {
+        return new Zaraz($this->getClient());
+    }
+
+    /**
+     * Google Tag Gateway
+     *
+     * @return \Cloudflare\Endpoints\Zones\Settings\GoogleTagGateway
+     */
+    public function googleTagGateway(): GoogleTagGateway
+    {
+        return new GoogleTagGateway($this->getClient());
     }
 }
