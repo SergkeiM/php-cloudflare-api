@@ -2,6 +2,7 @@
 
 namespace Cloudflare\Tests\Endpoints\Workers;
 
+use Cloudflare\Exceptions\MissingArgumentException;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\Test;
@@ -185,5 +186,83 @@ class KVTest extends TestCase
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/storage/kv/namespaces/namespace_id/bulk/delete', $this->lastRequest()->getUri()->getPath());
         $this->assertSame(['key1', 'key2'], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldGetMultipleKeys()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    'values' => ['key1' => 'value1', 'key2' => 'value2'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->workers()->kv()->getMultipleKeys('account_id', 'namespace_id', ['key1', 'key2']);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('value1', $response->json('result.values.key1'));
+
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/storage/kv/namespaces/namespace_id/bulk/get', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame([
+            'keys' => ['key1', 'key2'],
+            'type' => 'text',
+            'withMetadata' => false,
+        ], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldGetMultipleKeysAsParsedJsonWithMetadata()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    'values' => [
+                        'key1' => ['value' => ['nested' => true], 'metadata' => ['owner' => 'ops']],
+                    ],
+                ],
+            ])),
+        ]);
+
+        $response = $client->workers()->kv()->getMultipleKeys('account_id', 'namespace_id', ['key1'], 'json', true);
+
+        $this->assertTrue($response->successful());
+        $this->assertTrue($response->json('result.values.key1.value.nested'));
+
+        $this->assertSame([
+            'keys' => ['key1'],
+            'type' => 'json',
+            'withMetadata' => true,
+        ], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    /**
+     * `keys` has to reach Cloudflare as a JSON array, so a caller's gappy list
+     * is re-indexed rather than encoded as an object.
+     */
+    #[Test]
+    public function shouldSendNonSequentialKeysAsAJsonArray()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->workers()->kv()->getMultipleKeys('account_id', 'namespace_id', [2 => 'key1', 5 => 'key2']);
+
+        $this->assertSame(['key1', 'key2'], json_decode((string) $this->lastRequest()->getBody(), true)['keys']);
+    }
+
+    #[Test]
+    public function shouldThrowWhenNoKeysGiven()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->workers()->kv()->getMultipleKeys('account_id', 'namespace_id', []);
     }
 }
