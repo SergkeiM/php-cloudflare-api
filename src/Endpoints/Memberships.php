@@ -9,7 +9,7 @@ class Memberships extends AbstractEndpoint
     /**
      * List memberships of accounts the user can access.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-account-memberships-list-memberships
+     * @link https://developers.cloudflare.com/api/resources/memberships/methods/list/
      *
      * @param array $params Array containing the necessary params.
      *
@@ -23,7 +23,7 @@ class Memberships extends AbstractEndpoint
     /**
      * Get a specific membership.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-account-memberships-membership-details
+     * @link https://developers.cloudflare.com/api/resources/memberships/methods/get/
      *
      * @param string $membershipId Membership identifier tag.
      *
@@ -37,7 +37,7 @@ class Memberships extends AbstractEndpoint
     /**
      * Accept or reject this account invitation.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-account-memberships-update-membership
+     * @link https://developers.cloudflare.com/api/resources/memberships/methods/update/
      *
      * @param string $membershipId Membership identifier tag.
      * @param string $status Status of this membership, e.g. accepted, rejected.
@@ -54,7 +54,7 @@ class Memberships extends AbstractEndpoint
     /**
      * Remove the associated member from an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-account-memberships-delete-membership
+     * @link https://developers.cloudflare.com/api/resources/memberships/methods/delete/
      *
      * @param string $membershipId Membership identifier tag.
      *

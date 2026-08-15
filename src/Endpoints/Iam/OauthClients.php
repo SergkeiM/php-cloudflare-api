@@ -10,7 +10,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * List all the OAuth clients for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/list/
      *
      * @param string $accountId Account identifier.
      *
@@ -24,7 +24,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Create a new OAuth client.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-create
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values OAuth Client values, requires client_name, grant_types, redirect_uris, response_types, scopes and token_endpoint_auth_method.
@@ -48,7 +48,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Get details of a specific OAuth client.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-get
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $oauthClientId OAuth Client identifier.
@@ -63,7 +63,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Update an existing OAuth client.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-update
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $oauthClientId OAuth Client identifier.
@@ -79,7 +79,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Delete an OAuth client.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-delete
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $oauthClientId OAuth Client identifier.
@@ -94,7 +94,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Creates a second client secret so you can update your client configuration before deleting the old one.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-rotate-secret
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/rotate_secret/
      *
      * @param string $accountId Account identifier.
      * @param string $oauthClientId OAuth Client identifier.
@@ -109,7 +109,7 @@ class OauthClients extends AbstractEndpoint
     /**
      * Removes the old client secret after a rotation, keeping only the new one.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-clients-delete-rotated-secret
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/delete_rotated_secret/
      *
      * @param string $accountId Account identifier.
      * @param string $oauthClientId OAuth Client identifier.

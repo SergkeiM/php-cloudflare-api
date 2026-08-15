@@ -10,7 +10,7 @@ class Usage extends AbstractEndpoint
     /**
      * Returns cost and usage data for all accounts within an organization, aligned with the FinOps FOCUS v1.3 Cost and Usage dataset specification.
      *
-     * @link https://developers.cloudflare.com/api/operations/billable-usage-v2-get-organization-usage
+     * @link https://developers.cloudflare.com/api/resources/organizations/subresources/billing/subresources/usage/methods/get/
      *
      * @param string $organizationId Organization identifier.
      * @param array $params Array containing the necessary params, e.g. from, to.

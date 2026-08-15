@@ -10,7 +10,7 @@ class D1 extends AbstractEndpoint
     /**
      * Returns a list of D1 databases.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-list-databases
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters.
@@ -25,7 +25,7 @@ class D1 extends AbstractEndpoint
     /**
      * Create D1 Database
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-create-database#request-body
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param string $name Database name Match pattern: `^[a-z0-9][a-z0-9-_]*$`
@@ -50,7 +50,7 @@ class D1 extends AbstractEndpoint
     /**
      * Returns the specified D1 database.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-get-database
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
@@ -65,7 +65,7 @@ class D1 extends AbstractEndpoint
     /**
      * Deletes the specified D1 database.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-delete-database
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
@@ -88,6 +88,7 @@ class D1 extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/d1/best-practices/read-replication/
      *
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/update/
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param array $values `read_replication` is required, itself carrying a `mode` of `auto` to let D1 place replicas around the world, or `disabled` to use none.
@@ -108,6 +109,7 @@ class D1 extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/d1/best-practices/read-replication/
      *
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/edit/
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param array $values Values to patch on the database, e.g. `read_replication`.
@@ -127,6 +129,7 @@ class D1 extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/d1/reference/time-travel/
      *
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/subresources/time_travel/methods/get_bookmark/
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param string|null $timestamp ISO 8601 timestamp to find the nearest bookmark at or before. Omit for the current bookmark.
@@ -156,6 +159,7 @@ class D1 extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/d1/reference/time-travel/
      *
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/subresources/time_travel/methods/restore/
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
      * @param string|null $bookmark Bookmark to restore to. Required if `$timestamp` is not given.
@@ -185,7 +189,7 @@ class D1 extends AbstractEndpoint
     /**
      * Returns a URL where the SQL contents of your D1 can be downloaded. Note: this process may take some time for larger DBs, during which your D1 will be unavailable to serve queries. To avoid blocking your DB unnecessarily, an in-progress export must be continually polled or will automatically cancel.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-export-database
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/export/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
@@ -221,7 +225,7 @@ class D1 extends AbstractEndpoint
     /**
      * Generates a temporary URL for uploading an SQL file to, then instructing the D1 to import it and polling it for status updates. Imports block the D1 for their duration.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-import-database
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/import/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
@@ -278,7 +282,7 @@ class D1 extends AbstractEndpoint
     /**
      * Returns the query result as an object.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-query-database
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/query/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.
@@ -300,7 +304,7 @@ class D1 extends AbstractEndpoint
     /**
      * Returns the query result rows as arrays rather than objects. This is a performance-optimized version of the /query endpoint.
      *
-     * @link https://developers.cloudflare.com/api/operations/cloudflare-d1-raw-database-query
+     * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/raw/
      *
      * @param string $accountId Account Identifier.
      * @param string $databaseId Database Identifier.

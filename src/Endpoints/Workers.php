@@ -11,8 +11,6 @@ use Cloudflare\Endpoints\Workers\Scripts;
 use Cloudflare\Endpoints\Workers\Subdomain;
 use Cloudflare\Endpoints\Workers\Logs;
 use Cloudflare\Endpoints\Workers\Versions;
-use Cloudflare\Endpoints\Workers\KV;
-use Cloudflare\Endpoints\Workers\DurableObjects;
 use Cloudflare\Endpoints\Workers\Routes;
 
 class Workers extends AbstractEndpoint
@@ -95,26 +93,6 @@ class Workers extends AbstractEndpoint
     public function versions(): Versions
     {
         return new Versions($this->getClient());
-    }
-
-    /**
-     * Worker KV Storage
-     *
-     * @return KV
-     */
-    public function kv(): KV
-    {
-        return new KV($this->getClient());
-    }
-
-    /**
-     * Worker Durable Objects
-     *
-     * @return DurableObjects
-     */
-    public function durableObjects(): DurableObjects
-    {
-        return new DurableObjects($this->getClient());
     }
 
     /**

@@ -12,33 +12,31 @@ use Cloudflare\HttpClient\Paginator;
  * Simple PHP Cloudflare client.
  *
  * @method \Cloudflare\Endpoints\Accounts accounts()
- * @method \Cloudflare\Endpoints\Zones zones()
- * @method \Cloudflare\Endpoints\Cache cache()
- * @method \Cloudflare\Endpoints\IP ips()
- * @method \Cloudflare\Endpoints\Workers workers()
- * @method \Cloudflare\Endpoints\Tunnel tunnel()
- * @method \Cloudflare\Endpoints\D1 d1()
- * @method \Cloudflare\Endpoints\LoadBalancers loadBalancers()
- * @method \Cloudflare\Endpoints\Rulesets rulesets()
- * @method \Cloudflare\Endpoints\DNS dns()
- * @method \Cloudflare\Endpoints\DNSSEC dnssec()
- * @method \Cloudflare\Endpoints\PageRules pageRules()
- * @method \Cloudflare\Endpoints\Lockdown lockdown()
- * @method \Cloudflare\Endpoints\Ssl ssl()
- * @method \Cloudflare\Endpoints\OriginCACertificates originCACertificates()
- * @method \Cloudflare\Endpoints\Filters filters()
- * @method \Cloudflare\Endpoints\FirewallRules firewallRules()
- * @method \Cloudflare\Endpoints\AccessRules accessRules()
- * @method \Cloudflare\Endpoints\UserAgentRules userAgentRules()
- * @method \Cloudflare\Endpoints\RateLimits rateLimits()
- * @method \Cloudflare\Endpoints\BotManagement botManagement()
- * @method \Cloudflare\Endpoints\CloudConnector cloudConnector()
- * @method \Cloudflare\Endpoints\R2 r2()
- * @method \Cloudflare\Endpoints\Iam iam()
  * @method \Cloudflare\Endpoints\User user()
  * @method \Cloudflare\Endpoints\Organizations organizations()
  * @method \Cloudflare\Endpoints\Memberships memberships()
  * @method \Cloudflare\Endpoints\Tenants tenants()
+ * @method \Cloudflare\Endpoints\Iam iam()
+ * @method \Cloudflare\Endpoints\Zones zones()
+ * @method \Cloudflare\Endpoints\DNS dns()
+ * @method \Cloudflare\Endpoints\PageRules pageRules()
+ * @method \Cloudflare\Endpoints\Rulesets rulesets()
+ * @method \Cloudflare\Endpoints\Firewall firewall()
+ * @method \Cloudflare\Endpoints\BotManagement botManagement()
+ * @method \Cloudflare\Endpoints\Ssl ssl()
+ * @method \Cloudflare\Endpoints\OriginCACertificates originCACertificates()
+ * @method \Cloudflare\Endpoints\Cache cache()
+ * @method \Cloudflare\Endpoints\LoadBalancers loadBalancers()
+ * @method \Cloudflare\Endpoints\CloudConnector cloudConnector()
+ * @method \Cloudflare\Endpoints\Zaraz zaraz()
+ * @method \Cloudflare\Endpoints\GoogleTagGateway googleTagGateway()
+ * @method \Cloudflare\Endpoints\Workers workers()
+ * @method \Cloudflare\Endpoints\KV kv()
+ * @method \Cloudflare\Endpoints\DurableObjects durableObjects()
+ * @method \Cloudflare\Endpoints\D1 d1()
+ * @method \Cloudflare\Endpoints\R2 r2()
+ * @method \Cloudflare\Endpoints\ZeroTrust zeroTrust()
+ * @method \Cloudflare\Endpoints\IP ips()
  *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  *
@@ -122,33 +120,31 @@ class Client
 
         $api = match ($name) {
             'accounts' => new Endpoints\Accounts($this),
-            'zones' => new Endpoints\Zones($this),
-            'cache' => new Endpoints\Cache($this),
-            'ips' => new Endpoints\IP($this),
-            'workers' => new Endpoints\Workers($this),
-            'tunnel' => new Endpoints\Tunnel($this),
-            'd1' => new Endpoints\D1($this),
-            'loadBalancers' => new Endpoints\LoadBalancers($this),
-            'rulesets' => new Endpoints\Rulesets($this),
-            'dns' => new Endpoints\DNS($this),
-            'dnssec' => new Endpoints\DNSSEC($this),
-            'pageRules' => new Endpoints\PageRules($this),
-            'lockdown' => new Endpoints\Lockdown($this),
-            'ssl' => new Endpoints\Ssl($this),
-            'originCACertificates' => new Endpoints\OriginCACertificates($this),
-            'filters' => new Endpoints\Filters($this),
-            'firewallRules' => new Endpoints\FirewallRules($this),
-            'accessRules' => new Endpoints\AccessRules($this),
-            'userAgentRules' => new Endpoints\UserAgentRules($this),
-            'rateLimits' => new Endpoints\RateLimits($this),
-            'botManagement' => new Endpoints\BotManagement($this),
-            'cloudConnector' => new Endpoints\CloudConnector($this),
-            'r2' => new Endpoints\R2($this),
-            'iam' => new Endpoints\Iam($this),
             'user' => new Endpoints\User($this),
             'organizations' => new Endpoints\Organizations($this),
             'memberships' => new Endpoints\Memberships($this),
             'tenants' => new Endpoints\Tenants($this),
+            'iam' => new Endpoints\Iam($this),
+            'zones' => new Endpoints\Zones($this),
+            'dns' => new Endpoints\DNS($this),
+            'pageRules' => new Endpoints\PageRules($this),
+            'rulesets' => new Endpoints\Rulesets($this),
+            'firewall' => new Endpoints\Firewall($this),
+            'botManagement' => new Endpoints\BotManagement($this),
+            'ssl' => new Endpoints\Ssl($this),
+            'originCACertificates' => new Endpoints\OriginCACertificates($this),
+            'cache' => new Endpoints\Cache($this),
+            'loadBalancers' => new Endpoints\LoadBalancers($this),
+            'cloudConnector' => new Endpoints\CloudConnector($this),
+            'zaraz' => new Endpoints\Zaraz($this),
+            'googleTagGateway' => new Endpoints\GoogleTagGateway($this),
+            'workers' => new Endpoints\Workers($this),
+            'kv' => new Endpoints\KV($this),
+            'durableObjects' => new Endpoints\DurableObjects($this),
+            'd1' => new Endpoints\D1($this),
+            'r2' => new Endpoints\R2($this),
+            'zeroTrust' => new Endpoints\ZeroTrust($this),
+            'ips' => new Endpoints\IP($this),
             default => throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name))
         };
 

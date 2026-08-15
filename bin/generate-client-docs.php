@@ -99,8 +99,14 @@ function phpLiteral(mixed $value): string
 
 function yamlString(string $s): string
 {
+    // A docblock description may run to several lines, and a continuation
+    // starting at column 0 — a `-` bullet, say — ends the quoted scalar and
+    // reopens as a sequence, quietly corrupting the whole params block. Keep
+    // every value on one line.
+    $s = (string) preg_replace('/\s*\R\s*/', ' ', $s);
     $s = str_replace(['\\', '"'], ['\\\\', '\\"'], $s);
-    return '"' . $s . '"';
+
+    return '"' . trim($s) . '"';
 }
 
 function docblockFor(DocBlockFactory $factory, Reflector $reflector): ?DocBlock
@@ -365,6 +371,7 @@ rrmdir($outDir);
 file_put_contents($outDir . '/.navigation.yml', "title: Client Reference\nicon: i-lucide-terminal\n");
 
 $topIndex = 0;
+
 foreach ($topLevel as $accessorName => $class) {
     writeNode(
         $docFactory,

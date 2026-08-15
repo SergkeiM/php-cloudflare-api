@@ -10,7 +10,7 @@ class Tenants extends AbstractEndpoint
     /**
      * Retrieves list of tenants the authenticated user has access to.
      *
-     * @link https://developers.cloudflare.com/api/operations/User_listUserTenants
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tenants/methods/list/
      *
      * @return ResponseInterface List Tenants response.
      */

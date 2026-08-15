@@ -10,7 +10,7 @@ class CustomDomains extends AbstractEndpoint
     /**
      * List custom domains for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-list-bucket-domains
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class CustomDomains extends AbstractEndpoint
     /**
      * Add a custom domain to a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-add-bucket-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -45,7 +45,7 @@ class CustomDomains extends AbstractEndpoint
     /**
      * Get an existing custom domain for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -62,7 +62,7 @@ class CustomDomains extends AbstractEndpoint
     /**
      * Update an existing custom domain for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-edit-bucket-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -80,7 +80,7 @@ class CustomDomains extends AbstractEndpoint
     /**
      * Remove a custom domain from a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-remove-bucket-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

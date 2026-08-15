@@ -10,7 +10,7 @@ class Accounts extends AbstractEndpoint
     /**
      * List of accounts for the Tenant.
      *
-     * @link https://developers.cloudflare.com/api/operations/Tenants_listAccounts
+     * @link https://developers.cloudflare.com/api/resources/tenants/subresources/accounts/methods/list/
      *
      * @param string $tenantId Tenant identifier.
      *

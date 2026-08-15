@@ -10,7 +10,7 @@ class Metrics extends AbstractEndpoint
     /**
      * Get storage metrics for an account's R2 buckets.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-metrics
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/metrics/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters.

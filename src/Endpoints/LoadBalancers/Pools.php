@@ -10,7 +10,7 @@ class Pools extends AbstractEndpoint
     /**
      * List configured load balancer pools for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-list-pools
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/list/
      *
      * @param string $accountId Account Identifier.
      *
@@ -24,7 +24,7 @@ class Pools extends AbstractEndpoint
     /**
      * Create a new load balancer pool for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-create-pool
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values Values to set on the pool, e.g. `name`, `origins`.
@@ -41,7 +41,7 @@ class Pools extends AbstractEndpoint
     /**
      * Get a single configured load balancer pool for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-details
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -56,7 +56,7 @@ class Pools extends AbstractEndpoint
     /**
      * Update an existing load balancer pool for an account, overwriting the full configuration.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-update-pool
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -74,7 +74,7 @@ class Pools extends AbstractEndpoint
     /**
      * Apply changes to an existing pool, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pool
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/edit/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -90,7 +90,7 @@ class Pools extends AbstractEndpoint
     /**
      * Apply changes to a number of existing pools, overwriting the supplied properties. Returns the list of affected pools.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pools
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/bulk_edit/
      *
      * @param string $accountId Account Identifier.
      * @param array $values List of pool patches to apply, each identified by `id`.
@@ -105,7 +105,7 @@ class Pools extends AbstractEndpoint
     /**
      * Delete a load balancer pool for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-delete-pool
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -120,7 +120,7 @@ class Pools extends AbstractEndpoint
     /**
      * Fetch the latest pool health status for a single pool.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-health-details
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/health/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -135,7 +135,7 @@ class Pools extends AbstractEndpoint
     /**
      * Preview pool health using the specified monitor and show the effective response.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-pools-preview-pool
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/health/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.
@@ -151,7 +151,7 @@ class Pools extends AbstractEndpoint
     /**
      * List the load balancers that reference a given pool.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-pools-list-pool-references
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/references/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $poolId Pool Identifier.

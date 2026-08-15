@@ -10,7 +10,7 @@ class PermissionGroups extends AbstractEndpoint
     /**
      * Find all available permission groups for API Tokens.
      *
-     * @link https://developers.cloudflare.com/api/operations/permission-groups-list-permission-groups
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/subresources/permission_groups/methods/list/
      *
      * @param array $params Array containing the necessary params, e.g. name, scope.
      *

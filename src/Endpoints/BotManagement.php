@@ -9,7 +9,7 @@ class BotManagement extends AbstractEndpoint
     /**
      * Get the current Bot Management configuration for a zone.
      *
-     * @link https://developers.cloudflare.com/api/operations/zone-bot-management-get-config
+     * @link https://developers.cloudflare.com/api/resources/bot_management/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -23,7 +23,7 @@ class BotManagement extends AbstractEndpoint
     /**
      * Update the Bot Management configuration for a zone.
      *
-     * @link https://developers.cloudflare.com/api/operations/zone-bot-management-update-config
+     * @link https://developers.cloudflare.com/api/resources/bot_management/methods/update/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $values Values to set on the Bot Management config, e.g. `fight_mode`, `enable_js`, `sbfm_definitely_automated`.

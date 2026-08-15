@@ -8,8 +8,6 @@ use Cloudflare\Contracts\ResponseInterface;
 /**
  * Regional Tiered Cache adds a regional hub data center between the lower
  * tiers and the upper tier, which helps when the upper tier is far away.
- *
- * @link https://developers.cloudflare.com/cache/how-to/tiered-cache/regional-tiered-cache/
  */
 class RegionalTieredCache extends AbstractEndpoint
 {

@@ -19,7 +19,7 @@ class Rulesets extends AbstractEndpoint
     /**
      * Fetches all rulesets.
      *
-     * @link https://developers.cloudflare.com/api/operations/listAccountRulesets
+     * @link https://developers.cloudflare.com/api/resources/rulesets/methods/list/
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
@@ -34,7 +34,7 @@ class Rulesets extends AbstractEndpoint
     /**
      * Creates a ruleset.
      *
-     * @link https://developers.cloudflare.com/api/operations/createAccountRuleset
+     * @link https://developers.cloudflare.com/api/resources/rulesets/methods/create/
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
@@ -56,7 +56,7 @@ class Rulesets extends AbstractEndpoint
     /**
      * Fetches the latest version of a ruleset.
      *
-     * @link https://developers.cloudflare.com/api/operations/getAccountRuleset
+     * @link https://developers.cloudflare.com/api/resources/rulesets/methods/get/
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
@@ -96,7 +96,7 @@ class Rulesets extends AbstractEndpoint
     /**
      * Deletes all versions of an existing ruleset.
      *
-     * @link https://developers.cloudflare.com/api/operations/deleteAccountRuleset
+     * @link https://developers.cloudflare.com/api/resources/rulesets/methods/delete/
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.

@@ -10,7 +10,7 @@ class EventNotifications extends AbstractEndpoint
     /**
      * Read the event notification configuration for a bucket, listing rules for all configured queues.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class EventNotifications extends AbstractEndpoint
     /**
      * Get the event notification configuration for a bucket and a specific queue.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration-for-queue
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -43,7 +43,7 @@ class EventNotifications extends AbstractEndpoint
     /**
      * Create or update the event notification configuration for a bucket and a specific queue.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-event-notifications-update-configuration-for-queue
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -61,7 +61,7 @@ class EventNotifications extends AbstractEndpoint
     /**
      * Delete the event notification configuration for a bucket and a specific queue.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-event-notifications-delete-configuration-for-queue
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

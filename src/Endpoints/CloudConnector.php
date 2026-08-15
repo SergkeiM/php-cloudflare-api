@@ -7,7 +7,7 @@ use Cloudflare\Contracts\ResponseInterface;
 class CloudConnector extends AbstractEndpoint
 {
     /**
-     * @link https://developers.cloudflare.com/api/operations/zone-cloud-connector-rules
+     * @link https://developers.cloudflare.com/api/resources/cloud_connector/subresources/rules/methods/list/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -19,7 +19,7 @@ class CloudConnector extends AbstractEndpoint
     }
 
     /**
-     * @link https://developers.cloudflare.com/api/operations/zone-cloud-conenctor-rules-put
+     * @link https://developers.cloudflare.com/api/resources/cloud_connector/subresources/rules/methods/update/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $values List of Cloud Connector rules.

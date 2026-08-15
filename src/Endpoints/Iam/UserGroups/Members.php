@@ -10,7 +10,7 @@ class Members extends AbstractEndpoint
     /**
      * List all the members attached to a user group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-member-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -26,7 +26,7 @@ class Members extends AbstractEndpoint
     /**
      * Add members to a User Group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-member-create
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -42,7 +42,7 @@ class Members extends AbstractEndpoint
     /**
      * Replace the set of members attached to a User Group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-members-update
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -58,7 +58,7 @@ class Members extends AbstractEndpoint
     /**
      * Remove a member from a User Group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-member-delete
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -74,7 +74,7 @@ class Members extends AbstractEndpoint
     /**
      * Get information about a specific member of a User Group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-member-get
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.

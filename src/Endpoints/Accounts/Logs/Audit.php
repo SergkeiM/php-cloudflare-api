@@ -10,7 +10,7 @@ class Audit extends AbstractEndpoint
     /**
      * Gets a list of audit logs for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-logs
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params, requires since and before.
@@ -27,7 +27,7 @@ class Audit extends AbstractEndpoint
     /**
      * Returns the chronological change history for the resource identified by the given audit log entry.
      *
-     * @link https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-log-history
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/history/
      *
      * @param string $accountId Account identifier.
      * @param string $id Audit log entry identifier used to locate the resource.
@@ -45,7 +45,7 @@ class Audit extends AbstractEndpoint
     /**
      * Lists the available audit log product categories and the resource products each one expands to.
      *
-     * @link https://developers.cloudflare.com/api/operations/audit-logs-v2-list-account-product-categories
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/product_categories/
      *
      * @param string $accountId Account identifier.
      *

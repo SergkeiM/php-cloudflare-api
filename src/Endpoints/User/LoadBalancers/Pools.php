@@ -18,8 +18,6 @@ class Pools extends AbstractEndpoint
     /**
      * List the user's configured load balancer pools.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @return ResponseInterface List pools response
      */
     public function list(): ResponseInterface
@@ -29,8 +27,6 @@ class Pools extends AbstractEndpoint
 
     /**
      * Create a new load balancer pool for the user.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param array $values Values to set on the pool, e.g. `name`, `origins`.
      *
@@ -48,8 +44,6 @@ class Pools extends AbstractEndpoint
     /**
      * Get a single configured load balancer pool.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $poolId Pool Identifier.
      *
      * @return ResponseInterface Pool details response
@@ -61,8 +55,6 @@ class Pools extends AbstractEndpoint
 
     /**
      * Update an existing load balancer pool, overwriting the full configuration.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $poolId Pool Identifier.
      * @param array $values Values to set on the pool, e.g. `name`, `origins`.
@@ -81,8 +73,6 @@ class Pools extends AbstractEndpoint
     /**
      * Apply changes to an existing pool, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $poolId Pool Identifier.
      * @param array $values Values to patch on the pool.
      *
@@ -98,8 +88,6 @@ class Pools extends AbstractEndpoint
      *
      * Returns the list of affected pools.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param array $values List of pool patches to apply, each identified by `id`.
      *
      * @return ResponseInterface Patch pools response
@@ -112,8 +100,6 @@ class Pools extends AbstractEndpoint
     /**
      * Delete a load balancer pool.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $poolId Pool Identifier.
      *
      * @return ResponseInterface Delete a pool response
@@ -125,8 +111,6 @@ class Pools extends AbstractEndpoint
 
     /**
      * Fetch the latest pool health status for a single pool.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $poolId Pool Identifier.
      *
@@ -143,8 +127,6 @@ class Pools extends AbstractEndpoint
      * Answers with a preview identifier; read the result with
      * `$client->user()->loadBalancers()->preview()`.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $poolId Pool Identifier.
      * @param array $values The monitor details to run the preview with.
      *
@@ -157,8 +139,6 @@ class Pools extends AbstractEndpoint
 
     /**
      * List the load balancers that reference a given pool.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $poolId Pool Identifier.
      *

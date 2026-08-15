@@ -10,7 +10,7 @@ class Domains extends AbstractEndpoint
     /**
      * Lists all Worker Domains for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-domain-list-domains
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
@@ -25,7 +25,7 @@ class Domains extends AbstractEndpoint
     /**
      * Attaches a Worker to a zone and hostname.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-domain-attach-to-domain
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param array $values Values to set on account.
@@ -42,7 +42,7 @@ class Domains extends AbstractEndpoint
     /**
      * Detaches a Worker from a zone and hostname.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-domain-detach-from-domain
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.
@@ -57,7 +57,7 @@ class Domains extends AbstractEndpoint
     /**
      * Gets a Worker domain.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-domain-get-a-domain
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $domainId Identifer of the Worker Domain.

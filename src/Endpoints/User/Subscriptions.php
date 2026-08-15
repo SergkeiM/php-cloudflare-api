@@ -10,7 +10,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Lists all of a user's subscriptions.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-subscription-get-user-subscriptions
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/get/
      *
      * @return ResponseInterface List Subscriptions response.
      */
@@ -21,8 +21,6 @@ class Subscriptions extends AbstractEndpoint
 
     /**
      * Creates a user subscription.
-     *
-     * @link https://developers.cloudflare.com/api/operations/user-subscription-create-user-subscription
      *
      * @param array $values Subscription values, e.g. frequency, rate_plan.
      *
@@ -36,7 +34,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Updates a user's subscription.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-subscription-update-user-subscription
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/update/
      *
      * @param string $subscriptionId Subscription identifier tag.
      * @param array $values Subscription values, e.g. frequency, rate_plan.
@@ -51,7 +49,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Deletes a user's subscription.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-subscription-delete-user-subscription
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/delete/
      *
      * @param string $subscriptionId Subscription identifier tag.
      *

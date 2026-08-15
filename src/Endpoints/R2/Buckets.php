@@ -10,7 +10,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Returns a list of buckets for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-list-buckets
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters.
@@ -26,7 +26,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Creates a new bucket for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-create-bucket
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values Values to set on the bucket, e.g. `name`, `locationHint`, `storageClass`.
@@ -44,7 +44,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Get a bucket's details.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -60,7 +60,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Apply changes to the storage class of an existing bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-update-bucket
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/edit/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -82,7 +82,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Deletes an existing bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-delete-bucket
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -98,7 +98,7 @@ class Buckets extends AbstractEndpoint
     /**
      * Creates temporary access credentials scoped to a specific bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-create-temporary-access-credentials
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/temporary_credentials/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values Values to set, e.g. `bucket`, `permission`, `ttlSeconds`, `parentAccessKeyId`.

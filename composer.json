@@ -65,8 +65,11 @@
         "fix": "vendor/bin/php-cs-fixer fix",
         "docs:generate-client": "php bin/generate-client-docs.php",
         "docs:generate-coverage": "php bin/generate-coverage-docs.php",
+        "docs:generate-links": "php bin/generate-doc-links.php",
+        "docs:check-links": "php bin/check-doc-links.php",
         "docs:refresh-schema": "php bin/refresh-cloudflare-schema.php",
         "docs:generate": [
+            "@docs:generate-links",
             "@docs:generate-client",
             "@docs:generate-coverage"
         ]

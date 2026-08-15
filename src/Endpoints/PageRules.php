@@ -10,8 +10,6 @@ class PageRules extends AbstractEndpoint
     /**
      * Returns a list of settings (and their details) that Page Rules can apply to matching requests.
      *
-     * @link https://developers.cloudflare.com/api/operations/available-page-rules-settings-list-available-page-rules-settings
-     *
      * @param string $zoneId Zone Identifier.
      *
      * @return \Cloudflare\Contracts\ResponseInterface List available Page Rules settings response
@@ -24,7 +22,7 @@ class PageRules extends AbstractEndpoint
     /**
      * List Page Rules in a zone.
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-list-page-rules
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/list/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
@@ -39,7 +37,7 @@ class PageRules extends AbstractEndpoint
     /**
      * Create a Page Rule
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-create-a-page-rule
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/create/
      *
      * @param string $zoneId Zone Identifier.
      * @param array|\Cloudflare\Configurations\Zones\PageRule $values Values to set on Page Rule.
@@ -60,7 +58,7 @@ class PageRules extends AbstractEndpoint
     /**
      * Fetches the details of a Page Rule.
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-get-a-page-rule
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
@@ -75,7 +73,7 @@ class PageRules extends AbstractEndpoint
     /**
      * Updates one or more fields of an existing Page Rule.
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-edit-a-page-rule
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
@@ -97,7 +95,7 @@ class PageRules extends AbstractEndpoint
     /**
      * Replaces the configuration of an existing Page Rule. The configuration of the updated Page Rule will exactly match the data passed in the API request.
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-update-a-page-rule
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/update/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.
@@ -119,7 +117,7 @@ class PageRules extends AbstractEndpoint
     /**
      * Delete a Page Rule
      *
-     * @link https://developers.cloudflare.com/api/operations/page-rules-delete-a-page-rule
+     * @link https://developers.cloudflare.com/api/resources/page_rules/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $pageRuleId Page Rule Identifier.

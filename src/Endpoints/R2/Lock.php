@@ -10,7 +10,7 @@ class Lock extends AbstractEndpoint
     /**
      * Get the object lock configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-lock-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/locks/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class Lock extends AbstractEndpoint
     /**
      * Set the object lock configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-put-bucket-lock-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/locks/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

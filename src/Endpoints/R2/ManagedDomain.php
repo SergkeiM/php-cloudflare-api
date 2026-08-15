@@ -10,7 +10,7 @@ class ManagedDomain extends AbstractEndpoint
     /**
      * Get the managed (`r2.dev`) domain configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-managed-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/managed/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class ManagedDomain extends AbstractEndpoint
     /**
      * Enable or disable the managed (`r2.dev`) domain for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-edit-bucket-managed-domain
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/managed/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

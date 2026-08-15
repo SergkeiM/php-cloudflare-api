@@ -11,14 +11,14 @@ use Cloudflare\Endpoints\Accounts\Subscriptions;
 use Cloudflare\Endpoints\Accounts\Tokens;
 
 /**
- * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
+ * @link https://developers.cloudflare.com/api/resources/accounts/methods/list/
  */
 class Accounts extends AbstractEndpoint
 {
     /**
      * List all accounts you have ownership or verified access to.
      *
-     * @link https://developers.cloudflare.com/api/operations/accounts-list-accounts
+     * @link https://developers.cloudflare.com/api/resources/accounts/methods/list/
      *
      * @param array $params Array containing the necessary params.
      *
@@ -32,7 +32,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Create an account (only available for tenant admins at this time)
      *
-     * @link https://developers.cloudflare.com/api/operations/account-creation
+     * @link https://developers.cloudflare.com/api/resources/accounts/methods/create/
      *
      * @param string $name Account name
      * @param string $type The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise.
@@ -59,7 +59,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Get information about a specific account that you are a member of.
      *
-     * @link https://developers.cloudflare.com/api/operations/accounts-account-details
+     * @link https://developers.cloudflare.com/api/resources/accounts/methods/get/
      *
      * @param string $accountId Account identifier.
      *
@@ -73,7 +73,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Update an existing account.
      *
-     * @link https://developers.cloudflare.com/api/operations/accounts-update-account
+     * @link https://developers.cloudflare.com/api/resources/accounts/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $name Account name.
@@ -98,7 +98,7 @@ class Accounts extends AbstractEndpoint
     /**
      * Delete a specific account (only available for tenant admins at this time). This is a permanent operation that will delete any zones or other resources under the account
      *
-     * @link https://developers.cloudflare.com/api/operations/account-deletion
+     * @link https://developers.cloudflare.com/api/resources/accounts/methods/delete/
      *
      * @param string $accountId Account identifier.
      *
@@ -112,8 +112,6 @@ class Accounts extends AbstractEndpoint
     /**
      * Get account profile.
      *
-     * @link https://developers.cloudflare.com/api/operations/Accounts_getAccountProfile
-     *
      * @param string $accountId Account identifier.
      *
      * @return \Cloudflare\Contracts\ResponseInterface Account Profile response.
@@ -125,8 +123,6 @@ class Accounts extends AbstractEndpoint
 
     /**
      * Modify account profile.
-     *
-     * @link https://developers.cloudflare.com/api/operations/Accounts_modifyAccountProfile
      *
      * @param string $accountId Account identifier.
      * @param array $values Account profile values.
@@ -140,8 +136,6 @@ class Accounts extends AbstractEndpoint
 
     /**
      * List account organizations.
-     *
-     * @link https://developers.cloudflare.com/api/operations/Accounts_listAccountOrganizations
      *
      * @param string $accountId Account identifier.
      *

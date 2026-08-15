@@ -10,7 +10,7 @@ class Monitors extends AbstractEndpoint
     /**
      * List configured load balancer monitors for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-list-monitors
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/list/
      *
      * @param string $accountId Account Identifier.
      *
@@ -24,7 +24,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Create a new load balancer monitor for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-create-monitor
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values Values to set on the monitor, e.g. `type`, `method`, `path`, `expected_codes`.
@@ -39,7 +39,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Get a single configured load balancer monitor for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-monitor-details
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.
@@ -54,7 +54,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Update an existing load balancer monitor for an account, overwriting the full configuration.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-update-monitor
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.
@@ -70,7 +70,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Apply changes to an existing monitor, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-patch-monitor
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/edit/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.
@@ -86,7 +86,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Delete a load balancer monitor for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-delete-monitor
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.
@@ -101,7 +101,7 @@ class Monitors extends AbstractEndpoint
     /**
      * Preview pools associated with a given monitor and show the effective response.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-monitors-preview-monitor
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/subresources/previews/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.
@@ -117,7 +117,7 @@ class Monitors extends AbstractEndpoint
     /**
      * List the load balancers and pools that reference a given monitor.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-list-monitor-references
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/subresources/references/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorId Monitor Identifier.

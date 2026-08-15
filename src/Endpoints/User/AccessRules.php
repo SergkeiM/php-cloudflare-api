@@ -9,7 +9,7 @@ use Cloudflare\Contracts\ResponseInterface;
  * IP Access rules defined at the user level, applying to every zone the
  * authenticated user owns.
  *
- * The zone-scoped counterpart is `$client->accessRules()`, which takes a zone
+ * The zone-scoped counterpart is `$client->firewall()->accessRules()`, which takes a zone
  * identifier and applies to that zone alone.
  *
  * @link https://developers.cloudflare.com/waf/tools/ip-access-rules/
@@ -18,8 +18,6 @@ class AccessRules extends AbstractEndpoint
 {
     /**
      * List, search, sort and filter the user's IP Access rules.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/firewall/
      *
      * @param array $params Query Parameters: `mode`, `configuration.target`, `configuration.value`, `notes`, `match`, `page`, `per_page`, `order` and `direction`.
      *
@@ -41,8 +39,6 @@ class AccessRules extends AbstractEndpoint
      * ]);
      * ```
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/firewall/
-     *
      * @param array $values `mode`, one of `block`, `challenge`, `whitelist`, `js_challenge` or `managed_challenge`, and `configuration` with its `target` (`ip`, `ip_range`, `asn` or `country`) and `value`. `notes` is optional.
      *
      * @throws \Cloudflare\Exceptions\MissingArgumentException
@@ -59,8 +55,6 @@ class AccessRules extends AbstractEndpoint
     /**
      * Get a single IP Access rule defined at the user level.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/firewall/
-     *
      * @param string $ruleId IP Access Rule Identifier.
      *
      * @return ResponseInterface IP Access rule details response
@@ -72,8 +66,6 @@ class AccessRules extends AbstractEndpoint
 
     /**
      * Apply changes to an IP Access rule, overwriting only the supplied properties.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/firewall/
      *
      * @param string $ruleId IP Access Rule Identifier.
      * @param array $values Values to set on the IP Access rule, e.g. `mode`, `notes`.
@@ -87,8 +79,6 @@ class AccessRules extends AbstractEndpoint
 
     /**
      * Delete an IP Access rule defined at the user level.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/firewall/
      *
      * @param string $ruleId IP Access Rule Identifier.
      *

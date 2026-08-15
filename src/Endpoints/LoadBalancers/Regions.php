@@ -10,7 +10,7 @@ class Regions extends AbstractEndpoint
     /**
      * List Load Balancer region mappings for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-regions-list-regions
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/regions/methods/list/
      *
      * @param string $accountId Account Identifier.
      *
@@ -24,7 +24,7 @@ class Regions extends AbstractEndpoint
     /**
      * Get a single Load Balancer region mapping for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/load-balancer-regions-get-region
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/regions/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $regionId Region Identifier.

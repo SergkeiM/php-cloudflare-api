@@ -10,7 +10,7 @@ class PermissionGroups extends AbstractEndpoint
     /**
      * List all the permissions groups for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-permission-group-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/permission_groups/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params, e.g. id, name, label.
@@ -25,7 +25,7 @@ class PermissionGroups extends AbstractEndpoint
     /**
      * Get information about a specific permission group in an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-permission-group-details
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/permission_groups/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $permissionGroupId Permission Group identifier.

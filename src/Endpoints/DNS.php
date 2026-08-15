@@ -4,6 +4,7 @@ namespace Cloudflare\Endpoints;
 
 use GuzzleHttp\RequestOptions;
 use Cloudflare\Contracts\ResponseInterface;
+use Cloudflare\Endpoints\DNS\DNSSEC;
 
 class DNS extends AbstractEndpoint
 {
@@ -13,7 +14,7 @@ class DNS extends AbstractEndpoint
      *
      * @deprecated Cloudflare marks this operation deprecated. Use `triggerScan()` to start a scan, then `scannedRecords()` and `reviewScan()` to decide what gets added — the newer flow does not add records to the zone on its own.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-scan-dns-records
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -33,6 +34,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/dns/manage-dns-records/how-to/import-and-export/
      *
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan_trigger/
      * @param string $zoneId Zone Identifier.
      *
      * @return ResponseInterface Trigger DNS record scan response
@@ -50,6 +52,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/dns/manage-dns-records/how-to/import-and-export/
      *
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan_list/
      * @param string $zoneId Zone Identifier.
      *
      * @return ResponseInterface List scanned DNS records response
@@ -71,6 +74,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/dns/manage-dns-records/how-to/import-and-export/
      *
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/scan_review/
      * @param string $zoneId Zone Identifier.
      * @param array $accepts Scanned records to add to the zone.
      * @param array $rejects Scanned records to discard.
@@ -108,6 +112,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/dns/manage-dns-records/how-to/batch-record-changes/
      *
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/batch/
      * @param string $zoneId Zone Identifier.
      * @param array $values Any of `posts` (create), `puts` (overwrite), `patches` (partial update) and `deletes`, each a list of record operations.
      * @param array $params Query Parameters: `include_shadow_metadata`.
@@ -132,6 +137,7 @@ class DNS extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/dns/
      *
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/usage/subresources/account/methods/get/
      * @param string $accountId Account Identifier.
      *
      * @return ResponseInterface DNS record usage response
@@ -144,7 +150,7 @@ class DNS extends AbstractEndpoint
     /**
      * List, search, sort, and filter a zones' DNS records.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-list-dns-records
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/list/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters
@@ -163,7 +169,7 @@ class DNS extends AbstractEndpoint
      *  - NS records cannot exist on the same name as any other record type.
      *  - Domain names are always represented in Punycode, even if Unicode characters were used when creating the record.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-create-dns-record
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/create/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $values Values to set on DNS.
@@ -180,7 +186,7 @@ class DNS extends AbstractEndpoint
     /**
      * Export BIND config.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-export-dns-records
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/export/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -194,7 +200,7 @@ class DNS extends AbstractEndpoint
     /**
      * Import BIND config.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-import-dns-records
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/import/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $content Content of BIND config to import.
@@ -223,7 +229,7 @@ class DNS extends AbstractEndpoint
     /**
      * DNS Record Details
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-dns-record-details
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to fetch details.
@@ -242,7 +248,7 @@ class DNS extends AbstractEndpoint
      *  - NS records cannot exist on the same name as any other record type.
      *  - Domain names are always represented in Punycode, even if Unicode characters were used when creating the record.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-patch-dns-record
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to update.
@@ -263,7 +269,7 @@ class DNS extends AbstractEndpoint
      *  - NS records cannot exist on the same name as any other record type.
      *  - Domain names are always represented in Punycode, even if Unicode characters were used when creating the record.
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-update-dns-record
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/update/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to overwrite.
@@ -280,7 +286,7 @@ class DNS extends AbstractEndpoint
     /**
      * Delete DNS Record
      *
-     * @link https://developers.cloudflare.com/api/operations/dns-records-for-a-zone-delete-dns-record
+     * @link https://developers.cloudflare.com/api/resources/dns/subresources/records/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $dnsRecordId DNS ID to delete.
@@ -290,5 +296,15 @@ class DNS extends AbstractEndpoint
     public function delete(string $zoneId, string $dnsRecordId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/dns_records/{$dnsRecordId}");
+    }
+
+    /**
+     * DNSSEC
+     *
+     * @return \Cloudflare\Endpoints\DNS\DNSSEC
+     */
+    public function dnssec(): DNSSEC
+    {
+        return new DNSSEC($this->getClient());
     }
 }

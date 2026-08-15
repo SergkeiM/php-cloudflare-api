@@ -10,7 +10,7 @@ class Invites extends AbstractEndpoint
     /**
      * Lists all invitations associated with my user.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-invites-list-invitations
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/list/
      *
      * @return ResponseInterface List Invites response.
      */
@@ -22,7 +22,7 @@ class Invites extends AbstractEndpoint
     /**
      * Gets the details of an invitation.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-invites-invitation-details
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/get/
      *
      * @param string $inviteId Invite identifier tag.
      *
@@ -36,7 +36,7 @@ class Invites extends AbstractEndpoint
     /**
      * Responds to an invitation.
      *
-     * @link https://developers.cloudflare.com/api/operations/user's-invites-respond-to-invitation
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/edit/
      *
      * @param string $inviteId Invite identifier tag.
      * @param string $status Status of the invitation, e.g. accepted, rejected.

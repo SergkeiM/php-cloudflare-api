@@ -9,7 +9,7 @@ class OriginCACertificates extends AbstractEndpoint
     /**
      * List all Origin CA certificates.
      *
-     * @link https://developers.cloudflare.com/api/operations/origin-ca-certificates-list-certificates
+     * @link https://developers.cloudflare.com/api/resources/origin_ca_certificates/methods/list/
      *
      * @param array $params Query Parameters, e.g. `zone_id`.
      *
@@ -23,7 +23,7 @@ class OriginCACertificates extends AbstractEndpoint
     /**
      * Create an Origin CA certificate.
      *
-     * @link https://developers.cloudflare.com/api/operations/origin-ca-certificates-create-certificate
+     * @link https://developers.cloudflare.com/api/resources/origin_ca_certificates/methods/create/
      *
      * @param string $csr Certificate Signing Request (CSR).
      * @param array $hostnames Array of hostnames or wildcard names bound to the certificate.
@@ -45,7 +45,7 @@ class OriginCACertificates extends AbstractEndpoint
     /**
      * Get an Origin CA certificate.
      *
-     * @link https://developers.cloudflare.com/api/operations/origin-ca-certificates-certificate-details
+     * @link https://developers.cloudflare.com/api/resources/origin_ca_certificates/methods/get/
      *
      * @param string $certificateId Origin CA certificate Identifier.
      *
@@ -59,7 +59,7 @@ class OriginCACertificates extends AbstractEndpoint
     /**
      * Revoke an Origin CA certificate.
      *
-     * @link https://developers.cloudflare.com/api/operations/origin-ca-certificates-revoke-certificate
+     * @link https://developers.cloudflare.com/api/resources/origin_ca_certificates/methods/delete/
      *
      * @param string $certificateId Origin CA certificate Identifier.
      *

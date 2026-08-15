@@ -10,7 +10,7 @@ class Audit extends AbstractEndpoint
     /**
      * Gets a list of audit logs for an organization.
      *
-     * @link https://developers.cloudflare.com/api/operations/audit-logs-v2-get-organization-audit-logs
+     * @link https://developers.cloudflare.com/api/resources/organizations/subresources/logs/subresources/audit/methods/list/
      *
      * @param string $organizationId Organization identifier.
      * @param array $params Array containing the necessary params, requires since and before.
@@ -27,7 +27,7 @@ class Audit extends AbstractEndpoint
     /**
      * Returns the chronological change history for the resource identified by the given organization-scoped audit log entry.
      *
-     * @link https://developers.cloudflare.com/api/operations/audit-logs-v2-get-organization-audit-log-history
+     * @link https://developers.cloudflare.com/api/resources/organizations/subresources/logs/subresources/audit/methods/history/
      *
      * @param string $organizationId Organization identifier.
      * @param string $id Audit log entry identifier used to locate the resource.

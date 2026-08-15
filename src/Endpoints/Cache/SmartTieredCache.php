@@ -8,8 +8,6 @@ use Cloudflare\Contracts\ResponseInterface;
 /**
  * Smart Tiered Cache picks the single closest upper tier for each of a zone's
  * lower tiers, rather than having the topology configured by hand.
- *
- * @link https://developers.cloudflare.com/cache/how-to/tiered-cache/smart-tiered-cache/
  */
 class SmartTieredCache extends AbstractEndpoint
 {

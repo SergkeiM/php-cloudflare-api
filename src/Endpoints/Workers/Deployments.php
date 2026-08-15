@@ -11,7 +11,7 @@ class Deployments extends AbstractEndpoint
     /**
       * List of Worker Deployments. The first deployment in the list is the latest deployment actively serving traffic.
       *
-      * @link https://developers.cloudflare.com/api/operations/worker-deployments-list-deployments
+      * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/deployments/methods/list/
       *
       * @param string $accountId Account identifier.
       * @param string $scriptMame Name of the script, used in URLs and route configuration.
@@ -24,9 +24,9 @@ class Deployments extends AbstractEndpoint
     }
 
     /**
-     * Deployments configure how [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions) are deployed to traffic. A deployment can consist of one or two versions of a Worker.
+     * Deployments configure how [Worker Versions](https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/deployments/methods/create/ are deployed to traffic. A deployment can consist of one or two versions of a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-cron-trigger-update-cron-triggers
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/deployments/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptMame Name of the script, used in URLs and route configuration.

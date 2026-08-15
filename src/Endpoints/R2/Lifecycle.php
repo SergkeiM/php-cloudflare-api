@@ -10,7 +10,7 @@ class Lifecycle extends AbstractEndpoint
     /**
      * Get the lifecycle configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-lifecycle-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/lifecycle/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class Lifecycle extends AbstractEndpoint
     /**
      * Set the lifecycle configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-put-bucket-lifecycle-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/lifecycle/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

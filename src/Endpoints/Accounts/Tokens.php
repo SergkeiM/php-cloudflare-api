@@ -12,7 +12,7 @@ class Tokens extends AbstractEndpoint
     /**
      * List all Account Owned API tokens created for this account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-list-tokens
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
@@ -27,7 +27,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Create a new Account Owned API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-create-token
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values Token values, requires name and policies.
@@ -44,7 +44,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Get information about a specific Account Owned API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-token-details
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $tokenId Token identifier.
@@ -59,7 +59,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Update an existing token.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-update-token
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $tokenId Token identifier.
@@ -75,7 +75,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Destroy an Account Owned API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-delete-token
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $tokenId Token identifier.
@@ -90,7 +90,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Test whether a token works.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-verify-token
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/verify/
      *
      * @param string $accountId Account identifier.
      *

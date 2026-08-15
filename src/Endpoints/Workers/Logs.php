@@ -10,7 +10,7 @@ class Logs extends AbstractEndpoint
     /**
      * Get list of tails currently deployed on a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-tail-logs-list-tails
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -25,7 +25,7 @@ class Logs extends AbstractEndpoint
     /**
      * Starts a tail that receives logs and exception from a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-tail-logs-start-tail
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -40,7 +40,7 @@ class Logs extends AbstractEndpoint
     /**
      * Deletes a tail from a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-tail-logs-delete-tail
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.

@@ -18,8 +18,6 @@ class Monitors extends AbstractEndpoint
     /**
      * List the user's configured load balancer monitors.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @return ResponseInterface List monitors response
      */
     public function list(): ResponseInterface
@@ -29,8 +27,6 @@ class Monitors extends AbstractEndpoint
 
     /**
      * Create a new load balancer monitor for the user.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param array $values Values to set on the monitor, e.g. `type`, `method`, `path`, `expected_codes`.
      *
@@ -44,8 +40,6 @@ class Monitors extends AbstractEndpoint
     /**
      * Get a single configured load balancer monitor.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $monitorId Monitor Identifier.
      *
      * @return ResponseInterface Monitor details response
@@ -57,8 +51,6 @@ class Monitors extends AbstractEndpoint
 
     /**
      * Update an existing load balancer monitor, overwriting the full configuration.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $monitorId Monitor Identifier.
      * @param array $values Values to set on the monitor, e.g. `type`, `method`, `path`, `expected_codes`.
@@ -73,8 +65,6 @@ class Monitors extends AbstractEndpoint
     /**
      * Apply changes to an existing monitor, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $monitorId Monitor Identifier.
      * @param array $values Values to patch on the monitor.
      *
@@ -87,8 +77,6 @@ class Monitors extends AbstractEndpoint
 
     /**
      * Delete a load balancer monitor.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $monitorId Monitor Identifier.
      *
@@ -105,8 +93,6 @@ class Monitors extends AbstractEndpoint
      * Answers with a preview identifier; read the result with
      * `$client->user()->loadBalancers()->preview()`.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $monitorId Monitor Identifier.
      * @param array $values The pools to run the preview on.
      *
@@ -119,8 +105,6 @@ class Monitors extends AbstractEndpoint
 
     /**
      * List the load balancers and pools that reference a given monitor.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param string $monitorId Monitor Identifier.
      *
