@@ -3,8 +3,11 @@
 namespace Cloudflare\Endpoints;
 
 use Cloudflare\Contracts\ResponseInterface;
+use Cloudflare\Endpoints\User\AccessRules;
 use Cloudflare\Endpoints\User\AuditLogs;
+use Cloudflare\Endpoints\User\CommunicationPreferences;
 use Cloudflare\Endpoints\User\Invites;
+use Cloudflare\Endpoints\User\LoadBalancers;
 use Cloudflare\Endpoints\User\Subscriptions;
 use Cloudflare\Endpoints\User\Tenants;
 use Cloudflare\Endpoints\User\Tokens;
@@ -88,5 +91,35 @@ class User extends AbstractEndpoint
     public function tokens(): Tokens
     {
         return new Tokens($this->getClient());
+    }
+
+    /**
+     * User Communication Preferences
+     *
+     * @return \Cloudflare\Endpoints\User\CommunicationPreferences
+     */
+    public function communicationPreferences(): CommunicationPreferences
+    {
+        return new CommunicationPreferences($this->getClient());
+    }
+
+    /**
+     * User IP Access Rules
+     *
+     * @return \Cloudflare\Endpoints\User\AccessRules
+     */
+    public function accessRules(): AccessRules
+    {
+        return new AccessRules($this->getClient());
+    }
+
+    /**
+     * User Load Balancers
+     *
+     * @return \Cloudflare\Endpoints\User\LoadBalancers
+     */
+    public function loadBalancers(): LoadBalancers
+    {
+        return new LoadBalancers($this->getClient());
     }
 }
