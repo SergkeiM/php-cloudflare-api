@@ -10,7 +10,7 @@ class Previews extends AbstractEndpoint
     /**
      * Get the result of a previously requested monitor or pool preview.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-preview-result
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/previews/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $previewId Preview Identifier.

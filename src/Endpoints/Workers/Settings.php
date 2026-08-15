@@ -10,7 +10,7 @@ class Settings extends AbstractEndpoint
     /**
       * Fetches Worker account settings for an account.
       *
-      * @link https://developers.cloudflare.com/api/operations/worker-account-settings-fetch-worker-account-settings
+      * @link https://developers.cloudflare.com/api/resources/workers/subresources/account_settings/methods/get/
       *
       * @param string $accountId Account identifier.
       *
@@ -24,7 +24,7 @@ class Settings extends AbstractEndpoint
     /**
      * Create Worker Account Settings
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-account-settings-create-worker-account-settings
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/account_settings/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $usageModel Default usage model.

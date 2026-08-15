@@ -10,8 +10,6 @@ class Members extends AbstractEndpoint
     /**
      * List members of an organization.
      *
-     * @link https://developers.cloudflare.com/api/operations/Members_list
-     *
      * @param string $organizationId Organization identifier.
      * @param array $params Array containing the necessary params, e.g. status, user.email.
      *
@@ -24,8 +22,6 @@ class Members extends AbstractEndpoint
 
     /**
      * Add a member to an organization.
-     *
-     * @link https://developers.cloudflare.com/api/operations/Members_create
      *
      * @param string $organizationId Organization identifier.
      * @param array $values Values, requires member.
@@ -42,8 +38,6 @@ class Members extends AbstractEndpoint
     /**
      * Add multiple members to an organization in a single request.
      *
-     * @link https://developers.cloudflare.com/api/operations/Members_batchCreate
-     *
      * @param string $organizationId Organization identifier.
      * @param array $values Values, requires members.
      *
@@ -59,8 +53,6 @@ class Members extends AbstractEndpoint
     /**
      * Get information about a specific member of an organization.
      *
-     * @link https://developers.cloudflare.com/api/operations/Members_retrieve
-     *
      * @param string $organizationId Organization identifier.
      * @param string $memberId Member identifier.
      *
@@ -73,8 +65,6 @@ class Members extends AbstractEndpoint
 
     /**
      * Remove a member from an organization.
-     *
-     * @link https://developers.cloudflare.com/api/operations/Members_delete
      *
      * @param string $organizationId Organization identifier.
      * @param string $memberId Member identifier.

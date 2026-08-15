@@ -14,7 +14,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Fetch a list of uploaded workers.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-list-workers
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/list/
      *
      * @param string $accountId Account identifier.
      *
@@ -28,7 +28,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Fetch raw script content for your worker. Note this is the original script content, not JSON encoded.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-download-worker
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -120,7 +120,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Fetch script content only.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-get-content
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/content/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -135,7 +135,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Get script-level settings when using Worker Versions. Includes Logpush and Tail Consumers.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-settings-get-settings
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/settings/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -150,7 +150,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Patch script-level settings when using Worker Versions. Includes Logpush and Tail Consumers.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-settings-patch-settings
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/settings/methods/edit/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -166,7 +166,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Get metadata and config, such as bindings or usage model
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-get-settings
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/script_and_version_settings/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -181,7 +181,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Patch metadata or config, such as bindings or usage model
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-patch-settings
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/script_and_version_settings/methods/edit/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -197,8 +197,6 @@ class Scripts extends AbstractEndpoint
     /**
      * Fetches the Usage Model for a given Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-fetch-usage-model
-     *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
      *
@@ -211,8 +209,6 @@ class Scripts extends AbstractEndpoint
 
     /**
      * Updates the Usage Model for a given Worker. Requires a Workers Paid subscription.
-     *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-update-usage-model
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -230,7 +226,7 @@ class Scripts extends AbstractEndpoint
     /**
      * Delete your worker. This call has no response body on a successful delete.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-script-delete-worker
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.

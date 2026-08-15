@@ -5,8 +5,6 @@ namespace Cloudflare\Endpoints\Zones;
 use Cloudflare\Endpoints\AbstractEndpoint;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Exceptions\MissingArgumentException;
-use Cloudflare\Endpoints\Zones\Settings\GoogleTagGateway;
-use Cloudflare\Endpoints\Zones\Settings\Zaraz;
 
 /**
  * Zone settings: the per-zone toggles behind the Cloudflare dashboard, from
@@ -117,25 +115,5 @@ class Settings extends AbstractEndpoint
     public function deleteOriginTlsComplianceModes(string $zoneId): ResponseInterface
     {
         return $this->getHttpClient()->delete("/zones/{$zoneId}/settings/origin_tls_compliance_modes");
-    }
-
-    /**
-     * Zaraz third-party tool loading
-     *
-     * @return \Cloudflare\Endpoints\Zones\Settings\Zaraz
-     */
-    public function zaraz(): Zaraz
-    {
-        return new Zaraz($this->getClient());
-    }
-
-    /**
-     * Google Tag Gateway
-     *
-     * @return \Cloudflare\Endpoints\Zones\Settings\GoogleTagGateway
-     */
-    public function googleTagGateway(): GoogleTagGateway
-    {
-        return new GoogleTagGateway($this->getClient());
     }
 }

@@ -10,7 +10,7 @@ class Searches extends AbstractEndpoint
     /**
      * Search load balancing resources (Load Balancers, Pools, Monitors) by name.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-search-search-resources
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/searches/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters, e.g. `query`, `references`, `page`, `per_page`.

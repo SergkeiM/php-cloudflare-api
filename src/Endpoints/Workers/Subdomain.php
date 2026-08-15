@@ -10,7 +10,7 @@ class Subdomain extends AbstractEndpoint
     /**
      * Returns a Workers subdomain for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-subdomain-get-subdomain
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/subdomains/methods/get/
      *
      * @param string $accountId Account identifier.
      *
@@ -24,7 +24,7 @@ class Subdomain extends AbstractEndpoint
     /**
      * Creates a Workers subdomain for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-subdomain-create-subdomain
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/subdomains/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $subdomain Subdomain.

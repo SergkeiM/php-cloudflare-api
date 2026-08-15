@@ -20,8 +20,6 @@ class LoadBalancers extends AbstractEndpoint
     /**
      * List configured load balancers.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-level-load-balancers-list-load-balancers
-     *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
      *
@@ -34,8 +32,6 @@ class LoadBalancers extends AbstractEndpoint
 
     /**
      * Create a new load balancer.
-     *
-     * @link https://developers.cloudflare.com/api/operations/account-level-load-balancers-create-load-balancer
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
@@ -53,8 +49,6 @@ class LoadBalancers extends AbstractEndpoint
     /**
      * Get a single configured load balancer.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-level-load-balancers-load-balancer-details
-     *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string $loadBalancerId Load Balancer Identifier.
@@ -68,8 +62,6 @@ class LoadBalancers extends AbstractEndpoint
 
     /**
      * Update an existing load balancer, overwriting the full configuration.
-     *
-     * @link https://developers.cloudflare.com/api/operations/account-level-load-balancers-update-load-balancer
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
@@ -88,8 +80,6 @@ class LoadBalancers extends AbstractEndpoint
     /**
      * Apply changes to an existing load balancer, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancers-patch-account-load-balancer
-     *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string $loadBalancerId Load Balancer Identifier.
@@ -105,8 +95,6 @@ class LoadBalancers extends AbstractEndpoint
     /**
      * Delete a load balancer.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-level-load-balancers-delete-load-balancer
-     *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string $loadBalancerId Load Balancer Identifier.
@@ -120,8 +108,6 @@ class LoadBalancers extends AbstractEndpoint
 
     /**
      * Fetch the current load balancer usage for an account.
-     *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancers-list-load-balancer-usage
      *
      * @param string $accountId Account Identifier.
      *

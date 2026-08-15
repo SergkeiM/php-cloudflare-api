@@ -10,7 +10,7 @@ class ResourceGroups extends AbstractEndpoint
     /**
      * List all the resource groups for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-resource-group-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params, e.g. id, name.
@@ -25,7 +25,7 @@ class ResourceGroups extends AbstractEndpoint
     /**
      * Create a new Resource Group under the specified account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-resource-group-create
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values Resource Group values, requires name and scope.
@@ -42,7 +42,7 @@ class ResourceGroups extends AbstractEndpoint
     /**
      * Get information about a specific resource group in an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-resource-group-details
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $resourceGroupId Resource Group identifier.
@@ -57,7 +57,7 @@ class ResourceGroups extends AbstractEndpoint
     /**
      * Modify an existing resource group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-resource-group-update
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $resourceGroupId Resource Group identifier.
@@ -73,7 +73,7 @@ class ResourceGroups extends AbstractEndpoint
     /**
      * Remove a resource group from an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-resource-group-delete
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $resourceGroupId Resource Group identifier.

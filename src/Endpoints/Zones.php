@@ -9,14 +9,14 @@ use Cloudflare\Endpoints\Zones\TransformationFlows;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
- * @link https://developers.cloudflare.com/api/operations/zones-get
+ * @link https://developers.cloudflare.com/api/resources/zones/methods/list/
  */
 class Zones extends AbstractEndpoint
 {
     /**
      * Lists, searches, sorts, and filters your zones. Listing zones across more than 500 accounts is currently not allowed.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-get
+     * @link https://developers.cloudflare.com/api/resources/zones/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters.
@@ -37,7 +37,7 @@ class Zones extends AbstractEndpoint
     /**
      * Create Zone
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-post
+     * @link https://developers.cloudflare.com/api/resources/zones/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param string $name The domain name
@@ -59,7 +59,7 @@ class Zones extends AbstractEndpoint
     /**
      * Zone Details
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-get
+     * @link https://developers.cloudflare.com/api/resources/zones/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -73,7 +73,7 @@ class Zones extends AbstractEndpoint
     /**
      * Delete Zone
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-delete
+     * @link https://developers.cloudflare.com/api/resources/zones/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -87,7 +87,7 @@ class Zones extends AbstractEndpoint
     /**
      * Edit Zone
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-patch
+     * @link https://developers.cloudflare.com/api/resources/zones/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup. This parameter is only available to Enterprise customers or if it has been explicitly enabled on a zone.
@@ -113,7 +113,7 @@ class Zones extends AbstractEndpoint
     /**
      * Triggeres a new activation check for a PENDING Zone. This can be triggered every 5 min for paygo/ent customers, every hour for FREE Zones.
      *
-     * @link https://developers.cloudflare.com/api/operations/put-zones-zone_id-activation_check
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/activation_check/methods/trigger/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -127,7 +127,7 @@ class Zones extends AbstractEndpoint
     /**
      * Purge Cached Content
      *
-     * @link https://developers.cloudflare.com/api/operations/zone-purge
+     * @link https://developers.cloudflare.com/api/resources/cache/methods/purge/
      *
      * @param string $zoneId Zone Identifier.
      * @param array|\Cloudflare\Configurations\Zones\CachePurge $purgeBy

@@ -11,7 +11,7 @@ class Rules extends AbstractEndpoint
     /**
      * Adds a new rule to a ruleset.
      *
-     * @link https://developers.cloudflare.com/api/operations/updateZoneRuleset
+     * @link https://developers.cloudflare.com/api/resources/rulesets/subresources/rules/methods/create/
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.

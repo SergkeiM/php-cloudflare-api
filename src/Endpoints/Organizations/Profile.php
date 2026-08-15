@@ -10,7 +10,7 @@ class Profile extends AbstractEndpoint
     /**
      * Get an organizations profile if it exists.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_getProfile
+     * @link https://developers.cloudflare.com/api/resources/organizations/subresources/organization_profile/methods/get/
      *
      * @param string $organizationId Organization identifier.
      *
@@ -24,7 +24,7 @@ class Profile extends AbstractEndpoint
     /**
      * Modify organization profile.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_modifyProfile
+     * @link https://developers.cloudflare.com/api/resources/organizations/subresources/organization_profile/methods/update/
      *
      * @param string $organizationId Organization identifier.
      * @param array $values Profile values, requires business_name, business_email, business_phone, business_address and external_metadata.

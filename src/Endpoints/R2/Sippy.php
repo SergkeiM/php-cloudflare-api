@@ -10,7 +10,7 @@ class Sippy extends AbstractEndpoint
     /**
      * Get the Sippy configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-sippy-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class Sippy extends AbstractEndpoint
     /**
      * Enable Sippy (incremental migration) for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-put-bucket-sippy-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -43,7 +43,7 @@ class Sippy extends AbstractEndpoint
     /**
      * Disable Sippy for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-delete-bucket-sippy-configuration
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

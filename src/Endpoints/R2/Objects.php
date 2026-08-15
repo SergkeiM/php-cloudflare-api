@@ -22,6 +22,7 @@ class Objects extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/r2/api/
      *
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/objects/methods/list/
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
      * @param array $params Query Parameters: `per_page`, `prefix`, `delimiter`, `cursor` and `start_after`.
@@ -49,6 +50,7 @@ class Objects extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/r2/api/
      *
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/objects/methods/get/
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
      * @param string $objectKey Key of the object, e.g. `path/to/file.txt`.
@@ -79,6 +81,7 @@ class Objects extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/r2/api/
      *
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/objects/methods/upload/
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
      * @param string $objectKey Key to store the object under, e.g. `path/to/file.txt`.
@@ -119,6 +122,7 @@ class Objects extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/r2/api/
      *
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/objects/methods/delete/
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
      * @param string $objectKey Key of the object to delete.

@@ -14,7 +14,7 @@ class Versions extends AbstractEndpoint
     /**
      * List of Worker Versions. The first version in the list is the latest version.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-versions-list-versions
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/versions/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -69,7 +69,7 @@ class Versions extends AbstractEndpoint
     /**
      * Get Version Details.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-versions-get-version-detail
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/versions/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.

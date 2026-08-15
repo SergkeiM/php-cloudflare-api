@@ -10,7 +10,7 @@ class AccountTypes extends AbstractEndpoint
     /**
      * List of account types available for the Tenant to provision accounts.
      *
-     * @link https://developers.cloudflare.com/api/operations/Tenants_validAccountTypes
+     * @link https://developers.cloudflare.com/api/resources/tenants/subresources/account_types/methods/list/
      *
      * @param string $tenantId Tenant identifier.
      *

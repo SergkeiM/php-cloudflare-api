@@ -16,7 +16,7 @@ class Organizations extends AbstractEndpoint
     /**
      * Retrieve a list of organizations a particular user has access to.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organization_listOrganizations
+     * @link https://developers.cloudflare.com/api/resources/organizations/methods/list/
      *
      * @param array $params Array containing the necessary params.
      *
@@ -30,7 +30,7 @@ class Organizations extends AbstractEndpoint
     /**
      * Create a new organization for a user.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_createUserOrganization
+     * @link https://developers.cloudflare.com/api/resources/organizations/methods/create/
      *
      * @param array $values Organization values, requires name.
      *
@@ -46,7 +46,7 @@ class Organizations extends AbstractEndpoint
     /**
      * Retrieve the details of a certain organization.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_retrieve
+     * @link https://developers.cloudflare.com/api/resources/organizations/methods/get/
      *
      * @param string $organizationId Organization identifier.
      *
@@ -60,7 +60,7 @@ class Organizations extends AbstractEndpoint
     /**
      * Modify organization.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_modify
+     * @link https://developers.cloudflare.com/api/resources/organizations/methods/update/
      *
      * @param string $organizationId Organization identifier.
      * @param array $values Organization values, e.g. name.
@@ -75,7 +75,7 @@ class Organizations extends AbstractEndpoint
     /**
      * Delete an organization. The organization MUST be empty before deleting.
      *
-     * @link https://developers.cloudflare.com/api/operations/Organizations_delete
+     * @link https://developers.cloudflare.com/api/resources/organizations/methods/delete/
      *
      * @param string $organizationId Organization identifier.
      *

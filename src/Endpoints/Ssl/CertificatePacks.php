@@ -18,7 +18,7 @@ class CertificatePacks extends AbstractEndpoint
     /**
      * List a zone's active certificate packs.
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-list-certificate-packs
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/methods/list/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters: `status` (`all`), `deploy` (`staging` or `production`), `page` and `per_page`.
@@ -33,7 +33,7 @@ class CertificatePacks extends AbstractEndpoint
     /**
      * Get a zone's certificate pack quotas.
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-get-certificate-pack-quotas
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/subresources/quota/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -59,7 +59,7 @@ class CertificatePacks extends AbstractEndpoint
      * ]);
      * ```
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-order-advanced-certificate-manager-certificate-pack
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/methods/create/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $values `certificate_authority` (`google`, `lets_encrypt` or `ssl_com`), `hosts`, `validation_method` (`txt`, `http` or `email`) and `validity_days` (`14`, `30`, `90` or `365`) are required. `cloudflare_branding` is optional, and `type` defaults to `advanced`.
@@ -80,7 +80,7 @@ class CertificatePacks extends AbstractEndpoint
     /**
      * Get a single certificate pack.
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-get-certificate-pack
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $certificatePackId Certificate Pack Identifier.
@@ -99,7 +99,7 @@ class CertificatePacks extends AbstractEndpoint
      * accepts for a pack sitting in `validation_timed_out`. Sent with
      * `cloudflare_branding`, it updates that instead.
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-restart-validation-for-advanced-certificate-manager-certificate-pack
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $certificatePackId Certificate Pack Identifier.
@@ -115,7 +115,7 @@ class CertificatePacks extends AbstractEndpoint
     /**
      * Delete an Advanced Certificate Manager certificate pack.
      *
-     * @link https://developers.cloudflare.com/api/operations/certificate-packs-delete-advanced-certificate-manager-certificate-pack
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/certificate_packs/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $certificatePackId Certificate Pack Identifier.

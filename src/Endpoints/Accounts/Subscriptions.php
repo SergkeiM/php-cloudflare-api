@@ -10,7 +10,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Lists all of an account's subscriptions.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-subscriptions-list-subscriptions
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/get/
      *
      * @param string $accountId Account identifier.
      *
@@ -24,7 +24,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Creates an account subscription.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-subscriptions-create-subscription
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values Subscription values, e.g. frequency, rate_plan.
@@ -39,7 +39,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Updates an account subscription.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-subscriptions-update-subscription
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $subscriptionId Subscription identifier tag.
@@ -55,7 +55,7 @@ class Subscriptions extends AbstractEndpoint
     /**
      * Deletes an account's subscription.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-subscriptions-delete-subscription
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $subscriptionId Subscription identifier tag.

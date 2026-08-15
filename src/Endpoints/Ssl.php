@@ -10,7 +10,7 @@ class Ssl extends AbstractEndpoint
     /**
      * SSL Verification Details.
      *
-     * @link https://developers.cloudflare.com/api/operations/ssl-verification-details
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/verification/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $params Query Parameters.
@@ -25,7 +25,7 @@ class Ssl extends AbstractEndpoint
     /**
      * Edit SSL Certificate Pack Validation Method.
      *
-     * @link https://developers.cloudflare.com/api/operations/ssl-edit-ssl-validation-method
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/verification/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $certPackUuid Certificate Pack UUID.
@@ -43,7 +43,7 @@ class Ssl extends AbstractEndpoint
     /**
      * Universal SSL Settings Details.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-ssl-universal-settings-get
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/universal/subresources/settings/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -57,7 +57,7 @@ class Ssl extends AbstractEndpoint
     /**
      * Edit Universal SSL Settings.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-ssl-universal-settings-patch
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/universal/subresources/settings/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
      * @param bool $enabled Whether Universal SSL is enabled.
@@ -78,7 +78,7 @@ class Ssl extends AbstractEndpoint
      * and its expiration date. Sent without a certificate, Cloudflare analyzes
      * the one already on the zone.
      *
-     * @link https://developers.cloudflare.com/api/operations/analyze-certificate-analyze-certificate
+     * @link https://developers.cloudflare.com/api/resources/ssl/subresources/analyze/methods/create/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $values Optionally `certificate`, the PEM certificate and any intermediates, and `bundle_method` (`ubiquitous`, `optimal` or `force`).

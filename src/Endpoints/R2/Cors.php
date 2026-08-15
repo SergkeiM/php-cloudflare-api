@@ -10,7 +10,7 @@ class Cors extends AbstractEndpoint
     /**
      * Get the CORS configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-get-bucket-cors-policy
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -26,7 +26,7 @@ class Cors extends AbstractEndpoint
     /**
      * Set the CORS configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-put-bucket-cors-policy
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.
@@ -45,7 +45,7 @@ class Cors extends AbstractEndpoint
     /**
      * Delete the CORS configuration for a bucket.
      *
-     * @link https://developers.cloudflare.com/api/operations/r2-delete-bucket-cors-policy
+     * @link https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $bucketName Bucket Name.

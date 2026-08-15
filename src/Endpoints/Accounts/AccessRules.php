@@ -9,7 +9,7 @@ use Cloudflare\Contracts\ResponseInterface;
  * IP Access rules defined at the account level, applying to every zone in the
  * account.
  *
- * Cloudflare exposes the same resource at three scopes: `$client->accessRules()`
+ * Cloudflare exposes the same resource at three scopes: `$client->firewall()->accessRules()`
  * for a single zone, this one for an account, and
  * `$client->user()->accessRules()` for every zone the authenticated user owns.
  *
@@ -20,7 +20,7 @@ class AccessRules extends AbstractEndpoint
     /**
      * List, search, sort and filter an account's IP Access rules.
      *
-     * @link https://developers.cloudflare.com/api/operations/ip-access-rules-for-an-account-list-ip-access-rules
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/access_rules/methods/list/
      *
      * @param string $accountId Account Identifier.
      * @param array $params Query Parameters: `mode`, `configuration.target`, `configuration.value`, `notes`, `match`, `page`, `per_page`, `order` and `direction`.
@@ -43,7 +43,7 @@ class AccessRules extends AbstractEndpoint
      * ]);
      * ```
      *
-     * @link https://developers.cloudflare.com/api/operations/ip-access-rules-for-an-account-create-an-ip-access-rule
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/access_rules/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values `mode`, one of `block`, `challenge`, `whitelist`, `js_challenge` or `managed_challenge`, and `configuration` with its `target` (`ip`, `ip_range`, `asn` or `country`) and `value`. `notes` is optional.
@@ -62,7 +62,7 @@ class AccessRules extends AbstractEndpoint
     /**
      * Get a single IP Access rule defined at the account level.
      *
-     * @link https://developers.cloudflare.com/api/operations/ip-access-rules-for-an-account-get-an-ip-access-rule
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/access_rules/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $ruleId IP Access Rule Identifier.
@@ -77,7 +77,7 @@ class AccessRules extends AbstractEndpoint
     /**
      * Apply changes to an IP Access rule, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/operations/ip-access-rules-for-an-account-update-an-ip-access-rule
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/access_rules/methods/edit/
      *
      * @param string $accountId Account Identifier.
      * @param string $ruleId IP Access Rule Identifier.
@@ -93,7 +93,7 @@ class AccessRules extends AbstractEndpoint
     /**
      * Delete an IP Access rule defined at the account level.
      *
-     * @link https://developers.cloudflare.com/api/operations/ip-access-rules-for-an-account-delete-an-ip-access-rule
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/access_rules/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $ruleId IP Access Rule Identifier.

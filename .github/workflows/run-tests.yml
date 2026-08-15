@@ -12,6 +12,28 @@ jobs:
       - uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
         with:
           args: check
+  doc-links:
+    name: Documentation Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+        env:
+          update: true
+
+      # Cloudflare moves its documentation, and a docblock @link that 404s is
+      # invisible until somebody clicks it. Checked against the live site, so
+      # this catches their moves as well as ours.
+      - name: Check documentation links resolve
+        run: php bin/check-doc-links.php --quiet
+
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest

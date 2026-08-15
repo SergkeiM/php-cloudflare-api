@@ -10,7 +10,7 @@ class OauthScopes extends AbstractEndpoint
     /**
      * List all available OAuth scopes.
      *
-     * @link https://developers.cloudflare.com/api/operations/oauth-scopes-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/oauth_scopes/methods/list/
      *
      * @return ResponseInterface List OAuth Scopes response.
      */

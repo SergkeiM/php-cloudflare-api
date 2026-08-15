@@ -10,7 +10,7 @@ class Entitlements extends AbstractEndpoint
     /**
      * List of innate entitlements available for the Tenant.
      *
-     * @link https://developers.cloudflare.com/api/operations/Tenants_listEntitlements
+     * @link https://developers.cloudflare.com/api/resources/tenants/subresources/entitlements/methods/get/
      *
      * @param string $tenantId Tenant identifier.
      *

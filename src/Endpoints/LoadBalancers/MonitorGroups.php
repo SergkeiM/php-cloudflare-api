@@ -10,7 +10,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * List configured load balancer monitor groups for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-list-monitor-groups
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/list/
      *
      * @param string $accountId Account Identifier.
      *
@@ -24,7 +24,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * Create a new load balancer monitor group for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-create-monitor-group
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/create/
      *
      * @param string $accountId Account Identifier.
      * @param array $values Values to set on the monitor group, e.g. `description`, `members`.
@@ -41,7 +41,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * Get a single configured load balancer monitor group for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-monitor-group-details
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorGroupId Monitor Group Identifier.
@@ -56,7 +56,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * Apply changes to an existing monitor group, overwriting only the supplied properties.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-patch-monitor-group
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/edit/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorGroupId Monitor Group Identifier.
@@ -72,7 +72,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * Update an existing load balancer monitor group for an account, overwriting the full configuration.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-update-monitor-group
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/update/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorGroupId Monitor Group Identifier.
@@ -90,7 +90,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * Delete a load balancer monitor group for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-delete-monitor-group
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/delete/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorGroupId Monitor Group Identifier.
@@ -105,7 +105,7 @@ class MonitorGroups extends AbstractEndpoint
     /**
      * List the pools that reference a given monitor group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-list-monitor-group-references
+     * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/subresources/references/methods/get/
      *
      * @param string $accountId Account Identifier.
      * @param string $monitorGroupId Monitor Group Identifier.

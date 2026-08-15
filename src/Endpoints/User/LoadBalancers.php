@@ -20,8 +20,6 @@ class LoadBalancers extends AbstractEndpoint
     /**
      * List all region mappings in the user context.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param array $params Query Parameters: `subdivision_code` and `country_code`.
      *
      * @return ResponseInterface List regions response
@@ -37,8 +35,6 @@ class LoadBalancers extends AbstractEndpoint
      * Previews are started from `monitors()->preview()` or `pools()->preview()`,
      * which hand back the identifier to read here.
      *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
-     *
      * @param string $previewId Preview Identifier, as returned when the preview was started.
      *
      * @return ResponseInterface Preview result response
@@ -50,8 +46,6 @@ class LoadBalancers extends AbstractEndpoint
 
     /**
      * List origin health changes.
-     *
-     * @link https://developers.cloudflare.com/api/resources/user/subresources/load_balancers/
      *
      * @param array $params Query Parameters: `since`, `until`, `pool_id`, `pool_name`, `pool_healthy`, `origin_name` and `origin_healthy`.
      *

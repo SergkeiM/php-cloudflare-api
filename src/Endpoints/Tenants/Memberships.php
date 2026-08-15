@@ -10,7 +10,7 @@ class Memberships extends AbstractEndpoint
     /**
      * List of active members (Cloudflare users) for the Tenant.
      *
-     * @link https://developers.cloudflare.com/api/operations/Tenants_listMemberships
+     * @link https://developers.cloudflare.com/api/resources/tenants/subresources/memberships/methods/list/
      *
      * @param string $tenantId Tenant identifier.
      *

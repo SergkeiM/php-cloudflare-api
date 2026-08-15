@@ -10,7 +10,7 @@ class Cron extends AbstractEndpoint
     /**
       * Get Cron Triggers
       *
-      * @link https://developers.cloudflare.com/api/operations/worker-cron-trigger-get-cron-triggers
+      * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/schedules/methods/get/
       *
       * @param string $accountId Account identifier.
       * @param string $scriptName Name of the script, used in URLs and route configuration.
@@ -25,7 +25,7 @@ class Cron extends AbstractEndpoint
     /**
      * Updates Cron Triggers for a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-cron-trigger-update-cron-triggers
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/schedules/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $scriptName Name of the script, used in URLs and route configuration.

@@ -11,7 +11,7 @@ class UserGroups extends AbstractEndpoint
     /**
      * List all the user groups for an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-list
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params, e.g. id, name, fuzzyName.
@@ -26,7 +26,7 @@ class UserGroups extends AbstractEndpoint
     /**
      * Create a new user group under the specified account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-create
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values User Group values, requires name.
@@ -43,7 +43,7 @@ class UserGroups extends AbstractEndpoint
     /**
      * Get information about a specific user group in an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-details
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -58,7 +58,7 @@ class UserGroups extends AbstractEndpoint
     /**
      * Modify an existing user group.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-update
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.
@@ -74,7 +74,7 @@ class UserGroups extends AbstractEndpoint
     /**
      * Remove a user group from an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-user-group-delete
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $userGroupId User Group identifier.

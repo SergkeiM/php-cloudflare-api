@@ -10,7 +10,7 @@ class Holds extends AbstractEndpoint
     /**
      * Retrieve whether the zone is subject to a zone hold, and metadata about the hold.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-hold-get
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/get/
      *
      * @param string $zoneId Zone Identifier.
      *
@@ -24,7 +24,7 @@ class Holds extends AbstractEndpoint
     /**
      * Enforce a zone hold on the zone, blocking the creation and activation of zones with this zone's hostname.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-hold-post
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/create/
      *
      * @param string $zoneId Zone Identifier.
      * @param bool $includeSubdomains If provided, the zone hold will extend to block any subdomain of the given zone, as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with the hostname 'example.com' and include_subdomains=true will block 'example.com', 'staging.example.com', 'api.staging.example.com', etc.
@@ -41,7 +41,7 @@ class Holds extends AbstractEndpoint
     /**
      * Stop enforcement of a zone hold on the zone, permanently or temporarily, allowing the creation and activation of zones with this zone's hostname.
      *
-     * @link https://developers.cloudflare.com/api/operations/zones-0-hold-delete
+     * @link https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      * @param string $holdAfter If provided, the hold will be temporarily disabled, then automatically re-enabled by the system at the time specified in this RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.

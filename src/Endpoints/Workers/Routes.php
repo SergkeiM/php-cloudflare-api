@@ -10,7 +10,7 @@ class Routes extends AbstractEndpoint
     /**
      * Returns routes for a zone.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-routes-list-routes
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/routes/methods/list/
      *
      * @param string $zoneId Zone identifier.
      *
@@ -24,7 +24,7 @@ class Routes extends AbstractEndpoint
     /**
      * Creates a route that maps a URL pattern to a Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-routes-create-route
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/routes/methods/create/
      *
      * @param string $zoneId Zone identifier.
      * @param array $values Values.
@@ -41,7 +41,7 @@ class Routes extends AbstractEndpoint
     /**
      * Returns information about a route, including URL pattern and Worker.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-routes-get-route
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/routes/methods/get/
      *
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
@@ -56,7 +56,7 @@ class Routes extends AbstractEndpoint
     /**
      * Updates the URL pattern or Worker associated with a route.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-routes-update-route
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/routes/methods/update/
      *
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.
@@ -72,7 +72,7 @@ class Routes extends AbstractEndpoint
     /**
      * Deletes a route.
      *
-     * @link https://developers.cloudflare.com/api/operations/worker-routes-delete-route
+     * @link https://developers.cloudflare.com/api/resources/workers/subresources/routes/methods/delete/
      *
      * @param string $zoneId Zone identifier.
      * @param string $routeId Route Identifier.

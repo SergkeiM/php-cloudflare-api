@@ -10,7 +10,7 @@ class Value extends AbstractEndpoint
     /**
      * Roll the API token secret.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-roll-token
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/subresources/value/methods/update/
      *
      * @param string $tokenId Token identifier.
      *

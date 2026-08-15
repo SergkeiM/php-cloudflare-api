@@ -10,7 +10,7 @@ class Members extends AbstractEndpoint
     /**
      * List all members of an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-list-members
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params.
@@ -25,7 +25,7 @@ class Members extends AbstractEndpoint
     /**
      * Add a user to the list of members for this account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-add-member
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values Values to set on Member.
@@ -43,7 +43,7 @@ class Members extends AbstractEndpoint
     /**
      * Remove a member from an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-remove-member
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.
@@ -58,7 +58,7 @@ class Members extends AbstractEndpoint
     /**
      * Get information about a specific member of an account.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-remove-member
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.
@@ -73,7 +73,7 @@ class Members extends AbstractEndpoint
     /**
      * Modify an account member roles.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-update-member
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.
@@ -91,7 +91,7 @@ class Members extends AbstractEndpoint
     /**
      * Modify an account member policies.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-members-update-member
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $memberId Member identifier.

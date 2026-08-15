@@ -12,7 +12,7 @@ class Tokens extends AbstractEndpoint
     /**
      * List all API tokens created for this user.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-list-tokens
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/list/
      *
      * @param array $params Array containing the necessary params.
      *
@@ -26,7 +26,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Create a new API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-create-token
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/create/
      *
      * @param array $values Token values, requires name and policies.
      *
@@ -42,7 +42,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Get information about a specific API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-token-details
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/get/
      *
      * @param string $tokenId Token identifier.
      *
@@ -56,7 +56,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Update an existing token.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-update-token
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/update/
      *
      * @param string $tokenId Token identifier.
      * @param array $values Token values, e.g. name, policies, condition, status.
@@ -71,7 +71,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Destroy an API token.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-delete-token
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/delete/
      *
      * @param string $tokenId Token identifier.
      *
@@ -85,7 +85,7 @@ class Tokens extends AbstractEndpoint
     /**
      * Test whether a token works.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-api-tokens-verify-token
+     * @link https://developers.cloudflare.com/api/resources/user/subresources/tokens/methods/verify/
      *
      * @return ResponseInterface Verify Token response.
      */

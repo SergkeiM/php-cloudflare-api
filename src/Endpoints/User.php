@@ -13,14 +13,14 @@ use Cloudflare\Endpoints\User\Tenants;
 use Cloudflare\Endpoints\User\Tokens;
 
 /**
- * @link https://developers.cloudflare.com/api/operations/user-user-details
+ * @link https://developers.cloudflare.com/api/resources/user/methods/get/
  */
 class User extends AbstractEndpoint
 {
     /**
      * Retrieves detailed information about the currently authenticated user, including email, name, and account memberships.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-user-details
+     * @link https://developers.cloudflare.com/api/resources/user/methods/get/
      *
      * @return ResponseInterface User Details response.
      */
@@ -32,7 +32,7 @@ class User extends AbstractEndpoint
     /**
      * Edit part of your user details.
      *
-     * @link https://developers.cloudflare.com/api/operations/user-edit-user
+     * @link https://developers.cloudflare.com/api/resources/user/methods/edit/
      *
      * @param array $values User values, e.g. first_name, last_name, telephone, country, zipcode.
      *

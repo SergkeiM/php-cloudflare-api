@@ -10,7 +10,7 @@ class Sso extends AbstractEndpoint
     /**
      * Lists all SSO connectors configured for the account.
      *
-     * @link https://developers.cloudflare.com/api/operations/get-all-sso-connectors
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/list/
      *
      * @param string $accountId Account identifier.
      *
@@ -24,7 +24,7 @@ class Sso extends AbstractEndpoint
     /**
      * Creates a new SSO connector for logging into Cloudflare through an identity provider.
      *
-     * @link https://developers.cloudflare.com/api/operations/init-new-sso-connector
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/create/
      *
      * @param string $accountId Account identifier.
      * @param array $values SSO Connector values, requires email_domain.
@@ -41,7 +41,7 @@ class Sso extends AbstractEndpoint
     /**
      * Get information about a specific SSO connector.
      *
-     * @link https://developers.cloudflare.com/api/operations/get-sso-connector
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/get/
      *
      * @param string $accountId Account identifier.
      * @param string $ssoConnectorId SSO Connector identifier.
@@ -56,7 +56,7 @@ class Sso extends AbstractEndpoint
     /**
      * Updates the state or configuration of an SSO connector.
      *
-     * @link https://developers.cloudflare.com/api/operations/update-sso-connector-state
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/update/
      *
      * @param string $accountId Account identifier.
      * @param string $ssoConnectorId SSO Connector identifier.
@@ -72,7 +72,7 @@ class Sso extends AbstractEndpoint
     /**
      * Deletes an SSO connector.
      *
-     * @link https://developers.cloudflare.com/api/operations/delete-sso-connector
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/delete/
      *
      * @param string $accountId Account identifier.
      * @param string $ssoConnectorId SSO Connector identifier.
@@ -87,7 +87,7 @@ class Sso extends AbstractEndpoint
     /**
      * Begin the verification process for an SSO connector.
      *
-     * @link https://developers.cloudflare.com/api/operations/begin-sso-connector-verification
+     * @link https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/begin_verification/
      *
      * @param string $accountId Account identifier.
      * @param string $ssoConnectorId SSO Connector identifier.

@@ -13,7 +13,7 @@ class Tenants extends AbstractEndpoint
     /**
      * Retrieves a Tenant by Tenant ID.
      *
-     * @link https://developers.cloudflare.com/api/operations/Tenants_retrieveTenant
+     * @link https://developers.cloudflare.com/api/resources/tenants/methods/get/
      *
      * @param string $tenantId Tenant identifier.
      *

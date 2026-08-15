@@ -10,7 +10,7 @@ class PermissionGroups extends AbstractEndpoint
     /**
      * Find all available permission groups for Account Owned API Tokens.
      *
-     * @link https://developers.cloudflare.com/api/operations/account-api-tokens-list-permission-groups
+     * @link https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/subresources/permission_groups/methods/list/
      *
      * @param string $accountId Account identifier.
      * @param array $params Array containing the necessary params, e.g. name, scope.

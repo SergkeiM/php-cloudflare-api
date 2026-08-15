@@ -69,8 +69,6 @@ class Versions extends AbstractEndpoint
      * Fetches the rules of a ruleset version that carry a given tag, such as
      * `wordpress` or the CVE a managed rule addresses.
      *
-     * @link https://developers.cloudflare.com/api/resources/rulesets/subresources/versions/subresources/by_tag/methods/get/
-     *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string $rulesetId Ruleset Identifier.
