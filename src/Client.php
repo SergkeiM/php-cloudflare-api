@@ -29,6 +29,7 @@ use Cloudflare\HttpClient\Paginator;
  * @method \Cloudflare\Endpoints\Filters filters()
  * @method \Cloudflare\Endpoints\FirewallRules firewallRules()
  * @method \Cloudflare\Endpoints\AccessRules accessRules()
+ * @method \Cloudflare\Endpoints\UserAgentRules userAgentRules()
  * @method \Cloudflare\Endpoints\RateLimits rateLimits()
  * @method \Cloudflare\Endpoints\BotManagement botManagement()
  * @method \Cloudflare\Endpoints\CloudConnector cloudConnector()
@@ -138,6 +139,7 @@ class Client
             'filters' => new Endpoints\Filters($this),
             'firewallRules' => new Endpoints\FirewallRules($this),
             'accessRules' => new Endpoints\AccessRules($this),
+            'userAgentRules' => new Endpoints\UserAgentRules($this),
             'rateLimits' => new Endpoints\RateLimits($this),
             'botManagement' => new Endpoints\BotManagement($this),
             'cloudConnector' => new Endpoints\CloudConnector($this),

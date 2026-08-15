@@ -5,6 +5,7 @@ namespace Cloudflare\Endpoints;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Accounts\Members;
 use Cloudflare\Endpoints\Accounts\Logs;
+use Cloudflare\Endpoints\Accounts\AccessRules;
 use Cloudflare\Endpoints\Accounts\Settings;
 use Cloudflare\Endpoints\Accounts\Subscriptions;
 use Cloudflare\Endpoints\Accounts\Tokens;
@@ -199,5 +200,15 @@ class Accounts extends AbstractEndpoint
     public function settings(): Settings
     {
         return new Settings($this->getClient());
+    }
+
+    /**
+     * Account IP Access Rules
+     *
+     * @return \Cloudflare\Endpoints\Accounts\AccessRules
+     */
+    public function accessRules(): AccessRules
+    {
+        return new AccessRules($this->getClient());
     }
 }
