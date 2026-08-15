@@ -5,6 +5,7 @@ namespace Cloudflare\Endpoints;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Zones\Holds;
 use Cloudflare\Endpoints\Zones\Settings;
+use Cloudflare\Endpoints\Zones\TransformationFlows;
 use Cloudflare\Configurations\Zones\CachePurge;
 
 /**
@@ -162,5 +163,15 @@ class Zones extends AbstractEndpoint
     public function settings(): Settings
     {
         return new Settings($this->getClient());
+    }
+
+    /**
+     * Zone Image Transformation Flows
+     *
+     * @return \Cloudflare\Endpoints\Zones\TransformationFlows
+     */
+    public function transformationFlows(): TransformationFlows
+    {
+        return new TransformationFlows($this->getClient());
     }
 }
