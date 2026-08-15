@@ -11,6 +11,9 @@ use Cloudflare\Endpoints\R2\ManagedDomain;
 use Cloudflare\Endpoints\R2\Sippy;
 use Cloudflare\Endpoints\R2\EventNotifications;
 use Cloudflare\Endpoints\R2\Metrics;
+use Cloudflare\Endpoints\R2\Objects;
+use Cloudflare\Endpoints\R2\Jobs;
+use Cloudflare\Endpoints\R2\LocalUploads;
 
 class R2 extends AbstractEndpoint
 {
@@ -102,5 +105,35 @@ class R2 extends AbstractEndpoint
     public function metrics(): Metrics
     {
         return new Metrics($this->getClient());
+    }
+
+    /**
+     * R2 Bucket Objects
+     *
+     * @return \Cloudflare\Endpoints\R2\Objects
+     */
+    public function objects(): Objects
+    {
+        return new Objects($this->getClient());
+    }
+
+    /**
+     * R2 Bucket Background Jobs
+     *
+     * @return \Cloudflare\Endpoints\R2\Jobs
+     */
+    public function jobs(): Jobs
+    {
+        return new Jobs($this->getClient());
+    }
+
+    /**
+     * R2 Bucket Local Uploads
+     *
+     * @return \Cloudflare\Endpoints\R2\LocalUploads
+     */
+    public function localUploads(): LocalUploads
+    {
+        return new LocalUploads($this->getClient());
     }
 }
