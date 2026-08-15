@@ -3,6 +3,7 @@
 namespace Cloudflare\Endpoints;
 
 use Cloudflare\Contracts\ResponseInterface;
+use Cloudflare\Endpoints\Ssl\CertificatePacks;
 
 class Ssl extends AbstractEndpoint
 {
@@ -68,5 +69,34 @@ class Ssl extends AbstractEndpoint
         return $this->getHttpClient()->patch("/zones/{$zoneId}/ssl/universal/settings", [
             'enabled' => $enabled,
         ]);
+    }
+
+    /**
+     * Analyze a certificate.
+     *
+     * Returns the hostnames the certificate covers, its signature algorithm
+     * and its expiration date. Sent without a certificate, Cloudflare analyzes
+     * the one already on the zone.
+     *
+     * @link https://developers.cloudflare.com/api/operations/analyze-certificate-analyze-certificate
+     *
+     * @param string $zoneId Zone Identifier.
+     * @param array $values Optionally `certificate`, the PEM certificate and any intermediates, and `bundle_method` (`ubiquitous`, `optimal` or `force`).
+     *
+     * @return ResponseInterface Analyze certificate response
+     */
+    public function analyze(string $zoneId, array $values = []): ResponseInterface
+    {
+        return $this->getHttpClient()->post("/zones/{$zoneId}/ssl/analyze", $values);
+    }
+
+    /**
+     * Advanced Certificate Manager Certificate Packs
+     *
+     * @return \Cloudflare\Endpoints\Ssl\CertificatePacks
+     */
+    public function certificatePacks(): CertificatePacks
+    {
+        return new CertificatePacks($this->getClient());
     }
 }
