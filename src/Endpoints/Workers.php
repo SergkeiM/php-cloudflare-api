@@ -7,7 +7,6 @@ use Cloudflare\Endpoints\Workers\Settings;
 use Cloudflare\Endpoints\Workers\Cron;
 use Cloudflare\Endpoints\Workers\Deployments;
 use Cloudflare\Endpoints\Workers\Domains;
-use Cloudflare\Endpoints\Workers\Environment;
 use Cloudflare\Endpoints\Workers\Scripts;
 use Cloudflare\Endpoints\Workers\Subdomain;
 use Cloudflare\Endpoints\Workers\Logs;
@@ -56,16 +55,6 @@ class Workers extends AbstractEndpoint
     public function domains(): Domains
     {
         return new Domains($this->getClient());
-    }
-
-    /**
-     * Worker Account Environment
-     *
-     * @return Environment
-     */
-    public function environment(): Environment
-    {
-        return new Environment($this->getClient());
     }
 
     /**
