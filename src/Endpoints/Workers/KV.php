@@ -206,4 +206,44 @@ class KV extends AbstractEndpoint
     {
         return $this->getHttpClient()->post("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk/delete", $keys);
     }
+
+    /**
+     * Read multiple KV pairs from the namespace, up to 100 at a time. The values must be text-based.
+     *
+     * Unlike the other bulk operations, which take up to 10,000 keys, this one
+     * is capped at 100. Values come back as strings unless `type` is `json`, in
+     * which case Cloudflare parses them for you.
+     *
+     * ```php
+     * $client->workers()->kv()->getMultipleKeys('ACCOUNT_ID', 'NAMESPACE_ID', ['key-a', 'key-b'], 'json', true);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/api/operations/workers-kv-namespace-get-multiple-key-value-pairs
+     *
+     * @param string $accountId Account identifier.
+     * @param string $namespaceId Namespace identifier tag.
+     * @param array $keys Keys to retrieve, at most 100 of them.
+     * @param string $type Whether to parse JSON values in the response: `text` or `json`.
+     * @param bool $withMetadata Whether to include each key's metadata in the response.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
+     *
+     * @return ResponseInterface Get multiple key-value pairs response
+     */
+    public function getMultipleKeys(
+        string $accountId,
+        string $namespaceId,
+        array $keys,
+        string $type = 'text',
+        bool $withMetadata = false
+    ): ResponseInterface {
+
+        $this->requiredParams(['keys'], ['keys' => $keys]);
+
+        return $this->getHttpClient()->post("/accounts/{$accountId}/storage/kv/namespaces/{$namespaceId}/bulk/get", [
+            'keys' => array_values($keys),
+            'type' => $type,
+            'withMetadata' => $withMetadata,
+        ]);
+    }
 }
