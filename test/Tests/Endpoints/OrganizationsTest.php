@@ -90,4 +90,73 @@ class OrganizationsTest extends TestCase
         $this->assertSame('DELETE', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/organizations/organization_id', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldListAccounts()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['id' => 'account_id', 'name' => 'Production'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->organizations()->accounts('organization_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('Production', $response->json('result.0.name'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/organizations/organization_id/accounts', $this->lastRequest()->getUri()->getPath());
+    }
+
+    /**
+     * The dotted filter names are query parameters in their own right, not
+     * nested arrays, so they have to survive encoding intact.
+     */
+    #[Test]
+    public function shouldListAccountsWithDottedFilters()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->organizations()->accounts('organization_id', [
+            'name.startsWith' => 'prod',
+            'order_by' => 'account_name',
+            'direction' => 'desc',
+        ]);
+
+        $this->assertSame(
+            'name.startsWith=prod&order_by=account_name&direction=desc',
+            urldecode($this->lastRequest()->getUri()->getQuery())
+        );
+    }
+
+    #[Test]
+    public function shouldListShares()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['id' => 'share_id', 'status' => 'active'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->organizations()->shares('organization_id', [
+            'status' => 'active',
+            'kind' => 'sent',
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('share_id', $response->json('result.0.id'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/organizations/organization_id/shares', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame('status=active&kind=sent', $this->lastRequest()->getUri()->getQuery());
+    }
 }
