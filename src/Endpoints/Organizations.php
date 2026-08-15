@@ -87,6 +87,50 @@ class Organizations extends AbstractEndpoint
     }
 
     /**
+     * List the accounts that belong to an organization.
+     *
+     * Filters come in four flavours for both `name` and `account_pubname`: an
+     * exact match, or one of `.startsWith`, `.endsWith` and `.contains`. All of
+     * them are case-insensitive.
+     *
+     * Paging here is by opaque token rather than page number: pass the
+     * `page_token` from the previous response to get the next page.
+     *
+     * ```php
+     * $client->organizations()->accounts('ORGANIZATION_ID', [
+     *     'name.startsWith' => 'prod',
+     *     'order_by' => 'account_name',
+     * ]);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/fundamentals/organizations/
+     *
+     * @param string $organizationId Organization identifier.
+     * @param array $params Query Parameters: `account_pubname` and `name` — each also accepting `.startsWith`, `.endsWith` and `.contains` — plus `order_by` (`account_name`), `direction` (`asc` or `desc`), `page_token` and `page_size` (defaults to `10`).
+     *
+     * @return ResponseInterface Get organization accounts response.
+     */
+    public function accounts(string $organizationId, array $params = []): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/organizations/{$organizationId}/accounts", $params);
+    }
+
+    /**
+     * List an organization's shares.
+     *
+     * @link https://developers.cloudflare.com/fundamentals/organizations/
+     *
+     * @param string $organizationId Organization identifier.
+     * @param array $params Query Parameters: `status` (`active`, `deleting` or `deleted`), `kind` (`sent` or `received`), `target_type` (`account` or `organization`), `resource_types`, `order` (`name` or `created`), `direction` (`asc` or `desc`), `page` and `per_page`.
+     *
+     * @return ResponseInterface List organization shares response.
+     */
+    public function shares(string $organizationId, array $params = []): ResponseInterface
+    {
+        return $this->getHttpClient()->get("/organizations/{$organizationId}/shares", $params);
+    }
+
+    /**
      * Organization Profile
      *
      * @return \Cloudflare\Endpoints\Organizations\Profile
