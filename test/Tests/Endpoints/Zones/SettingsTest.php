@@ -118,4 +118,50 @@ class SettingsTest extends TestCase
 
         $client->zones()->settings()->edit('zone_id', 'always_use_https', $values);
     }
+
+    #[Test]
+    public function shouldReplaceOriginTlsComplianceModes()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['value' => ['fips']]])),
+        ]);
+
+        $response = $client->zones()->settings()->replaceOriginTlsComplianceModes('zone_id', ['fips']);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('PUT', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/settings/origin_tls_compliance_modes', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame(['value' => ['fips']], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    /**
+     * An empty list is how the constraint is cleared, so it has to reach
+     * Cloudflare rather than being treated as a missing argument.
+     */
+    #[Test]
+    public function shouldClearOriginTlsComplianceModesWithAnEmptyList()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['value' => []]])),
+        ]);
+
+        $response = $client->zones()->settings()->replaceOriginTlsComplianceModes('zone_id', []);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame(['value' => []], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldDeleteOriginTlsComplianceModes()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => null])),
+        ]);
+
+        $response = $client->zones()->settings()->deleteOriginTlsComplianceModes('zone_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('DELETE', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/settings/origin_tls_compliance_modes', $this->lastRequest()->getUri()->getPath());
+    }
 }
