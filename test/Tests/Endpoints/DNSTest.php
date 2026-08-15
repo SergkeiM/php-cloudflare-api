@@ -2,6 +2,7 @@
 
 namespace Cloudflare\Tests\Endpoints;
 
+use Cloudflare\Exceptions\MissingArgumentException;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -148,5 +149,156 @@ class DNSTest extends TestCase
         $this->assertTrue($response->successful());
         $this->assertSame('DELETE', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/zones/zone_id/dns_records/record_id', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldTriggerScan()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => null])),
+        ]);
+
+        $response = $client->dns()->triggerScan('zone_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/dns_records/scan/trigger', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldListScannedRecords()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [
+                    ['id' => 'scanned_id', 'type' => 'A', 'name' => 'www.example.com'],
+                ],
+            ])),
+        ]);
+
+        $response = $client->dns()->scannedRecords('zone_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('scanned_id', $response->json('result.0.id'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/dns_records/scan/review', $this->lastRequest()->getUri()->getPath());
+    }
+
+    #[Test]
+    public function shouldReviewScan()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => null])),
+        ]);
+
+        $response = $client->dns()->reviewScan('zone_id', ['accept_id'], ['reject_id']);
+
+        $this->assertTrue($response->successful());
+
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/dns_records/scan/review', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame([
+            'accepts' => ['accept_id'],
+            'rejects' => ['reject_id'],
+        ], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    /**
+     * Reviewing only accepts, or only rejects, is a legitimate request — but
+     * reviewing nothing at all is not.
+     */
+    #[Test]
+    public function shouldReviewScanWithAcceptsOnly()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => null])),
+        ]);
+
+        $response = $client->dns()->reviewScan('zone_id', ['accept_id']);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame([
+            'accepts' => ['accept_id'],
+            'rejects' => [],
+        ], json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldThrowWhenReviewingNothing()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->dns()->reviewScan('zone_id');
+    }
+
+    #[Test]
+    public function shouldBatchRecordChanges()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => ['posts' => [['id' => 'record_id']]],
+            ])),
+        ]);
+
+        $values = [
+            'posts' => [['type' => 'A', 'name' => 'www', 'content' => '198.51.100.4']],
+            'deletes' => [['id' => 'record_id']],
+        ];
+
+        $response = $client->dns()->batch('zone_id', $values);
+
+        $this->assertTrue($response->successful());
+
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/zones/zone_id/dns_records/batch', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame($values, json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldBatchWithQueryParameters()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->dns()->batch('zone_id', [
+            'puts' => [['id' => 'record_id', 'type' => 'A', 'name' => 'www', 'content' => '198.51.100.5']],
+        ], ['include_shadow_metadata' => 'true']);
+
+        $this->assertSame('include_shadow_metadata=true', $this->lastRequest()->getUri()->getQuery());
+    }
+
+    #[Test]
+    public function shouldThrowWhenBatchHasNoOperations()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->dns()->batch('zone_id', ['unknown' => []]);
+    }
+
+    #[Test]
+    public function shouldGetAccountUsage()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => ['quota' => 3500, 'usage' => 12],
+            ])),
+        ]);
+
+        $response = $client->dns()->usage('account_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame(3500, $response->json('result.quota'));
+
+        $this->assertSame('GET', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/dns_records/usage', $this->lastRequest()->getUri()->getPath());
     }
 }
