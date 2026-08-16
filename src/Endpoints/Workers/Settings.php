@@ -31,7 +31,7 @@ class Settings extends AbstractEndpoint
      *
      * @return ResponseInterface Create Worker Account Settings response
      */
-    public function create(string $accountId, array $values): ResponseInterface
+    public function update(string $accountId, array $values): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/workers/account-settings", $values);
     }

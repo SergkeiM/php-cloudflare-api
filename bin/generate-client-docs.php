@@ -109,6 +109,88 @@ function yamlString(string $s): string
     return '"' . trim($s) . '"';
 }
 
+/**
+ * Configuration helpers that have a hand-written page of their own, so a
+ * parameter accepting one can point the reader at how to build it.
+ */
+const CONFIGURATION_DOCS = [
+    'Cloudflare\\Configurations\\Ruleset' => '/advanced/configurations/ruleset',
+    'Cloudflare\\Configurations\\Rules\\Rule' => '/advanced/configurations/rules',
+    'Cloudflare\\Configurations\\Zones\\PageRule' => '/advanced/configurations/zones/page-rules',
+    'Cloudflare\\Configurations\\Zones\\CachePurge' => '/advanced/configurations/zones/cache-purge',
+    'Cloudflare\\Configurations\\Workers\\Deployment' => '/advanced/configurations/workers/deployment',
+];
+
+/**
+ * The named types making up a parameter's declaration, union or not.
+ *
+ * @return array<int, ReflectionNamedType>
+ */
+function namedTypes(?ReflectionType $type): array
+{
+    if ($type instanceof ReflectionNamedType) {
+        return [$type];
+    }
+
+    if ($type instanceof ReflectionUnionType) {
+        return array_values(array_filter(
+            $type->getTypes(),
+            static fn ($one) => $one instanceof ReflectionNamedType
+        ));
+    }
+
+    return [];
+}
+
+/**
+ * How a parameter's type should read in the reference.
+ *
+ * A union is spelled out rather than flattened to `mixed`, and a class is named
+ * without its namespace, so `array|Ruleset` reads the way it does in the
+ * signature.
+ */
+function typeLabel(?ReflectionType $type): string
+{
+    $names = [];
+
+    foreach (namedTypes($type) as $one) {
+        $name = $one->getName();
+        $names[] = $one->isBuiltin() ? $name : substr((string) strrchr('\\' . $name, '\\'), 1);
+    }
+
+    if ($names === []) {
+        return 'mixed';
+    }
+
+    if ($type instanceof ReflectionNamedType && $type->allowsNull() && !in_array($names[0], ['mixed', 'null'], true)) {
+        $names[] = 'null';
+    }
+
+    return implode('|', $names);
+}
+
+/**
+ * The documentation page for the configuration helper a parameter accepts, if
+ * it accepts one.
+ */
+function configurationRoute(?ReflectionType $type): ?string
+{
+    foreach (namedTypes($type) as $one) {
+
+        if ($one->isBuiltin()) {
+            continue;
+        }
+
+        foreach (CONFIGURATION_DOCS as $class => $route) {
+            if ($one->getName() === $class || is_subclass_of($one->getName(), $class)) {
+                return $route;
+            }
+        }
+    }
+
+    return null;
+}
+
 function docblockFor(DocBlockFactory $factory, Reflector $reflector): ?DocBlock
 {
     try {
@@ -221,14 +303,13 @@ function renderMethodSection(DocBlockFactory $factory, ReflectionMethod $m, stri
     if (!empty($m->getParameters())) {
         $out .= "::params-table\n---\nparams:\n";
         foreach ($m->getParameters() as $p) {
-            $type = $p->getType() instanceof ReflectionNamedType ? $p->getType()->getName() : 'mixed';
-            if ($p->getType() instanceof ReflectionNamedType && $p->getType()->allowsNull()) {
-                $type .= '|null';
-            }
-
             $out .= "  - name: " . yamlString($p->getName()) . "\n";
-            $out .= "    type: " . yamlString($type) . "\n";
+            $out .= "    type: " . yamlString(typeLabel($p->getType())) . "\n";
             $out .= "    required: " . ($p->isOptional() ? 'false' : 'true') . "\n";
+
+            if (($configuration = configurationRoute($p->getType())) !== null) {
+                $out .= "    configuration: " . yamlString($configuration) . "\n";
+            }
 
             $desc = $paramDescriptions[$p->getName()] ?? '';
             if ($desc !== '') {

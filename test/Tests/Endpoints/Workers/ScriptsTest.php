@@ -236,4 +236,16 @@ class ScriptsTest extends TestCase
         $this->assertSame('/client/v4/accounts/account_id/workers/scripts/script_name', $this->lastRequest()->getUri()->getPath());
         $this->assertStringContainsString('force=', $this->lastRequest()->getUri()->getQuery());
     }
+
+    #[Test]
+    public function shouldListFilteredByTags()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->workers()->scripts()->list('account_id', ['tags' => 'production:yes']);
+
+        $this->assertSame('tags=production%3Ayes', $this->lastRequest()->getUri()->getQuery());
+    }
 }

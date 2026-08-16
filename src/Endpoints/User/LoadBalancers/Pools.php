@@ -18,11 +18,13 @@ class Pools extends AbstractEndpoint
     /**
      * List the user's configured load balancer pools.
      *
+     * @param array $params Query Parameters: `monitor`, to list only the pools using a given monitor.
+     *
      * @return ResponseInterface List pools response
      */
-    public function list(): ResponseInterface
+    public function list(array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get('/user/load_balancers/pools');
+        return $this->getHttpClient()->get('/user/load_balancers/pools', $params);
     }
 
     /**

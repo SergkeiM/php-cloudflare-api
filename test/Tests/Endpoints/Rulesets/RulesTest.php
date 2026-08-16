@@ -36,7 +36,7 @@ class RulesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'rule_id']])),
         ]);
 
-        $rule = (new BlockRule(['error' => 'blocked']))->enable()->setExpression('true');
+        $rule = (new BlockRule('{"error": "blocked"}'))->enable()->setExpression('true');
 
         $response = $client->rulesets()->rules()->create('account_id', null, 'ruleset_id', $rule);
 
@@ -46,7 +46,7 @@ class RulesTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdateWithArray()
+    public function shouldEditWithArray()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
@@ -54,7 +54,7 @@ class RulesTest extends TestCase
 
         $values = ['action' => 'block', 'expression' => 'false'];
 
-        $response = $client->rulesets()->rules()->update(null, 'zone_id', 'ruleset_id', 'rule_id', $values);
+        $response = $client->rulesets()->rules()->edit(null, 'zone_id', 'ruleset_id', 'rule_id', $values);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());
@@ -63,15 +63,15 @@ class RulesTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdateWithRuleObject()
+    public function shouldEditWithRuleObject()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
         ]);
 
-        $rule = (new BlockRule(['error' => 'blocked']))->disable()->setExpression('true');
+        $rule = (new BlockRule('{"error": "blocked"}'))->disable()->setExpression('true');
 
-        $response = $client->rulesets()->rules()->update('account_id', null, 'ruleset_id', 'rule_id', $rule);
+        $response = $client->rulesets()->rules()->edit('account_id', null, 'ruleset_id', 'rule_id', $rule);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

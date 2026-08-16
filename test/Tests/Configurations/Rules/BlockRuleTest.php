@@ -11,14 +11,14 @@ class BlockRuleTest extends TestCase
     #[Test]
     public function shouldBuildArray()
     {
-        $rule = new BlockRule(['error' => 'blocked'], 'application/json', 403);
+        $rule = new BlockRule('{"error": "blocked"}', 'application/json', 403);
 
         $array = $rule->toArray();
 
         $this->assertSame('block', $array['action']);
         $this->assertSame([
             'response' => [
-                'content' => ['error' => 'blocked'],
+                'content' => '{"error": "blocked"}',
                 'content_type' => 'application/json',
                 'status_code' => 403,
             ],

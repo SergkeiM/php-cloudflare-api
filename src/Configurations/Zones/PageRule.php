@@ -186,17 +186,6 @@ class PageRule implements Configuration
     }
 
     /**
-     * Turn off all active Cloudflare Apps (deprecated).
-     * @deprecated
-     * @param bool $value
-     * @return \Cloudflare\Configurations\Zones\PageRule
-     */
-    public function disableApps(bool $value): self
-    {
-        return $this->addAction('disable_apps', $value);
-    }
-
-    /**
      * Turn off Rocket Loader, Mirage, and Polish.
      * @param bool $value
      * @return \Cloudflare\Configurations\Zones\PageRule

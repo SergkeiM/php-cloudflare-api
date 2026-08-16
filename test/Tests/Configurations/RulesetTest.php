@@ -46,7 +46,7 @@ class RulesetTest extends TestCase
         $ruleset = (new Ruleset('my ruleset'))
             ->custom()
             ->rateLimit()
-            ->addRule((new BlockRule(['error' => 'blocked']))->setExpression('true'));
+            ->addRule((new BlockRule('{"error": "blocked"}'))->setExpression('true'));
 
         $array = $ruleset->toArray();
 

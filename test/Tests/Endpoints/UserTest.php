@@ -26,13 +26,13 @@ class UserTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdate()
+    public function shouldEdit()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'user_id']])),
         ]);
 
-        $response = $client->user()->update(['first_name' => 'John']);
+        $response = $client->user()->edit(['first_name' => 'John']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

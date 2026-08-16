@@ -5,6 +5,8 @@ interface Param {
   required?: boolean
   default?: string
   description?: string
+  /** Page for the configuration helper this parameter accepts, when it accepts one. */
+  configuration?: string
 }
 
 defineProps<{
@@ -29,7 +31,18 @@ defineProps<{
           <ProseCode>{{ param.name }}</ProseCode>
         </ProseTd>
         <ProseTd>
-          <ProseCode>{{ param.type }}</ProseCode>
+          <!--
+            A parameter that accepts a configuration helper links to the page
+            explaining how to build one, so the reader does not have to guess
+            what `Ruleset` in `Ruleset|array` refers to.
+          -->
+          <ProseA
+            v-if="param.configuration"
+            :href="param.configuration"
+          >
+            <ProseCode>{{ param.type }}</ProseCode>
+          </ProseA>
+          <ProseCode v-else>{{ param.type }}</ProseCode>
         </ProseTd>
         <ProseTd>
           <UBadge

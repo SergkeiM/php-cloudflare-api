@@ -17,12 +17,13 @@ class Scripts extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/list/
      *
      * @param string $accountId Account identifier.
+     * @param array $params Query Parameters: `tags`, to filter by script tag.
      *
      * @return ResponseInterface List Workers response
      */
-    public function list(string $accountId): ResponseInterface
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts", $params);
     }
 
     /**

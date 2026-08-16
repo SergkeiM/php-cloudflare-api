@@ -38,7 +38,7 @@ class User extends AbstractEndpoint
      *
      * @return ResponseInterface Update User response.
      */
-    public function update(array $values = []): ResponseInterface
+    public function edit(array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch('/user', $values);
     }

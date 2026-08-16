@@ -71,7 +71,7 @@ class OauthClients extends AbstractEndpoint
      *
      * @return ResponseInterface Update OAuth Client response.
      */
-    public function update(string $accountId, string $oauthClientId, array $values = []): ResponseInterface
+    public function edit(string $accountId, string $oauthClientId, array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/oauth_clients/{$oauthClientId}", $values);
     }

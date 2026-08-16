@@ -13,12 +13,13 @@ class Pools extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/list/
      *
      * @param string $accountId Account Identifier.
+     * @param array $params Query Parameters: `monitor`, to list only the pools using a given monitor.
      *
      * @return ResponseInterface List pools response
      */
-    public function list(string $accountId): ResponseInterface
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/pools");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/pools", $params);
     }
 
     /**

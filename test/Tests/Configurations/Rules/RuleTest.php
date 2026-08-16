@@ -4,6 +4,8 @@ namespace Cloudflare\Tests\Configurations\Rules;
 
 use Cloudflare\Configurations\Rules\LogRule;
 use Cloudflare\ExpressionBuilder;
+use Cloudflare\Configurations\Rules\RedirectRule;
+use Cloudflare\Configurations\Rules\RewriteRule;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -72,5 +74,57 @@ class RuleTest extends TestCase
         });
 
         $this->assertSame('ip.src eq 127.0.0.1', $rule->toArray()['expression']);
+    }
+
+    /**
+     * Most actions take parameters Cloudflare defines per action and extends
+     * over time, so they are set on the rule rather than modelled per class.
+     */
+    #[Test]
+    public function shouldCarryActionParameters()
+    {
+        $rule = (new RedirectRule())->setActionParameters([
+            'from_value' => [
+                'status_code' => 301,
+                'target_url' => ['value' => 'https://example.com/new'],
+            ],
+        ]);
+
+        $array = $rule->toArray();
+
+        $this->assertSame('redirect', $array['action']);
+        $this->assertSame([
+            'from_value' => [
+                'status_code' => 301,
+                'target_url' => ['value' => 'https://example.com/new'],
+            ],
+        ], $array['action_parameters']);
+    }
+
+    #[Test]
+    public function shouldMergeRepeatedActionParameters()
+    {
+        $rule = (new RewriteRule())
+            ->setActionParameters(['uri' => ['path' => ['value' => '/a']]])
+            ->setActionParameters(['headers' => ['x-test' => ['operation' => 'set', 'value' => '1']]]);
+
+        $this->assertSame(['uri', 'headers'], array_keys($rule->toArray()['action_parameters']));
+    }
+
+    /**
+     * An action that genuinely takes no parameters still sends none.
+     */
+    #[Test]
+    public function shouldOmitActionParametersWhenThereAreNone()
+    {
+        $this->assertArrayNotHasKey('action_parameters', (new LogRule())->toArray());
+    }
+
+    #[Test]
+    public function shouldSetLoggingOnAnyRule()
+    {
+        $rule = (new LogRule())->setLogging(true);
+
+        $this->assertSame(['enabled' => true], $rule->toArray()['logging']);
     }
 }

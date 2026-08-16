@@ -76,13 +76,13 @@ class OauthClientsTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdate()
+    public function shouldEdit()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'oauth_client_id']])),
         ]);
 
-        $response = $client->iam()->oauthClients()->update('account_id', 'oauth_client_id', ['client_name' => 'Renamed App']);
+        $response = $client->iam()->oauthClients()->edit('account_id', 'oauth_client_id', ['client_name' => 'Renamed App']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

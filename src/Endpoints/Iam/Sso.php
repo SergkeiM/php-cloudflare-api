@@ -64,7 +64,7 @@ class Sso extends AbstractEndpoint
      *
      * @return ResponseInterface Update SSO Connector response.
      */
-    public function update(string $accountId, string $ssoConnectorId, array $values = []): ResponseInterface
+    public function edit(string $accountId, string $ssoConnectorId, array $values = []): ResponseInterface
     {
         return $this->getHttpClient()->patch("/accounts/{$accountId}/sso_connectors/{$ssoConnectorId}", $values);
     }

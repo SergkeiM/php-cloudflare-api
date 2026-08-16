@@ -23,12 +23,13 @@ class Rulesets extends AbstractEndpoint
      *
      * @param string|null $accountId Account Identifier. Provide exactly one of $accountId or $zoneId.
      * @param string|null $zoneId Zone Identifier. Provide exactly one of $accountId or $zoneId.
+     * @param array $params Query Parameters: `cursor` and `per_page`.
      *
      * @return ResponseInterface A rulesets response.
      */
-    public function list(?string $accountId = null, ?string $zoneId = null): ResponseInterface
+    public function list(?string $accountId = null, ?string $zoneId = null, array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get("{$this->scopePath($accountId, $zoneId)}/rulesets");
+        return $this->getHttpClient()->get("{$this->scopePath($accountId, $zoneId)}/rulesets", $params);
     }
 
     /**

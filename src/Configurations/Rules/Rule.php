@@ -16,10 +16,18 @@ abstract class Rule implements Configuration
     protected string $action;
 
     /**
-     * The parameters configuring the rule's action.
-     * @var mixed
+     * Action parameters set on this rule directly, merged over whatever the
+     * concrete rule builds for itself.
+     * @var array
      */
-    protected mixed $actionParameters;
+    protected array $actionParameters = [];
+
+    /**
+     * Whether Cloudflare should log when the rule matches. Null leaves the
+     * field out and Cloudflare applies its own default.
+     * @var bool|null
+     */
+    protected ?bool $logging = null;
 
     /**
      * The expression defining which traffic will match the rule.
@@ -132,6 +140,45 @@ abstract class Rule implements Configuration
         return $this;
     }
 
+    /**
+     * Set parameters on the rule's action.
+     *
+     * Cloudflare defines a different set for each action, and adds to them over
+     * time, so they are passed through as given and merged over anything the
+     * rule builds itself. Calling this twice merges rather than replaces.
+     *
+     * ```php
+     * (new RewriteRule())->setActionParameters([
+     *     'uri' => ['path' => ['value' => '/new-path']],
+     * ]);
+     * ```
+     *
+     * @param array $parameters
+     * @return \Cloudflare\Configurations\Rules\Rule
+     */
+    public function setActionParameters(array $parameters): self
+    {
+        $this->actionParameters = array_merge($this->actionParameters, $parameters);
+
+        return $this;
+    }
+
+    /**
+     * Whether Cloudflare should log when the rule matches.
+     *
+     * Logging is a property of the rule rather than of its action, so it
+     * applies whatever the action is.
+     *
+     * @param bool $enabled
+     * @return \Cloudflare\Configurations\Rules\Rule
+     */
+    public function setLogging(bool $enabled): self
+    {
+        $this->logging = $enabled;
+
+        return $this;
+    }
+
     abstract protected function getActionParameters(): ?array;
 
     public function toArray(): array
@@ -142,8 +189,14 @@ abstract class Rule implements Configuration
             'expression' => $this->expression
         ];
 
-        if (!is_null($actionParameters = $this->getActionParameters())) {
+        $actionParameters = array_merge($this->getActionParameters() ?? [], $this->actionParameters);
+
+        if ($actionParameters !== []) {
             $options['action_parameters'] = $actionParameters;
+        }
+
+        if (!is_null($this->logging)) {
+            $options['logging'] = ['enabled' => $this->logging];
         }
 
         if (!is_null($this->description)) {

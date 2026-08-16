@@ -11,12 +11,22 @@ class BlockRule extends Rule
     protected string $action = 'block';
 
     /**
-     * @param mixed $content The content to return.
+     * Answer a matching request yourself instead of passing it to the origin.
+     *
+     * Cloudflare sends `content` as given, so encode it to match the content
+     * type you declare — a JSON string for `application/json`, markup for
+     * `text/html`.
+     *
+     * ```php
+     * new BlockRule('{"error": "blocked"}', 'application/json', 403);
+     * ```
+     *
+     * @param string $content The content to return.
      * @param string $contentType The type of the content to return.
      * @param int $statusCode The status code to return. >= 400 <= 499
      */
     public function __construct(
-        private mixed $content,
+        private string $content,
         private string $contentType = 'application/json',
         private int $statusCode = 400,
     ) {

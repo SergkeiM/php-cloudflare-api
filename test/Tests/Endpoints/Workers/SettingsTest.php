@@ -26,13 +26,13 @@ class SettingsTest extends TestCase
     }
 
     #[Test]
-    public function shouldCreate()
+    public function shouldUpdate()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['default_usage_model' => 'standard']])),
         ]);
 
-        $response = $client->workers()->settings()->create('account_id', ['default_usage_model' => 'standard', 'green_compute' => true]);
+        $response = $client->workers()->settings()->update('account_id', ['default_usage_model' => 'standard', 'green_compute' => true]);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PUT', $this->lastRequest()->getMethod());

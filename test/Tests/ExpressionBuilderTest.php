@@ -4,7 +4,6 @@ namespace Cloudflare\Tests;
 
 use Cloudflare\ExpressionBuilder;
 use Cloudflare\Exceptions\BadMethodCallException;
-use Cloudflare\Exceptions\InvalidArgumentException;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
@@ -117,20 +116,36 @@ class ExpressionBuilderTest extends TestCase
         $this->assertSame('len(ip.src) eq 10', $builder->build());
     }
 
+    /**
+     * Cloudflare adds fields continually, so a name this package has not heard
+     * of is passed through rather than rejected — `cf.llm.prompt.detected` is
+     * a real field that predates nothing but this list.
+     */
     #[Test]
-    public function shouldThrowOnInvalidFunctionField()
+    public function shouldAcceptFieldsItDoesNotKnow()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->assertSame(
+            'cf.llm.prompt.detected eq true',
+            (new ExpressionBuilder())->field('cf.llm.prompt.detected')->eq(true)->build()
+        );
 
-        (new ExpressionBuilder())->addFunction('len', 'not.a.real.field');
+        $this->assertSame(
+            'len(cf.api_gateway.auth_id_present) eq 10',
+            (new ExpressionBuilder())->addFunction('len', 'cf.api_gateway.auth_id_present', 'eq', 10)->build()
+        );
     }
 
+    /**
+     * A value naming a known field is a reference to that field, not a string
+     * to compare against, which is what the field list is for.
+     */
     #[Test]
-    public function shouldThrowOnInvalidFieldName()
+    public function shouldCompareTwoFields()
     {
-        $this->expectException(InvalidArgumentException::class);
-
-        (new ExpressionBuilder())->field('not.a.real.field');
+        $this->assertSame(
+            'http.host eq http.request.uri.path',
+            (new ExpressionBuilder())->field('http.host')->eq('http.request.uri.path')->build()
+        );
     }
 
     #[Test]
@@ -155,5 +170,41 @@ class ExpressionBuilderTest extends TestCase
         $this->expectException(BadMethodCallException::class);
 
         (new ExpressionBuilder())->notARealMethod();
+    }
+
+    /**
+     * The Rules language spells booleans out. Casting gave `1` for true and an
+     * empty string for false, which is not a valid expression at all.
+     */
+    #[Test]
+    public function shouldFormatBooleans()
+    {
+        $this->assertSame(
+            'cf.bot_management.verified_bot eq true',
+            (new ExpressionBuilder())->field('cf.bot_management.verified_bot')->eq(true)->build()
+        );
+
+        $this->assertSame(
+            'cf.bot_management.verified_bot eq false',
+            (new ExpressionBuilder())->field('cf.bot_management.verified_bot')->eq(false)->build()
+        );
+    }
+
+    /**
+     * The comparison used to be dropped whenever the value was falsy, so
+     * `eq(0)` and `eq('')` produced an expression with no comparison in it.
+     */
+    #[Test]
+    public function shouldKeepFalsyComparisonValues()
+    {
+        $this->assertSame(
+            'cf.threat_score eq 0',
+            (new ExpressionBuilder())->field('cf.threat_score')->eq(0)->build()
+        );
+
+        $this->assertSame(
+            'http.user_agent eq ""',
+            (new ExpressionBuilder())->field('http.user_agent')->eq('')->build()
+        );
     }
 }

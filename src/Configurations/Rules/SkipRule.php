@@ -11,35 +11,51 @@ class SkipRule extends Rule
     protected string $action = 'skip';
 
     /**
-     * Whether to generate a log when the rule matches.
-     * @var bool
+     * Skip one or more of Cloudflare's own rules or products.
+     *
+     * What to skip is action-specific — `ruleset`, `rulesets`, `phases`,
+     * `products` or `rules` — so it is passed through as given.
+     *
+     * ```php
+     * new SkipRule(['products' => ['waf', 'rateLimit']]);
+     * new SkipRule(['ruleset' => 'current']);
+     * ```
+     *
+     * @param array $skip What the rule should skip.
      */
-    protected bool $logging = false;
+    public function __construct(
+        private array $skip = []
+    ) {
+    }
 
     /**
-     * Enable logging.
+     * Generate a log when the rule matches.
      * @return \Cloudflare\Configurations\Rules\SkipRule
      */
     public function enableLogging(): self
     {
-        $this->logging = true;
+        $this->setLogging(true);
 
         return $this;
     }
 
     /**
-     * Disable logging.
+     * Do not generate a log when the rule matches.
      * @return \Cloudflare\Configurations\Rules\SkipRule
      */
     public function disableLogging(): self
     {
-        $this->logging = false;
+        $this->setLogging(false);
 
         return $this;
     }
 
+    /**
+     * The parameters configuring the rule's action.
+     * @return ?array
+     */
     protected function getActionParameters(): ?array
     {
-        return null;
+        return $this->skip;
     }
 }
