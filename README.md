@@ -22,8 +22,6 @@ A simple PHP Client for [Cloudflare API](https://developers.cloudflare.com/api/)
     </a>
 </p>
 
-> **Note**: This package is under active development as I expand it to cover Cloudflare API. Consider the public API of this package a little unstable as I work towards a v1.0. [See Coverage](https://sergkeim.github.io/php-cloudflare-api/coverage)
-
 This package provides convenient access to the Cloudflare REST API using PHP.
 
 - [☁️ Cloudflare API v4](https://developers.cloudflare.com/api/)
