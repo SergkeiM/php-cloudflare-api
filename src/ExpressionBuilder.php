@@ -2,7 +2,6 @@
 
 namespace Cloudflare;
 
-use Cloudflare\Exceptions\InvalidArgumentException;
 use Cloudflare\Exceptions\BadMethodCallException;
 use Closure;
 use Stringable;
@@ -30,7 +29,12 @@ use Stringable;
 class ExpressionBuilder implements Stringable
 {
     /**
-     * Available fields
+     * Fields this package knows by name.
+     *
+     * Not a whitelist: it is how a value is recognised as a reference to
+     * another field rather than a string literal, so `eq('ip.src.country')`
+     * compares two fields instead of comparing one to the text.
+     *
      * @var string[]
      */
     private array $fields = [
@@ -232,7 +236,10 @@ class ExpressionBuilder implements Stringable
      */
     public function addExpression(?string $field = null, ?string $operator = null, mixed $value = null): self
     {
-        if ($operator && $value) {
+        // Checked against null rather than truthiness: `eq(false)`, `eq(0)` and
+        // `eq('')` are all comparisons worth making, and testing the value for
+        // truth silently dropped them.
+        if (!is_null($operator)) {
 
             $this->expressions[] = (is_null($field) ? "" : "{$field} ")."{$operator} {$this->formatValue($value)}";
 
@@ -255,18 +262,11 @@ class ExpressionBuilder implements Stringable
      * @param string $operator The Cloudflare Rules operator.
      * @param mixed $value
      *
-     * @throws \Cloudflare\Exceptions\InvalidArgumentException
-     *
      * @return \Cloudflare\ExpressionBuilder
      */
     public function addFunction(string $functionName, string $field, ?string $operator = null, mixed $value = null): self
     {
-        if (! $this->isFieldName($field)) {
-
-            throw new InvalidArgumentException(sprintf('Undefined field name: "%s"', $field));
-        }
-
-        if ($operator && $value) {
+        if (!is_null($operator)) {
 
             $this->expressions[] = "{$functionName}({$field}) {$operator} {$this->formatValue($value)}";
 
@@ -280,16 +280,19 @@ class ExpressionBuilder implements Stringable
 
     /**
      * Add field
-     * @param string $field
+     *
+     * The name is not checked against the list below. Cloudflare adds fields
+     * continually, and rejecting anything this package has not heard of would
+     * block valid expressions; Cloudflare validates the expression itself and
+     * says so plainly when a field does not exist.
+     *
+     * @link https://developers.cloudflare.com/ruleset-engine/rules-language/fields/
+     *
+     * @param string $field The Cloudflare Rules field.
      * @return \Cloudflare\ExpressionBuilder
      */
     public function field(string $field): self
     {
-
-        if (!$this->isFieldName($field)) {
-            throw new InvalidArgumentException(sprintf('Undefined field name: "%s"', $field));
-        }
-
         return $this->addExpression($field);
     }
 
@@ -329,7 +332,13 @@ class ExpressionBuilder implements Stringable
      */
     private function formatValue(mixed $value): string
     {
-        if (is_string($value)) {
+        if (is_bool($value)) {
+
+            // The Rules language spells booleans out; casting would give `1`
+            // for true and an empty string for false.
+            return $value ? 'true' : 'false';
+
+        } elseif (is_string($value)) {
 
             if ($this->isFieldName($value) || filter_var($value, FILTER_VALIDATE_IP)) {
                 return $value;

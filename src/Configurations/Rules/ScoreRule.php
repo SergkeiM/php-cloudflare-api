@@ -10,8 +10,24 @@ class ScoreRule extends Rule
      */
     protected string $action = 'score';
 
+    /**
+     * Increment the cumulative score.
+     *
+     * @param int $increment The amount to increment the score by.
+     */
+    public function __construct(
+        private int $increment
+    ) {
+    }
+
+    /**
+     * The parameters configuring the rule's action.
+     * @return ?array
+     */
     protected function getActionParameters(): ?array
     {
-        return null;
+        return [
+            'increment' => $this->increment,
+        ];
     }
 }

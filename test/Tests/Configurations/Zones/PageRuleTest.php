@@ -73,7 +73,6 @@ class PageRuleTest extends TestCase
             ->browserIntegrityCheck(true)
             ->cacheByDeviceType(true)
             ->cacheKey('custom-key')
-            ->disableApps(true)
             ->disablePerformance(true)
             ->emailObfuscation(true)
             ->hostHeaderOverride('example.com')
@@ -100,7 +99,6 @@ class PageRuleTest extends TestCase
             'browser_check',
             'cache_by_device_type',
             'cache_key',
-            'disable_apps',
             'disable_performance',
             'disable_security',
             'host_header_override',

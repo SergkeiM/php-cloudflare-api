@@ -52,4 +52,16 @@ class RegionsTest extends TestCase
         $this->assertSame('GET', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/load_balancers/regions/WNAM', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldListFilteredByCountry()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->loadBalancers()->regions()->list('account_id', ['country_code_a2' => 'US']);
+
+        $this->assertSame('country_code_a2=US', $this->lastRequest()->getUri()->getQuery());
+    }
 }

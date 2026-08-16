@@ -64,13 +64,13 @@ class SsoTest extends TestCase
     }
 
     #[Test]
-    public function shouldUpdate()
+    public function shouldEdit()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'sso_connector_id']])),
         ]);
 
-        $response = $client->iam()->sso()->update('account_id', 'sso_connector_id', ['enabled' => true]);
+        $response = $client->iam()->sso()->edit('account_id', 'sso_connector_id', ['enabled' => true]);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

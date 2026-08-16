@@ -186,4 +186,16 @@ class PoolsTest extends TestCase
         $this->assertSame('GET', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/user/load_balancers/pools/pool_id/references', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldListFilteredByMonitor()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->user()->loadBalancers()->pools()->list(['monitor' => 'monitor_id']);
+
+        $this->assertSame('monitor=monitor_id', $this->lastRequest()->getUri()->getQuery());
+    }
 }

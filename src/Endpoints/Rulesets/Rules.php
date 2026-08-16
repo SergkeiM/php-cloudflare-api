@@ -44,7 +44,7 @@ class Rules extends AbstractEndpoint
      *
      * @return ResponseInterface A ruleset response.
      */
-    public function update(?string $accountId, ?string $zoneId, string $rulesetId, string $ruleId, array|Rule $values): ResponseInterface
+    public function edit(?string $accountId, ?string $zoneId, string $rulesetId, string $ruleId, array|Rule $values): ResponseInterface
     {
         if ($values instanceof Rule) {
             $values = $values->toArray();

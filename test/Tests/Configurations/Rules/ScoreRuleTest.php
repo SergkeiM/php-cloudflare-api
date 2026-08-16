@@ -11,11 +11,11 @@ class ScoreRuleTest extends TestCase
     #[Test]
     public function shouldBuildArray()
     {
-        $rule = new ScoreRule();
+        $rule = new ScoreRule(20);
 
         $array = $rule->toArray();
 
         $this->assertSame('score', $array['action']);
-        $this->assertArrayNotHasKey('action_parameters', $array);
+        $this->assertSame(['increment' => 20], $array['action_parameters']);
     }
 }

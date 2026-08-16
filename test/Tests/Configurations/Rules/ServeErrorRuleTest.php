@@ -9,13 +9,25 @@ use PHPUnit\Framework\TestCase;
 class ServeErrorRuleTest extends TestCase
 {
     #[Test]
-    public function shouldBuildArray()
+    public function shouldBuildArrayWithTheRequiredContentType()
     {
-        $rule = new ServeErrorRule();
+        $rule = new ServeErrorRule('text/html');
 
         $array = $rule->toArray();
 
         $this->assertSame('serve_error', $array['action']);
-        $this->assertArrayNotHasKey('action_parameters', $array);
+        $this->assertSame(['content_type' => 'text/html'], $array['action_parameters']);
+    }
+
+    #[Test]
+    public function shouldCarryContentAndStatusCode()
+    {
+        $rule = new ServeErrorRule('text/html', '<h1>Gone</h1>', 410);
+
+        $this->assertSame([
+            'content_type' => 'text/html',
+            'content' => '<h1>Gone</h1>',
+            'status_code' => 410,
+        ], $rule->toArray()['action_parameters']);
     }
 }

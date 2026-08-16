@@ -13,12 +13,13 @@ class Regions extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/load_balancers/subresources/regions/methods/list/
      *
      * @param string $accountId Account Identifier.
+     * @param array $params Query Parameters: `subdivision_code`, `subdivision_code_a2` and `country_code_a2`.
      *
      * @return ResponseInterface List regions response
      */
-    public function list(string $accountId): ResponseInterface
+    public function list(string $accountId, array $params = []): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/regions");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/load_balancers/regions", $params);
     }
 
     /**

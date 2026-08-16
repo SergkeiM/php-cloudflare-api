@@ -26,13 +26,13 @@ class SubdomainTest extends TestCase
     }
 
     #[Test]
-    public function shouldCreate()
+    public function shouldUpdate()
     {
         $client = $this->mockClient([
             new Response(200, [], json_encode(['success' => true, 'result' => ['subdomain' => 'my-subdomain']])),
         ]);
 
-        $response = $client->workers()->subdomain()->create('account_id', 'my-subdomain');
+        $response = $client->workers()->subdomain()->update('account_id', 'my-subdomain');
 
         $this->assertTrue($response->successful());
         $this->assertSame('PUT', $this->lastRequest()->getMethod());

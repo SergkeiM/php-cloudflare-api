@@ -73,7 +73,7 @@ class PhasesTest extends TestCase
 
         $ruleset = (new Ruleset('My custom rules'))
             ->zone()
-            ->addRule((new BlockRule(['error' => 'blocked']))->setExpression('true'));
+            ->addRule((new BlockRule('{"error": "blocked"}'))->setExpression('true'));
 
         $response = $client->rulesets()->phases()->update(null, 'zone_id', self::PHASE, $ruleset);
 

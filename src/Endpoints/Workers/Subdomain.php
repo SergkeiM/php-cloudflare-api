@@ -31,7 +31,7 @@ class Subdomain extends AbstractEndpoint
      *
      * @return ResponseInterface Create Subdomain response.
      */
-    public function create(string $accountId, string $subdomain): ResponseInterface
+    public function update(string $accountId, string $subdomain): ResponseInterface
     {
         return $this->getHttpClient()->put("/accounts/{$accountId}/workers/subdomain", [
             'subdomain' => $subdomain

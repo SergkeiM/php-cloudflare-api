@@ -78,7 +78,7 @@ class RulesetsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
         ]);
 
-        $ruleset = (new Ruleset('my ruleset'))->addRule((new BlockRule(['error' => 'blocked']))->setExpression('true'));
+        $ruleset = (new Ruleset('my ruleset'))->addRule((new BlockRule('{"error": "blocked"}'))->setExpression('true'));
 
         $response = $client->rulesets()->create(null, 'zone_id', $ruleset);
 
@@ -139,7 +139,7 @@ class RulesetsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'ruleset_id']])),
         ]);
 
-        $ruleset = (new Ruleset('my ruleset'))->addRule((new BlockRule(['error' => 'blocked']))->setExpression('true'));
+        $ruleset = (new Ruleset('my ruleset'))->addRule((new BlockRule('{"error": "blocked"}'))->setExpression('true'));
 
         $response = $client->rulesets()->update('account_id', null, 'ruleset_id', $ruleset);
 
@@ -147,5 +147,46 @@ class RulesetsTest extends TestCase
         $this->assertSame('PUT', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/rulesets/ruleset_id', $this->lastRequest()->getUri()->getPath());
         $this->assertSame($ruleset->toArray(), json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    /**
+     * `cursor` and `per_page` had no way through the old signature, which meant
+     * $client->paginate() could not drive this endpoint at all.
+     */
+    #[Test]
+    public function shouldListWithQueryParameters()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => []])),
+        ]);
+
+        $client->rulesets()->list(zoneId: 'zone_id', params: ['per_page' => 5, 'cursor' => 'next']);
+
+        $this->assertSame('per_page=5&cursor=next', $this->lastRequest()->getUri()->getQuery());
+    }
+
+    #[Test]
+    public function shouldPaginateRulesets()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [['id' => 'ruleset_one']],
+                'result_info' => ['cursors' => ['after' => 'next-cursor']],
+            ])),
+            new Response(200, [], json_encode([
+                'success' => true,
+                'result' => [['id' => 'ruleset_two']],
+                'result_info' => ['cursors' => []],
+            ])),
+        ]);
+
+        $seen = [];
+
+        foreach ($client->paginate(fn (array $params) => $client->rulesets()->list(zoneId: 'zone_id', params: $params)) as $ruleset) {
+            $seen[] = $ruleset['id'];
+        }
+
+        $this->assertSame(['ruleset_one', 'ruleset_two'], $seen);
     }
 }
