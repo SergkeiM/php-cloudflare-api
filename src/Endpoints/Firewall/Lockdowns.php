@@ -27,21 +27,29 @@ class Lockdowns extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/resources/firewall/subresources/lockdowns/methods/create/
      *
+     * ```php
+     * $client->firewall()->lockdowns()->create('ZONE_ID', [
+     *     'urls' => ['example.com/admin*'],
+     *     'configurations' => [
+     *         ['target' => 'ip', 'value' => '198.51.100.4'],
+     *         ['target' => 'country', 'value' => 'US'],
+     *     ],
+     *     'description' => 'Admin area',
+     * ]);
+     * ```
+     *
+     * @link https://developers.cloudflare.com/api/resources/firewall/subresources/lockdowns/methods/create/
+     *
      * @param string $zoneId Zone Identifier.
-     * @param string $value The IP address/range to match. You can only use prefix lengths /16 and /24. This address/range will be compared to the IP address of incoming requests.
-     * @param array $urls The URLs to include in the current WAF override. You can use wildcards. Each entered URL will be escaped before use, which means you can only use simple wildcard patterns.
+     * @param array $values `urls` and `configurations` are required. Each configuration is `['target' => …, 'value' => …]`, where the target is `ip`, `ip_range`, `asn` or `country`. `description`, `priority` and `paused` are optional.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Create a Zone Lockdown rule response.
      */
-    public function create(string $zoneId, string $value, array $urls): ResponseInterface
+    public function create(string $zoneId, array $values): ResponseInterface
     {
-        $values = [
-            'urls' => $urls,
-            'configurations' => [
-                'target' => str_contains($value, '/') ? 'ip_range' : 'ip',
-                'value' => $value
-            ]
-        ];
+        $this->requiredParams(['urls', 'configurations'], $values);
 
         return $this->getHttpClient()->post("/zones/{$zoneId}/firewall/lockdowns", $values);
     }
@@ -68,20 +76,15 @@ class Lockdowns extends AbstractEndpoint
      *
      * @param string $zoneId Zone Identifier.
      * @param string $lockdownId Lockdown identifier
-     * @param string $value The IP address/range to match. You can only use prefix lengths /16 and /24. This address/range will be compared to the IP address of incoming requests.
-     * @param array $urls The URLs to include in the current WAF override. You can use wildcards. Each entered URL will be escaped before use, which means you can only use simple wildcard patterns.
+     * @param array $values `urls` and `configurations` are required, in the same shape as `create()`.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Update a Zone Lockdown rule response
      */
-    public function update(string $zoneId, string $lockdownId, string $value, array $urls): ResponseInterface
+    public function update(string $zoneId, string $lockdownId, array $values): ResponseInterface
     {
-        $values = [
-            'urls' => $urls,
-            'configurations' => [
-                'target' => str_contains($value, '/') ? 'ip_range' : 'ip',
-                'value' => $value
-            ]
-        ];
+        $this->requiredParams(['urls', 'configurations'], $values);
 
         return $this->getHttpClient()->put("/zones/{$zoneId}/firewall/lockdowns/{$lockdownId}", $values);
     }

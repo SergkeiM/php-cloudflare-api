@@ -148,7 +148,7 @@ class RetryTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ], new ClientOptions(maxRetries: 2));
 
-        $response = $client->zones()->create('account_id', 'example.com');
+        $response = $client->zones()->create('account_id', ['name' => 'example.com']);
 
         $this->assertTrue($response->successful());
         $this->assertCount(2, $this->requestHistory);

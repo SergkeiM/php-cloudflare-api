@@ -32,7 +32,7 @@ class AccountsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
         ]);
 
-        $response = $client->accounts()->create('my account', 'standard');
+        $response = $client->accounts()->create(['name' => 'my account', 'type' => 'standard']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());
@@ -49,7 +49,7 @@ class AccountsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
         ]);
 
-        $response = $client->accounts()->create('my account', 'enterprise', 'unit_id');
+        $response = $client->accounts()->create(['name' => 'my account', 'type' => 'enterprise', 'unit' => ['id' => 'unit_id']]);
 
         $this->assertTrue($response->successful());
         $this->assertSame([
@@ -80,7 +80,7 @@ class AccountsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
         ]);
 
-        $response = $client->accounts()->update('account_id', 'renamed account');
+        $response = $client->accounts()->update('account_id', ['name' => 'renamed account']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PUT', $this->lastRequest()->getMethod());
@@ -94,7 +94,7 @@ class AccountsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'account_id']])),
         ]);
 
-        $response = $client->accounts()->update('account_id', 'renamed account', ['enforce_twofactor' => true]);
+        $response = $client->accounts()->update('account_id', ['name' => 'renamed account', 'settings' => ['enforce_twofactor' => true]]);
 
         $this->assertTrue($response->successful());
         $this->assertSame([

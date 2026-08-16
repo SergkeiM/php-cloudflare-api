@@ -33,7 +33,7 @@ class D1Test extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['uuid' => 'database_id']])),
         ]);
 
-        $response = $client->d1()->create('account_id', 'my-database');
+        $response = $client->d1()->create('account_id', ['name' => 'my-database']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());
@@ -47,7 +47,7 @@ class D1Test extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['uuid' => 'database_id']])),
         ]);
 
-        $response = $client->d1()->create('account_id', 'my-database', 'wnam');
+        $response = $client->d1()->create('account_id', ['name' => 'my-database', 'primary_location_hint' => 'wnam']);
 
         $this->assertTrue($response->successful());
         $this->assertSame([
@@ -335,5 +335,33 @@ class D1Test extends TestCase
         $this->expectException(MissingArgumentException::class);
 
         $client->d1()->restore('account_id', 'database_id');
+    }
+
+    #[Test]
+    public function shouldCreateWithReadReplication()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['uuid' => 'database_id']])),
+        ]);
+
+        $values = [
+            'name' => 'my-database',
+            'read_replication' => ['mode' => 'auto'],
+        ];
+
+        $response = $client->d1()->create('account_id', $values);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame($values, json_decode((string) $this->lastRequest()->getBody(), true));
+    }
+
+    #[Test]
+    public function shouldThrowWhenCreatingDatabaseWithoutName()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->d1()->create('account_id', []);
     }
 }

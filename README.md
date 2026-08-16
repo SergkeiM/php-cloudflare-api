@@ -51,6 +51,35 @@ This command will get you up and running quickly.
 composer require sergkeim/php-cloudflare-api
 ```
 
+## Versioning and compatibility 🔒
+
+This package follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Breaking changes to the public API happen only in a major release. Changes are
+recorded in [CHANGELOG.md](CHANGELOG.md), and each major release ships an
+[upgrade guide](UPGRADE.md).
+
+**The public API is:**
+
+* `Cloudflare\Client` — its constructor, `paginate()`, `api()`, `getHttpClient()`, `getOptions()`, and every endpoint accessor
+* `Cloudflare\ClientOptions` — its constructor arguments and public properties
+* Every class under `Cloudflare\Endpoints`, and their public methods
+* `Cloudflare\HttpClient\HttpClient`, `Response` and `Paginator` — the first of these is the supported way to reach endpoints this package does not wrap yet
+* Everything under `Cloudflare\Contracts`, `Cloudflare\Exceptions` and `Cloudflare\HttpClient\Exceptions`
+* Everything under `Cloudflare\Configurations`, and `Cloudflare\ExpressionBuilder`
+* The Laravel service provider, the `Cloudflare` facade, and the published config keys
+
+**Not covered, and free to change in any release:**
+
+* Anything marked `@internal`, and `Cloudflare\HttpClient\Retry`
+* `protected` and `private` members. Endpoint classes are not designed to be extended — compose around them instead
+* The shape of the data inside a response. `Response::json()` hands back what Cloudflare sent, so those structures follow Cloudflare's API, not this package's version number
+* Everything in `bin/`, which is tooling for building this package's own documentation
+
+**Two more promises worth stating:**
+
+* Dropping a PHP version that has reached end of life, or a Laravel version that has, is a **minor** release — not a major one
+* New Cloudflare endpoints arrive in **minor** releases. Cloudflare removing or deprecating an endpoint may mean this package removes it in the next major
+
 ## Running Tests 🧪
 
 If you don't have PHP/Composer installed locally, a Docker setup is provided so you can install dependencies and run the test suite without installing anything on your machine.

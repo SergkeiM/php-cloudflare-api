@@ -27,16 +27,12 @@ class Settings extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/workers/subresources/account_settings/methods/update/
      *
      * @param string $accountId Account identifier.
-     * @param string $usageModel Default usage model.
-     * @param boolean $greenCompute Green compute.
+     * @param array $values `default_usage_model` and `green_compute`.
      *
      * @return ResponseInterface Create Worker Account Settings response
      */
-    public function create(string $accountId, string $usageModel, bool $greenCompute): ResponseInterface
+    public function create(string $accountId, array $values): ResponseInterface
     {
-        return $this->getHttpClient()->put("/accounts/{$accountId}/workers/account-settings", [
-            'default_usage_model' => $usageModel,
-            'green_compute' => $greenCompute
-        ]);
+        return $this->getHttpClient()->put("/accounts/{$accountId}/workers/account-settings", $values);
     }
 }

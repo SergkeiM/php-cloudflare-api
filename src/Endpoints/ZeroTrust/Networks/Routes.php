@@ -51,29 +51,17 @@ class Routes extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/create/
      *
      * @param string $accountId Account identifier.
-     * @param string $network The private IPv4 or IPv6 range connected by the route, in CIDR notation.
-     * @param string $virtualNetworkId UUID of the virtual network.
-     * @param string $comment Optional remark describing the route.
+     * @param array $values `network`, the private IPv4 or IPv6 range in CIDR notation, is required. `tunnel_id`, `virtual_network_id` and `comment` are optional.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Create a tunnel route response
      */
-    public function create(string $accountId, string $network, ?string $virtualNetworkId = null, ?string $comment = null): ResponseInterface
+    public function create(string $accountId, array $values): ResponseInterface
     {
-
-        $values = [
-            'network' => $network,
-        ];
-
-        if (!is_null($virtualNetworkId)) {
-            $values['virtual_network_id'] = $virtualNetworkId;
-        }
-
-        if (!is_null($comment)) {
-            $values['comment'] = $comment;
-        }
+        $this->requiredParams(['network'], $values);
 
         return $this->getHttpClient()->post("/accounts/{$accountId}/teamnet/routes", $values);
-
     }
 
     /**

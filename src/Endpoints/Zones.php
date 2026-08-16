@@ -39,21 +39,22 @@ class Zones extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/resources/zones/methods/create/
      *
+     * The account is taken from `$accountId`; everything else comes from `$values`.
+     *
      * @param string $accountId Account Identifier.
-     * @param string $name The domain name
-     * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup.
+     * @param array $values `name`, the domain name, is required. `type` is `full` when Cloudflare hosts the DNS, or `partial` for a partner-hosted or CNAME setup.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function create(string $accountId, string $name, string $type = 'full'): ResponseInterface
+    public function create(string $accountId, array $values): ResponseInterface
     {
-        return $this->getHttpClient()->post('/zones', [
-            'name' => $name,
-            'account' => [
-                'id' => $accountId
-            ],
-            'type' => $type
-        ]);
+        $this->requiredParams(['name'], $values);
+
+        return $this->getHttpClient()->post('/zones', array_merge([
+            'account' => ['id' => $accountId],
+        ], $values));
     }
 
     /**
@@ -90,24 +91,13 @@ class Zones extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/zones/methods/edit/
      *
      * @param string $zoneId Zone Identifier.
-     * @param string $type A full zone implies that DNS is hosted with Cloudflare. A partial zone is typically a partner-hosted zone or a CNAME setup. This parameter is only available to Enterprise customers or if it has been explicitly enabled on a zone.
-     * @param array $vanityNameServers An array of domains used for custom name servers. This is only available for Business and Enterprise plans.
+     * @param array $values Any of `type` (`full` or `partial`, Enterprise-only unless enabled on the zone), `vanity_name_servers` (Business and Enterprise plans), `paused` and `plan`.
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function edit(string $zoneId, string $type, array $vanityNameServers = []): ResponseInterface
+    public function edit(string $zoneId, array $values): ResponseInterface
     {
-
-        $options = [
-            'type' => $type
-        ];
-
-        if (!empty($vanityNameServers)) {
-
-            $options['vanity_name_servers'] = $vanityNameServers;
-        }
-
-        return $this->getHttpClient()->patch("/zones/{$zoneId}", $options);
+        return $this->getHttpClient()->patch("/zones/{$zoneId}", $values);
     }
 
     /**

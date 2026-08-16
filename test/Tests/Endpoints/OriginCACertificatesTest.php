@@ -32,7 +32,11 @@ class OriginCACertificatesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'certificate_id']])),
         ]);
 
-        $response = $client->originCACertificates()->create('csr', ['example.com']);
+        $response = $client->originCACertificates()->create([
+            'csr' => 'csr',
+            'hostnames' => ['example.com'],
+            'request_type' => 'origin-rsa',
+        ]);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());

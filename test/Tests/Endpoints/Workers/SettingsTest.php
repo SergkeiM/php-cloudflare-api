@@ -32,7 +32,7 @@ class SettingsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['default_usage_model' => 'standard']])),
         ]);
 
-        $response = $client->workers()->settings()->create('account_id', 'standard', true);
+        $response = $client->workers()->settings()->create('account_id', ['default_usage_model' => 'standard', 'green_compute' => true]);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PUT', $this->lastRequest()->getMethod());

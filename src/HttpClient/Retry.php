@@ -15,6 +15,11 @@ use Throwable;
  * request may succeed on if it is simply sent again are retried with exponential
  * backoff, and Cloudflare's `Retry-After` header always wins over that backoff.
  *
+ * Configure retries through `ClientOptions::$maxRetries`. The policy itself is
+ * an implementation detail and may change in any release.
+ *
+ * @internal
+ *
  * @author Sergkei Melingk <sergio11of@gmail.com>
  */
 final class Retry

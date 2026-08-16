@@ -35,15 +35,14 @@ class ZonesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->create('account_id', 'example.com');
+        $response = $client->zones()->create('account_id', ['name' => 'example.com']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/zones', $this->lastRequest()->getUri()->getPath());
         $this->assertSame([
-            'name' => 'example.com',
             'account' => ['id' => 'account_id'],
-            'type' => 'full',
+            'name' => 'example.com',
         ], json_decode((string) $this->lastRequest()->getBody(), true));
     }
 
@@ -82,7 +81,7 @@ class ZonesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->edit('zone_id', 'full');
+        $response = $client->zones()->edit('zone_id', ['type' => 'full']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());
@@ -96,7 +95,7 @@ class ZonesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
         ]);
 
-        $response = $client->zones()->edit('zone_id', 'full', ['ns1.example.com']);
+        $response = $client->zones()->edit('zone_id', ['type' => 'full', 'vanity_name_servers' => ['ns1.example.com']]);
 
         $this->assertTrue($response->successful());
         $this->assertSame([
@@ -157,5 +156,24 @@ class ZonesTest extends TestCase
         $this->expectException(MissingArgumentException::class);
 
         $client->zones()->purge('zone_id', []);
+    }
+
+    /**
+     * `paused` and `plan` are part of the same request and had no way through
+     * the old signature.
+     */
+    #[Test]
+    public function shouldEditPausedAndPlan()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'zone_id']])),
+        ]);
+
+        $values = ['paused' => true, 'plan' => ['id' => 'plan_id']];
+
+        $response = $client->zones()->edit('zone_id', $values);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame($values, json_decode((string) $this->lastRequest()->getBody(), true));
     }
 }

@@ -32,7 +32,7 @@ class DNSSECTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['status' => 'active']])),
         ]);
 
-        $response = $client->dns()->dnssec()->edit('zone_id', 'active');
+        $response = $client->dns()->dnssec()->edit('zone_id', ['status' => 'active']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('PATCH', $this->lastRequest()->getMethod());

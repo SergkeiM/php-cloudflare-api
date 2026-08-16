@@ -25,21 +25,25 @@ class OriginCACertificates extends AbstractEndpoint
      *
      * @link https://developers.cloudflare.com/api/resources/origin_ca_certificates/methods/create/
      *
-     * @param string $csr Certificate Signing Request (CSR).
-     * @param array $hostnames Array of hostnames or wildcard names bound to the certificate.
-     * @param int $requestedValidity The number of days for which the certificate should be valid.
-     * @param string $requestType The signature type desired on the certificate. Allowed values: `origin-rsa`, `origin-ecc`, `keyless-certificate`
+     * ```php
+     * $client->originCACertificates()->create([
+     *     'csr' => $csr,
+     *     'hostnames' => ['example.com', '*.example.com'],
+     *     'request_type' => 'origin-rsa',
+     * ]);
+     * ```
+     *
+     * @param array $values `csr`, `hostnames` and `request_type` (`origin-rsa`, `origin-ecc` or `keyless-certificate`) are required. `requested_validity` is the certificate's lifetime in days, defaulting to Cloudflare's own.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return ResponseInterface Create Certificate response
      */
-    public function create(string $csr, array $hostnames, int $requestedValidity = 5475, string $requestType = 'origin-rsa'): ResponseInterface
+    public function create(array $values): ResponseInterface
     {
-        return $this->getHttpClient()->post('/certificates', [
-            'csr' => $csr,
-            'hostnames' => $hostnames,
-            'requested_validity' => $requestedValidity,
-            'request_type' => $requestType,
-        ]);
+        $this->requiredParams(['csr', 'hostnames', 'request_type'], $values);
+
+        return $this->getHttpClient()->post('/certificates', $values);
     }
 
     /**

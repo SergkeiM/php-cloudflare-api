@@ -28,23 +28,15 @@ class VirtualNetworks extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/virtual_networks/methods/create/
      *
      * @param string $accountId Account identifier.
-     * @param string $name A user-friendly name for the virtual network.
-     * @param bool $isDefault If `true`, this virtual network is the default for the account.
-     * @param string $comment Optional remark describing the virtual network.
+     * @param array $values `name` is required. `is_default` makes this the account's default virtual network, and `comment` describes it.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Create a virtual network response
      */
-    public function create(string $accountId, string $name, bool $isDefault = false, ?string $comment = null): ResponseInterface
+    public function create(string $accountId, array $values): ResponseInterface
     {
-
-        $values = [
-            'name' => $name,
-            'is_default' => $isDefault,
-        ];
-
-        if (!is_null($comment)) {
-            $values['comment'] = $comment;
-        }
+        $this->requiredParams(['name'], $values);
 
         return $this->getHttpClient()->post("/accounts/{$accountId}/teamnet/virtual_networks", $values);
 
