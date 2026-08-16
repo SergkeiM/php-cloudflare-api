@@ -16,7 +16,7 @@ Returns a list of buckets for an account.
 $response = $client->r2()->buckets()->list('ACCOUNT_ID', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-list-buckets">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Creates a new bucket for an account.
 $response = $client->r2()->buckets()->create('ACCOUNT_ID', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-create-bucket">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get a bucket's details.
 $response = $client->r2()->buckets()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Apply changes to the storage class of an existing bucket.
 $response = $client->r2()->buckets()->edit('ACCOUNT_ID', 'BUCKET_NAME', 'STORAGE_CLASS', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-update-bucket">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Deletes an existing bucket.
 $response = $client->r2()->buckets()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-delete-bucket">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Creates temporary access credentials scoped to a specific bucket.
 $response = $client->r2()->buckets()->createTemporaryCredentials('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-create-temporary-access-credentials">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/temporary_credentials/methods/create/">
 
 View this operation on the Cloudflare API Reference
 

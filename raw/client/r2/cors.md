@@ -16,7 +16,7 @@ Get the CORS configuration for a bucket.
 $response = $client->r2()->cors()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-cors-policy">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Set the CORS configuration for a bucket.
 $response = $client->r2()->cors()->update('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-put-bucket-cors-policy">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Delete the CORS configuration for a bucket.
 $response = $client->r2()->cors()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-delete-bucket-cors-policy">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/cors/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ List of innate entitlements available for the Tenant.
 $response = $client->tenants()->entitlements()->get('TENANT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_listEntitlements">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenants/subresources/entitlements/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

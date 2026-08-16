@@ -16,27 +16,27 @@ Fetches Worker account settings for an account.
 $response = $client->workers()->settings()->get('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-account-settings-fetch-worker-account-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/account_settings/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
 </callout>
 
-## Create
+## Update
 
 Create Worker Account Settings
 
-<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"usageModel","type":"string","required":true,"description":"Default usage model."},{"name":"greenCompute","type":"bool","required":true,"description":"Green compute."}]">
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"values","type":"array","required":true,"description":"`default_usage_model` and `green_compute`."}]">
 
 
 
 </params-table>
 
 ```php [php]
-$response = $client->workers()->settings()->create('ACCOUNT_ID', 'USAGE_MODEL', true);
+$response = $client->workers()->settings()->update('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-account-settings-create-worker-account-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/account_settings/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

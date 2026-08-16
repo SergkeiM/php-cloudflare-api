@@ -16,7 +16,7 @@ Find all available permission groups for Account Owned API Tokens.
 $response = $client->accounts()->tokens()->permissionGroups()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-list-permission-groups">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/subresources/permission_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

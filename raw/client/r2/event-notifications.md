@@ -16,7 +16,7 @@ Read the event notification configuration for a bucket, listing rules for all co
 $response = $client->r2()->eventNotifications()->list('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Get the event notification configuration for a bucket and a specific queue.
 $response = $client->r2()->eventNotifications()->get('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-get-configuration-for-queue">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Create or update the event notification configuration for a bucket and a specifi
 $response = $client->r2()->eventNotifications()->update('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-update-configuration-for-queue">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Delete the event notification configuration for a bucket and a specific queue.
 $response = $client->r2()->eventNotifications()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'QUEUE_ID', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-event-notifications-delete-configuration-for-queue">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/event_notifications/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ Lists all SSO connectors configured for the account.
 $response = $client->iam()->sso()->list('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/get-all-sso-connectors">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Creates a new SSO connector for logging into Cloudflare through an identity prov
 $response = $client->iam()->sso()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/init-new-sso-connector">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,13 +56,13 @@ Get information about a specific SSO connector.
 $response = $client->iam()->sso()->get('ACCOUNT_ID', 'SSO_CONNECTOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/get-sso-connector">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
 </callout>
 
-## Update
+## Edit
 
 Updates the state or configuration of an SSO connector.
 
@@ -73,10 +73,10 @@ Updates the state or configuration of an SSO connector.
 </params-table>
 
 ```php [php]
-$response = $client->iam()->sso()->update('ACCOUNT_ID', 'SSO_CONNECTOR_ID', []);
+$response = $client->iam()->sso()->edit('ACCOUNT_ID', 'SSO_CONNECTOR_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/update-sso-connector-state">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Deletes an SSO connector.
 $response = $client->iam()->sso()->delete('ACCOUNT_ID', 'SSO_CONNECTOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/delete-sso-connector">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Begin the verification process for an SSO connector.
 $response = $client->iam()->sso()->beginVerification('ACCOUNT_ID', 'SSO_CONNECTOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/begin-sso-connector-verification">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/sso/methods/begin_verification/">
 
 View this operation on the Cloudflare API Reference
 

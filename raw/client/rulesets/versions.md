@@ -1,0 +1,82 @@
+# Versions
+
+> Every change to a ruleset creates a new version of it, and the old versions stay readable — useful for seeing what a ruleset looked like before a change, or for recovering a rule that was removed.
+
+Every change to a ruleset creates a new version of it, and the old versions
+stay readable — useful for seeing what a ruleset looked like before a change,
+or for recovering a rule that was removed.
+
+## List
+
+Fetches the versions of a ruleset.
+
+<params-table :params="[{"name":"accountId","type":"string|null","required":true,"description":"Account Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"zoneId","type":"string|null","required":true,"description":"Zone Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"rulesetId","type":"string","required":true,"description":"Ruleset Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->rulesets()->versions()->list('ACCOUNT_ID', 'ZONE_ID', 'RULESET_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/rulesets/subresources/versions/methods/list/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Fetches a specific version of a ruleset.
+
+<params-table :params="[{"name":"accountId","type":"string|null","required":true,"description":"Account Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"zoneId","type":"string|null","required":true,"description":"Zone Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"rulesetId","type":"string","required":true,"description":"Ruleset Identifier."},{"name":"version","type":"string","required":true,"description":"Version of the ruleset."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->rulesets()->versions()->get('ACCOUNT_ID', 'ZONE_ID', 'RULESET_ID', 'VERSION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/rulesets/subresources/versions/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Deletes an existing version of a ruleset.
+
+<params-table :params="[{"name":"accountId","type":"string|null","required":true,"description":"Account Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"zoneId","type":"string|null","required":true,"description":"Zone Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"rulesetId","type":"string","required":true,"description":"Ruleset Identifier."},{"name":"version","type":"string","required":true,"description":"Version of the ruleset."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->rulesets()->versions()->delete('ACCOUNT_ID', 'ZONE_ID', 'RULESET_ID', 'VERSION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/rulesets/subresources/versions/methods/delete/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## By Tag
+
+Fetches the rules of a ruleset version that carry a given tag, such as
+`wordpress` or the CVE a managed rule addresses.
+
+<params-table :params="[{"name":"accountId","type":"string|null","required":true,"description":"Account Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"zoneId","type":"string|null","required":true,"description":"Zone Identifier. Provide exactly one of $accountId or $zoneId."},{"name":"rulesetId","type":"string","required":true,"description":"Ruleset Identifier."},{"name":"version","type":"string","required":true,"description":"Version of the ruleset."},{"name":"tag","type":"string","required":true,"description":"Tag the rules carry."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->rulesets()->versions()->byTag('ACCOUNT_ID', 'ZONE_ID', 'RULESET_ID', 'VERSION', 'TAG');
+```

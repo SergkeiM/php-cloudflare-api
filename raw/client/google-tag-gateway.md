@@ -1,0 +1,56 @@
+# Google Tag Gateway
+
+> Google Tag Gateway: proxies Google Tag Manager and Google Analytics requests through your own zone, so they are served first-party rather than from Google's domains.
+
+Google Tag Gateway: proxies Google Tag Manager and Google Analytics requests
+through your own zone, so they are served first-party rather than from
+Google's domains.
+
+## Get
+
+Get the Google Tag Gateway configuration for a zone.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->googleTagGateway()->get('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/google_tag_gateway/subresources/config/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Update
+
+Update the Google Tag Gateway configuration for a zone.
+
+```php
+$client->googleTagGateway()->update('ZONE_ID', [
+    'enabled' => true,
+    'endpoint' => '/analytics',
+    'hideOriginalIp' => false,
+    'measurementId' => 'G-XXXXXXXXXX',
+]);
+```
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."},{"name":"values","type":"array","required":true,"description":"Configuration: `enabled`, `endpoint`, `hideOriginalIp` and `measurementId` are required, with `setUpTag` optional. `endpoint` is an absolute path with a single alphanumeric segment, e.g. `/analytics`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->googleTagGateway()->update('ZONE_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/google_tag_gateway/subresources/config/methods/update/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

@@ -16,7 +16,7 @@ Gets a list of audit logs for an organization.
 $response = $client->organizations()->logs()->audit()->list('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-organization-audit-logs">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/subresources/logs/subresources/audit/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Returns the chronological change history for the resource identified by the give
 $response = $client->organizations()->logs()->audit()->history('ORGANIZATION_ID', 'ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-organization-audit-log-history">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/subresources/logs/subresources/audit/methods/history/">
 
 View this operation on the Cloudflare API Reference
 

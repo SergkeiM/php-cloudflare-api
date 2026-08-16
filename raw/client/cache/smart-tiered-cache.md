@@ -1,0 +1,86 @@
+# Smart Tiered Cache
+
+> Smart Tiered Cache picks the single closest upper tier for each of a zone's lower tiers, rather than having the topology configured by hand.
+
+Smart Tiered Cache picks the single closest upper tier for each of a zone's
+lower tiers, rather than having the topology configured by hand.
+
+## Get
+
+Current Smart Tiered Cache setting for a zone.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->cache()->smartTieredCache()->get('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cache/subresources/smart_tiered_cache/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Set the Smart Tiered Cache topology for a zone.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."},{"name":"enabled","type":"bool","required":true,"description":"Whether Smart Tiered Cache is enabled."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->cache()->smartTieredCache()->create('ZONE_ID', true);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cache/subresources/smart_tiered_cache/methods/create/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Edit
+
+Turn Smart Tiered Cache on or off for a zone.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."},{"name":"enabled","type":"bool","required":true,"description":"Whether Smart Tiered Cache is enabled."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->cache()->smartTieredCache()->edit('ZONE_ID', true);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cache/subresources/smart_tiered_cache/methods/edit/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Remove the Smart Tiered Cache topology from a zone.
+
+<params-table :params="[{"name":"zoneId","type":"string","required":true,"description":"Zone Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->cache()->smartTieredCache()->delete('ZONE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cache/subresources/smart_tiered_cache/methods/delete/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

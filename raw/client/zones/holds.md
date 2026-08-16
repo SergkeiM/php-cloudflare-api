@@ -16,7 +16,7 @@ Retrieve whether the zone is subject to a zone hold, and metadata about the hold
 $response = $client->zones()->holds()->get('ZONE_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-hold-get">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Enforce a zone hold on the zone, blocking the creation and activation of zones w
 $response = $client->zones()->holds()->create('ZONE_ID', true);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-hold-post">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Stop enforcement of a zone hold on the zone, permanently or temporarily, allowin
 $response = $client->zones()->holds()->delete('ZONE_ID', 'HOLD_AFTER');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zones-0-hold-delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zones/subresources/holds/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

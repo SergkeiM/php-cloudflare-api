@@ -1,0 +1,43 @@
+# Durable Objects
+
+> Durable Objects endpoint reference.
+
+## List
+
+Returns the Durable Object namespaces owned by an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->durableObjects()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/durable_objects/subresources/namespaces/methods/list/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## List Objects
+
+Returns the Durable Object namespaces owned by an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"id","type":"string","required":true,"description":"ID of the namespace."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->durableObjects()->listObjects('ACCOUNT_ID', 'ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/durable_objects/subresources/namespaces/subresources/objects/methods/list/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

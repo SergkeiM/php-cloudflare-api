@@ -16,12 +16,6 @@ List members of an organization.
 $response = $client->organizations()->members()->list('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Members_list">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Create
 
 Add a member to an organization.
@@ -35,12 +29,6 @@ Add a member to an organization.
 ```php [php]
 $response = $client->organizations()->members()->create('ORGANIZATION_ID', []);
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Members_create">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
 
 ## Batch Create
 
@@ -56,12 +44,6 @@ Add multiple members to an organization in a single request.
 $response = $client->organizations()->members()->batchCreate('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Members_batchCreate">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Get
 
 Get information about a specific member of an organization.
@@ -76,12 +58,6 @@ Get information about a specific member of an organization.
 $response = $client->organizations()->members()->get('ORGANIZATION_ID', 'MEMBER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Members_retrieve">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Delete
 
 Remove a member from an organization.
@@ -95,9 +71,3 @@ Remove a member from an organization.
 ```php [php]
 $response = $client->organizations()->members()->delete('ORGANIZATION_ID', 'MEMBER_ID');
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Members_delete">
-
-View this operation on the Cloudflare API Reference
-
-</callout>

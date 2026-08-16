@@ -16,7 +16,7 @@ Get the result of a previously requested monitor or pool preview.
 $response = $client->loadBalancers()->previews()->get('ACCOUNT_ID', 'PREVIEW_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-preview-result">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/previews/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

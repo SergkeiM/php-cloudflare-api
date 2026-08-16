@@ -16,7 +16,7 @@ Get the current Bot Management configuration for a zone.
 $response = $client->botManagement()->get('ZONE_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zone-bot-management-get-config">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/bot_management/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Update the Bot Management configuration for a zone.
 $response = $client->botManagement()->update('ZONE_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zone-bot-management-update-config">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/bot_management/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

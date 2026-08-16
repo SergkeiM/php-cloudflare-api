@@ -6,17 +6,17 @@
 
 List configured load balancer pools for an account.
 
-<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."}]">
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"params","type":"array","required":false,"description":"Query Parameters: `monitor`, to list only the pools using a given monitor.","default":"[]"}]">
 
 
 
 </params-table>
 
 ```php [php]
-$response = $client->loadBalancers()->pools()->list('ACCOUNT_ID');
+$response = $client->loadBalancers()->pools()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-list-pools">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new load balancer pool for an account.
 $response = $client->loadBalancers()->pools()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-create-pool">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get a single configured load balancer pool for an account.
 $response = $client->loadBalancers()->pools()->get('ACCOUNT_ID', 'POOL_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Update an existing load balancer pool for an account, overwriting the full confi
 $response = $client->loadBalancers()->pools()->update('ACCOUNT_ID', 'POOL_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-update-pool">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Apply changes to an existing pool, overwriting only the supplied properties.
 $response = $client->loadBalancers()->pools()->edit('ACCOUNT_ID', 'POOL_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pool">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Apply changes to a number of existing pools, overwriting the supplied properties
 $response = $client->loadBalancers()->pools()->bulkEdit('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-patch-pools">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/bulk_edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -136,7 +136,7 @@ Delete a load balancer pool for an account.
 $response = $client->loadBalancers()->pools()->delete('ACCOUNT_ID', 'POOL_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-delete-pool">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -156,7 +156,7 @@ Fetch the latest pool health status for a single pool.
 $response = $client->loadBalancers()->pools()->health('ACCOUNT_ID', 'POOL_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-pool-health-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/health/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -176,7 +176,7 @@ Preview pool health using the specified monitor and show the effective response.
 $response = $client->loadBalancers()->pools()->preview('ACCOUNT_ID', 'POOL_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-pools-preview-pool">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/health/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -196,7 +196,7 @@ List the load balancers that reference a given pool.
 $response = $client->loadBalancers()->pools()->references('ACCOUNT_ID', 'POOL_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-pools-list-pool-references">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/pools/subresources/references/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

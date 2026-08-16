@@ -10,13 +10,13 @@ Retrieves detailed information about the currently authenticated user, including
 $response = $client->user()->get();
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-user-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
 </callout>
 
-## Update
+## Edit
 
 Edit part of your user details.
 
@@ -27,10 +27,10 @@ Edit part of your user details.
 </params-table>
 
 ```php [php]
-$response = $client->user()->update([]);
+$response = $client->user()->edit([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-edit-user">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -43,3 +43,6 @@ View this operation on the Cloudflare API Reference
 - [Subscriptions](/client/user/subscriptions)
 - [Tenants](/client/user/tenants)
 - [Tokens](/client/user/tokens)
+- [Communication Preferences](/client/user/communication-preferences)
+- [Access Rules](/client/user/access-rules)
+- [Load Balancers](/client/user/load-balancers)

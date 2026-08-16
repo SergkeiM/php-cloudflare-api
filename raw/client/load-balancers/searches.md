@@ -16,7 +16,7 @@ Search load balancing resources (Load Balancers, Pools, Monitors) by name.
 $response = $client->loadBalancers()->searches()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-search-search-resources">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/searches/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

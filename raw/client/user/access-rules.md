@@ -1,0 +1,84 @@
+# Access Rules
+
+> IP Access rules defined at the user level, applying to every zone the authenticated user owns.
+
+IP Access rules defined at the user level, applying to every zone the
+authenticated user owns.
+
+## List
+
+List, search, sort and filter the user's IP Access rules.
+
+<params-table :params="[{"name":"params","type":"array","required":false,"description":"Query Parameters: `mode`, `configuration.target`, `configuration.value`, `notes`, `match`, `page`, `per_page`, `order` and `direction`.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->accessRules()->list([]);
+```
+
+## Create
+
+Create an IP Access rule for every zone the user owns.
+
+```php
+$client->user()->accessRules()->create([
+    'mode' => 'block',
+    'configuration' => ['target' => 'ip', 'value' => '198.51.100.4'],
+    'notes' => 'Blocked for abuse',
+]);
+```
+
+<params-table :params="[{"name":"values","type":"array","required":true,"description":"`mode`, one of `block`, `challenge`, `whitelist`, `js_challenge` or `managed_challenge`, and `configuration` with its `target` (`ip`, `ip_range`, `asn` or `country`) and `value`. `notes` is optional."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->accessRules()->create([]);
+```
+
+## Get
+
+Get a single IP Access rule defined at the user level.
+
+<params-table :params="[{"name":"ruleId","type":"string","required":true,"description":"IP Access Rule Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->accessRules()->get('RULE_ID');
+```
+
+## Edit
+
+Apply changes to an IP Access rule, overwriting only the supplied properties.
+
+<params-table :params="[{"name":"ruleId","type":"string","required":true,"description":"IP Access Rule Identifier."},{"name":"values","type":"array","required":true,"description":"Values to set on the IP Access rule, e.g. `mode`, `notes`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->accessRules()->edit('RULE_ID', []);
+```
+
+## Delete
+
+Delete an IP Access rule defined at the user level.
+
+<params-table :params="[{"name":"ruleId","type":"string","required":true,"description":"IP Access Rule Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->accessRules()->delete('RULE_ID');
+```

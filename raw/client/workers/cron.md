@@ -16,7 +16,7 @@ Get Cron Triggers
 $response = $client->workers()->cron()->get('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-cron-trigger-get-cron-triggers">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/schedules/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Updates Cron Triggers for a Worker.
 $response = $client->workers()->cron()->update('ACCOUNT_ID', 'SCRIPT_NAME', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-cron-trigger-update-cron-triggers">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/schedules/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

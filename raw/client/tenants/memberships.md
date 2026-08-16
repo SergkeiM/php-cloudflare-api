@@ -16,7 +16,7 @@ List of active members (Cloudflare users) for the Tenant.
 $response = $client->tenants()->memberships()->list('TENANT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_listMemberships">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenants/subresources/memberships/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ List all the members attached to a user group.
 $response = $client->iam()->userGroups()->members()->list('ACCOUNT_ID', 'USER_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-member-list">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Add members to a User Group.
 $response = $client->iam()->userGroups()->members()->create('ACCOUNT_ID', 'USER_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-member-create">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Replace the set of members attached to a User Group.
 $response = $client->iam()->userGroups()->members()->update('ACCOUNT_ID', 'USER_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-members-update">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Remove a member from a User Group.
 $response = $client->iam()->userGroups()->members()->delete('ACCOUNT_ID', 'USER_GROUP_ID', 'MEMBER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-member-delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Get information about a specific member of a User Group.
 $response = $client->iam()->userGroups()->members()->get('ACCOUNT_ID', 'USER_GROUP_ID', 'MEMBER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-member-get">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/subresources/members/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

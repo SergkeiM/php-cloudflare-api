@@ -16,7 +16,7 @@ List configured load balancer monitor groups for an account.
 $response = $client->loadBalancers()->monitorGroups()->list('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-list-monitor-groups">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new load balancer monitor group for an account.
 $response = $client->loadBalancers()->monitorGroups()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-create-monitor-group">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get a single configured load balancer monitor group for an account.
 $response = $client->loadBalancers()->monitorGroups()->get('ACCOUNT_ID', 'MONITOR_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-monitor-group-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Apply changes to an existing monitor group, overwriting only the supplied proper
 $response = $client->loadBalancers()->monitorGroups()->edit('ACCOUNT_ID', 'MONITOR_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-patch-monitor-group">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Update an existing load balancer monitor group for an account, overwriting the f
 $response = $client->loadBalancers()->monitorGroups()->update('ACCOUNT_ID', 'MONITOR_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-update-monitor-group">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Delete a load balancer monitor group for an account.
 $response = $client->loadBalancers()->monitorGroups()->delete('ACCOUNT_ID', 'MONITOR_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-delete-monitor-group">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -136,7 +136,7 @@ List the pools that reference a given monitor group.
 $response = $client->loadBalancers()->monitorGroups()->references('ACCOUNT_ID', 'MONITOR_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitor-groups-list-monitor-group-references">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitor_groups/subresources/references/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

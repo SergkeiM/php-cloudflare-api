@@ -20,12 +20,6 @@ List configured load balancers.
 $response = $client->loadBalancers()->list('ACCOUNT_ID', 'ZONE_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-level-load-balancers-list-load-balancers">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Create
 
 Create a new load balancer.
@@ -39,12 +33,6 @@ Create a new load balancer.
 ```php [php]
 $response = $client->loadBalancers()->create('ACCOUNT_ID', 'ZONE_ID', []);
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-level-load-balancers-create-load-balancer">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
 
 ## Get
 
@@ -60,12 +48,6 @@ Get a single configured load balancer.
 $response = $client->loadBalancers()->get('ACCOUNT_ID', 'ZONE_ID', 'LOAD_BALANCER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-level-load-balancers-load-balancer-details">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Update
 
 Update an existing load balancer, overwriting the full configuration.
@@ -79,12 +61,6 @@ Update an existing load balancer, overwriting the full configuration.
 ```php [php]
 $response = $client->loadBalancers()->update('ACCOUNT_ID', 'ZONE_ID', 'LOAD_BALANCER_ID', []);
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-level-load-balancers-update-load-balancer">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
 
 ## Edit
 
@@ -100,12 +76,6 @@ Apply changes to an existing load balancer, overwriting only the supplied proper
 $response = $client->loadBalancers()->edit('ACCOUNT_ID', 'ZONE_ID', 'LOAD_BALANCER_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancers-patch-account-load-balancer">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Delete
 
 Delete a load balancer.
@@ -120,12 +90,6 @@ Delete a load balancer.
 $response = $client->loadBalancers()->delete('ACCOUNT_ID', 'ZONE_ID', 'LOAD_BALANCER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-level-load-balancers-delete-load-balancer">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Usage
 
 Fetch the current load balancer usage for an account.
@@ -139,12 +103,6 @@ Fetch the current load balancer usage for an account.
 ```php [php]
 $response = $client->loadBalancers()->usage('ACCOUNT_ID');
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancers-list-load-balancer-usage">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
 
 ## Related
 

@@ -16,7 +16,7 @@ List custom domains for a bucket.
 $response = $client->r2()->customDomains()->list('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-list-bucket-domains">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Add a custom domain to a bucket.
 $response = $client->r2()->customDomains()->create('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-add-bucket-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get an existing custom domain for a bucket.
 $response = $client->r2()->customDomains()->get('ACCOUNT_ID', 'BUCKET_NAME', 'DOMAIN', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Update an existing custom domain for a bucket.
 $response = $client->r2()->customDomains()->update('ACCOUNT_ID', 'BUCKET_NAME', 'DOMAIN', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-edit-bucket-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Remove a custom domain from a bucket.
 $response = $client->r2()->customDomains()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'DOMAIN', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-remove-bucket-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/custom/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

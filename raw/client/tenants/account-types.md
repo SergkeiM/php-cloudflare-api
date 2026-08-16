@@ -16,7 +16,7 @@ List of account types available for the Tenant to provision accounts.
 $response = $client->tenants()->accountTypes()->list('TENANT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_validAccountTypes">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenants/subresources/account_types/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

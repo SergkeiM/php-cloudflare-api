@@ -16,7 +16,7 @@ Gets a list of audit logs for a user account. Can be filtered by who made the ch
 $response = $client->user()->auditLogs()->list([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-get-user-audit-logs">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/audit_logs/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

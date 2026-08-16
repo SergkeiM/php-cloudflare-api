@@ -16,7 +16,7 @@ Get an organizations profile if it exists.
 $response = $client->organizations()->profile()->get('ORGANIZATION_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_getProfile">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/subresources/organization_profile/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Modify organization profile.
 $response = $client->organizations()->profile()->update('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_modifyProfile">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/subresources/organization_profile/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

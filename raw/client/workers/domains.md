@@ -16,7 +16,7 @@ Lists all Worker Domains for an account.
 $response = $client->workers()->domains()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-domain-list-domains">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Attaches a Worker to a zone and hostname.
 $response = $client->workers()->domains()->attach('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-domain-attach-to-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Detaches a Worker from a zone and hostname.
 $response = $client->workers()->domains()->detach('ACCOUNT_ID', 'DOMAIN_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-domain-detach-from-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Gets a Worker domain.
 $response = $client->workers()->domains()->get('ACCOUNT_ID', 'DOMAIN_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-domain-get-a-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/domains/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

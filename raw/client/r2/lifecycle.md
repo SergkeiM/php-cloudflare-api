@@ -16,7 +16,7 @@ Get the lifecycle configuration for a bucket.
 $response = $client->r2()->lifecycle()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-lifecycle-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/lifecycle/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Set the lifecycle configuration for a bucket.
 $response = $client->r2()->lifecycle()->update('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-put-bucket-lifecycle-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/lifecycle/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

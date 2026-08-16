@@ -16,7 +16,7 @@ Lists all of an account's subscriptions.
 $response = $client->accounts()->subscriptions()->list('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-subscriptions-list-subscriptions">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Creates an account subscription.
 $response = $client->accounts()->subscriptions()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-subscriptions-create-subscription">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Updates an account subscription.
 $response = $client->accounts()->subscriptions()->update('ACCOUNT_ID', 'SUBSCRIPTION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-subscriptions-update-subscription">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Deletes an account's subscription.
 $response = $client->accounts()->subscriptions()->delete('ACCOUNT_ID', 'SUBSCRIPTION_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-subscriptions-delete-subscription">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

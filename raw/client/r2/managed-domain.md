@@ -16,7 +16,7 @@ Get the managed (`r2.dev`) domain configuration for a bucket.
 $response = $client->r2()->managedDomain()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-managed-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/managed/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Enable or disable the managed (`r2.dev`) domain for a bucket.
 $response = $client->r2()->managedDomain()->update('ACCOUNT_ID', 'BUCKET_NAME', true, 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-edit-bucket-managed-domain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/domains/subresources/managed/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

@@ -10,7 +10,7 @@ Lists all of a user's subscriptions.
 $response = $client->user()->subscriptions()->list();
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-subscription-get-user-subscriptions">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -30,12 +30,6 @@ Creates a user subscription.
 $response = $client->user()->subscriptions()->create([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-subscription-create-user-subscription">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Update
 
 Updates a user's subscription.
@@ -50,7 +44,7 @@ Updates a user's subscription.
 $response = $client->user()->subscriptions()->update('SUBSCRIPTION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-subscription-update-user-subscription">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -70,7 +64,7 @@ Deletes a user's subscription.
 $response = $client->user()->subscriptions()->delete('SUBSCRIPTION_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-subscription-delete-user-subscription">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/subscriptions/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

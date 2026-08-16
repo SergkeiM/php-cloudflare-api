@@ -14,7 +14,7 @@
 $response = $client->cloudConnector()->get('ZONE_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zone-cloud-connector-rules">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cloud_connector/subresources/rules/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -32,7 +32,7 @@ View this operation on the Cloudflare API Reference
 $response = $client->cloudConnector()->update('ZONE_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/zone-cloud-conenctor-rules-put">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/cloud_connector/subresources/rules/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

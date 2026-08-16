@@ -16,13 +16,13 @@ Returns a Workers subdomain for an account.
 $response = $client->workers()->subdomain()->get('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-subdomain-get-subdomain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/subdomains/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
 </callout>
 
-## Create
+## Update
 
 Creates a Workers subdomain for an account.
 
@@ -33,10 +33,10 @@ Creates a Workers subdomain for an account.
 </params-table>
 
 ```php [php]
-$response = $client->workers()->subdomain()->create('ACCOUNT_ID', 'SUBDOMAIN');
+$response = $client->workers()->subdomain()->update('ACCOUNT_ID', 'SUBDOMAIN');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-subdomain-create-subdomain">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/subdomains/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

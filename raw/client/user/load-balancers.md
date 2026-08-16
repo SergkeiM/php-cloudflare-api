@@ -1,0 +1,55 @@
+# Load Balancers
+
+> Load balancing owned by the authenticated user rather than by an account.
+
+Load balancing owned by the authenticated user rather than by an account.
+
+## Regions
+
+List all region mappings in the user context.
+
+<params-table :params="[{"name":"params","type":"array","required":false,"description":"Query Parameters: `subdivision_code` and `country_code`.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->regions([]);
+```
+
+## Preview
+
+Get the result of a previous preview operation.
+
+Previews are started from `monitors()->preview()` or `pools()->preview()`,
+which hand back the identifier to read here.
+
+<params-table :params="[{"name":"previewId","type":"string","required":true,"description":"Preview Identifier, as returned when the preview was started."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->preview('PREVIEW_ID');
+```
+
+## Healthcheck Events
+
+List origin health changes.
+
+<params-table :params="[{"name":"params","type":"array","required":false,"description":"Query Parameters: `since`, `until`, `pool_id`, `pool_name`, `pool_healthy`, `origin_name` and `origin_healthy`.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->healthcheckEvents([]);
+```
+
+## Related
+
+- [Monitors](/client/user/load-balancers/monitors)
+- [Pools](/client/user/load-balancers/pools)

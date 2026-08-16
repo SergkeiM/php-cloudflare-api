@@ -16,7 +16,7 @@ Retrieve a list of organizations a particular user has access to.
 $response = $client->organizations()->list([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organization_listOrganizations">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new organization for a user.
 $response = $client->organizations()->create([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_createUserOrganization">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Retrieve the details of a certain organization.
 $response = $client->organizations()->get('ORGANIZATION_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_retrieve">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Modify organization.
 $response = $client->organizations()->update('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_modify">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,61 @@ Delete an organization. The organization MUST be empty before deleting.
 $response = $client->organizations()->delete('ORGANIZATION_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Organizations_delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/methods/delete/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Accounts
+
+List the accounts that belong to an organization.
+
+Filters come in four flavours for both `name` and `account_pubname`: an
+exact match, or one of `.startsWith`, `.endsWith` and `.contains`. All of
+them are case-insensitive.
+
+Paging here is by opaque token rather than page number: pass the
+`page_token` from the previous response to get the next page.
+
+```php
+$client->organizations()->accounts('ORGANIZATION_ID', [
+    'name.startsWith' => 'prod',
+    'order_by' => 'account_name',
+]);
+```
+
+<params-table :params="[{"name":"organizationId","type":"string","required":true,"description":"Organization identifier."},{"name":"params","type":"array","required":false,"description":"Query Parameters: `account_pubname` and `name` — each also accepting `.startsWith`, `.endsWith` and `.contains` — plus `order_by` (`account_name`), `direction` (`asc` or `desc`), `page_token` and `page_size` (defaults to `10`).","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->organizations()->accounts('ORGANIZATION_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/fundamentals/organizations/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Shares
+
+List an organization's shares.
+
+<params-table :params="[{"name":"organizationId","type":"string","required":true,"description":"Organization identifier."},{"name":"params","type":"array","required":false,"description":"Query Parameters: `status` (`active`, `deleting` or `deleted`), `kind` (`sent` or `received`), `target_type` (`account` or `organization`), `resource_types`, `order` (`name` or `created`), `direction` (`asc` or `desc`), `page` and `per_page`.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->organizations()->shares('ORGANIZATION_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/fundamentals/organizations/">
 
 View this operation on the Cloudflare API Reference
 

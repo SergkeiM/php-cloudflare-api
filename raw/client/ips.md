@@ -12,7 +12,7 @@ For JD Cloud IPs: [https://developers.cloudflare.com/china-network/reference/inf
 $response = $client->ips()->get();
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/cloudflare-i-ps-cloudflare-ip-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/ips/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

@@ -1,0 +1,13 @@
+# Cache
+
+> How a zone caches: where copies are kept, which upper tiers are consulted, and which file variants are cached separately.
+
+How a zone caches: where copies are kept, which upper tiers are consulted,
+and which file variants are cached separately.
+
+## Related
+
+- [Cache Reserve](/client/cache/cache-reserve)
+- [Regional Tiered Cache](/client/cache/regional-tiered-cache)
+- [Smart Tiered Cache](/client/cache/smart-tiered-cache)
+- [Variants](/client/cache/variants)

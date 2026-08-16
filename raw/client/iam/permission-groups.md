@@ -16,7 +16,7 @@ List all the permissions groups for an account.
 $response = $client->iam()->permissionGroups()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-permission-group-list">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/permission_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Get information about a specific permission group in an account.
 $response = $client->iam()->permissionGroups()->get('ACCOUNT_ID', 'PERMISSION_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-permission-group-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/permission_groups/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

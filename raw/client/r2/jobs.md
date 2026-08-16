@@ -1,0 +1,51 @@
+# Jobs
+
+> Background jobs on an R2 bucket.
+
+Background jobs on an R2 bucket.
+
+## List
+
+List background jobs for a bucket.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"params","type":"array","required":false,"description":"Query Parameters: `jobType` (`prefixDelete`), `status` (`ENQUEUED`, `RUNNING`, `COMPLETED`, `FAILED` or `CANCELLED`, and only accepted alongside `jobType`), `maxKeys`, and `continuationToken` from the previous response's `nextContinuationToken`.","default":"[]"},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->jobs()->list('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/r2/api/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get the current status of a background job.
+
+```php
+$job = $client->r2()->objects()->emptyBucket('ACCOUNT_ID', 'my-bucket')->json('result.id');
+
+$status = $client->r2()->jobs()->get('ACCOUNT_ID', 'my-bucket', $job)->json('result.status');
+```
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account Identifier."},{"name":"bucketName","type":"string","required":true,"description":"Bucket Name."},{"name":"jobId","type":"string","required":true,"description":"Job identifier, as returned when the operation was submitted."},{"name":"jurisdiction","type":"string|null","required":false,"description":"Jurisdiction where objects in this bucket are guaranteed to be stored."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->r2()->jobs()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JOB_ID', 'JURISDICTION');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/r2/api/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

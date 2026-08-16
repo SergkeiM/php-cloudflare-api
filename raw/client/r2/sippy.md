@@ -16,7 +16,7 @@ Get the Sippy configuration for a bucket.
 $response = $client->r2()->sippy()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-sippy-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Enable Sippy (incremental migration) for a bucket.
 $response = $client->r2()->sippy()->update('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-put-bucket-sippy-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Disable Sippy for a bucket.
 $response = $client->r2()->sippy()->delete('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-delete-bucket-sippy-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/sippy/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ Returns cost and usage data for all accounts within an organization, aligned wit
 $response = $client->organizations()->billing()->usage()->get('ORGANIZATION_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/billable-usage-v2-get-organization-usage">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/organizations/subresources/billing/subresources/usage/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

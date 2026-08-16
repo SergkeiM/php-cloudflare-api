@@ -16,7 +16,7 @@ Find all available permission groups for API Tokens.
 $response = $client->user()->tokens()->permissionGroups()->list([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/permission-groups-list-permission-groups">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/tokens/subresources/permission_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

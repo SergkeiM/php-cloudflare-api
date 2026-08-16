@@ -6,17 +6,17 @@
 
 Fetch a list of uploaded workers.
 
-<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."}]">
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Query Parameters: `tags`, to filter by script tag.","default":"[]"}]">
 
 
 
 </params-table>
 
 ```php [php]
-$response = $client->workers()->scripts()->list('ACCOUNT_ID');
+$response = $client->workers()->scripts()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-list-workers">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Fetch raw script content for your worker. Note this is the original script conte
 $response = $client->workers()->scripts()->download('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-download-worker">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -44,19 +44,37 @@ View this operation on the Cloudflare API Reference
 
 ## Upload
 
-Upload a worker module. You can find more about the multipart metadata on [Cloudflare Docs](https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/).
+Upload a Worker, replacing the deployed script and its configuration.
 
-<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptName","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."}]">
+The request is a multipart upload: a JSON `metadata` part describing the
+Worker, and one part per module holding its source. Bindings and settings
+come from the metadata, so anything left out of it is dropped — send the
+whole configuration, not just what changed. To replace only the code, use
+`updateContent()`; to stage a Worker without deploying it, upload a
+version instead.
+
+```php
+$client->workers()->scripts()->upload('ACCOUNT_ID', 'my-worker', [
+    ['name' => 'worker.js', 'content' => file_get_contents('dist/worker.js')],
+], [
+    'compatibility_date' => '2026-01-01',
+    'bindings' => [
+        ['type' => 'kv_namespace', 'name' => 'KV', 'namespace_id' => 'NAMESPACE_ID'],
+    ],
+]);
+```
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptName","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."},{"name":"modules","type":"array","required":true,"description":"The modules making up the Worker. Each one is `['name' => 'worker.js', 'content' => '…']`, optionally with `'type'` to override the default `application/javascript+module`."},{"name":"metadata","type":"array","required":false,"description":"Multipart metadata: `compatibility_date`, `bindings`, `migrations`, `placement`, and so on. `main_module` defaults to the first module.","default":"[]"},{"name":"params","type":"array","required":false,"description":"Query Parameters, such as `['bindings_inherit' => 'strict']` to fail rather than silently drop bindings that cannot be inherited.","default":"[]"}]">
 
 
 
 </params-table>
 
 ```php [php]
-$response = $client->workers()->scripts()->upload('ACCOUNT_ID', 'SCRIPT_NAME');
+$response = $client->workers()->scripts()->upload('ACCOUNT_ID', 'SCRIPT_NAME', [], [], []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-upload-worker-module">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -64,19 +82,29 @@ View this operation on the Cloudflare API Reference
 
 ## Update Content
 
-Put script content without touching config or metadata
+Replace a Worker's code, leaving its configuration and metadata alone.
 
-<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptName","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."}]">
+The counterpart of `upload()` for a code-only deploy: bindings,
+compatibility date and the rest of the Worker's settings are kept as they
+are.
+
+```php
+$client->workers()->scripts()->updateContent('ACCOUNT_ID', 'my-worker', [
+    ['name' => 'worker.js', 'content' => file_get_contents('dist/worker.js')],
+]);
+```
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"scriptName","type":"string","required":true,"description":"Name of the script, used in URLs and route configuration."},{"name":"modules","type":"array","required":true,"description":"The modules making up the Worker. Each one is `['name' => 'worker.js', 'content' => '…']`, optionally with `'type'` to override the default `application/javascript+module`."},{"name":"metadata","type":"array","required":false,"description":"Multipart metadata naming the entry point. `main_module` defaults to the first module.","default":"[]"}]">
 
 
 
 </params-table>
 
 ```php [php]
-$response = $client->workers()->scripts()->updateContent('ACCOUNT_ID', 'SCRIPT_NAME');
+$response = $client->workers()->scripts()->updateContent('ACCOUNT_ID', 'SCRIPT_NAME', [], []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-put-content">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/content/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +124,7 @@ Fetch script content only.
 $response = $client->workers()->scripts()->getContent('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-get-content">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/content/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +144,7 @@ Get script-level settings when using Worker Versions. Includes Logpush and Tail 
 $response = $client->workers()->scripts()->getScriptSettings('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-settings-get-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/settings/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -136,7 +164,7 @@ Patch script-level settings when using Worker Versions. Includes Logpush and Tai
 $response = $client->workers()->scripts()->updateScriptSettings('ACCOUNT_ID', 'SCRIPT_NAME', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-settings-patch-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/settings/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -156,7 +184,7 @@ Get metadata and config, such as bindings or usage model
 $response = $client->workers()->scripts()->getSettings('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-get-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/script_and_version_settings/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -176,7 +204,7 @@ Patch metadata or config, such as bindings or usage model
 $response = $client->workers()->scripts()->updateSettings('ACCOUNT_ID', 'SCRIPT_NAME', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-patch-settings">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/script_and_version_settings/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -196,12 +224,6 @@ Fetches the Usage Model for a given Worker.
 $response = $client->workers()->scripts()->getUsageModel('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-fetch-usage-model">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
-
 ## Update Usage Model
 
 Updates the Usage Model for a given Worker. Requires a Workers Paid subscription.
@@ -215,12 +237,6 @@ Updates the Usage Model for a given Worker. Requires a Workers Paid subscription
 ```php [php]
 $response = $client->workers()->scripts()->updateUsageModel('ACCOUNT_ID', 'SCRIPT_NAME', 'USAGE_MODEL');
 ```
-
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-update-usage-model">
-
-View this operation on the Cloudflare API Reference
-
-</callout>
 
 ## Delete
 
@@ -236,7 +252,7 @@ Delete your worker. This call has no response body on a successful delete.
 $response = $client->workers()->scripts()->delete('ACCOUNT_ID', 'SCRIPT_NAME', true);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-script-delete-worker">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ Roll the API token secret.
 $response = $client->user()->tokens()->value()->roll('TOKEN_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user-api-tokens-roll-token">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/tokens/subresources/value/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

@@ -16,7 +16,7 @@ List all the user groups for an account.
 $response = $client->iam()->userGroups()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-list">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new user group under the specified account.
 $response = $client->iam()->userGroups()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-create">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get information about a specific user group in an account.
 $response = $client->iam()->userGroups()->get('ACCOUNT_ID', 'USER_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Modify an existing user group.
 $response = $client->iam()->userGroups()->update('ACCOUNT_ID', 'USER_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-update">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Remove a user group from an account.
 $response = $client->iam()->userGroups()->delete('ACCOUNT_ID', 'USER_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-user-group-delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/user_groups/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

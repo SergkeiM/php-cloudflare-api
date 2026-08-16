@@ -1,0 +1,150 @@
+# Pools
+
+> Load balancer pools owned by the authenticated user.
+
+Load balancer pools owned by the authenticated user.
+
+## List
+
+List the user's configured load balancer pools.
+
+<params-table :params="[{"name":"params","type":"array","required":false,"description":"Query Parameters: `monitor`, to list only the pools using a given monitor.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->list([]);
+```
+
+## Create
+
+Create a new load balancer pool for the user.
+
+<params-table :params="[{"name":"values","type":"array","required":true,"description":"Values to set on the pool, e.g. `name`, `origins`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->create([]);
+```
+
+## Get
+
+Get a single configured load balancer pool.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->get('POOL_ID');
+```
+
+## Update
+
+Update an existing load balancer pool, overwriting the full configuration.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":true,"description":"Values to set on the pool, e.g. `name`, `origins`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->update('POOL_ID', []);
+```
+
+## Edit
+
+Apply changes to an existing pool, overwriting only the supplied properties.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":true,"description":"Values to patch on the pool."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->edit('POOL_ID', []);
+```
+
+## Bulk Edit
+
+Apply changes to a number of existing pools, overwriting the supplied properties.
+
+Returns the list of affected pools.
+
+<params-table :params="[{"name":"values","type":"array","required":true,"description":"List of pool patches to apply, each identified by `id`."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->bulkEdit([]);
+```
+
+## Delete
+
+Delete a load balancer pool.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->delete('POOL_ID');
+```
+
+## Health
+
+Fetch the latest pool health status for a single pool.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->health('POOL_ID');
+```
+
+## Preview
+
+Preview pool health using the specified monitor and show the effective response.
+
+Answers with a preview identifier; read the result with
+`$client->user()->loadBalancers()->preview()`.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."},{"name":"values","type":"array","required":false,"description":"The monitor details to run the preview with.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->preview('POOL_ID', []);
+```
+
+## References
+
+List the load balancers that reference a given pool.
+
+<params-table :params="[{"name":"poolId","type":"string","required":true,"description":"Pool Identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->user()->loadBalancers()->pools()->references('POOL_ID');
+```

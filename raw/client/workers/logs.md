@@ -16,7 +16,7 @@ Get list of tails currently deployed on a Worker.
 $response = $client->workers()->logs()->list('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-tail-logs-list-tails">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Starts a tail that receives logs and exception from a Worker.
 $response = $client->workers()->logs()->start('ACCOUNT_ID', 'SCRIPT_NAME');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-tail-logs-start-tail">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Deletes a tail from a Worker.
 $response = $client->workers()->logs()->delete('ACCOUNT_ID', 'SCRIPT_NAME', 'ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/worker-tail-logs-delete-tail">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/tail/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

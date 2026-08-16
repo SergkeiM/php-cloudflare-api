@@ -16,7 +16,7 @@ List of accounts for the Tenant.
 $response = $client->tenants()->accounts()->list('TENANT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_listAccounts">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenants/subresources/accounts/methods/list/">
 
 View this operation on the Cloudflare API Reference
 

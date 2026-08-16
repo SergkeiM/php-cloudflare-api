@@ -16,7 +16,7 @@ List all the resource groups for an account.
 $response = $client->iam()->resourceGroups()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-resource-group-list">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new Resource Group under the specified account.
 $response = $client->iam()->resourceGroups()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-resource-group-create">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get information about a specific resource group in an account.
 $response = $client->iam()->resourceGroups()->get('ACCOUNT_ID', 'RESOURCE_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-resource-group-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Modify an existing resource group.
 $response = $client->iam()->resourceGroups()->update('ACCOUNT_ID', 'RESOURCE_GROUP_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-resource-group-update">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Remove a resource group from an account.
 $response = $client->iam()->resourceGroups()->delete('ACCOUNT_ID', 'RESOURCE_GROUP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-resource-group-delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/resource_groups/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

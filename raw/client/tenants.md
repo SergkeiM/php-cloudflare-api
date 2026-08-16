@@ -16,7 +16,7 @@ Retrieves a Tenant by Tenant ID.
 $response = $client->tenants()->get('TENANT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/Tenants_retrieveTenant">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenants/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

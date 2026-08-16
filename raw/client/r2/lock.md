@@ -16,7 +16,7 @@ Get the object lock configuration for a bucket.
 $response = $client->r2()->lock()->get('ACCOUNT_ID', 'BUCKET_NAME', 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-bucket-lock-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/locks/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Set the object lock configuration for a bucket.
 $response = $client->r2()->lock()->update('ACCOUNT_ID', 'BUCKET_NAME', [], 'JURISDICTION');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-put-bucket-lock-configuration">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/locks/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

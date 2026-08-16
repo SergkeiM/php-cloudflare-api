@@ -16,7 +16,7 @@ List memberships of accounts the user can access.
 $response = $client->memberships()->list([]);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-account-memberships-list-memberships">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/memberships/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Get a specific membership.
 $response = $client->memberships()->get('MEMBERSHIP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-account-memberships-membership-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/memberships/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Accept or reject this account invitation.
 $response = $client->memberships()->update('MEMBERSHIP_ID', 'STATUS');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-account-memberships-update-membership">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/memberships/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Remove the associated member from an account.
 $response = $client->memberships()->delete('MEMBERSHIP_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-account-memberships-delete-membership">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/memberships/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 

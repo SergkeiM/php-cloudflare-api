@@ -1,0 +1,123 @@
+# Routes
+
+> Routes endpoint reference.
+
+## List
+
+Lists and filters private network routes in an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"params","type":"array","required":false,"description":"Array containing the necessary params.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->list('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/list/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get By IP
+
+Fetches routes that contain the given IP address.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"ip","type":"string","required":true,"description":"IP"},{"name":"virtualNetworkId","type":"string|null","required":false,"description":"UUID of the virtual network."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->getByIP('ACCOUNT_ID', 'IP', 'VIRTUAL_NETWORK_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/subresources/ips/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Routes a private network through a Cloudflare Tunnel.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"values","type":"array","required":true,"description":"`network`, the private IPv4 or IPv6 range in CIDR notation, is required. `tunnel_id`, `virtual_network_id` and `comment` are optional."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->create('ACCOUNT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/create/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Get
+
+Get a private network route in an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"routeId","type":"string","required":true,"description":"UUID of the route."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->get('ACCOUNT_ID', 'ROUTE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Edit
+
+Updates an existing private network route in an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"routeId","type":"string","required":true,"description":"UUID of the route."},{"name":"values","type":"array","required":false,"description":"The fields that are meant to be updated","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->edit('ACCOUNT_ID', 'ROUTE_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/edit/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Deletes a private network route from an account.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"routeId","type":"string","required":true,"description":"UUID of the route."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->zeroTrust()->networks()->routes()->delete('ACCOUNT_ID', 'ROUTE_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/zero_trust/subresources/networks/subresources/routes/methods/delete/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

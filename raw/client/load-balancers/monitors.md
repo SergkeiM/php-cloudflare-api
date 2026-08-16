@@ -16,7 +16,7 @@ List configured load balancer monitors for an account.
 $response = $client->loadBalancers()->monitors()->list('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-list-monitors">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new load balancer monitor for an account.
 $response = $client->loadBalancers()->monitors()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-create-monitor">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get a single configured load balancer monitor for an account.
 $response = $client->loadBalancers()->monitors()->get('ACCOUNT_ID', 'MONITOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-monitor-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Update an existing load balancer monitor for an account, overwriting the full co
 $response = $client->loadBalancers()->monitors()->update('ACCOUNT_ID', 'MONITOR_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-update-monitor">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Apply changes to an existing monitor, overwriting only the supplied properties.
 $response = $client->loadBalancers()->monitors()->edit('ACCOUNT_ID', 'MONITOR_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-patch-monitor">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Delete a load balancer monitor for an account.
 $response = $client->loadBalancers()->monitors()->delete('ACCOUNT_ID', 'MONITOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-delete-monitor">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -136,7 +136,7 @@ Preview pools associated with a given monitor and show the effective response.
 $response = $client->loadBalancers()->monitors()->preview('ACCOUNT_ID', 'MONITOR_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/load-balancer-monitors-preview-monitor">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/subresources/previews/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -156,7 +156,7 @@ List the load balancers and pools that reference a given monitor.
 $response = $client->loadBalancers()->monitors()->references('ACCOUNT_ID', 'MONITOR_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-load-balancer-monitors-list-monitor-references">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/load_balancers/subresources/monitors/subresources/references/methods/get/">
 
 View this operation on the Cloudflare API Reference
 

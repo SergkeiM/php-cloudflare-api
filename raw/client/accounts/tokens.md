@@ -16,7 +16,7 @@ List all Account Owned API tokens created for this account.
 $response = $client->accounts()->tokens()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-list-tokens">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new Account Owned API token.
 $response = $client->accounts()->tokens()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-create-token">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Get information about a specific Account Owned API token.
 $response = $client->accounts()->tokens()->get('ACCOUNT_ID', 'TOKEN_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-token-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Update an existing token.
 $response = $client->accounts()->tokens()->update('ACCOUNT_ID', 'TOKEN_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-update-token">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Destroy an Account Owned API token.
 $response = $client->accounts()->tokens()->delete('ACCOUNT_ID', 'TOKEN_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-delete-token">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Test whether a token works.
 $response = $client->accounts()->tokens()->verify('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-api-tokens-verify-token">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/tokens/methods/verify/">
 
 View this operation on the Cloudflare API Reference
 

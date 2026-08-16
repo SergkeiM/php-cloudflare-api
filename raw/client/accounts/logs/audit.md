@@ -16,7 +16,7 @@ Gets a list of audit logs for an account.
 $response = $client->accounts()->logs()->audit()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-logs">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Returns the chronological change history for the resource identified by the give
 $response = $client->accounts()->logs()->audit()->history('ACCOUNT_ID', 'ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-get-account-audit-log-history">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/history/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Lists the available audit log product categories and the resource products each 
 $response = $client->accounts()->logs()->audit()->productCategories('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/audit-logs-v2-list-account-product-categories">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/logs/subresources/audit/methods/product_categories/">
 
 View this operation on the Cloudflare API Reference
 

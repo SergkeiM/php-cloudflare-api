@@ -16,7 +16,7 @@ List all the OAuth clients for an account.
 $response = $client->iam()->oauthClients()->list('ACCOUNT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-list">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Create a new OAuth client.
 $response = $client->iam()->oauthClients()->create('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-create">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,13 +56,13 @@ Get details of a specific OAuth client.
 $response = $client->iam()->oauthClients()->get('ACCOUNT_ID', 'OAUTH_CLIENT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-get">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
 </callout>
 
-## Update
+## Edit
 
 Update an existing OAuth client.
 
@@ -73,10 +73,10 @@ Update an existing OAuth client.
 </params-table>
 
 ```php [php]
-$response = $client->iam()->oauthClients()->update('ACCOUNT_ID', 'OAUTH_CLIENT_ID', []);
+$response = $client->iam()->oauthClients()->edit('ACCOUNT_ID', 'OAUTH_CLIENT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-update">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Delete an OAuth client.
 $response = $client->iam()->oauthClients()->delete('ACCOUNT_ID', 'OAUTH_CLIENT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-delete">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Creates a second client secret so you can update your client configuration befor
 $response = $client->iam()->oauthClients()->rotateSecret('ACCOUNT_ID', 'OAUTH_CLIENT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-rotate-secret">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/rotate_secret/">
 
 View this operation on the Cloudflare API Reference
 
@@ -136,7 +136,7 @@ Removes the old client secret after a rotation, keeping only the new one.
 $response = $client->iam()->oauthClients()->deleteRotatedSecret('ACCOUNT_ID', 'OAUTH_CLIENT_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/oauth-clients-delete-rotated-secret">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/iam/subresources/oauth_clients/methods/delete_rotated_secret/">
 
 View this operation on the Cloudflare API Reference
 

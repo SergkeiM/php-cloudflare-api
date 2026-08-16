@@ -16,7 +16,7 @@ List all members of an account.
 $response = $client->accounts()->members()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-list-members">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -36,7 +36,7 @@ Add a user to the list of members for this account.
 $response = $client->accounts()->members()->add('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-add-member">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/create/">
 
 View this operation on the Cloudflare API Reference
 
@@ -56,7 +56,7 @@ Remove a member from an account.
 $response = $client->accounts()->members()->delete('ACCOUNT_ID', 'MEMBER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-remove-member">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/delete/">
 
 View this operation on the Cloudflare API Reference
 
@@ -76,7 +76,7 @@ Get information about a specific member of an account.
 $response = $client->accounts()->members()->get('ACCOUNT_ID', 'MEMBER_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-remove-member">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -96,7 +96,7 @@ Modify an account member roles.
 $response = $client->accounts()->members()->updateRoles('ACCOUNT_ID', 'MEMBER_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-update-member">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/update/">
 
 View this operation on the Cloudflare API Reference
 
@@ -116,7 +116,7 @@ Modify an account member policies.
 $response = $client->accounts()->members()->updatePolicies('ACCOUNT_ID', 'MEMBER_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/account-members-update-member">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/accounts/subresources/members/methods/update/">
 
 View this operation on the Cloudflare API Reference
 

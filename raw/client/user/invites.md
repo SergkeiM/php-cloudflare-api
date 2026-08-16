@@ -10,7 +10,7 @@ Lists all invitations associated with my user.
 $response = $client->user()->invites()->list();
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-invites-list-invitations">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
@@ -30,7 +30,7 @@ Gets the details of an invitation.
 $response = $client->user()->invites()->get('INVITE_ID');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-invites-invitation-details">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/get/">
 
 View this operation on the Cloudflare API Reference
 
@@ -50,7 +50,7 @@ Responds to an invitation.
 $response = $client->user()->invites()->respond('INVITE_ID', 'STATUS');
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/user's-invites-respond-to-invitation">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/user/subresources/invites/methods/edit/">
 
 View this operation on the Cloudflare API Reference
 

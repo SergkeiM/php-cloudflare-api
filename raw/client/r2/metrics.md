@@ -16,7 +16,7 @@ Get storage metrics for an account's R2 buckets.
 $response = $client->r2()->metrics()->list('ACCOUNT_ID', []);
 ```
 
-<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/operations/r2-get-metrics">
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/r2/subresources/buckets/subresources/metrics/methods/list/">
 
 View this operation on the Cloudflare API Reference
 
