@@ -59,15 +59,15 @@ class TransformationFlowsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['version' => 2]])),
         ]);
 
-        $response = $client->zones()->transformationFlows()->update('account_id', 'zone_id', [$this->customFlow()]);
+        $response = $client->zones()->transformationFlows()->update('account_id', 'zone_id', ['flows' => [$this->customFlow()]]);
 
         $this->assertTrue($response->successful());
 
         $this->assertSame('PUT', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/zones/zone_id/v1/images/flows', $this->lastRequest()->getUri()->getPath());
         $this->assertSame([
-            'version' => 2,
             'flows' => [$this->customFlow()],
+            'version' => 2,
         ], json_decode((string) $this->lastRequest()->getBody(), true));
     }
 
@@ -78,7 +78,7 @@ class TransformationFlowsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => []])),
         ]);
 
-        $client->zones()->transformationFlows()->update('account_id', 'zone_id', [$this->customFlow()], 'etag_value');
+        $client->zones()->transformationFlows()->update('account_id', 'zone_id', ['flows' => [$this->customFlow()], 'etag' => 'etag_value']);
 
         $body = json_decode((string) $this->lastRequest()->getBody(), true);
 
@@ -97,7 +97,7 @@ class TransformationFlowsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => []])),
         ]);
 
-        $client->zones()->transformationFlows()->update('account_id', 'zone_id', [$this->customFlow()]);
+        $client->zones()->transformationFlows()->update('account_id', 'zone_id', ['flows' => [$this->customFlow()]]);
 
         $this->assertArrayNotHasKey('etag', json_decode((string) $this->lastRequest()->getBody(), true));
     }
@@ -113,9 +113,9 @@ class TransformationFlowsTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => []])),
         ]);
 
-        $client->zones()->transformationFlows()->update('account_id', 'zone_id', []);
+        $client->zones()->transformationFlows()->update('account_id', 'zone_id', ['flows' => []]);
 
-        $this->assertSame('{"version":2,"flows":[]}', (string) $this->lastRequest()->getBody());
+        $this->assertSame('{"flows":[],"version":2}', (string) $this->lastRequest()->getBody());
     }
 
     #[Test]
@@ -126,7 +126,7 @@ class TransformationFlowsTest extends TestCase
         ]);
 
         $client->zones()->transformationFlows()->update('account_id', 'zone_id', [
-            3 => $this->customFlow(),
+            'flows' => [3 => $this->customFlow()],
         ]);
 
         $body = json_decode((string) $this->lastRequest()->getBody(), true);

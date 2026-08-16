@@ -14,13 +14,13 @@ class Deployments extends AbstractEndpoint
       * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/deployments/methods/list/
       *
       * @param string $accountId Account identifier.
-      * @param string $scriptMame Name of the script, used in URLs and route configuration.
+      * @param string $scriptName Name of the script, used in URLs and route configuration.
       *
       * @return \Cloudflare\Contracts\ResponseInterface List Deployments response
       */
-    public function list(string $accountId, string $scriptMame): ResponseInterface
+    public function list(string $accountId, string $scriptName): ResponseInterface
     {
-        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments");
+        return $this->getHttpClient()->get("/accounts/{$accountId}/workers/scripts/{$scriptName}/deployments");
     }
 
     /**
@@ -29,7 +29,7 @@ class Deployments extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/deployments/methods/create/
      *
      * @param string $accountId Account identifier.
-     * @param string $scriptMame Name of the script, used in URLs and route configuration.
+     * @param string $scriptName Name of the script, used in URLs and route configuration.
      * @param array|\Cloudflare\Configurations\Workers\Deployment $values Dployment config.
      * @param bool $force If set to true, the deployment will be created even if normally blocked by something such rolling back to an older version when a secret has changed.
      *
@@ -37,7 +37,7 @@ class Deployments extends AbstractEndpoint
      */
     public function create(
         string $accountId,
-        string $scriptMame,
+        string $scriptName,
         array|Deployment $values,
         bool $force = false
     ): ResponseInterface {
@@ -58,6 +58,6 @@ class Deployments extends AbstractEndpoint
             ];
         }
 
-        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptMame}/deployments", $values, $options);
+        return $this->getHttpClient()->post("/accounts/{$accountId}/workers/scripts/{$scriptName}/deployments", $values, $options);
     }
 }

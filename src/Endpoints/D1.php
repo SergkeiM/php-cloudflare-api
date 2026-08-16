@@ -25,26 +25,27 @@ class D1 extends AbstractEndpoint
     /**
      * Create D1 Database
      *
+     * ```php
+     * $client->d1()->create('ACCOUNT_ID', [
+     *     'name' => 'my-database',
+     *     'primary_location_hint' => 'weur',
+     * ]);
+     * ```
+     *
      * @link https://developers.cloudflare.com/api/resources/d1/subresources/database/methods/create/
      *
      * @param string $accountId Account Identifier.
-     * @param string $name Database name Match pattern: `^[a-z0-9][a-z0-9-_]*$`
-     * @param string $location Specify the region to create the D1 primary, if available. If this option is omitted, the D1 will be created as close as possible to the current user. Allowed values: `wnam`,`enam`,`weur`,`eeur`,`apac`,`oc`
+     * @param array $values `name` is required and must match `^[a-z0-9][a-z0-9-_]*$`. `primary_location_hint` (`wnam`, `enam`, `weur`, `eeur`, `apac` or `oc`) places the primary, defaulting to near the caller. `read_replication` and `jurisdiction` are optional.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Returns the created D1 database's metadata
      */
-    public function create(string $accountId, string $name, ?string $location = null): ResponseInterface
+    public function create(string $accountId, array $values): ResponseInterface
     {
+        $this->requiredParams(['name'], $values);
 
-        $body = [
-            'name' => $name
-        ];
-
-        if (!is_null($location)) {
-            $body['primary_location_hint'] = $location;
-        }
-
-        return $this->getHttpClient()->post("/accounts/{$accountId}/d1/database", $body);
+        return $this->getHttpClient()->post("/accounts/{$accountId}/d1/database", $values);
     }
 
     /**

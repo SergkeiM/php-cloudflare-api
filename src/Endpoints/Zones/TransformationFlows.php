@@ -4,6 +4,7 @@ namespace Cloudflare\Endpoints\Zones;
 
 use Cloudflare\Endpoints\AbstractEndpoint;
 use Cloudflare\Contracts\ResponseInterface;
+use Cloudflare\Exceptions\MissingArgumentException;
 
 /**
  * Image transformation flows for a zone.
@@ -52,37 +53,38 @@ class TransformationFlows extends AbstractEndpoint
      * $current = $client->zones()->transformationFlows()->get('ACCOUNT_ID', 'ZONE_ID');
      *
      * $client->zones()->transformationFlows()->update('ACCOUNT_ID', 'ZONE_ID', [
-     *     [
-     *         'type' => 'custom',
-     *         'name' => 'Thumbnails',
-     *         'enabled' => true,
-     *         'trigger' => ['type' => 'path', 'paths' => ['/thumbs/*']],
-     *         'transformations' => [['key' => 'width', 'value' => '200']],
+     *     'flows' => [
+     *         [
+     *             'type' => 'custom',
+     *             'name' => 'Thumbnails',
+     *             'enabled' => true,
+     *             'trigger' => ['type' => 'path', 'paths' => ['/thumbs/*']],
+     *             'transformations' => [['key' => 'width', 'value' => '200']],
+     *         ],
      *     ],
-     * ], $current->json('result.etag'));
+     *     'etag' => $current->json('result.etag'),
+     * ]);
      * ```
      *
      * @link https://developers.cloudflare.com/images/transform-images/
      *
      * @param string $accountId Account Identifier.
      * @param string $zoneId Zone Identifier.
-     * @param array $flows The complete list of flows for the zone. An empty list clears them.
-     * @param string|null $etag The `etag` from `get()`, to make the write conditional on nothing having changed since.
-     * @param int $version Schema version of the request. Cloudflare accepts `2`.
+     * @param array $values `flows` is required and replaces the whole configuration; an empty list clears it. `etag` from `get()` makes the write conditional on nothing having changed since. `version` is the request's schema version, defaulting to the `2` Cloudflare accepts.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return ResponseInterface Update transformation flows response
      */
-    public function update(string $accountId, string $zoneId, array $flows, ?string $etag = null, int $version = 2): ResponseInterface
+    public function update(string $accountId, string $zoneId, array $values): ResponseInterface
     {
-        $body = [
-            'version' => $version,
-            'flows' => array_values($flows),
-        ];
-
-        if ($etag !== null) {
-            $body['etag'] = $etag;
+        if (!array_key_exists('flows', $values)) {
+            throw new MissingArgumentException(['flows']);
         }
 
-        return $this->getHttpClient()->put("/accounts/{$accountId}/zones/{$zoneId}/v1/images/flows", $body);
+        $values['version'] ??= 2;
+        $values['flows'] = array_values($values['flows']);
+
+        return $this->getHttpClient()->put("/accounts/{$accountId}/zones/{$zoneId}/v1/images/flows", $values);
     }
 }

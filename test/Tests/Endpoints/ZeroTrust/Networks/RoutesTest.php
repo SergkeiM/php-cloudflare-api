@@ -60,7 +60,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'route_id']])),
         ]);
 
-        $response = $client->zeroTrust()->networks()->routes()->create('account_id', '10.0.0.0/24');
+        $response = $client->zeroTrust()->networks()->routes()->create('account_id', ['network' => '10.0.0.0/24']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());
@@ -74,7 +74,7 @@ class RoutesTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'route_id']])),
         ]);
 
-        $response = $client->zeroTrust()->networks()->routes()->create('account_id', '10.0.0.0/24', 'vnet_id', 'my comment');
+        $response = $client->zeroTrust()->networks()->routes()->create('account_id', ['network' => '10.0.0.0/24', 'virtual_network_id' => 'vnet_id', 'comment' => 'my comment']);
 
         $this->assertTrue($response->successful());
         $this->assertSame([

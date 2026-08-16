@@ -32,26 +32,24 @@ class Accounts extends AbstractEndpoint
     /**
      * Create an account (only available for tenant admins at this time)
      *
+     * ```php
+     * $client->accounts()->create([
+     *     'name' => 'Example Account',
+     *     'type' => 'standard',
+     * ]);
+     * ```
+     *
      * @link https://developers.cloudflare.com/api/resources/accounts/methods/create/
      *
-     * @param string $name Account name
-     * @param string $type The type of account being created. For self-serve customers, use standard. for enterprise customers, use enterprise.
-     * @param string $unit Tenant unit ID. Information related to the tenant unit, and optionally, an id of the unit to create the account on. [see](https://developers.cloudflare.com/tenant/how-to/manage-accounts/)
+     * @param array $values `name` and `type` (`standard` for self-serve, `enterprise` otherwise) are required. `unit` optionally names the [tenant unit](https://developers.cloudflare.com/tenant/how-to/manage-accounts/) to create the account under, as `['id' => '…']`.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface
      */
-    public function create(string $name, string $type, ?string $unit = null): ResponseInterface
+    public function create(array $values): ResponseInterface
     {
-        $values = [
-            'name' => $name,
-            'type' => $type
-        ];
-
-        if (!is_null($unit)) {
-            $values['unit'] = [
-                'id' => $unit
-            ];
-        }
+        $this->requiredParams(['name', 'type'], $values);
 
         return $this->getHttpClient()->post("/accounts", $values);
     }
@@ -76,21 +74,15 @@ class Accounts extends AbstractEndpoint
      * @link https://developers.cloudflare.com/api/resources/accounts/methods/update/
      *
      * @param string $accountId Account identifier.
-     * @param string $name Account name.
-     * @param array $settings Account settings.
+     * @param array $values `name` is required; `settings` is optional.
+     *
+     * @throws \Cloudflare\Exceptions\MissingArgumentException
      *
      * @return \Cloudflare\Contracts\ResponseInterface Update Account response.
      */
-    public function update(string $accountId, string $name, array $settings = []): ResponseInterface
+    public function update(string $accountId, array $values): ResponseInterface
     {
-
-        $values = [
-            'name' => $name,
-        ];
-
-        if (!empty($settings)) {
-            $values['settings'] = $settings;
-        }
+        $this->requiredParams(['name'], $values);
 
         return $this->getHttpClient()->put("/accounts/{$accountId}", $values);
     }

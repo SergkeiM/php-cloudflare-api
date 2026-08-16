@@ -32,13 +32,12 @@ class VirtualNetworksTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'vnet_id']])),
         ]);
 
-        $response = $client->zeroTrust()->networks()->virtualNetworks()->create('account_id', 'my-network');
+        $response = $client->zeroTrust()->networks()->virtualNetworks()->create('account_id', ['name' => 'my-network']);
 
         $this->assertTrue($response->successful());
         $this->assertSame('POST', $this->lastRequest()->getMethod());
         $this->assertSame([
             'name' => 'my-network',
-            'is_default' => false,
         ], json_decode((string) $this->lastRequest()->getBody(), true));
     }
 
@@ -49,7 +48,7 @@ class VirtualNetworksTest extends TestCase
             new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'vnet_id']])),
         ]);
 
-        $response = $client->zeroTrust()->networks()->virtualNetworks()->create('account_id', 'my-network', true, 'my comment');
+        $response = $client->zeroTrust()->networks()->virtualNetworks()->create('account_id', ['name' => 'my-network', 'is_default' => true, 'comment' => 'my comment']);
 
         $this->assertTrue($response->successful());
         $this->assertSame([
