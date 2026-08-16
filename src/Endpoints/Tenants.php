@@ -5,6 +5,7 @@ namespace Cloudflare\Endpoints;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Tenants\AccountTypes;
 use Cloudflare\Endpoints\Tenants\Accounts;
+use Cloudflare\Endpoints\Tenants\CustomNameservers;
 use Cloudflare\Endpoints\Tenants\Entitlements;
 use Cloudflare\Endpoints\Tenants\Memberships;
 
@@ -42,6 +43,16 @@ class Tenants extends AbstractEndpoint
     public function accounts(): Accounts
     {
         return new Accounts($this->getClient());
+    }
+
+    /**
+     * Tenant Custom Nameservers
+     *
+     * @return \Cloudflare\Endpoints\Tenants\CustomNameservers
+     */
+    public function customNameservers(): CustomNameservers
+    {
+        return new CustomNameservers($this->getClient());
     }
 
     /**
