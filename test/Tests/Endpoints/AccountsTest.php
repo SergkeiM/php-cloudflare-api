@@ -159,4 +159,26 @@ class AccountsTest extends TestCase
         $this->assertSame('GET', $this->lastRequest()->getMethod());
         $this->assertSame('/client/v4/accounts/account_id/organizations', $this->lastRequest()->getUri()->getPath());
     }
+
+    #[Test]
+    public function shouldMove()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => [
+                'account_id' => 'account_id',
+                'destination_organization_id' => 'organization_id',
+                'source_organization_id' => 'previous_organization_id',
+            ]])),
+        ]);
+
+        $response = $client->accounts()->move('account_id', 'organization_id');
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame('/client/v4/accounts/account_id/move', $this->lastRequest()->getUri()->getPath());
+        $this->assertSame(
+            ['destination_organization_id' => 'organization_id'],
+            json_decode((string) $this->lastRequest()->getBody(), true)
+        );
+    }
 }
