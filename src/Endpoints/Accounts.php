@@ -139,6 +139,27 @@ class Accounts extends AbstractEndpoint
     }
 
     /**
+     * Move an account within an organization hierarchy, or out of one.
+     *
+     * ```php
+     * $client->accounts()->move('ACCOUNT_ID', 'ORGANIZATION_ID');
+     * ```
+     *
+     * @link https://developers.cloudflare.com/fundamentals/organizations/
+     *
+     * @param string $accountId Account identifier.
+     * @param string $destinationOrganizationId Organization to move the account to.
+     *
+     * @return \Cloudflare\Contracts\ResponseInterface Move Account response.
+     */
+    public function move(string $accountId, string $destinationOrganizationId): ResponseInterface
+    {
+        return $this->getHttpClient()->post("/accounts/{$accountId}/move", [
+            'destination_organization_id' => $destinationOrganizationId,
+        ]);
+    }
+
+    /**
      * Account Members
      *
      * @return \Cloudflare\Endpoints\Accounts\Members
