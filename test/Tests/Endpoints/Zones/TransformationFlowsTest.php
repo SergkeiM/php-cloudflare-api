@@ -2,6 +2,7 @@
 
 namespace Cloudflare\Tests\Endpoints\Zones;
 
+use Cloudflare\Exceptions\MissingArgumentException;
 use Cloudflare\Tests\Concerns\InteractsWithMockClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -132,5 +133,19 @@ class TransformationFlowsTest extends TestCase
         $body = json_decode((string) $this->lastRequest()->getBody(), true);
 
         $this->assertSame([$this->customFlow()], $body['flows']);
+    }
+
+    /**
+     * `flows` is checked by key rather than by value, because an empty list is
+     * the legitimate way to clear the configuration.
+     */
+    #[Test]
+    public function shouldThrowWhenFlowsAreMissing()
+    {
+        $client = $this->mockClient([]);
+
+        $this->expectException(MissingArgumentException::class);
+
+        $client->zones()->transformationFlows()->update('account_id', 'zone_id', ['etag' => 'etag_value']);
     }
 }
