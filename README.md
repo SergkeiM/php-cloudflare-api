@@ -54,9 +54,9 @@ composer require sergkeim/php-cloudflare-api
 ## Versioning and compatibility 🔒
 
 This package follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-Breaking changes to the public API happen only in a major release. Changes are
-recorded in [CHANGELOG.md](CHANGELOG.md), and each major release ships an
-[upgrade guide](UPGRADE.md).
+Breaking changes to the public API happen only in a major release, and each
+release notes what changed and how to move across on the
+[releases page](https://github.com/SergkeiM/php-cloudflare-api/releases).
 
 **The public API is:**
 

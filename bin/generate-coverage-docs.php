@@ -355,6 +355,7 @@ $lines[] = 'title: Coverage';
 $lines[] = 'description: "How much of the Cloudflare API this package covers, measured against Cloudflare\'s OpenAPI schema."';
 $lines[] = 'navigation:';
 $lines[] = '    title: Coverage';
+$lines[] = '    icon: i-lucide-gauge';
 $lines[] = '---';
 $lines[] = '';
 $lines[] = sprintf(
