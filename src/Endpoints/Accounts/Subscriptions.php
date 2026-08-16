@@ -53,6 +53,23 @@ class Subscriptions extends AbstractEndpoint
     }
 
     /**
+     * Smartly applies the incoming subscription into the lifecycle of the subscription.
+     *
+     * Unlike `update()`, which overwrites, this asks Cloudflare to work out how
+     * the supplied subscription should be folded into the existing one.
+     *
+     * @param string $accountId Account identifier.
+     * @param string $subscriptionId Subscription identifier tag.
+     * @param array $values Subscription values, e.g. frequency, rate_plan.
+     *
+     * @return ResponseInterface Append Subscription Action response.
+     */
+    public function append(string $accountId, string $subscriptionId, array $values = []): ResponseInterface
+    {
+        return $this->getHttpClient()->post("/accounts/{$accountId}/subscriptions/{$subscriptionId}/action/append", $values);
+    }
+
+    /**
      * Deletes an account's subscription.
      *
      * @link https://developers.cloudflare.com/api/resources/accounts/subresources/subscriptions/methods/delete/

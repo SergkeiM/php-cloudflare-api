@@ -60,6 +60,29 @@ class SubscriptionsTest extends TestCase
     }
 
     #[Test]
+    public function shouldAppend()
+    {
+        $client = $this->mockClient([
+            new Response(200, [], json_encode(['success' => true, 'result' => ['id' => 'subscription_id']])),
+        ]);
+
+        $response = $client->accounts()->subscriptions()->append('account_id', 'subscription_id', [
+            'rate_plan' => ['id' => 'PARTNERS_PRO'],
+        ]);
+
+        $this->assertTrue($response->successful());
+        $this->assertSame('POST', $this->lastRequest()->getMethod());
+        $this->assertSame(
+            '/client/v4/accounts/account_id/subscriptions/subscription_id/action/append',
+            $this->lastRequest()->getUri()->getPath()
+        );
+        $this->assertSame(
+            ['rate_plan' => ['id' => 'PARTNERS_PRO']],
+            json_decode((string) $this->lastRequest()->getBody(), true)
+        );
+    }
+
+    #[Test]
     public function shouldDelete()
     {
         $client = $this->mockClient([
