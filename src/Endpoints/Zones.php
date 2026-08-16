@@ -5,6 +5,7 @@ namespace Cloudflare\Endpoints;
 use Cloudflare\Contracts\ResponseInterface;
 use Cloudflare\Endpoints\Zones\Holds;
 use Cloudflare\Endpoints\Zones\Settings;
+use Cloudflare\Endpoints\Zones\Subscriptions;
 use Cloudflare\Endpoints\Zones\TransformationFlows;
 use Cloudflare\Configurations\Zones\CachePurge;
 
@@ -153,6 +154,16 @@ class Zones extends AbstractEndpoint
     public function settings(): Settings
     {
         return new Settings($this->getClient());
+    }
+
+    /**
+     * Zone Subscriptions
+     *
+     * @return \Cloudflare\Endpoints\Zones\Subscriptions
+     */
+    public function subscriptions(): Subscriptions
+    {
+        return new Subscriptions($this->getClient());
     }
 
     /**
