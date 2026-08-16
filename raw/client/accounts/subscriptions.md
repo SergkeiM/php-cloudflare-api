@@ -62,6 +62,23 @@ View this operation on the Cloudflare API Reference
 
 </callout>
 
+## Append
+
+Smartly applies the incoming subscription into the lifecycle of the subscription.
+
+Unlike `update()`, which overwrites, this asks Cloudflare to work out how
+the supplied subscription should be folded into the existing one.
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"subscriptionId","type":"string","required":true,"description":"Subscription identifier tag."},{"name":"values","type":"array","required":false,"description":"Subscription values, e.g. frequency, rate_plan.","default":"[]"}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->subscriptions()->append('ACCOUNT_ID', 'SUBSCRIPTION_ID', []);
+```
+
 ## Delete
 
 Deletes an account's subscription.

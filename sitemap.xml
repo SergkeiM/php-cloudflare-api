@@ -112,6 +112,9 @@
     <loc>/client/tenants/accounts</loc>
   </url>
   <url>
+    <loc>/client/tenants/custom-nameservers</loc>
+  </url>
+  <url>
     <loc>/client/tenants/entitlements</loc>
   </url>
   <url>
@@ -149,6 +152,9 @@
   </url>
   <url>
     <loc>/client/zones/settings</loc>
+  </url>
+  <url>
+    <loc>/client/zones/subscriptions</loc>
   </url>
   <url>
     <loc>/client/zones/transformation-flows</loc>

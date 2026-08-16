@@ -146,4 +146,5 @@ View this operation on the Cloudflare API Reference
 
 - [Holds](/client/zones/holds)
 - [Settings](/client/zones/settings)
+- [Subscriptions](/client/zones/subscriptions)
 - [Transformation Flows](/client/zones/transformation-flows)

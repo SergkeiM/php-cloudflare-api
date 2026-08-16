@@ -1,0 +1,70 @@
+# Custom Nameservers
+
+> Custom Nameservers endpoint reference.
+
+## Get
+
+List of custom nameservers for the Tenant.
+
+<params-table :params="[{"name":"tenantId","type":"string","required":true,"description":"Tenant identifier."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tenants()->customNameservers()->get('TENANT_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenant_custom_nameservers/methods/get/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Create
+
+Add a custom nameserver to the Tenant.
+
+```php
+$client->tenants()->customNameservers()->create('TENANT_ID', [
+    'ns_name' => 'ns1.example.com',
+    'ns_set' => 1,
+]);
+```
+
+<params-table :params="[{"name":"tenantId","type":"string","required":true,"description":"Tenant identifier."},{"name":"values","type":"array","required":true,"description":"`ns_name` is required and is the FQDN of the name server. `ns_set` optionally numbers the set the name server belongs to."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tenants()->customNameservers()->create('TENANT_ID', []);
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenant_custom_nameservers/methods/create/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
+## Delete
+
+Delete a custom nameserver from the Tenant.
+
+<params-table :params="[{"name":"tenantId","type":"string","required":true,"description":"Tenant identifier."},{"name":"nsName","type":"string","required":true,"description":"FQDN of the name server to delete."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->tenants()->customNameservers()->delete('TENANT_ID', 'NS_NAME');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/api/resources/tenant_custom_nameservers/methods/delete/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>

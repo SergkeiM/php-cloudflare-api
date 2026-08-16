@@ -151,6 +151,30 @@ List account organizations.
 $response = $client->accounts()->organizations('ACCOUNT_ID');
 ```
 
+## Move
+
+Move an account within an organization hierarchy, or out of one.
+
+```php
+$client->accounts()->move('ACCOUNT_ID', 'ORGANIZATION_ID');
+```
+
+<params-table :params="[{"name":"accountId","type":"string","required":true,"description":"Account identifier."},{"name":"destinationOrganizationId","type":"string","required":true,"description":"Organization to move the account to."}]">
+
+
+
+</params-table>
+
+```php [php]
+$response = $client->accounts()->move('ACCOUNT_ID', 'DESTINATION_ORGANIZATION_ID');
+```
+
+<callout icon="i-simple-icons-cloudflare" to="https://developers.cloudflare.com/fundamentals/organizations/">
+
+View this operation on the Cloudflare API Reference
+
+</callout>
+
 ## Related
 
 - [Members](/client/accounts/members)
