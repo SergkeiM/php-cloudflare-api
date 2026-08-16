@@ -85,7 +85,7 @@ class Settings extends AbstractEndpoint
      * $client->zones()->settings()->replaceOriginTlsComplianceModes('ZONE_ID', ['fips']);
      * ```
      *
-     * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/
+     * @link https://developers.cloudflare.com/api/resources/origin_tls_compliance_modes/methods/update/
      *
      * @param string $zoneId Zone Identifier.
      * @param array $modes TLS compliance modes constraining the key-exchange algorithms Cloudflare offers the origin, e.g. `['fips', 'pqh']`.
@@ -106,7 +106,7 @@ class Settings extends AbstractEndpoint
      * Cloudflare's default of not filtering the key-exchange algorithm list it
      * offers the origin.
      *
-     * @link https://developers.cloudflare.com/api/resources/zones/subresources/settings/
+     * @link https://developers.cloudflare.com/api/resources/origin_tls_compliance_modes/methods/delete/
      *
      * @param string $zoneId Zone Identifier.
      *

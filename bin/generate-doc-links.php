@@ -75,8 +75,12 @@ foreach ($files as $file) {
 
     // Each docblock and the signature it introduces, with offsets, so the body
     // can be read off as the slice up to the next one.
+    // A docblock cannot contain `*/`, so the block matched here is the method's
+    // own. Allowing `.*?` to span instead would let the match start at the class
+    // docblock and swallow it, rewriting the class's link with the first
+    // method's address.
     preg_match_all(
-        '~(/\*\*.*?\*/)\s*public function\s+\w+\s*\(~s',
+        '~(/\*\*(?:(?!\*/).)*+\*/)\s*public function\s+\w+\s*\(~s',
         $source,
         $matches,
         PREG_OFFSET_CAPTURE | PREG_SET_ORDER
