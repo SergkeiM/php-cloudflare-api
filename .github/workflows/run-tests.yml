@@ -109,11 +109,21 @@ jobs:
     strategy:
       matrix:
         php: ['8.2', '8.3', '8.4', '8.5']
-        laravel: ['12', '13']
+        laravel: ['10', '11', '12', '13']
         exclude:
           # Laravel 13 requires PHP >= 8.3
           - php: '8.2'
             laravel: '13'
+          # Laravel 10 supports PHP <= 8.3. Composer will not enforce this on
+          # its own — Laravel 10 declares `php: ^8.1` with no ceiling, so these
+          # combos resolve and pass unless they are excluded by hand.
+          - php: '8.4'
+            laravel: '10'
+          - php: '8.5'
+            laravel: '10'
+          # Laravel 11 supports PHP <= 8.4, same story.
+          - php: '8.5'
+            laravel: '11'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
