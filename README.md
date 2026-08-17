@@ -37,7 +37,7 @@ This package provides convenient access to the Cloudflare REST API using PHP.
 * Light and fast thanks to lazy loading of API classes
 * Lazy pagination — iterate every page of a list endpoint without tracking cursors or page counters
 * Extensively documented
-* Optional Laravel integration (service provider + facade), tested against Laravel 12 and 13
+* Optional Laravel integration (service provider + facade), tested against Laravel 10, 11, 12 and 13
 
 ## Quick install 🚀
 
@@ -107,14 +107,14 @@ A `./dock` helper script wraps the common `docker compose` commands (it starts t
 
 This package requires **PHP >= 8.2**.
 
-The Laravel service provider and facade ship in the package but are an *optional* integration. The integration is tested against **Laravel 12 and 13**. `./dock matrix` builds and tests every supported PHP/Laravel combination locally, in isolated containers, mirroring `.github/workflows/tests.yml`:
+The Laravel service provider and facade ship in the package but are an *optional* integration. The integration is tested against **Laravel 10, 11, 12 and 13**. `./dock matrix` builds and tests every supported PHP/Laravel combination locally, in isolated containers, mirroring `.github/workflows/tests.yml`:
 
-| PHP | Laravel 12 | Laravel 13 |
-| --- | :---: | :---: |
-| 8.2 | ✅ | ❌ |
-| 8.3 | ✅ | ✅ |
-| 8.4 | ✅ | ✅ |
-| 8.5 | ✅ | ✅ |
+| PHP | Laravel 10 | Laravel 11 | Laravel 12 | Laravel 13 |
+| --- | :---: | :---: | :---: | :---: |
+| 8.2 | ✅ | ✅ | ✅ | ❌ |
+| 8.3 | ✅ | ✅ | ✅ | ✅ |
+| 8.4 | ❌ | ✅ | ✅ | ✅ |
+| 8.5 | ❌ | ❌ | ✅ | ✅ |
 
 Each matrix cell runs `composer update` and the full test suite inside its own container/vendor volume, so runs never interfere with each other or with your host `composer.json`/`composer.lock`.
 

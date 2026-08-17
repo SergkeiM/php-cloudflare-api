@@ -29,9 +29,14 @@ SERVICE="php"
 # Format: "<compose-service>:<laravel-major>". Combos not listed here are not supported
 # (e.g. php82:13 is excluded because Laravel 13 requires PHP >= 8.3).
 MATRIX_COMBOS="
+php82:10
+php82:11
 php82:12
+php83:10
+php83:11
 php83:12
 php83:13
+php84:11
 php84:12
 php84:13
 php85:12

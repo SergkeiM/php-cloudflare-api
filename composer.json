@@ -26,14 +26,14 @@
         "phpunit/phpunit": "^10.5.13 || ^11.0 || ^12.0",
         "friendsofphp/php-cs-fixer": "^3.62",
         "graham-campbell/testbench": "^6.3",
-        "illuminate/contracts": "^12.0 || ^13.0",
-        "illuminate/support": "^12.0 || ^13.0",
+        "illuminate/contracts": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "illuminate/support": "^10.0 || ^11.0 || ^12.0 || ^13.0",
         "phpdocumentor/reflection-docblock": "^6.0",
         "phpstan/phpstan": "^2.1"
     },
     "suggest": {
-        "illuminate/contracts": "Required to use the Laravel service provider and facade (^12.0 || ^13.0). Already present in any Laravel application.",
-        "illuminate/support": "Required to use the Laravel service provider and facade (^12.0 || ^13.0). Already present in any Laravel application."
+        "illuminate/contracts": "Required to use the Laravel service provider and facade (^10.0 || ^11.0 || ^12.0 || ^13.0). Already present in any Laravel application.",
+        "illuminate/support": "Required to use the Laravel service provider and facade (^10.0 || ^11.0 || ^12.0 || ^13.0). Already present in any Laravel application."
     },
     "autoload": {
         "psr-4": {
