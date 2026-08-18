@@ -132,8 +132,6 @@ The `php` service mounts the repository into the container, so changes you make 
 
 ## Thanks 🙏
 
-* Thanks to [Cloudflare](https://developers.cloudflare.com/api/) for the high quality API and documentation.
-* Thanks to [KnpLabs](https://github.com/KnpLabs) for [php-github-api](https://github.com/KnpLabs/php-github-api) used as inspiration for this package.
 * Thanks to [Graham Campbell](https://github.com/GrahamCampbell) for [Laravel TestBench](https://github.com/GrahamCampbell/Laravel-TestBench).
 
 ## License 📎
