@@ -106,8 +106,8 @@ class HttpClient
      * The token is owned by the client, so `Authorization` is always applied last.
      *
      * @param  string  $token
-     * @param  array<string, string|string[]>  $headers
-     * @return array<string, string|string[]>
+     * @param  array<string, string|non-empty-array<string>>  $headers
+     * @return array<string, string|non-empty-array<string>>
      */
     private static function buildHeaders(string $token, array $headers): array
     {
@@ -127,9 +127,9 @@ class HttpClient
     /**
      * Remove every case-insensitive match for the given header name.
      *
-     * @param  array<string, string|string[]>  $headers
+     * @param  array<string, string|non-empty-array<string>>  $headers
      * @param  string  $name
-     * @return array<string, string|string[]>
+     * @return array<string, string|non-empty-array<string>>
      */
     private static function withoutHeader(array $headers, string $name): array
     {

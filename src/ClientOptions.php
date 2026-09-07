@@ -64,7 +64,7 @@ final readonly class ClientOptions
     /**
      * Additional headers sent with every request.
      *
-     * @var array<string, string|string[]>
+     * @var array<string, string|non-empty-array<string>>
      */
     public array $headers;
 
@@ -84,7 +84,7 @@ final readonly class ClientOptions
      * @param string|null $baseUrl Base URL for API requests. Defaults to the Cloudflare API v4 endpoint.
      * @param float $timeout Seconds to wait for a response. `0` disables the timeout.
      * @param float $connectTimeout Seconds to wait while connecting. `0` disables the timeout.
-     * @param array<string, string|string[]> $headers Additional headers sent with every request. `Authorization` is always managed by the client and cannot be overridden here.
+     * @param array<string, string|non-empty-array<string>> $headers Additional headers sent with every request. `Authorization` is always managed by the client and cannot be overridden here.
      * @param array<int, callable> $middlewares Guzzle middlewares.
      * @param int $maxRetries Attempts made after the initial request before giving up. `0` disables retries.
      *
@@ -154,21 +154,45 @@ final readonly class ClientOptions
      * @param array $headers Raw, unvalidated input.
      *
      * @throws InvalidArgumentException
-     * @return array<string, string|string[]>
+     * @return array<string, string|non-empty-array<string>>
      */
     private static function normalizeHeaders(array $headers): array
     {
+        $normalized = [];
+
         foreach ($headers as $name => $value) {
             if (!is_string($name) || trim($name) === '') {
                 throw new InvalidArgumentException('Header names must be non-empty strings.');
             }
 
-            if (!is_string($value) && !is_array($value)) {
+            if (is_string($value)) {
+                $normalized[$name] = $value;
+                continue;
+            }
+
+            if (!is_array($value)) {
                 throw new InvalidArgumentException(sprintf('The value for header "%s" must be a string or an array of strings.', $name));
             }
+
+            $values = [];
+
+            foreach ($value as $item) {
+                if (!is_string($item)) {
+                    throw new InvalidArgumentException(sprintf('The value for header "%s" must be a string or an array of strings.', $name));
+                }
+
+                $values[] = $item;
+            }
+
+            // Guzzle has no meaning for a header with no values.
+            if ($values === []) {
+                throw new InvalidArgumentException(sprintf('The value for header "%s" must not be an empty array.', $name));
+            }
+
+            $normalized[$name] = $values;
         }
 
-        return $headers;
+        return $normalized;
     }
 
     /**
