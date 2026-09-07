@@ -139,6 +139,24 @@ class ClientOptionsTest extends TestCase
     }
 
     #[Test]
+    public function shouldRejectNonStringHeaderValueInsideArray()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The value for header "X-Multi" must be a string or an array of strings.');
+
+        new ClientOptions(headers: ['X-Multi' => ['a', 123]]);
+    }
+
+    #[Test]
+    public function shouldRejectEmptyArrayHeaderValue()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The value for header "X-Multi" must not be an empty array.');
+
+        new ClientOptions(headers: ['X-Multi' => []]);
+    }
+
+    #[Test]
     public function shouldRejectNonCallableMiddleware()
     {
         $this->expectException(InvalidArgumentException::class);
