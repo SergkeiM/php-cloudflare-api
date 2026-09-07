@@ -9,7 +9,7 @@
     "preview": "nuxi preview"
   },
   "dependencies": {
-    "docus": "^5.12.3",
+    "docus": "^5.13.0",
     "nuxt": "^4.5.2"
   }
 }
